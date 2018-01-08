@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{094811E5-9A10-46D9-8616-7BF0F172AA37}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>sicem</RootNamespace>
+    <AssemblyName>sicem</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Bunifu_UI_v1.5.3">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio 14.0\Bunifu_UI_v1.5.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2017.3.1017.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.GridView, Version=2017.3.1017.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.RichTextEditor, Version=2017.3.1017.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.Aqua, Version=2017.3.1017.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.Material, Version=2017.3.1017.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.MaterialBlueGrey, Version=2017.3.1017.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.Office2013Dark, Version=2017.3.1017.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetro, Version=2017.3.1017.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Dark, Version=2017.3.1017.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.UI, Version=2017.3.1017.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="TelerikCommon, Version=2017.3.1017.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Transitions, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\dot-net-transitions.1.2.1.0\lib\net40-full\Transitions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="vista\administrar\detalleOferta.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vista\administrar\detalleOferta.Designer.cs">
+      <DependentUpon>detalleOferta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\administrar\detalleProducto.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vista\administrar\detalleProducto.Designer.cs">
+      <DependentUpon>detalleProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\administrar\ofertaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\administrar\ofertaForm.designer.cs">
+      <DependentUpon>ofertaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\Dialogos\confirmDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\Dialogos\confirmDialog.Designer.cs">
+      <DependentUpon>confirmDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\directorio\empleadoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\directorio\empleadoForm.designer.cs">
+      <DependentUpon>empleadoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\directorio\proveedorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\directorio\proveedorForm.designer.cs">
+      <DependentUpon>proveedorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="datos\Categoria.cs" />
+    <Compile Include="datos\Cliente.cs" />
+    <Compile Include="datos\DataCategory.cs" />
+    <Compile Include="datos\Producto.cs" />
+    <Compile Include="datos\Proveedor.cs" />
+    <Compile Include="vista\administrar\categoriaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\administrar\categoriaForm.designer.cs">
+      <DependentUpon>categoriaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\administrar\usuarioForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\administrar\usuarioForm.designer.cs">
+      <DependentUpon>usuarioForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\Dialogos\logoutDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\Dialogos\logoutDialog.Designer.cs">
+      <DependentUpon>logoutDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\directorio\clienteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\directorio\clienteForm.designer.cs">
+      <DependentUpon>clienteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\inventario\almacenProductoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\inventario\almacenProductoForm.designer.cs">
+      <DependentUpon>almacenProductoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\inventario\bodegaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\inventario\bodegaForm.designer.cs">
+      <DependentUpon>bodegaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\inventario\detalleBodega.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vista\inventario\detalleBodega.Designer.cs">
+      <DependentUpon>detalleBodega.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\inventario\detalleInventario.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vista\inventario\detalleInventario.Designer.cs">
+      <DependentUpon>detalleInventario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\inventario\inventario.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vista\inventario\inventario.designer.cs">
+      <DependentUpon>inventario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\operaciones\compraForm.designer.cs">
+      <DependentUpon>compraForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="datos\compra.cs" />
+    <Compile Include="datos\conexión\Conexión.cs" />
+    <Compile Include="datos\DetalleCompra.cs" />
+    <Compile Include="datos\DetalleVenta.cs" />
+    <Compile Include="datos\usuario.cs" />
+    <Compile Include="datos\venta.cs" />
+    <Compile Include="vista\operaciones\compraForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\operaciones\ventaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\operaciones\ventaForm.Designer.cs">
+      <DependentUpon>ventaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="utilidades\italk_theme_-_c#.cs" />
+    <Compile Include="vista\administrar\administrar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vista\administrar\administrar.designer.cs">
+      <DependentUpon>administrar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\administrar\detalleCategoria.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vista\administrar\detalleCategoria.Designer.cs">
+      <DependentUpon>detalleCategoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\administrar\detalleUsuario.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vista\administrar\detalleUsuario.Designer.cs">
+      <DependentUpon>detalleUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\directorio\detalleEmpleado.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vista\directorio\detalleEmpleado.Designer.cs">
+      <DependentUpon>detalleEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\directorio\detalleCliente.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vista\directorio\detalleCliente.Designer.cs">
+      <DependentUpon>detalleCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\directorio\detalleProveedor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vista\directorio\detalleProveedor.Designer.cs">
+      <DependentUpon>detalleProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\directorio\directorio.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vista\directorio\directorio.designer.cs">
+      <DependentUpon>directorio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\home.designer.cs">
+      <DependentUpon>home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="utilidades\region.cs" />
+    <Compile Include="vista\inicio\inicio.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vista\inicio\inicio.designer.cs">
+      <DependentUpon>inicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\login.Designer.cs">
+      <DependentUpon>login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="vista\operaciones\detalleCompra.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vista\operaciones\detalleCompra.Designer.cs">
+      <DependentUpon>detalleCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\operaciones\detalleVenta.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vista\operaciones\detalleVenta.Designer.cs">
+      <DependentUpon>detalleVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\operaciones\operaciones.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vista\operaciones\operaciones.designer.cs">
+      <DependentUpon>operaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\popup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\popup.designer.cs">
+      <DependentUpon>popup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\popupManager.cs" />
+    <Compile Include="vista\administrar\productoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\administrar\productoForm.designer.cs">
+      <DependentUpon>productoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\producto\productos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vista\producto\productos.designer.cs">
+      <DependentUpon>productos.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="vista\administrar\detalleOferta.resx">
+      <DependentUpon>detalleOferta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\administrar\detalleProducto.resx">
+      <DependentUpon>detalleProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\administrar\ofertaForm.resx">
+      <DependentUpon>ofertaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\Dialogos\confirmDialog.resx">
+      <DependentUpon>confirmDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\directorio\empleadoForm.resx">
+      <DependentUpon>empleadoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\directorio\proveedorForm.resx">
+      <DependentUpon>proveedorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\administrar\categoriaForm.resx">
+      <DependentUpon>categoriaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\administrar\usuarioForm.resx">
+      <DependentUpon>usuarioForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\Dialogos\logoutDialog.resx">
+      <DependentUpon>logoutDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\directorio\clienteForm.resx">
+      <DependentUpon>clienteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\inventario\almacenProductoForm.resx">
+      <DependentUpon>almacenProductoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\inventario\bodegaForm.resx">
+      <DependentUpon>bodegaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\inventario\detalleBodega.resx">
+      <DependentUpon>detalleBodega.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\inventario\detalleInventario.resx">
+      <DependentUpon>detalleInventario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\inventario\inventario.resx">
+      <DependentUpon>inventario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\operaciones\compraForm.resx">
+      <DependentUpon>compraForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\operaciones\ventaForm.resx">
+      <DependentUpon>ventaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\administrar\administrar.resx">
+      <DependentUpon>administrar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\administrar\detalleCategoria.resx">
+      <DependentUpon>detalleCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\administrar\detalleUsuario.resx">
+      <DependentUpon>detalleUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\directorio\detalleEmpleado.resx">
+      <DependentUpon>detalleEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\directorio\detalleCliente.resx">
+      <DependentUpon>detalleCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\directorio\detalleProveedor.resx">
+      <DependentUpon>detalleProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\directorio\directorio.resx">
+      <DependentUpon>directorio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\home.resx">
+      <DependentUpon>home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\inicio\inicio.resx">
+      <DependentUpon>inicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\login.resx">
+      <DependentUpon>login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\operaciones\detalleCompra.resx">
+      <DependentUpon>detalleCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\operaciones\detalleVenta.resx">
+      <DependentUpon>detalleVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\operaciones\operaciones.resx">
+      <DependentUpon>operaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\popup.resx">
+      <DependentUpon>popup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\administrar\productoForm.resx">
+      <DependentUpon>productoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\producto\productos.resx">
+      <DependentUpon>productos.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imagenes\picture-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imagenes\expand-collapse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imagenes\hide-collapse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imagenes\expand-base.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imagenes\expandir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imagenes\contraer.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

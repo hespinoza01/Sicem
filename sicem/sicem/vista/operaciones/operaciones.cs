@@ -29,6 +29,9 @@ namespace sicem
 
         public void inicia()
         {
+            clearForeColor();
+            labelventas.ForeColor = Color.RoyalBlue;
+
             contentDetails.Controls.Add(detalleVenta);
             contentDetails.Controls.Add(detalleCompra);
 
@@ -44,6 +47,12 @@ namespace sicem
             //    vistaClientes.DataSource = new Cliente().Mostrar();
             //}
             //catch (Exception ex) { }
+        }
+
+        private void clearForeColor()
+        {
+            labelventas.ForeColor = Color.Silver;
+            labelcompras.ForeColor = Color.Silver;
         }
 
         private void agregarButton_Click(object sender, EventArgs e)
@@ -66,6 +75,8 @@ namespace sicem
 
         private void labelventas_Click(object sender, EventArgs e)
         {
+            clearForeColor();
+            labelventas.ForeColor = Color.RoyalBlue;
             Transition.run(indicadorlabel, "Left", labelventas.Left, new TransitionType_EaseInEaseOut(500));
             indicadorlabel.Width = labelventas.Width;
             detalleVenta.BringToFront();
@@ -73,6 +84,8 @@ namespace sicem
 
         private void labelcompras_Click(object sender, EventArgs e)
         {
+            clearForeColor();
+            labelcompras.ForeColor = Color.RoyalBlue;
             Transition.run(indicadorlabel, "Left", labelcompras.Left, new TransitionType_EaseInEaseOut(500));
             indicadorlabel.Width = labelcompras.Width;
             detalleCompra.BringToFront();

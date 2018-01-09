@@ -74,7 +74,17 @@ namespace sicem
             set { pPic = (value != null) ? value : sicem.Properties.Resources.picture_user; }
         }
 
+        public int Estado
+        {
+            get;
+            set;
+        }
 
+        public DateTime FechaCreacion
+        {
+            get;
+            set;
+        }
 
         // Método insertar
         public void Insertar()

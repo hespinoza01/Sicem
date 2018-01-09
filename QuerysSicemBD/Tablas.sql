@@ -119,7 +119,7 @@ create table Bodega(
 create table Inventario(
 	ProductoID int,
 	BodegaID int,
-	Estante int,
+	Estante varchar(50),
 	Cantidad int,
 	FechaModificacion date
 )

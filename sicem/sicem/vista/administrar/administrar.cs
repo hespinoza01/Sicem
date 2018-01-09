@@ -31,6 +31,9 @@ namespace sicem
 
         private void inicio()
         {
+            clearForeColor();
+            labelusuarios.ForeColor = Color.RoyalBlue;
+
             contentDetails.Controls.Add(detalleUsuario);
             contentDetails.Controls.Add(detalleProducto);
             contentDetails.Controls.Add(detalleCategoria);
@@ -39,6 +42,14 @@ namespace sicem
             detalleUsuario.BringToFront();
 
             Cargar();
+        }
+
+        private void clearForeColor()
+        {
+            labelusuarios.ForeColor = Color.Silver;
+            labelproductos.ForeColor = Color.Silver;
+            labelcategorias.ForeColor = Color.Silver;
+            labelofertas.ForeColor = Color.Silver;
         }
 
         public void Cargar()
@@ -70,6 +81,8 @@ namespace sicem
 
         private void labelusuarios_Click(object sender, EventArgs e)
         {
+            clearForeColor();
+            labelusuarios.ForeColor = Color.RoyalBlue;
             Transition.run(indicadorlabel, "Left", labelusuarios.Left, new TransitionType_EaseInEaseOut(500));
             indicadorlabel.Width = labelusuarios.Width;
             detalleUsuario.BringToFront();
@@ -77,6 +90,8 @@ namespace sicem
 
         private void labelproductos_Click(object sender, EventArgs e)
         {
+            clearForeColor();
+            labelproductos.ForeColor = Color.RoyalBlue;
             Transition.run(indicadorlabel, "Left", labelproductos.Left, new TransitionType_EaseInEaseOut(500));
             indicadorlabel.Width = labelproductos.Width;
             detalleProducto.BringToFront();
@@ -84,6 +99,8 @@ namespace sicem
 
         private void labelcategorias_Click(object sender, EventArgs e)
         {
+            clearForeColor();
+            labelcategorias.ForeColor = Color.RoyalBlue;
             Transition.run(indicadorlabel, "Left", labelcategorias.Left, new TransitionType_EaseInEaseOut(500));
             indicadorlabel.Width = labelcategorias.Width;
             detalleCategoria.BringToFront();
@@ -91,6 +108,8 @@ namespace sicem
 
         private void labelofertas_Click(object sender, EventArgs e)
         {
+            clearForeColor();
+            labelofertas.ForeColor = Color.RoyalBlue;
             Transition.run(indicadorlabel, "Left", labelofertas.Left, new TransitionType_EaseInEaseOut(500));
             indicadorlabel.Width = labelofertas.Width;
             detalleOferta.BringToFront();

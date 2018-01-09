@@ -11,11 +11,30 @@ namespace sicem
     class compra
     {
 
-    public string ID { get; set; }
-    public int ProveedorID { get; set; }
-	public DateTime FechaCompra { get; set; }
-    public int TipoPago { get; set; }
-	public decimal Monto { get; set; }
+    public string ID {
+            get;
+            set;
+        }
+
+    public int ProveedorID {
+            get;
+            set;
+        }
+
+	public DateTime FechaCompra {
+            get;
+            set;
+        }
+
+    public int TipoPago {
+            get;
+            set;
+        }
+
+	public decimal Monto {
+            get;
+            set;
+        }
 
         public void Insertar()
         {

@@ -29,6 +29,9 @@ namespace sicem
 
         public void inicia()
         {
+            clearForeColor();
+            labelproducto.ForeColor = Color.RoyalBlue;
+
             contentDetails.Controls.Add(detalleInventario);
             contentDetails.Controls.Add(detalleBodega);
 
@@ -44,6 +47,12 @@ namespace sicem
             //    vistaClientes.DataSource = new Cliente().Mostrar();
             //}
             //catch (Exception ex) { }
+        }
+
+        private void clearForeColor()
+        {
+            labelproducto.ForeColor = Color.Silver;
+            labelbodega.ForeColor = Color.Silver;
         }
 
 
@@ -67,6 +76,8 @@ namespace sicem
 
         private void labelbodega_Click(object sender, EventArgs e)
         {
+            clearForeColor();
+            labelbodega.ForeColor = Color.RoyalBlue;
             Transition.run(indicadorlabel, "Left", labelbodega.Left, new TransitionType_EaseInEaseOut(500));
             indicadorlabel.Width = labelbodega.Width;
             detalleBodega.BringToFront();
@@ -74,6 +85,8 @@ namespace sicem
 
         private void labelproducto_Click(object sender, EventArgs e)
         {
+            clearForeColor();
+            labelproducto.ForeColor = Color.RoyalBlue;
             Transition.run(indicadorlabel, "Left", labelproducto.Left, new TransitionType_EaseInEaseOut(500));
             indicadorlabel.Width = labelproducto.Width;
             detalleInventario.BringToFront();

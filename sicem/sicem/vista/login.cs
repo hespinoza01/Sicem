@@ -34,12 +34,12 @@ namespace sicem
             content.Region = new region().RoundBorder(680, 530, 8);
             picture.Region = new region().Circle(120, 120);
 
-            username.TopLevelControl.Controls.Add(listaSugetencias);
+            username.TopLevelControl.Controls.Add(listaSugerencias);
             Point controlLocation = username.TopLevelControl.PointToClient(username.Parent.PointToScreen(username.Location));
-            listaSugetencias.Left = controlLocation.X + 5;
-            listaSugetencias.Top = controlLocation.Y + username.Height;
-            listaSugetencias.Width = 200;
-            listaSugetencias.Height = listaSugetencias.ItemHeight * 4;
+            listaSugerencias.Left = controlLocation.X + 5;
+            listaSugerencias.Top = controlLocation.Y + username.Height;
+            listaSugerencias.Width = 200;
+            listaSugerencias.Height = listaSugerencias.ItemHeight * 4;
 
             password.PasswordChar = '\u25CF';
         }
@@ -83,12 +83,12 @@ namespace sicem
             if (username.Text.Length > 0)
             {
                 username.ShowClearButton = true;
-                listaSugetencias.Visible = true;
-                listaSugetencias.BringToFront();
+                listaSugerencias.Visible = true;
+                listaSugerencias.BringToFront();
             }
             else
             {
-                listaSugetencias.Visible = false;
+                listaSugerencias.Visible = false;
                 username.ShowClearButton = false;
             }
         }
@@ -99,28 +99,60 @@ namespace sicem
                 password.Focus();
         }
 
+        private void username_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Down:
+                    {
+                        if ((listaSugerencias.Visible) && (listaSugerencias.SelectedIndex < listaSugerencias.Items.Count - 1))
+                            listaSugerencias.SelectedIndex++;
+                        e.SuppressKeyPress = true;
+                        break;
+                    }
+                case Keys.Up:
+                    {
+                        if (listaSugerencias.Visible && listaSugerencias.SelectedIndex >= 0)
+                            listaSugerencias.SelectedIndex--;
+                        e.SuppressKeyPress = true;
+                        break;
+                    }
+                case Keys.Enter:
+                    {
+                        if (listaSugerencias.Visible)
+                        {
+                            listaSugerencias_Click(null, null);
+                            e.SuppressKeyPress = true;
+                        }
+                        break;
+                    }
+            }
+        }
+
         private void username_Leave(object sender, EventArgs e)
         {
-            if (!listaSugetencias.ContainsFocus)
+            if (!listaSugerencias.ContainsFocus)
             {
-                listaSugetencias.Visible = false;
+                listaSugerencias.Visible = false;
                 username.ShowClearButton = false;
             }
         }
 
-        private void listaSugetencias_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        private void listaSugerencias_Click(object sender, EventArgs e)
         {
-            username.Text = listaSugetencias.SelectedItem.ToString();
+            if (listaSugerencias.SelectedIndex >= 0)
+                username.Text = listaSugerencias.SelectedItem.ToString();
+
             username.Focus();
             username.Select(username.Text.Length, 0);
-            listaSugetencias.Visible = false;
+            listaSugerencias.Visible = false;
         }
 
-        private void listaSugetencias_Leave(object sender, EventArgs e)
+        private void listaSugerencias_Leave(object sender, EventArgs e)
         {
             if (!username.ContainsFocus)
             {
-                listaSugetencias.Visible = false;
+                listaSugerencias.Visible = false;
                 username.ShowClearButton = false;
             }
         }

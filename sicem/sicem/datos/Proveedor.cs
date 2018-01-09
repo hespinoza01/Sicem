@@ -11,9 +11,9 @@ namespace sicem
     class Proveedor
     {
 
-        public int P_Id{ 
-            get {return (P_Id != null) ? P_Id : -1;} 
-            set {P_Id = (value != null) ? value : -1;} 
+        public int P_Id{
+            get;
+            set; 
         }
 
         public string P_Nombre{
@@ -21,9 +21,27 @@ namespace sicem
             set { P_Nombre = (value != null) ? value : "N/A"; }
         }
 
+        public string P_NombreContacto
+        {
+            get { return (P_NombreContacto != null) ? P_NombreContacto : "N/A"; }
+            set { P_NombreContacto = (value != null) ? value : "N/A"; }
+        }
+
+        public string P_TituloContacto
+        {
+            get { return (P_TituloContacto != null) ? P_TituloContacto : "N/A"; }
+            set { P_TituloContacto = (value != null) ? value : "N/A"; }
+        }
+
         public string P_Domicilio{
             get { return (P_Domicilio != null) ? P_Domicilio : "N/A"; }
             set { P_Domicilio = (value != null) ? value : "N/A"; }
+        }
+
+        public string P_Ciudad
+        {
+            get { return (P_Ciudad != null) ? P_Ciudad : "N/A"; }
+            set { P_Ciudad = (value != null) ? value : "N/A"; }
         }
 
         public string P_Telefono{
@@ -34,6 +52,12 @@ namespace sicem
         public string P_Email{
             get { return (P_Email != null) ? P_Email : "N/A"; }
             set { P_Email = (value != null) ? value : "N/A"; }
+        }
+
+        public int P_Estado
+        {
+            get;
+            set;
         }
 
         public enum Accion

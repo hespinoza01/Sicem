@@ -40,17 +40,17 @@
             this.labelusuarios = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.erraseButton = new Bunifu.Framework.UI.BunifuImageButton();
             this.contentSearch = new System.Windows.Forms.Panel();
+            this.metodoBusqueda = new iTalk.iTalk_ComboBox();
             this.txtBuscar = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.agregarButton = new Bunifu.Framework.UI.BunifuImageButton();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.labelofertas = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.vistaClientes = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.columnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.contentDetails = new System.Windows.Forms.Panel();
-            this.metodoBusqueda = new iTalk.iTalk_ComboBox();
-            this.labelofertas = new Bunifu.Framework.UI.BunifuCustomLabel();
             ((System.ComponentModel.ISupportInitialize)(this.erraseButton)).BeginInit();
             this.contentSearch.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -99,6 +99,7 @@
             // labelusuarios
             // 
             this.labelusuarios.AutoSize = true;
+            this.labelusuarios.BackColor = System.Drawing.Color.White;
             this.labelusuarios.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelusuarios.ForeColor = System.Drawing.Color.RoyalBlue;
             this.labelusuarios.Location = new System.Drawing.Point(20, 15);
@@ -131,6 +132,29 @@
             this.contentSearch.Name = "contentSearch";
             this.contentSearch.Size = new System.Drawing.Size(350, 37);
             this.contentSearch.TabIndex = 12;
+            // 
+            // metodoBusqueda
+            // 
+            this.metodoBusqueda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(246)))));
+            this.metodoBusqueda.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.metodoBusqueda.DropDownHeight = 100;
+            this.metodoBusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.metodoBusqueda.Font = new System.Drawing.Font("Century Gothic", 8.15F);
+            this.metodoBusqueda.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.metodoBusqueda.FormattingEnabled = true;
+            this.metodoBusqueda.HoverSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.metodoBusqueda.IntegralHeight = false;
+            this.metodoBusqueda.ItemHeight = 20;
+            this.metodoBusqueda.Items.AddRange(new object[] {
+            "Nombre/ID",
+            "Correo",
+            "Dirección",
+            "Teléfono"});
+            this.metodoBusqueda.Location = new System.Drawing.Point(244, 6);
+            this.metodoBusqueda.Name = "metodoBusqueda";
+            this.metodoBusqueda.Size = new System.Drawing.Size(95, 26);
+            this.metodoBusqueda.StartIndex = 0;
+            this.metodoBusqueda.TabIndex = 0;
             // 
             // txtBuscar
             // 
@@ -192,6 +216,18 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(467, 50);
             this.panel4.TabIndex = 14;
+            // 
+            // labelofertas
+            // 
+            this.labelofertas.AutoSize = true;
+            this.labelofertas.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelofertas.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.labelofertas.Location = new System.Drawing.Point(337, 15);
+            this.labelofertas.Name = "labelofertas";
+            this.labelofertas.Size = new System.Drawing.Size(68, 21);
+            this.labelofertas.TabIndex = 18;
+            this.labelofertas.Text = "Ofertas";
+            this.labelofertas.Click += new System.EventHandler(this.labelofertas_Click);
             // 
             // vistaClientes
             // 
@@ -277,41 +313,6 @@
             this.contentDetails.Name = "contentDetails";
             this.contentDetails.Size = new System.Drawing.Size(483, 590);
             this.contentDetails.TabIndex = 14;
-            // 
-            // metodoBusqueda
-            // 
-            this.metodoBusqueda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(246)))));
-            this.metodoBusqueda.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.metodoBusqueda.DropDownHeight = 100;
-            this.metodoBusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.metodoBusqueda.Font = new System.Drawing.Font("Century Gothic", 8.15F);
-            this.metodoBusqueda.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.metodoBusqueda.FormattingEnabled = true;
-            this.metodoBusqueda.HoverSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.metodoBusqueda.IntegralHeight = false;
-            this.metodoBusqueda.ItemHeight = 20;
-            this.metodoBusqueda.Items.AddRange(new object[] {
-            "Nombre/ID",
-            "Correo",
-            "Dirección",
-            "Teléfono"});
-            this.metodoBusqueda.Location = new System.Drawing.Point(244, 6);
-            this.metodoBusqueda.Name = "metodoBusqueda";
-            this.metodoBusqueda.Size = new System.Drawing.Size(95, 26);
-            this.metodoBusqueda.StartIndex = 0;
-            this.metodoBusqueda.TabIndex = 0;
-            // 
-            // labelofertas
-            // 
-            this.labelofertas.AutoSize = true;
-            this.labelofertas.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelofertas.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.labelofertas.Location = new System.Drawing.Point(337, 15);
-            this.labelofertas.Name = "labelofertas";
-            this.labelofertas.Size = new System.Drawing.Size(68, 21);
-            this.labelofertas.TabIndex = 18;
-            this.labelofertas.Text = "Ofertas";
-            this.labelofertas.Click += new System.EventHandler(this.labelofertas_Click);
             // 
             // administrar
             // 

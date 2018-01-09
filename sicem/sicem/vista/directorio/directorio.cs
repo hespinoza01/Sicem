@@ -30,6 +30,9 @@ namespace sicem
 
         private void inicia()
         {
+            clearForeColor();
+            labelcliente.ForeColor = Color.RoyalBlue;
+
             contentDetails.Controls.Add(detalleCliente);
             contentDetails.Controls.Add(detalleProveedor);
             contentDetails.Controls.Add(detalleEmpleado);
@@ -46,6 +49,13 @@ namespace sicem
             //    vistaClientes.DataSource = new Cliente().Mostrar();
             //}
             //catch (Exception ex) { }
+        }
+
+        private void clearForeColor()
+        {
+            labelcliente.ForeColor = Color.Silver;
+            labelproveedor.ForeColor = Color.Silver;
+            labelempleado.ForeColor = Color.Silver;
         }
 
         private void agregarButton_Click(object sender, EventArgs e)
@@ -68,6 +78,8 @@ namespace sicem
 
         private void labelcliente_Click(object sender, EventArgs e)
         {
+            clearForeColor();
+            labelcliente.ForeColor = Color.RoyalBlue;
             Transition.run(indicadorlabel, "Left", labelcliente.Left, new TransitionType_EaseInEaseOut(500));
             indicadorlabel.Width = labelcliente.Width;
             detalleCliente.BringToFront();
@@ -75,6 +87,8 @@ namespace sicem
 
         private void labelproveedor_Click(object sender, EventArgs e)
         {
+            clearForeColor();
+            labelproveedor.ForeColor = Color.RoyalBlue;
             Transition.run(indicadorlabel, "Left", labelproveedor.Left, new TransitionType_EaseInEaseOut(500));
             indicadorlabel.Width = labelproveedor.Width;
             detalleProveedor.BringToFront();
@@ -82,6 +96,8 @@ namespace sicem
 
         private void labelempleado_Click(object sender, EventArgs e)
         {
+            clearForeColor();
+            labelempleado.ForeColor = Color.RoyalBlue;
             Transition.run(indicadorlabel, "Left", labelempleado.Left, new TransitionType_EaseInEaseOut(500));
             indicadorlabel.Width = labelempleado.Width;
             detalleEmpleado.BringToFront();

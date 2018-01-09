@@ -42,7 +42,7 @@
             this.password = new Telerik.WinControls.UI.RadTextBox();
             this.bunifuSeparator1 = new Bunifu.Framework.UI.BunifuSeparator();
             this.username = new Telerik.WinControls.UI.RadTextBox();
-            this.listaSugetencias = new Telerik.WinControls.UI.RadListControl();
+            this.listaSugerencias = new Telerik.WinControls.UI.RadListControl();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.ingresar = new Bunifu.Framework.UI.BunifuThinButton2();
@@ -55,7 +55,7 @@
             this.content.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.password)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.username)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.listaSugetencias)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listaSugerencias)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).BeginInit();
@@ -72,7 +72,7 @@
             this.content.Controls.Add(this.password);
             this.content.Controls.Add(this.bunifuSeparator1);
             this.content.Controls.Add(this.username);
-            this.content.Controls.Add(this.listaSugetencias);
+            this.content.Controls.Add(this.listaSugerencias);
             this.content.Controls.Add(this.pictureBox2);
             this.content.Controls.Add(this.pictureBox4);
             this.content.Controls.Add(this.ingresar);
@@ -163,6 +163,7 @@
             this.username.ThemeName = "Material";
             this.username.TextChanged += new System.EventHandler(this.username_OnValueChanged);
             this.username.Enter += new System.EventHandler(this.username_Enter);
+            this.username.KeyDown += new System.Windows.Forms.KeyEventHandler(this.username_KeyDown);
             this.username.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.username_KeyPress);
             this.username.Leave += new System.EventHandler(this.username_Leave);
             ((Telerik.WinControls.UI.RadTextBoxElement)(this.username.GetChildAt(0))).Text = "";
@@ -176,12 +177,12 @@
             ((Telerik.WinControls.UI.RadTextBoxItem)(this.username.GetChildAt(0).GetChildAt(0))).EnableFocusBorderAnimation = false;
             ((Telerik.WinControls.UI.RadTextBoxItem)(this.username.GetChildAt(0).GetChildAt(0))).Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             // 
-            // listaSugetencias
+            // listaSugerencias
             // 
-            this.listaSugetencias.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.listaSugetencias.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listaSugetencias.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.listaSugetencias.ItemHeight = 20;
+            this.listaSugerencias.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.listaSugerencias.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listaSugerencias.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.listaSugerencias.ItemHeight = 20;
             radListDataItem1.Text = "ListItem 1";
             radListDataItem2.Text = "ListItem 2";
             radListDataItem3.Text = "ListItem 3";
@@ -189,36 +190,36 @@
             radListDataItem5.Text = "ListItem 5";
             radListDataItem6.Text = "ListItem 6";
             radListDataItem7.Text = "ListItem 7";
-            this.listaSugetencias.Items.Add(radListDataItem1);
-            this.listaSugetencias.Items.Add(radListDataItem2);
-            this.listaSugetencias.Items.Add(radListDataItem3);
-            this.listaSugetencias.Items.Add(radListDataItem4);
-            this.listaSugetencias.Items.Add(radListDataItem5);
-            this.listaSugetencias.Items.Add(radListDataItem6);
-            this.listaSugetencias.Items.Add(radListDataItem7);
-            this.listaSugetencias.Location = new System.Drawing.Point(400, 299);
-            this.listaSugetencias.Name = "listaSugetencias";
+            this.listaSugerencias.Items.Add(radListDataItem1);
+            this.listaSugerencias.Items.Add(radListDataItem2);
+            this.listaSugerencias.Items.Add(radListDataItem3);
+            this.listaSugerencias.Items.Add(radListDataItem4);
+            this.listaSugerencias.Items.Add(radListDataItem5);
+            this.listaSugerencias.Items.Add(radListDataItem6);
+            this.listaSugerencias.Items.Add(radListDataItem7);
+            this.listaSugerencias.Location = new System.Drawing.Point(400, 299);
+            this.listaSugerencias.Name = "listaSugerencias";
             // 
             // 
             // 
-            this.listaSugetencias.RootElement.FocusBorderColor = System.Drawing.Color.CornflowerBlue;
-            this.listaSugetencias.Size = new System.Drawing.Size(136, 17);
-            this.listaSugetencias.TabIndex = 48;
-            this.listaSugetencias.Text = "radListControl1";
-            this.listaSugetencias.ThemeName = "Material";
-            this.listaSugetencias.Visible = false;
-            this.listaSugetencias.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.listaSugetencias_SelectedIndexChanged);
-            this.listaSugetencias.Leave += new System.EventHandler(this.listaSugetencias_Leave);
-            ((Telerik.WinControls.UI.RadListElement)(this.listaSugetencias.GetChildAt(0))).ItemHeight = 20;
-            ((Telerik.WinControls.UI.RadListElement)(this.listaSugetencias.GetChildAt(0))).DrawBorder = true;
-            ((Telerik.WinControls.UI.RadListElement)(this.listaSugetencias.GetChildAt(0))).HorizontalLineColor = System.Drawing.Color.White;
-            ((Telerik.WinControls.UI.RadListElement)(this.listaSugetencias.GetChildAt(0))).BorderLeftColor = System.Drawing.Color.CornflowerBlue;
-            ((Telerik.WinControls.UI.RadListElement)(this.listaSugetencias.GetChildAt(0))).BorderTopColor = System.Drawing.Color.CornflowerBlue;
-            ((Telerik.WinControls.UI.RadListElement)(this.listaSugetencias.GetChildAt(0))).BorderRightColor = System.Drawing.Color.CornflowerBlue;
-            ((Telerik.WinControls.UI.RadListElement)(this.listaSugetencias.GetChildAt(0))).BorderBottomColor = System.Drawing.Color.CornflowerBlue;
-            ((Telerik.WinControls.UI.RadListElement)(this.listaSugetencias.GetChildAt(0))).EnableElementShadow = true;
-            ((Telerik.WinControls.UI.RadScrollBarElement)(this.listaSugetencias.GetChildAt(0).GetChildAt(2))).MinSize = new System.Drawing.Size(12, 112);
-            ((Telerik.WinControls.UI.RadScrollBarElement)(this.listaSugetencias.GetChildAt(0).GetChildAt(2))).MaxSize = new System.Drawing.Size(12, 112);
+            this.listaSugerencias.RootElement.FocusBorderColor = System.Drawing.Color.CornflowerBlue;
+            this.listaSugerencias.Size = new System.Drawing.Size(136, 17);
+            this.listaSugerencias.TabIndex = 48;
+            this.listaSugerencias.Text = "radListControl1";
+            this.listaSugerencias.ThemeName = "Material";
+            this.listaSugerencias.Visible = false;
+            this.listaSugerencias.Click += new System.EventHandler(this.listaSugerencias_Click);
+            this.listaSugerencias.Leave += new System.EventHandler(this.listaSugerencias_Leave);
+            ((Telerik.WinControls.UI.RadListElement)(this.listaSugerencias.GetChildAt(0))).ItemHeight = 20;
+            ((Telerik.WinControls.UI.RadListElement)(this.listaSugerencias.GetChildAt(0))).DrawBorder = true;
+            ((Telerik.WinControls.UI.RadListElement)(this.listaSugerencias.GetChildAt(0))).HorizontalLineColor = System.Drawing.Color.White;
+            ((Telerik.WinControls.UI.RadListElement)(this.listaSugerencias.GetChildAt(0))).BorderLeftColor = System.Drawing.Color.CornflowerBlue;
+            ((Telerik.WinControls.UI.RadListElement)(this.listaSugerencias.GetChildAt(0))).BorderTopColor = System.Drawing.Color.CornflowerBlue;
+            ((Telerik.WinControls.UI.RadListElement)(this.listaSugerencias.GetChildAt(0))).BorderRightColor = System.Drawing.Color.CornflowerBlue;
+            ((Telerik.WinControls.UI.RadListElement)(this.listaSugerencias.GetChildAt(0))).BorderBottomColor = System.Drawing.Color.CornflowerBlue;
+            ((Telerik.WinControls.UI.RadListElement)(this.listaSugerencias.GetChildAt(0))).EnableElementShadow = true;
+            ((Telerik.WinControls.UI.RadScrollBarElement)(this.listaSugerencias.GetChildAt(0).GetChildAt(2))).MinSize = new System.Drawing.Size(12, 112);
+            ((Telerik.WinControls.UI.RadScrollBarElement)(this.listaSugerencias.GetChildAt(0).GetChildAt(2))).MaxSize = new System.Drawing.Size(12, 112);
             // 
             // pictureBox2
             // 
@@ -245,7 +246,7 @@
             // ingresar
             // 
             this.ingresar.ActiveBorderThickness = 1;
-            this.ingresar.ActiveCornerRadius = 35;
+            this.ingresar.ActiveCornerRadius = 10;
             this.ingresar.ActiveFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(155)))), ((int)(((byte)(235)))));
             this.ingresar.ActiveForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
             this.ingresar.ActiveLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(155)))), ((int)(((byte)(235)))));
@@ -256,7 +257,7 @@
             this.ingresar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ingresar.ForeColor = System.Drawing.Color.SeaGreen;
             this.ingresar.IdleBorderThickness = 1;
-            this.ingresar.IdleCornerRadius = 35;
+            this.ingresar.IdleCornerRadius = 10;
             this.ingresar.IdleFillColor = System.Drawing.Color.RoyalBlue;
             this.ingresar.IdleForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
             this.ingresar.IdleLineColor = System.Drawing.Color.RoyalBlue;
@@ -341,7 +342,7 @@
             this.content.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.password)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.username)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.listaSugetencias)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listaSugerencias)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).EndInit();
@@ -364,7 +365,7 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private Bunifu.Framework.UI.BunifuElipse borderForm;
         private System.Windows.Forms.Panel bglogo;
-        private Telerik.WinControls.UI.RadListControl listaSugetencias;
+        private Telerik.WinControls.UI.RadListControl listaSugerencias;
         private Telerik.WinControls.UI.RadTextBox username;
         private Telerik.WinControls.Themes.MaterialTheme materialTheme1;
         private Telerik.WinControls.UI.RadTextBox password;

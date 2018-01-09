@@ -24,26 +24,50 @@ namespace sicem
 
         public string C_Nombre
         {
-            get { return C_nomb; }
-            set { C_nomb = value; }
+            get { return (C_nomb != null) ? C_nomb : "N/A"; }
+            set { C_nomb = (value != null) ? value : "N/A"; }
+        }
+
+        public string C_NombreContacto
+        {
+            get { return (C_NombreContacto != null) ? C_NombreContacto : "N/A"; }
+            set { C_NombreContacto = (value != null) ? value : "N/A"; }
+        }
+
+        public string C_TituloContacto
+        {
+            get { return (C_TituloContacto != null) ? C_TituloContacto : "N/A"; }
+            set { C_TituloContacto = (value != null) ? value : "N/A"; }
         }
 
         public string C_Domicilio
         {
-            get { return C_domi; }
-            set { C_domi = value; }
+            get { return (C_domi != null) ? C_domi : "N/A"; }
+            set { C_domi = (value != null) ? value : "N/A"; }
+        }
+
+        public string C_Ciudad
+        {
+            get { return (C_Ciudad != null) ? C_Ciudad : "N/A"; }
+            set { C_Ciudad = (value != null) ? value : "N/A"; }
         }
 
         public string C_Telefono
         {
-            get { return C_tel; }
-            set { C_tel = value; }
+            get { return (C_tel != null) ? C_tel : "N/A"; }
+            set { C_tel = (value != null) ? value : "N/A"; }
         }
 
         public string C_Email
         {
-            get { return C_ema; }
-            set { C_ema = value; }
+            get { return (C_ema != null) ? C_ema : "N/A"; }
+            set { C_ema = (value != null) ? value : "N/A"; }
+        }
+
+        public int Estado
+        {
+            get;
+            set;
         }
 
         public enum Accion

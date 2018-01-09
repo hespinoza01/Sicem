@@ -68,6 +68,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="datos\Bodega.cs" />
+    <Compile Include="datos\Departamento.cs" />
+    <Compile Include="datos\Empleado.cs" />
+    <Compile Include="datos\Inventario.cs" />
+    <Compile Include="datos\OfertaEspecial.cs" />
+    <Compile Include="datos\TarjetaCredito.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

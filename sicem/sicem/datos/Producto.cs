@@ -10,13 +10,46 @@ namespace sicem
 {
     class Producto
     {
-        public int ID { get; set; }
-	    public int CategoriaID { get; set; }
-        public string Nombre { get; set; }
-        public decimal PrecioVenta { get; set; }
-        public int Stock { get; set; }
-        public string Descripcion { get; set; }
-        public int Estado { get; set; }
+        public int ID {
+            get;
+            set;
+        }
+
+	    public int CategoriaID {
+            get;
+            set;
+        }
+
+        public string Nombre {
+            get { return (Nombre != null) ? Nombre : "N/A"; }
+            set { Nombre = (value != null) ? value : "N/A"; }
+        }
+
+        public int CantidadPorUnidad
+        {
+            get;
+            set;
+        }
+
+        public decimal PrecioVenta {
+            get;
+            set;
+        }
+
+        public int Stock {
+            get;
+            set;
+        }
+
+        public string Descripcion {
+            get { return (Descripcion != null) ? Descripcion : "N/A"; }
+            set { Descripcion = (value != null) ? value : "N/A"; }
+        }
+
+        public int Estado {
+            get;
+            set;
+        }
 
         public enum Accion
         {

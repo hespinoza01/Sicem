@@ -301,6 +301,7 @@
             this.Controls.Add(this.labelID);
             this.Name = "detalleCategoria";
             this.Size = new System.Drawing.Size(483, 590);
+            this.Load += new System.EventHandler(this.detalleCategoria_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtId)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre)).EndInit();

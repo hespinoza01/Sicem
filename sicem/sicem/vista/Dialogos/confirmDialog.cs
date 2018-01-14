@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Transitions;
 
-namespace sicem.vista.Dialogos
+namespace sicem
 {
     public partial class confirmDialog : Form
     {
@@ -30,7 +30,7 @@ namespace sicem.vista.Dialogos
 
             contentConfirm.Visible = false;
 
-            //close.Click += cancelar_Click;
+            close.Click += cancelar_Click;
         }
 
         private void aceptar_Click(object sender, EventArgs e)
@@ -63,13 +63,9 @@ namespace sicem.vista.Dialogos
 
         private void confirmar_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            DataTable data = new usuario().Verifica("Administrador", txtContraseña.Text.Trim());
+            this.DialogResult = (data.Rows.Count != 0) ? DialogResult.OK : DialogResult.No ;
             this.Close();
-        }
-
-        private void close_Click(object sender, EventArgs e)
-        {
-            contentConfirm.Visible = false;
         }
 
         private void txtContraseña_KeyPress(object sender, KeyPressEventArgs e)

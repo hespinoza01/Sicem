@@ -17,6 +17,7 @@ namespace sicem
     {
         detalleCompra detalleCompra = new detalleCompra();
         detalleVenta detalleVenta = new detalleVenta();
+        string active = "";
         public operaciones()
         {   
             InitializeComponent();
@@ -31,6 +32,10 @@ namespace sicem
         {
             clearForeColor();
             labelventas.ForeColor = Color.RoyalBlue;
+
+            new listadoItems().llenar(metodoBusqueda, new listadoItems().venta());
+            active = "venta";
+            columnFecha.HeaderText = "Fecha venta";
 
             contentDetails.Controls.Add(detalleVenta);
             contentDetails.Controls.Add(detalleCompra);
@@ -57,7 +62,16 @@ namespace sicem
 
         private void agregarButton_Click(object sender, EventArgs e)
         {
-            //new clienteForm().ShowDialog();
+            switch (active)
+            {
+                case "venta":
+                    new ventaForm().Show();
+                    break;
+
+                case "compra":
+                    new compraForm().Show();
+                    break;
+            }
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -77,18 +91,28 @@ namespace sicem
         {
             clearForeColor();
             labelventas.ForeColor = Color.RoyalBlue;
+
             Transition.run(indicadorlabel, "Left", labelventas.Left, new TransitionType_EaseInEaseOut(500));
             indicadorlabel.Width = labelventas.Width;
             detalleVenta.BringToFront();
+
+            new listadoItems().llenar(metodoBusqueda, new listadoItems().venta());
+            active = "venta";
+            columnFecha.HeaderText = "Fecha venta";
         }
 
         private void labelcompras_Click(object sender, EventArgs e)
         {
             clearForeColor();
             labelcompras.ForeColor = Color.RoyalBlue;
+
             Transition.run(indicadorlabel, "Left", labelcompras.Left, new TransitionType_EaseInEaseOut(500));
             indicadorlabel.Width = labelcompras.Width;
             detalleCompra.BringToFront();
+
+            new listadoItems().llenar(metodoBusqueda, new listadoItems().compra());
+            active = "compra";
+            columnFecha.HeaderText = "Fecha compra";
         }
     }
 }

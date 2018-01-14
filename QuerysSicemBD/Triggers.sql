@@ -1,4 +1,4 @@
-use Administrador
+use sicem
 go
 
 -- Aumentar el stock a la hora de insertar un Detalle compra
@@ -70,7 +70,7 @@ as
 			on p.ID = u.ProductoID
 
 
-
+/*inventario con id, y uso de foreing key usando la categiria. uso de trigger para actualizar los idInventario a la hora de borrar uno*/
 
 /* provando el trigger de aumento_stock_dc*/
 --insert into Categoria(Nombre, Descripcion, Estado)

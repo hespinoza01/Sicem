@@ -10,6 +10,8 @@ namespace sicem
 {
     class Producto
     {
+        DBHelper db = new DBHelper();
+
         public int ID {
             get;
             set;
@@ -83,223 +85,102 @@ namespace sicem
 
         public void Insertar()
         {
-            SqlConnection SqlCon = new SqlConnection();
-            try
+            SqlParameter[] Parametros = new SqlParameter[]
             {
-                //Código
-                SqlCon.ConnectionString = Conexión.Cn;
-                SqlCon.Open();
-                //Establecer el Comando
-                SqlCommand SqlCmd = new SqlCommand();
-                SqlCmd.Connection = SqlCon;
-                SqlCmd.CommandText = "Insertar_Producto";
-                SqlCmd.CommandType = CommandType.StoredProcedure;
+                db.Param("@CategoriaID", SqlDbType.Int, CategoriaID),
+                db.Param("@Nombre", SqlDbType.VarChar, 50, Nombre),
+                db.Param("@CantidadPorUnidad", SqlDbType.Int, CantidadPorUnidad),
+                db.Param("@PrecioVenta", SqlDbType.Decimal, PrecioVenta),
+                db.Param("@Stock", SqlDbType.Int, Stock),
+                db.Param("@Descripcion", SqlDbType.VarChar, 250, Descripcion),
+                db.Param("@Estado", SqlDbType.Int, Estado)
+            };
 
-                // Parámetros del Procedimiento Almacenado
-
-                SqlParameter ParUsuario = new SqlParameter();
-                ParUsuario.ParameterName = "@CategoriaID";
-                ParUsuario.SqlDbType = SqlDbType.Int;
-                ParUsuario.Value = CategoriaID;
-                SqlCmd.Parameters.Add(ParUsuario);
-
-
-                SqlParameter ParContraseña = new SqlParameter();
-                ParContraseña.ParameterName = "@Nombre";
-                ParContraseña.SqlDbType = SqlDbType.VarChar;
-                ParContraseña.Size = 50;
-                ParContraseña.Value = Nombre;
-                SqlCmd.Parameters.Add(ParContraseña);
-
-                SqlParameter ParNombre = new SqlParameter();
-                ParNombre.ParameterName = "@PecioVenta";
-                ParNombre.SqlDbType = SqlDbType.Decimal;
-                ParNombre.Value = PrecioVenta;
-                SqlCmd.Parameters.Add(ParNombre);
-
-                SqlParameter ParApellido = new SqlParameter();
-                ParApellido.ParameterName = "@Stock";
-                ParApellido.SqlDbType = SqlDbType.Int;
-                ParApellido.Value = Stock;
-                SqlCmd.Parameters.Add(ParApellido);
-
-
-                SqlParameter ParDes = new SqlParameter();
-                ParDes.ParameterName = "@Descripcion";
-                ParDes.SqlDbType = SqlDbType.VarChar;
-                ParDes.Size = 250;
-                ParDes.Value = Descripcion;
-                SqlCmd.Parameters.Add(ParDes);
-
-
-                SqlParameter ParApellid = new SqlParameter();
-                ParApellid.ParameterName = "@Estado";
-                ParApellid.SqlDbType = SqlDbType.Int;
-                ParApellid.Value = Estado;
-                SqlCmd.Parameters.Add(ParApellid);
-
-
-                if (SqlCmd.ExecuteNonQuery() == 1)
-                    new popup("Producto creado correctamente", popup.AlertType.check);
-                else
-                    new popup("Producto no creado", popup.AlertType.error); ;
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                if (SqlCon.State == ConnectionState.Open) SqlCon.Close();
-            }
-
+            if (db.ExecuteQuery("Insertar_Producto", Parametros))
+                new popup("Producto creado correctamente", popup.AlertType.check);
+            else
+                new popup("Producto no creado", popup.AlertType.error); ;
         }
 
 
 
         public void Editar()
         {
-            SqlConnection SqlCon = new SqlConnection();
-            try
-            {
-                //Código
-                SqlCon.ConnectionString = Conexión.Cn;
-                SqlCon.Open();
-                //Establecer el Comando
-                SqlCommand SqlCmd = new SqlCommand();
-                SqlCmd.Connection = SqlCon;
-                SqlCmd.CommandText = "Actualizar_Producto";
-                SqlCmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter[] Parametros = new SqlParameter[]{
+                db.Param("@ID", SqlDbType.Int, ID),
+                db.Param("@CategoriaID", SqlDbType.Int, CategoriaID),
+                db.Param("@Nombre", SqlDbType.VarChar, 50, Nombre),
+                db.Param("@CantidadPorUnidad", SqlDbType.Int, CantidadPorUnidad),
+                db.Param("@PrecioVenta", SqlDbType.Decimal, PrecioVenta),
+                db.Param("@Stock", SqlDbType.Int, Stock),
+                db.Param("@Descripcion", SqlDbType.VarChar, 250, Descripcion),
+                db.Param("@Estado", SqlDbType.Int, Estado)
+            };
 
-                // Parámetros del Procedimiento Almacenado
-
-                SqlParameter ParUsuario = new SqlParameter();
-                ParUsuario.ParameterName = "@ID";
-                ParUsuario.SqlDbType = SqlDbType.Int;
-                ParUsuario.Value = ID;
-                SqlCmd.Parameters.Add(ParUsuario);
-
-
-                SqlParameter ParUsuari = new SqlParameter();
-                ParUsuari.ParameterName = "@CategoriaID";
-                ParUsuari.SqlDbType = SqlDbType.Int;
-                ParUsuari.Value = CategoriaID;
-                SqlCmd.Parameters.Add(ParUsuari);
-
-
-                SqlParameter ParContraseña = new SqlParameter();
-                ParContraseña.ParameterName = "@Nombre";
-                ParContraseña.SqlDbType = SqlDbType.VarChar;
-                ParContraseña.Size = 50;
-                ParContraseña.Value = Nombre;
-                SqlCmd.Parameters.Add(ParContraseña);
-
-                SqlParameter ParNombre = new SqlParameter();
-                ParNombre.ParameterName = "@PrecioVenta";
-                ParNombre.SqlDbType = SqlDbType.Decimal;
-                ParNombre.Value = PrecioVenta;
-                SqlCmd.Parameters.Add(ParNombre);
-
-                SqlParameter ParApellido = new SqlParameter();
-                ParApellido.ParameterName = "@Stock";
-                ParApellido.SqlDbType = SqlDbType.Int;
-                ParApellido.Value = Stock;
-                SqlCmd.Parameters.Add(ParApellido);
-
-
-                SqlParameter ParDes = new SqlParameter();
-                ParDes.ParameterName = "@Descripcion";
-                ParDes.SqlDbType = SqlDbType.VarChar;
-                ParDes.Size = 250;
-                ParDes.Value = Descripcion;
-                SqlCmd.Parameters.Add(ParDes);
-
-
-                SqlParameter ParApellid = new SqlParameter();
-                ParApellid.ParameterName = "@Estado";
-                ParApellid.SqlDbType = SqlDbType.Int;
-                ParApellid.Value = Estado;
-                SqlCmd.Parameters.Add(ParApellid);
-
-                if (SqlCmd.ExecuteNonQuery() == 1)
-                    new popup("Producto actualizado correctamente", popup.AlertType.check);
-                else
-                    new popup("Producto no actualizado", popup.AlertType.error); ;
-
-            }
-            catch (Exception ex)
-            {
-                new popup(ex.Message, popup.AlertType.error);
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                if (SqlCon.State == ConnectionState.Open) SqlCon.Close();
-            }
+            if (db.ExecuteQuery("Actualizar_Producto", Parametros))
+                new popup("Producto actualizado correctamente", popup.AlertType.check);
+            else
+                new popup("Producto no actualizado", popup.AlertType.error); ;
         }
 
 
-        public DataTable Buscar(string valor, int clave)
+        public DataTable Buscar(string valor, int clave){
+            SqlParameter[] Parametros = new SqlParameter[]{
+                db.Param("@valor", SqlDbType.VarChar, 100, valor),
+                db.Param("@clave", SqlDbType.Int, clave)
+            };
+
+            return db.Reader("Busqueda_Productos", Parametros);
+        }
+
+        public DataTable BuscarTodo(string valor, int clave){
+            SqlParameter[] Parametros = new SqlParameter[]{
+                db.Param("@valor", SqlDbType.VarChar, 100, valor),
+                db.Param("@clave", SqlDbType.Int, clave)
+            };
+
+            return db.Reader("Busqueda_Productos_Todo", Parametros);
+        }
+
+        public DataTable MostrarHabilitados()
         {
-            DataTable dt = new DataTable();
-            SqlConnection Con = new SqlConnection();
-            try
-            {
-                Con.ConnectionString = Conexión.Cn;
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = Con;
-                cmd.CommandText = "Busqueda_Productos";
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlParameter ID = new SqlParameter();
-                ID.ParameterName = "@valor";
-                ID.SqlDbType = SqlDbType.VarChar;
-                ID.Size = 100;
-                ID.Value = valor;
-                cmd.Parameters.Add(ID);
-
-                SqlParameter Key = new SqlParameter();
-                Key.ParameterName = "@clave";
-                Key.SqlDbType = SqlDbType.Int;
-                Key.Value = clave;
-                cmd.Parameters.Add(Key);
-
-                SqlDataAdapter Data = new SqlDataAdapter(cmd);
-                Data.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Consulta realizada sin exito: " + ex.ToString());
-                dt = null;
-            }
-            return dt;
+            return db.Reader("Mostrar_Productos");
         }
-
 
         public DataTable Mostrar()
         {
-            DataTable dt = new DataTable();
-            SqlConnection Con = new SqlConnection();
-            try
-            {
-                Con.ConnectionString = Conexión.Cn;
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = Con;
-                cmd.CommandText = "Mostrar_Productos";
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter Data = new SqlDataAdapter(cmd);
-                Data.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Consulta realizada sin exito: " + ex.ToString());
-                dt = null;
-            }
-            return dt;
+            return db.Reader("Mostrar_Todo_Productos");
         }
 
+        public DataTable HistorialPrecio(int idvalue)
+        {
+            SqlParameter[] Parametros = new SqlParameter[]
+            {
+                db.Param("@ID", SqlDbType.Int, idvalue)
+            };
+
+            return db.Reader("Mostrar_HistorialPrecioProducto");
+        }
+
+        public DataTable HistorialCosto(int idvalue)
+        {
+            SqlParameter[] Parametros = new SqlParameter[]
+            {
+                db.Param("@ID", SqlDbType.Int, idvalue)
+            };
+
+            return db.Reader("Mostrar_HistorialCostoProducto");
+        }
+
+        public DataTable Detalle(int idvalue)
+        {
+            SqlParameter[] Parametros = new SqlParameter[]
+            {
+                db.Param("@ID", SqlDbType.Int, idvalue)
+            };
+
+            return db.Reader("Detalle_Producto", Parametros);
+        }
 
     }
 }

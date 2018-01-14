@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(detalleOferta));
             this.bunifuCustomLabel9 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel4 = new Bunifu.Framework.UI.BunifuCustomLabel();
@@ -44,11 +44,11 @@
             this.bunifuCustomLabel3 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel2 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.listadoProductoOferta = new System.Windows.Forms.DataGridView();
+            this.columnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtPorcentajeDescuento = new Telerik.WinControls.UI.RadTextBox();
             this.txtFechaInicio = new Telerik.WinControls.UI.RadTextBox();
             this.txtFechaFin = new Telerik.WinControls.UI.RadTextBox();
-            this.columnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtCantidadMin = new Telerik.WinControls.UI.RadTextBox();
             this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.txtCantidadMax = new Telerik.WinControls.UI.RadTextBox();
@@ -91,7 +91,7 @@
             // 
             this.bunifuCustomLabel8.AutoSize = true;
             this.bunifuCustomLabel8.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.bunifuCustomLabel8.Location = new System.Drawing.Point(342, 363);
+            this.bunifuCustomLabel8.Location = new System.Drawing.Point(342, 388);
             this.bunifuCustomLabel8.Name = "bunifuCustomLabel8";
             this.bunifuCustomLabel8.Size = new System.Drawing.Size(86, 13);
             this.bunifuCustomLabel8.TabIndex = 64;
@@ -189,7 +189,7 @@
             // 
             this.bunifuCustomLabel5.AutoSize = true;
             this.bunifuCustomLabel5.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.bunifuCustomLabel5.Location = new System.Drawing.Point(342, 449);
+            this.bunifuCustomLabel5.Location = new System.Drawing.Point(342, 465);
             this.bunifuCustomLabel5.Name = "bunifuCustomLabel5";
             this.bunifuCustomLabel5.Size = new System.Drawing.Size(87, 13);
             this.bunifuCustomLabel5.TabIndex = 58;
@@ -222,26 +222,27 @@
             this.listadoProductoOferta.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.listadoProductoOferta.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.listadoProductoOferta.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.listadoProductoOferta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.listadoProductoOferta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.listadoProductoOferta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listadoProductoOferta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.columnID,
             this.columnNombre});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.listadoProductoOferta.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.listadoProductoOferta.DefaultCellStyle = dataGridViewCellStyle5;
+            this.listadoProductoOferta.Enabled = false;
             this.listadoProductoOferta.EnableHeadersVisualStyles = false;
             this.listadoProductoOferta.GridColor = System.Drawing.Color.Silver;
             this.listadoProductoOferta.Location = new System.Drawing.Point(41, 386);
@@ -250,14 +251,28 @@
             this.listadoProductoOferta.ReadOnly = true;
             this.listadoProductoOferta.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.listadoProductoOferta.RowHeadersVisible = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.RoyalBlue;
-            this.listadoProductoOferta.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.RoyalBlue;
+            this.listadoProductoOferta.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.listadoProductoOferta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.listadoProductoOferta.Size = new System.Drawing.Size(255, 128);
             this.listadoProductoOferta.TabIndex = 67;
+            // 
+            // columnID
+            // 
+            this.columnID.FillWeight = 47.47323F;
+            this.columnID.HeaderText = "ID";
+            this.columnID.Name = "columnID";
+            this.columnID.ReadOnly = true;
+            // 
+            // columnNombre
+            // 
+            this.columnNombre.FillWeight = 182.7411F;
+            this.columnNombre.HeaderText = "Producto";
+            this.columnNombre.Name = "columnNombre";
+            this.columnNombre.ReadOnly = true;
             // 
             // txtPorcentajeDescuento
             // 
@@ -325,20 +340,6 @@
             ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtFechaFin.GetChildAt(0))).FocusBorderColor = System.Drawing.Color.RoyalBlue;
             ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtFechaFin.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(8, 2, 8, 2);
             // 
-            // columnID
-            // 
-            this.columnID.FillWeight = 47.47323F;
-            this.columnID.HeaderText = "ID";
-            this.columnID.Name = "columnID";
-            this.columnID.ReadOnly = true;
-            // 
-            // columnNombre
-            // 
-            this.columnNombre.FillWeight = 182.7411F;
-            this.columnNombre.HeaderText = "Producto";
-            this.columnNombre.Name = "columnNombre";
-            this.columnNombre.ReadOnly = true;
-            // 
             // txtCantidadMin
             // 
             this.txtCantidadMin.AutoSize = false;
@@ -346,7 +347,7 @@
             this.txtCantidadMin.Enabled = false;
             this.txtCantidadMin.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCantidadMin.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.txtCantidadMin.Location = new System.Drawing.Point(337, 386);
+            this.txtCantidadMin.Location = new System.Drawing.Point(337, 411);
             this.txtCantidadMin.Name = "txtCantidadMin";
             // 
             // 
@@ -378,7 +379,7 @@
             this.txtCantidadMax.Enabled = false;
             this.txtCantidadMax.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCantidadMax.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.txtCantidadMax.Location = new System.Drawing.Point(337, 465);
+            this.txtCantidadMax.Location = new System.Drawing.Point(337, 481);
             this.txtCantidadMax.Name = "txtCantidadMax";
             // 
             // 
@@ -454,6 +455,7 @@
             this.Controls.Add(this.listadoProductoOferta);
             this.Name = "detalleOferta";
             this.Size = new System.Drawing.Size(483, 590);
+            this.Load += new System.EventHandler(this.detalleOferta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTipoOferta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtID)).EndInit();

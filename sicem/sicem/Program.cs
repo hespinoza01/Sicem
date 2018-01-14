@@ -1,5 +1,4 @@
-﻿using sicem.vista.Dialogos;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,7 +16,7 @@ namespace sicem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            new login().Show();
+            new productoForm().Show();
             Application.Run();
         }
     }

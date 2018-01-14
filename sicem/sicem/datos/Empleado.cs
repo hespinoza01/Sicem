@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -9,6 +11,10 @@ namespace sicem.datos
 {
     class Empleado
     {
+        DBHelper db = new DBHelper();
+
+        public Empleado(){}
+
         public int ID {
             get;
             set;
@@ -114,6 +120,87 @@ namespace sicem.datos
         {
             get;
             set;
+        }
+
+        public void Insertar()
+        {
+            SqlParameter[] Parametros = new SqlParameter[]{
+                db.Param("@Nombres", SqlDbType.VarChar, 80, Nombres),
+                db.Param("@Apellidos", SqlDbType.VarChar, 80, Apellidos),
+                db.Param("@DepartamentoID", SqlDbType.Int, DepartamentoID),
+                db.Param("@TituloLaboral", SqlDbType.VarChar, 35, TituloLaboral),
+                db.Param("@FechaDeNacimiento", SqlDbType.Date, FechaNacimiento),
+                db.Param("@FechaDeContratacion", SqlDbType.Date, FechaContratacion),
+                db.Param("@EstadoCivil", SqlDbType.Int, EstadoCivil),
+                db.Param("@Genero", SqlDbType.Int, Genero),
+                db.Param("@Domicilio", SqlDbType.VarChar, 200, Domicilio),
+                db.Param("@Ciudad", SqlDbType.VarChar, 35, Ciudad),
+                db.Param("@Telefono", SqlDbType.VarChar, 25, Telefono),
+                db.Param("@Cedula", SqlDbType.VarChar, 25, Cedula),
+                db.Param("@Email", SqlDbType.VarChar, 50, Email),
+                db.Param("@Observaciones", SqlDbType.Text, Observaciones),
+                db.Param("@ReportarA", SqlDbType.Int, ReportarA),
+                db.Param("@Foto", SqlDbType.Image, Foto),
+                db.Param("@Estado", SqlDbType.Int, Estado)
+            };
+
+            if (db.ExecuteQuery("Insertar_Empleado", Parametros))
+                new popup("Empleado registrado correctamente", popup.AlertType.check);
+            else
+                new popup("Empleado no registrado", popup.AlertType.error);
+        }
+
+        public void Editar()
+        {
+            SqlParameter[] Parametros = new SqlParameter[]{
+                db.Param("@ID", SqlDbType.Int, ID),
+                db.Param("@Nombres", SqlDbType.VarChar, 80, Nombres),
+                db.Param("@Apellidos", SqlDbType.VarChar, 80, Apellidos),
+                db.Param("@DepartamentoID", SqlDbType.Int, DepartamentoID),
+                db.Param("@TituloLaboral", SqlDbType.VarChar, 35, TituloLaboral),
+                db.Param("@FechaDeNacimiento", SqlDbType.Date, FechaNacimiento),
+                db.Param("@FechaDeContratacion", SqlDbType.Date, FechaContratacion),
+                db.Param("@EstadoCivil", SqlDbType.Int, EstadoCivil),
+                db.Param("@Genero", SqlDbType.Int, Genero),
+                db.Param("@Domicilio", SqlDbType.VarChar, 200, Domicilio),
+                db.Param("@Ciudad", SqlDbType.VarChar, 35, Ciudad),
+                db.Param("@Telefono", SqlDbType.VarChar, 25, Telefono),
+                db.Param("@Cedula", SqlDbType.VarChar, 25, Cedula),
+                db.Param("@Email", SqlDbType.VarChar, 50, Email),
+                db.Param("@Observaciones", SqlDbType.Text, Observaciones),
+                db.Param("@ReportarA", SqlDbType.Int, ReportarA),
+                db.Param("@Foto", SqlDbType.Image, Foto),
+                db.Param("@Estado", SqlDbType.Int, Estado)
+            };
+
+            if (db.ExecuteQuery("Actualizar_Empleado", Parametros))
+                new popup("Empleado actualizado correctamente", popup.AlertType.check);
+            else
+                new popup("Empleado no actualizado", popup.AlertType.error);
+        }
+
+        public DataTable Buscar(string valor, int clave){
+            SqlParameter[] Parametros = new SqlParameter[]{
+                db.Param("@valor", SqlDbType.VarChar, 100, valor),
+                db.Param("@clave", SqlDbType.Int, clave)
+            };
+
+            return db.Reader("Busqueda_Empleado", Parametros);
+        }
+
+        public DataTable Mostrar()
+        {
+            return db.Reader("Mostrar_Empleados");
+        }
+
+        public DataTable Detalle(int idvalue)
+        {
+            SqlParameter[] Parametros = new SqlParameter[]
+            {
+                db.Param("@ID", SqlDbType.Int, idvalue)
+            };
+
+            return db.Reader("Detalle_Empleado", Parametros);
         }
     }
 }

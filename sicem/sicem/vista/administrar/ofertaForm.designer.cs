@@ -39,7 +39,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ofertaForm));
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.toppanel = new System.Windows.Forms.Panel();
             this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel2 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel3 = new Bunifu.Framework.UI.BunifuCustomLabel();
@@ -60,17 +60,16 @@
             this.bunifuCustomLabel9 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.fechaFin = new Bunifu.Framework.UI.BunifuDatepicker();
             this.listadoProductoOferta = new System.Windows.Forms.DataGridView();
-            this.columnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnBorrar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.cardFormProducto = new Bunifu.Framework.UI.BunifuCards();
             this.expand = new Bunifu.Framework.UI.BunifuFlatButton();
             this.bunifuCustomLabel7 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.agregar = new Bunifu.Framework.UI.BunifuImageButton();
+            this.txtProducto = new Telerik.WinControls.UI.RadTextBox();
             this.cancelarButton = new Bunifu.Framework.UI.BunifuThinButton2();
             this.guardarButton = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.txtProducto = new Telerik.WinControls.UI.RadTextBox();
-            this.panel1.SuspendLayout();
+            this.columnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toppanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTipoOferta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcion)).BeginInit();
@@ -84,15 +83,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtProducto)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // toppanel
             // 
-            this.panel1.BackColor = System.Drawing.Color.RoyalBlue;
-            this.panel1.Controls.Add(this.bunifuCustomLabel1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(460, 40);
-            this.panel1.TabIndex = 0;
+            this.toppanel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.toppanel.Controls.Add(this.bunifuCustomLabel1);
+            this.toppanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.toppanel.Location = new System.Drawing.Point(0, 0);
+            this.toppanel.Name = "toppanel";
+            this.toppanel.Size = new System.Drawing.Size(460, 40);
+            this.toppanel.TabIndex = 0;
             // 
             // bunifuCustomLabel1
             // 
@@ -406,6 +405,7 @@
             this.fechaInicio.Size = new System.Drawing.Size(165, 36);
             this.fechaInicio.TabIndex = 50;
             this.fechaInicio.Value = new System.DateTime(2018, 1, 4, 15, 39, 10, 15);
+            this.fechaInicio.onValueChanged += new System.EventHandler(this.fechaInicio_onValueChanged);
             // 
             // txtPorcentajeDescuento
             // 
@@ -499,7 +499,6 @@
             this.listadoProductoOferta.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.listadoProductoOferta.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.listadoProductoOferta.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listadoProductoOferta.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.listadoProductoOferta.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
@@ -512,8 +511,7 @@
             this.listadoProductoOferta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listadoProductoOferta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.columnID,
-            this.columnNombre,
-            this.columnBorrar});
+            this.columnNombre});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -525,7 +523,9 @@
             this.listadoProductoOferta.EnableHeadersVisualStyles = false;
             this.listadoProductoOferta.GridColor = System.Drawing.Color.White;
             this.listadoProductoOferta.Location = new System.Drawing.Point(30, 402);
+            this.listadoProductoOferta.MultiSelect = false;
             this.listadoProductoOferta.Name = "listadoProductoOferta";
+            this.listadoProductoOferta.ReadOnly = true;
             this.listadoProductoOferta.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.listadoProductoOferta.RowHeadersVisible = false;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
@@ -533,30 +533,10 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.RoyalBlue;
             this.listadoProductoOferta.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.listadoProductoOferta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.listadoProductoOferta.Size = new System.Drawing.Size(255, 95);
             this.listadoProductoOferta.TabIndex = 55;
-            // 
-            // columnID
-            // 
-            this.columnID.FillWeight = 47.47323F;
-            this.columnID.HeaderText = "ID";
-            this.columnID.Name = "columnID";
-            this.columnID.ReadOnly = true;
-            // 
-            // columnNombre
-            // 
-            this.columnNombre.FillWeight = 182.7411F;
-            this.columnNombre.HeaderText = "Producto";
-            this.columnNombre.Name = "columnNombre";
-            this.columnNombre.ReadOnly = true;
-            // 
-            // columnBorrar
-            // 
-            this.columnBorrar.FillWeight = 69.78564F;
-            this.columnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.columnBorrar.HeaderText = "";
-            this.columnBorrar.Name = "columnBorrar";
-            this.columnBorrar.ReadOnly = true;
+            this.listadoProductoOferta.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listadoProductoOferta_CellDoubleClick);
             // 
             // cardFormProducto
             // 
@@ -573,7 +553,7 @@
             this.cardFormProducto.Name = "cardFormProducto";
             this.cardFormProducto.RightSahddow = true;
             this.cardFormProducto.ShadowDepth = 30;
-            this.cardFormProducto.Size = new System.Drawing.Size(255, 30);
+            this.cardFormProducto.Size = new System.Drawing.Size(255, 25);
             this.cardFormProducto.TabIndex = 56;
             // 
             // expand
@@ -636,6 +616,28 @@
             this.agregar.TabIndex = 57;
             this.agregar.TabStop = false;
             this.agregar.Zoom = 0;
+            this.agregar.Click += new System.EventHandler(this.agregar_Click);
+            // 
+            // txtProducto
+            // 
+            this.txtProducto.AutoSize = false;
+            this.txtProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.txtProducto.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProducto.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.txtProducto.Location = new System.Drawing.Point(6, 48);
+            this.txtProducto.Name = "txtProducto";
+            // 
+            // 
+            // 
+            this.txtProducto.RootElement.ControlDefaultSize = new System.Drawing.Size(235, 28);
+            this.txtProducto.RootElement.CustomFont = "None";
+            this.txtProducto.RootElement.FocusBorderColor = System.Drawing.Color.RoyalBlue;
+            this.txtProducto.Size = new System.Drawing.Size(210, 25);
+            this.txtProducto.TabIndex = 57;
+            this.txtProducto.ThemeName = "Material";
+            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtProducto.GetChildAt(0))).Text = "";
+            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtProducto.GetChildAt(0))).FocusBorderColor = System.Drawing.Color.RoyalBlue;
+            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtProducto.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(8, 2, 8, 2);
             // 
             // cancelarButton
             // 
@@ -689,26 +691,23 @@
             this.guardarButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.guardarButton.Click += new System.EventHandler(this.guardarButton_Click);
             // 
-            // txtProducto
+            // columnID
             // 
-            this.txtProducto.AutoSize = false;
-            this.txtProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.txtProducto.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProducto.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.txtProducto.Location = new System.Drawing.Point(6, 48);
-            this.txtProducto.Name = "txtProducto";
+            this.columnID.FillWeight = 47.47323F;
+            this.columnID.HeaderText = "ID";
+            this.columnID.Name = "columnID";
+            this.columnID.ReadOnly = true;
+            this.columnID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.columnID.ToolTipText = "Doble click en la fila para eliminar";
             // 
+            // columnNombre
             // 
-            // 
-            this.txtProducto.RootElement.ControlDefaultSize = new System.Drawing.Size(235, 28);
-            this.txtProducto.RootElement.CustomFont = "None";
-            this.txtProducto.RootElement.FocusBorderColor = System.Drawing.Color.RoyalBlue;
-            this.txtProducto.Size = new System.Drawing.Size(210, 25);
-            this.txtProducto.TabIndex = 57;
-            this.txtProducto.ThemeName = "Material";
-            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtProducto.GetChildAt(0))).Text = "";
-            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtProducto.GetChildAt(0))).FocusBorderColor = System.Drawing.Color.RoyalBlue;
-            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtProducto.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(8, 2, 8, 2);
+            this.columnNombre.FillWeight = 182.7411F;
+            this.columnNombre.HeaderText = "Producto";
+            this.columnNombre.Name = "columnNombre";
+            this.columnNombre.ReadOnly = true;
+            this.columnNombre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.columnNombre.ToolTipText = "Doble click en la fila para eliminar";
             // 
             // ofertaForm
             // 
@@ -736,15 +735,15 @@
             this.Controls.Add(this.bunifuCustomLabel5);
             this.Controls.Add(this.bunifuCustomLabel3);
             this.Controls.Add(this.bunifuCustomLabel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.toppanel);
             this.Controls.Add(this.listadoProductoOferta);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ofertaForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "productoForm";
             this.Load += new System.EventHandler(this.productoForm_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.toppanel.ResumeLayout(false);
+            this.toppanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTipoOferta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcion)).EndInit();
@@ -764,7 +763,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel toppanel;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel1;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel2;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel3;
@@ -787,13 +786,12 @@
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel9;
         private Bunifu.Framework.UI.BunifuDatepicker fechaFin;
         private System.Windows.Forms.DataGridView listadoProductoOferta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnNombre;
-        private System.Windows.Forms.DataGridViewButtonColumn columnBorrar;
         private Bunifu.Framework.UI.BunifuCards cardFormProducto;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel7;
         private Bunifu.Framework.UI.BunifuImageButton agregar;
         private Bunifu.Framework.UI.BunifuFlatButton expand;
         private Telerik.WinControls.UI.RadTextBox txtProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnNombre;
     }
 }

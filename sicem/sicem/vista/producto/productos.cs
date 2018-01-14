@@ -28,35 +28,46 @@ namespace sicem
 
         public void inicia()
         {
+            new listadoItems().llenar(metodoBusqueda, new listadoItems().producto());
+
             contentDetails.Controls.Add(detalleProducto);
             detalleProducto.ocultaCampos();
+
+            Cargar(false);
         }
 
-        public void Cargar()
+        public void Cargar(bool buscar)
         {
-            //try
-            //{
-            //    vistaClientes.DataSource = new Cliente().Mostrar();
-            //}
-            //catch (Exception ex) { }
+            try{
+                DataTable data = (buscar) ? new Producto().Buscar(txtBuscar.Text, metodoBusqueda.SelectedIndex) : new Producto().Mostrar();
+
+                vista.Rows.Clear();
+                foreach(DataRow row in vista.Rows){
+                    string id, n, fm;
+                    id = Convert.ToString(row["ID"]);
+                    n = Convert.ToString(row["Nombre"]);
+                    fm = Convert.ToString(row["FechaModificacion"]);
+                    vista.Rows.Add(id, n, fm);
+                }
+            }
+            catch (Exception ex) { }
         }
 
         private void agregarButton_Click(object sender, EventArgs e)
         {
-            //new clienteForm().ShowDialog();
+            new productoForm().Show();
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //new clienteForm(int.Parse(vistaClientes.Rows[e.RowIndex].Cells[0].Value.ToString())).ShowDialog();
         }
 
         private void txtBuscar_OnTextChange(object sender, EventArgs e)
         {
-            //if (txtBuscar.text == "")
-            //    Cargar();
-            //else
-            //    vistaClientes.DataSource = new Cliente().Buscar(txtBuscar.text, metodoBusqueda.SelectedIndex);
+            if (txtBuscar.Text.Length > 0)
+                Cargar(false);
+            else
+                Cargar(true);
         }
 
     }

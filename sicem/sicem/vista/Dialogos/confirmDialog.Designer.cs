@@ -1,4 +1,4 @@
-﻿namespace sicem.vista.Dialogos
+﻿namespace sicem
 {
     partial class confirmDialog
     {
@@ -89,7 +89,6 @@
             this.close.TabIndex = 33;
             this.close.TabStop = false;
             this.close.Zoom = 0;
-            this.close.Click += new System.EventHandler(this.close_Click);
             // 
             // confirmar
             // 
@@ -102,6 +101,7 @@
             this.confirmar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("confirmar.BackgroundImage")));
             this.confirmar.ButtonText = "Confirmar";
             this.confirmar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuTransition1.SetDecoration(this.confirmar, BunifuAnimatorNS.DecorationType.None);
             this.confirmar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.confirmar.ForeColor = System.Drawing.Color.SeaGreen;
             this.confirmar.IdleBorderThickness = 1;
@@ -121,6 +121,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.bunifuTransition1.SetDecoration(this.label1, BunifuAnimatorNS.DecorationType.None);
             this.label1.ForeColor = System.Drawing.Color.RoyalBlue;
             this.label1.Location = new System.Drawing.Point(31, 19);
             this.label1.Name = "label1";
@@ -156,6 +157,7 @@
             // 
             // mensaje
             // 
+            this.bunifuTransition1.SetDecoration(this.mensaje, BunifuAnimatorNS.DecorationType.None);
             this.mensaje.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mensaje.ForeColor = System.Drawing.Color.RoyalBlue;
             this.mensaje.Location = new System.Drawing.Point(13, 26);
@@ -176,6 +178,7 @@
             this.aceptar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("aceptar.BackgroundImage")));
             this.aceptar.ButtonText = "Aceptar";
             this.aceptar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuTransition1.SetDecoration(this.aceptar, BunifuAnimatorNS.DecorationType.None);
             this.aceptar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aceptar.ForeColor = System.Drawing.Color.SeaGreen;
             this.aceptar.IdleBorderThickness = 1;
@@ -202,6 +205,7 @@
             this.cancelar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cancelar.BackgroundImage")));
             this.cancelar.ButtonText = "Cancelar";
             this.cancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuTransition1.SetDecoration(this.cancelar, BunifuAnimatorNS.DecorationType.None);
             this.cancelar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancelar.ForeColor = System.Drawing.Color.SeaGreen;
             this.cancelar.IdleBorderThickness = 1;
@@ -229,7 +233,7 @@
             animation2.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicCoeff")));
             animation2.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicShift")));
             animation2.MosaicSize = 0;
-            animation2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            animation2.Padding = new System.Windows.Forms.Padding(0);
             animation2.RotateCoeff = 0F;
             animation2.RotateLimit = 0F;
             animation2.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.ScaleCoeff")));

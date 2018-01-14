@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(categoriaForm));
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.toppanel = new System.Windows.Forms.Panel();
             this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.labelID = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel3 = new Bunifu.Framework.UI.BunifuCustomLabel();
@@ -42,20 +42,20 @@
             this.txtId = new Telerik.WinControls.UI.RadTextBox();
             this.materialTheme1 = new Telerik.WinControls.Themes.MaterialTheme();
             this.txtDescripcion = new Telerik.WinControls.UI.RadTextBox();
-            this.panel1.SuspendLayout();
+            this.toppanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtId)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcion)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // toppanel
             // 
-            this.panel1.BackColor = System.Drawing.Color.RoyalBlue;
-            this.panel1.Controls.Add(this.bunifuCustomLabel1);
-            this.panel1.Location = new System.Drawing.Point(-4, -1);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(498, 40);
-            this.panel1.TabIndex = 0;
+            this.toppanel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.toppanel.Controls.Add(this.bunifuCustomLabel1);
+            this.toppanel.Location = new System.Drawing.Point(-4, -1);
+            this.toppanel.Name = "toppanel";
+            this.toppanel.Size = new System.Drawing.Size(498, 40);
+            this.toppanel.TabIndex = 0;
             // 
             // bunifuCustomLabel1
             // 
@@ -252,14 +252,14 @@
             this.Controls.Add(this.bunifuCustomLabel4);
             this.Controls.Add(this.bunifuCustomLabel3);
             this.Controls.Add(this.labelID);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.toppanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "categoriaForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "categoriaForm";
             this.Load += new System.EventHandler(this.categoriaForm_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.toppanel.ResumeLayout(false);
+            this.toppanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtId)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcion)).EndInit();
@@ -270,7 +270,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel toppanel;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel1;
         private Bunifu.Framework.UI.BunifuCustomLabel labelID;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel3;

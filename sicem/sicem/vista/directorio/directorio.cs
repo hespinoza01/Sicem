@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using Transitions;
 using sicem.vista.directorio;
+using sicem.datos;
 
 namespace sicem
 {
@@ -18,6 +19,8 @@ namespace sicem
         detalleCliente detalleCliente = new detalleCliente();
         detalleProveedor detalleProveedor = new detalleProveedor();
         detalleEmpleado detalleEmpleado = new detalleEmpleado();
+        string active = "";
+
         public directorio()
         {   
             InitializeComponent();
@@ -39,68 +42,147 @@ namespace sicem
 
             detalleCliente.BringToFront();
 
-            Cargar();
+            new listadoItems().llenar(metodoBusqueda, new listadoItems().cliente());
+            active = "cliente";
+
+            Cargar(false);
         }
 
-        public void Cargar()
+        public void Cargar(bool busqueda)
         {
-            //try
-            //{
-            //    vistaClientes.DataSource = new Cliente().Mostrar();
-            //}
-            //catch (Exception ex) { }
+            try{
+                DataTable data = null;
+                string rowname = "";
+
+                switch(active){
+                    case "cliente":
+                        data = (busqueda)? new Cliente().Buscar(txtBuscar.Text, metodoBusqueda.SelectedIndex) : new Cliente().Mostrar();
+                        rowname = "NombreCliente";
+                        break;
+
+                    case "proveedor":
+                        data = (busqueda)? new Proveedor().Buscar(txtBuscar.Text, metodoBusqueda.SelectedIndex) : new Proveedor().Mostrar();
+                        rowname = "Nombre";
+                        break;
+
+                    case "empleado":
+                        data = (busqueda)? new Empleado().Buscar(txtBuscar.Text, metodoBusqueda.SelectedIndex) : new Empleado().Mostrar();
+                        rowname = "Nombres";
+                        break;
+                }
+
+                vistaListado.Rows.Clear();
+                foreach (DataRow row in data.Rows){
+                    string id, n, fm;
+                    id = Convert.ToString(row["ID"]);
+                    n = Convert.ToString(row[rowname]);
+                    fm = Convert.ToString(row["FechaModificacion"]);
+                    vistaListado.Rows.Add(id, n, fm);
+                }
+
+            }catch (Exception ex) { }
         }
 
         private void clearForeColor()
-        {
+        { 
             labelcliente.ForeColor = Color.Silver;
             labelproveedor.ForeColor = Color.Silver;
             labelempleado.ForeColor = Color.Silver;
         }
 
+        private void activa()
+        {
+            clearForeColor();
+
+            switch (active)
+            {
+                case "cliente":
+                    labelcliente.ForeColor = Color.RoyalBlue;
+                    new listadoItems().llenar(metodoBusqueda, new listadoItems().cliente());
+                    Transition.run(indicadorlabel, "Left", labelcliente.Left, new TransitionType_EaseInEaseOut(500));
+                    indicadorlabel.Width = labelcliente.Width;
+                    detalleCliente.BringToFront();
+                    break;
+
+                case "proveedor":
+                    labelproveedor.ForeColor = Color.RoyalBlue;
+                    new listadoItems().llenar(metodoBusqueda, new listadoItems().proveedor());
+                    Transition.run(indicadorlabel, "Left", labelproveedor.Left, new TransitionType_EaseInEaseOut(500));
+                    indicadorlabel.Width = labelproveedor.Width;
+                    detalleProveedor.BringToFront();
+                    break;
+
+                case "empleado":
+                    labelempleado.ForeColor = Color.RoyalBlue;
+                    new listadoItems().llenar(metodoBusqueda, new listadoItems().empleado());
+                    Transition.run(indicadorlabel, "Left", labelempleado.Left, new TransitionType_EaseInEaseOut(500));
+                    indicadorlabel.Width = labelempleado.Width;
+                    detalleEmpleado.BringToFront();
+                    break;
+            }
+        }
+
         private void agregarButton_Click(object sender, EventArgs e)
         {
-            //new clienteForm().ShowDialog();
+            switch (active)
+            {
+                case "cliente":
+                    new clienteForm().Show();
+                    break;
+
+                case "proveedor":
+                    new proveedorForm().Show();
+                    break;
+
+                case "empleado":
+                    new empleadoForm().Show();
+                    break;
+            }
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //new clienteForm(int.Parse(vistaClientes.Rows[e.RowIndex].Cells[0].Value.ToString())).ShowDialog();
+            string value = vistaListado.Rows[e.RowIndex].Cells[0].Value.ToString();
+
+            switch(active){
+                case "cliente":
+                    detalleCliente.setInfo(value);
+                    break;
+
+                case "proveedor":
+                    detalleProveedor.setInfo(int.Parse(value));
+                    break;
+
+                case "empleado":
+                    detalleEmpleado.setInfo(int.Parse(value));
+                    break;
+            }
         }
 
         private void txtBuscar_OnTextChange(object sender, EventArgs e)
         {
-            //if (txtBuscar.text == "")
-            //    Cargar();
-            //else
-            //    vistaClientes.DataSource = new Cliente().Buscar(txtBuscar.text, metodoBusqueda.SelectedIndex);
+            if (txtBuscar.Text.Length > 0)
+                Cargar(false);
+            else
+                Cargar(true);
         }
 
         private void labelcliente_Click(object sender, EventArgs e)
         {
-            clearForeColor();
-            labelcliente.ForeColor = Color.RoyalBlue;
-            Transition.run(indicadorlabel, "Left", labelcliente.Left, new TransitionType_EaseInEaseOut(500));
-            indicadorlabel.Width = labelcliente.Width;
-            detalleCliente.BringToFront();
+            active = "cliente";
+            activa();
         }
 
         private void labelproveedor_Click(object sender, EventArgs e)
         {
-            clearForeColor();
-            labelproveedor.ForeColor = Color.RoyalBlue;
-            Transition.run(indicadorlabel, "Left", labelproveedor.Left, new TransitionType_EaseInEaseOut(500));
-            indicadorlabel.Width = labelproveedor.Width;
-            detalleProveedor.BringToFront();
+            active = "proveedor";
+            activa();
         }
 
         private void labelempleado_Click(object sender, EventArgs e)
         {
-            clearForeColor();
-            labelempleado.ForeColor = Color.RoyalBlue;
-            Transition.run(indicadorlabel, "Left", labelempleado.Left, new TransitionType_EaseInEaseOut(500));
-            indicadorlabel.Width = labelempleado.Width;
-            detalleEmpleado.BringToFront();
+            active = "empleado";
+            activa();
         }
     }
 }

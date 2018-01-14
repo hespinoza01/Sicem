@@ -1,7 +1,7 @@
-use Administrador
+use sicem
 go
 
-alter procedure [contadores_tab_inicio]
+create procedure [contadores_tab_inicio]
 as begin
 	declare 
 		@ventas int,
@@ -58,12 +58,12 @@ create procedure top_clientes
 as begin
 	select top 5 
 				c.ID as [ID],
-				c.Nombre as [Nombre],
+				c.NombreCliente as [Nombre],
 				round(sum(v.Total), 2) as [Recaudación]
 			from [Venta] v
 				inner join Cliente c
 					on v.ClienteID = c.ID
 			where year(v.FechaVenta) = year(getdate())
-			group by c.ID, c.Nombre
+			group by c.ID, c.NombreCliente
 			order by [Recaudación] desc
 end

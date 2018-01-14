@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Transitions;
+using System.IO;
+using sicem.datos;
 
 namespace sicem.vista.directorio
 {
@@ -32,6 +34,36 @@ namespace sicem.vista.directorio
 
             expandInfoPersonal.Click += expandCollapsive_Click;
             expandInfoLaboral.Click += expandInfoLaboral_Click;
+            editar.Click += editar_Click;
+        }
+
+        public void setInfo(int id){
+            DataTable data = new Empleado().Detalle(id);
+
+            if(data != null){
+                DataRow row = data.Rows[0];
+
+                txtID.Text = row["ID"].ToString();
+                txtNombre.Text = row["Nombres"].ToString();
+                txtApellido.Text = row["Apellidos"].ToString();
+                txtDepartamento.Text = row["DepartamentoID"].ToString();
+                txtTituloLaboral.Text = row["TituloLaboral"].ToString();
+                fechaNacimiento.Text = row["FechaDeNacimiento"].ToString();
+                fechaContratacion.Text = row["FechaDeContratacion"].ToString();
+                txtEstadoCivil.Text = row["EstadoCivil"].ToString();
+                txtDireccion.Text = row["Domicilio"].ToString();
+                txtCiudad.Text = row["Ciudad"].ToString();
+                txtTel.Text = row["Telefono"].ToString();
+                txtCedula.Text = row["Cedula"].ToString();
+                txtEmail.Text = row["Email"].ToString();
+                txtObservaciones.Text = row["Observaciones"].ToString();
+                txtReportarA.Text = row["ReportarA"].ToString();
+                    byte[] img = (byte[])row["Foto"];
+                    MemoryStream ms = new MemoryStream(img);
+                foto.Image = Image.FromStream(ms);
+                labelFechaModificacion.Text = row["FechaModificacion"].ToString();
+            }else
+                new popup("Error al mostrar detalle", popup.AlertType.error);
         }
 
         private bool showCollapsiveInfoPersonal()
@@ -66,6 +98,11 @@ namespace sicem.vista.directorio
         private void expandInfoLaboral_Click(object sender, EventArgs e)
         {
             expand = (!expand) ? showCollapsiveInfoPersonal() : showCollapsiveInfoLaboral();
+        }
+
+        private void editar_Click(object sender, EventArgs e){
+            if(new empleadoForm(int.Parse(txtID.Text)).ShowDialog() == DialogResult.OK)
+                setInfo(int.Parse(txtID.Text));
         }
     }
 }

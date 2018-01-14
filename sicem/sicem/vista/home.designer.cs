@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            BunifuAnimatorNS.Animation animation5 = new BunifuAnimatorNS.Animation();
+            BunifuAnimatorNS.Animation animation1 = new BunifuAnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(home));
             this.navbar = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -49,15 +49,15 @@
             this.userPicture = new System.Windows.Forms.PictureBox();
             this.contenedor = new System.Windows.Forms.Panel();
             this.contentMenuMore = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.salir = new System.Windows.Forms.Label();
+            this.cerrarsesion = new System.Windows.Forms.Label();
+            this.configuraperfil = new System.Windows.Forms.Label();
+            this.toppanel = new System.Windows.Forms.Panel();
             this.moreMenu = new Bunifu.Framework.UI.BunifuImageButton();
             this.label1 = new System.Windows.Forms.Label();
             this.menu = new Bunifu.Framework.UI.BunifuImageButton();
             this.viewTransition = new BunifuAnimatorNS.BunifuTransition(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.configuraperfil = new System.Windows.Forms.Label();
-            this.cerrarsesion = new System.Windows.Forms.Label();
-            this.salir = new System.Windows.Forms.Label();
             this.navbar.SuspendLayout();
             this.panel3.SuspendLayout();
             this.topNavbar.SuspendLayout();
@@ -67,7 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.userPicture)).BeginInit();
             this.contenedor.SuspendLayout();
             this.contentMenuMore.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.toppanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.moreMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.menu)).BeginInit();
             this.panel1.SuspendLayout();
@@ -272,7 +272,7 @@
             this.administrarTab.Iconimage = ((System.Drawing.Image)(resources.GetObject("administrarTab.Iconimage")));
             this.administrarTab.Iconimage_right = null;
             this.administrarTab.Iconimage_right_Selected = null;
-            this.administrarTab.Iconimage_Selected = null;
+            this.administrarTab.Iconimage_Selected = ((System.Drawing.Image)(resources.GetObject("administrarTab.Iconimage_Selected")));
             this.administrarTab.IconMarginLeft = 0;
             this.administrarTab.IconMarginRight = 0;
             this.administrarTab.IconRightVisible = true;
@@ -406,17 +406,17 @@
             // logout
             // 
             this.logout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.logout.BackColor = System.Drawing.Color.RoyalBlue;
+            this.logout.BackColor = System.Drawing.Color.Transparent;
             this.viewTransition.SetDecoration(this.logout, BunifuAnimatorNS.DecorationType.None);
             this.logout.Image = ((System.Drawing.Image)(resources.GetObject("logout.Image")));
-            this.logout.ImageActive = null;
-            this.logout.Location = new System.Drawing.Point(208, 37);
+            this.logout.ImageActive = ((System.Drawing.Image)(resources.GetObject("logout.ImageActive")));
+            this.logout.Location = new System.Drawing.Point(206, 37);
             this.logout.Name = "logout";
-            this.logout.Size = new System.Drawing.Size(20, 20);
+            this.logout.Size = new System.Drawing.Size(22, 22);
             this.logout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.logout.TabIndex = 5;
             this.logout.TabStop = false;
-            this.logout.Zoom = 8;
+            this.logout.Zoom = 6;
             this.logout.Click += new System.EventHandler(this.logout_Click);
             // 
             // userPictureNavbar
@@ -491,19 +491,63 @@
             this.contentMenuMore.Size = new System.Drawing.Size(130, 100);
             this.contentMenuMore.TabIndex = 0;
             // 
-            // panel2
+            // salir
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(65)))), ((int)(((byte)(185)))));
-            this.panel2.Controls.Add(this.userPicture);
-            this.panel2.Controls.Add(this.moreMenu);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.menu);
-            this.viewTransition.SetDecoration(this.panel2, BunifuAnimatorNS.DecorationType.None);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(990, 56);
-            this.panel2.TabIndex = 3;
+            this.salir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.viewTransition.SetDecoration(this.salir, BunifuAnimatorNS.DecorationType.None);
+            this.salir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.salir.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.salir.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.salir.Location = new System.Drawing.Point(0, 54);
+            this.salir.Name = "salir";
+            this.salir.Size = new System.Drawing.Size(130, 25);
+            this.salir.TabIndex = 2;
+            this.salir.Text = "Salir";
+            this.salir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cerrarsesion
+            // 
+            this.cerrarsesion.BackColor = System.Drawing.Color.Transparent;
+            this.cerrarsesion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.viewTransition.SetDecoration(this.cerrarsesion, BunifuAnimatorNS.DecorationType.None);
+            this.cerrarsesion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cerrarsesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cerrarsesion.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.cerrarsesion.Location = new System.Drawing.Point(0, 27);
+            this.cerrarsesion.Name = "cerrarsesion";
+            this.cerrarsesion.Size = new System.Drawing.Size(130, 25);
+            this.cerrarsesion.TabIndex = 1;
+            this.cerrarsesion.Text = "Cerrar sesión";
+            this.cerrarsesion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // configuraperfil
+            // 
+            this.configuraperfil.BackColor = System.Drawing.Color.Transparent;
+            this.configuraperfil.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.viewTransition.SetDecoration(this.configuraperfil, BunifuAnimatorNS.DecorationType.None);
+            this.configuraperfil.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.configuraperfil.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.configuraperfil.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.configuraperfil.Location = new System.Drawing.Point(0, 0);
+            this.configuraperfil.Name = "configuraperfil";
+            this.configuraperfil.Size = new System.Drawing.Size(130, 25);
+            this.configuraperfil.TabIndex = 0;
+            this.configuraperfil.Text = "Configurar perfil";
+            this.configuraperfil.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // toppanel
+            // 
+            this.toppanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(65)))), ((int)(((byte)(185)))));
+            this.toppanel.Controls.Add(this.userPicture);
+            this.toppanel.Controls.Add(this.moreMenu);
+            this.toppanel.Controls.Add(this.label1);
+            this.toppanel.Controls.Add(this.menu);
+            this.viewTransition.SetDecoration(this.toppanel, BunifuAnimatorNS.DecorationType.None);
+            this.toppanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.toppanel.Location = new System.Drawing.Point(0, 0);
+            this.toppanel.Name = "toppanel";
+            this.toppanel.Size = new System.Drawing.Size(990, 56);
+            this.toppanel.TabIndex = 3;
             // 
             // moreMenu
             // 
@@ -515,7 +559,7 @@
             this.moreMenu.ImageActive = ((System.Drawing.Image)(resources.GetObject("moreMenu.ImageActive")));
             this.moreMenu.Location = new System.Drawing.Point(962, 3);
             this.moreMenu.Name = "moreMenu";
-            this.moreMenu.Size = new System.Drawing.Size(25, 50);
+            this.moreMenu.Size = new System.Drawing.Size(25, 48);
             this.moreMenu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.moreMenu.TabIndex = 4;
             this.moreMenu.TabStop = false;
@@ -554,23 +598,23 @@
             // 
             this.viewTransition.AnimationType = BunifuAnimatorNS.AnimationType.HorizSlide;
             this.viewTransition.Cursor = null;
-            animation5.AnimateOnlyDifferences = true;
-            animation5.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation5.BlindCoeff")));
-            animation5.LeafCoeff = 0F;
-            animation5.MaxTime = 1F;
-            animation5.MinTime = 0F;
-            animation5.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation5.MosaicCoeff")));
-            animation5.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation5.MosaicShift")));
-            animation5.MosaicSize = 0;
-            animation5.Padding = new System.Windows.Forms.Padding(0);
-            animation5.RotateCoeff = 0F;
-            animation5.RotateLimit = 0F;
-            animation5.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation5.ScaleCoeff")));
-            animation5.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation5.SlideCoeff")));
-            animation5.TimeCoeff = 0F;
-            animation5.TransparencyCoeff = 0F;
-            this.viewTransition.DefaultAnimation = animation5;
-            this.viewTransition.MaxAnimationTime = 500;
+            animation1.AnimateOnlyDifferences = true;
+            animation1.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.BlindCoeff")));
+            animation1.LeafCoeff = 0F;
+            animation1.MaxTime = 1F;
+            animation1.MinTime = 0F;
+            animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
+            animation1.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicShift")));
+            animation1.MosaicSize = 0;
+            animation1.Padding = new System.Windows.Forms.Padding(0);
+            animation1.RotateCoeff = 0F;
+            animation1.RotateLimit = 0F;
+            animation1.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.ScaleCoeff")));
+            animation1.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.SlideCoeff")));
+            animation1.TimeCoeff = 0F;
+            animation1.TransparencyCoeff = 0F;
+            this.viewTransition.DefaultAnimation = animation1;
+            this.viewTransition.MaxAnimationTime = 750;
             // 
             // panel1
             // 
@@ -583,50 +627,6 @@
             this.panel1.Size = new System.Drawing.Size(990, 590);
             this.panel1.TabIndex = 4;
             // 
-            // configuraperfil
-            // 
-            this.configuraperfil.BackColor = System.Drawing.Color.Transparent;
-            this.configuraperfil.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.viewTransition.SetDecoration(this.configuraperfil, BunifuAnimatorNS.DecorationType.None);
-            this.configuraperfil.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.configuraperfil.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.configuraperfil.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.configuraperfil.Location = new System.Drawing.Point(0, 0);
-            this.configuraperfil.Name = "configuraperfil";
-            this.configuraperfil.Size = new System.Drawing.Size(130, 25);
-            this.configuraperfil.TabIndex = 0;
-            this.configuraperfil.Text = "Configurar perfil";
-            this.configuraperfil.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // cerrarsesion
-            // 
-            this.cerrarsesion.BackColor = System.Drawing.Color.Transparent;
-            this.cerrarsesion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.viewTransition.SetDecoration(this.cerrarsesion, BunifuAnimatorNS.DecorationType.None);
-            this.cerrarsesion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cerrarsesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cerrarsesion.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.cerrarsesion.Location = new System.Drawing.Point(0, 27);
-            this.cerrarsesion.Name = "cerrarsesion";
-            this.cerrarsesion.Size = new System.Drawing.Size(130, 25);
-            this.cerrarsesion.TabIndex = 1;
-            this.cerrarsesion.Text = "Cerrar sesión";
-            this.cerrarsesion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // salir
-            // 
-            this.salir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.viewTransition.SetDecoration(this.salir, BunifuAnimatorNS.DecorationType.None);
-            this.salir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.salir.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.salir.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.salir.Location = new System.Drawing.Point(0, 54);
-            this.salir.Name = "salir";
-            this.salir.Size = new System.Drawing.Size(130, 25);
-            this.salir.TabIndex = 2;
-            this.salir.Text = "Salir";
-            this.salir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -634,7 +634,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(990, 646);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.toppanel);
             this.viewTransition.SetDecoration(this, BunifuAnimatorNS.DecorationType.None);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "home";
@@ -650,8 +650,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.userPicture)).EndInit();
             this.contenedor.ResumeLayout(false);
             this.contentMenuMore.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.toppanel.ResumeLayout(false);
+            this.toppanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.moreMenu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.menu)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -675,7 +675,7 @@
         private System.Windows.Forms.Panel contenedor;
         private Bunifu.Framework.UI.BunifuImageButton logout;
         private Bunifu.Framework.UI.BunifuImageButton closemenu;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel toppanel;
         private System.Windows.Forms.Label nameUser;
         private BunifuAnimatorNS.BunifuTransition viewTransition;
         private System.Windows.Forms.Panel panel1;

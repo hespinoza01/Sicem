@@ -375,6 +375,7 @@
             this.Controls.Add(this.bunifuCustomLabel2);
             this.Name = "detalleProducto";
             this.Size = new System.Drawing.Size(483, 590);
+            this.Load += new System.EventHandler(this.detalleProducto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtIDCategoria)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPrecioVenta)).EndInit();

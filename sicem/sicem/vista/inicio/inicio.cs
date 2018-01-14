@@ -12,7 +12,6 @@ namespace sicem
 {
     public partial class inicio : UserControl
     {
-        //ExtrasContadores c = new ExtrasContadores();
         public inicio()
         {
             InitializeComponent();
@@ -20,23 +19,31 @@ namespace sicem
 
         public void cargar()
         {
-            //DataRow row = new ExtrasContadores().Contadores().Rows[0];
-            //try { 
-            //    label3.Text = row["Cliente"].ToString();
-            //    label6.Text = row["Proveedor"].ToString();
-            //    label4.Text = row["Producto"].ToString();
-            //    label8.Text = row["Venta"].ToString();
+            DataTable data = new DBHelper().Reader("contadores_tab_inicio");
+            if(data != null)
+            {
+                DataRow row = data.Rows[0];
 
-            //    ultimasVentas.DataSource = new ExtrasContadores().ultimasVentas();
-            //    productosMasVendidos.DataSource = new ExtrasContadores().productosMasVendidos();
-            //    mejoresClientes.DataSource = new ExtrasContadores().topClientes();
-            //}
-            //catch (Exception ex) { }
+                clientesCont.Text = row["Cliente"].ToString();
+                proveedoresCont.Text = row["Proveedor"].ToString();
+                productosCont.Text = row["Producto"].ToString();
+                ventasCont.Text = row["Venta"].ToString();
+
+                ultimasVentas.DataSource = new DBHelper().Reader("ultimas_ventas");
+                productosMasVendidos.DataSource = new DBHelper().Reader("productos_mas_vendidos");
+                mejoresClientes.DataSource = new DBHelper().Reader("top_clientes");
+            }
+            else
+            {
+                clientesCont.Text = "0";
+                proveedoresCont.Text = "0";
+                productosCont.Text = "0";
+                ventasCont.Text = "0";
+            }
         }
 
         private void inicio_Load(object sender, EventArgs e)
         {
-            cargar();
             inicia();
         }
 
@@ -44,6 +51,8 @@ namespace sicem
         {
             contentBadget.Region = new region().Circle(contentBadget.Width, contentBadget.Height);
             hideBadget.Region = new region().Circle(hideBadget.Width, hideBadget.Height);
+
+            inicia();
         }
 
         private void seeBadget_Click(object sender, EventArgs e)
@@ -67,6 +76,26 @@ namespace sicem
             contentBadget.Visible = false;
             seeBadget.Visible = false;
             transitionBadget.ShowSync(seeBadget);
+        }
+
+        private void addCliente_Click(object sender, EventArgs e)
+        {
+            new clienteForm().Show();
+        }
+
+        private void addProveedor_Click(object sender, EventArgs e)
+        {
+            new proveedorForm().Show();
+        }
+
+        private void addCompra_Click(object sender, EventArgs e)
+        {
+            new compraForm().Show();
+        }
+
+        private void addVenta_Click(object sender, EventArgs e)
+        {
+            new ventaForm().Show();
         }
     }
 }

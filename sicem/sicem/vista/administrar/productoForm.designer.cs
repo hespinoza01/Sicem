@@ -1,4 +1,4 @@
-﻿namespace sicem
+﻿namespace sicem//.vista.administrar
 {
     partial class productoForm
     {
@@ -36,7 +36,7 @@
             Telerik.WinControls.UI.RadListDataItem radListDataItem5 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem6 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem7 = new Telerik.WinControls.UI.RadListDataItem();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.toppanel = new System.Windows.Forms.Panel();
             this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel2 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel3 = new Bunifu.Framework.UI.BunifuCustomLabel();
@@ -58,7 +58,7 @@
             this.txtCantidadPorUnidad = new Telerik.WinControls.UI.RadSpinEditor();
             this.bunifuCustomLabel8 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.sugerencia = new Telerik.WinControls.UI.RadListControl();
-            this.panel1.SuspendLayout();
+            this.toppanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombreProducto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPrecioVenta)).BeginInit();
@@ -69,15 +69,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.sugerencia)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // toppanel
             // 
-            this.panel1.BackColor = System.Drawing.Color.RoyalBlue;
-            this.panel1.Controls.Add(this.bunifuCustomLabel1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(460, 40);
-            this.panel1.TabIndex = 0;
+            this.toppanel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.toppanel.Controls.Add(this.bunifuCustomLabel1);
+            this.toppanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.toppanel.Location = new System.Drawing.Point(0, 0);
+            this.toppanel.Name = "toppanel";
+            this.toppanel.Size = new System.Drawing.Size(460, 40);
+            this.toppanel.TabIndex = 0;
             // 
             // bunifuCustomLabel1
             // 
@@ -491,7 +491,7 @@
             ((Telerik.WinControls.UI.RadScrollBarElement)(this.sugerencia.GetChildAt(0).GetChildAt(2))).MinSize = new System.Drawing.Size(12, 112);
             ((Telerik.WinControls.UI.RadScrollBarElement)(this.sugerencia.GetChildAt(0).GetChildAt(2))).MaxSize = new System.Drawing.Size(12, 112);
             // 
-            // productoForm
+            // pf
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -516,14 +516,14 @@
             this.Controls.Add(this.bunifuCustomLabel4);
             this.Controls.Add(this.bunifuCustomLabel3);
             this.Controls.Add(this.bunifuCustomLabel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.toppanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "productoForm";
+            this.Name = "pf";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "productoForm";
             this.Load += new System.EventHandler(this.productoForm_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.toppanel.ResumeLayout(false);
+            this.toppanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombreProducto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPrecioVenta)).EndInit();
@@ -539,7 +539,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel toppanel;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel1;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel2;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel3;

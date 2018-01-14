@@ -1,5 +1,4 @@
-﻿using sicem.vista.Dialogos;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +13,7 @@ namespace sicem
 {
     public partial class login : Form
     {
+        home home = new home();
         public login()
         {
             InitializeComponent();
@@ -21,7 +21,6 @@ namespace sicem
 
         private void log_Load(object sender, EventArgs e)
         {
-            picture.Focus();
             inicia();
         }
 
@@ -42,6 +41,21 @@ namespace sicem
             listaSugerencias.Height = listaSugerencias.ItemHeight * 4;
 
             password.PasswordChar = '\u25CF';
+            picture.Focus();
+        }
+
+        private void sugerencias() {
+            DataTable data = new usuario().Buscar(username.Text, 0);
+
+            if(data != null){
+                listaSugerencias.Items.Clear();
+                foreach(DataRow r in data.Rows)
+                    listaSugerencias.Items.Add(r["ID"].ToString());
+
+                listaSugerencias.Height = (listaSugerencias.Items.Count > 5) ? (listaSugerencias.ItemHeight * 5) : (listaSugerencias.ItemHeight * listaSugerencias.ItemHeight);
+                listaSugerencias.Visible = true;
+                listaSugerencias.BringToFront();
+            }
         }
 
         private void showPreloader()
@@ -50,26 +64,15 @@ namespace sicem
             Transition.run(this, "Left", this.Left + 155, new TransitionType_EaseInEaseOut(1000));
             Transition.run(bglogo, "Left", 20, new TransitionType_EaseInEaseOut(1000));
             Transition.run(content, "BackColor", Color.RoyalBlue, new TransitionType_EaseInEaseOut(1100));
+            preloaderTime.Start();
+            new popup("Bienvenido...", popup.AlertType.check);
         }
 
         // verificar usuario
         private bool verifica()
         {
-            bool ver = true;
-            try
-            {
-                //DataTable Datos = new user().Verifica(this.username.Text,this.password.Text);
-
-                //if (Datos.Rows.Count != 0){ver= true;}
-                //else {ver= false;}
-
-                return ver;
-            }
-            catch (Exception ex)
-            {
-                //new popup(ex.Message, popup.AlertType.error);
-                return ver;
-            }
+            DataTable data = new usuario().Verifica(this.username.Text.Trim(),this.password.Text.Trim());
+            return (data.Rows.Count != 0) ? true : false;
         }
 
         private void username_Enter(object sender, EventArgs e)
@@ -83,8 +86,7 @@ namespace sicem
             if (username.Text.Length > 0)
             {
                 username.ShowClearButton = true;
-                listaSugerencias.Visible = true;
-                listaSugerencias.BringToFront();
+                sugerencias();
             }
             else
             {
@@ -176,8 +178,8 @@ namespace sicem
             if (username.Text.Length > 0)
                 password.ShowClearButton = true;
 
-            //if (username.Text != "")
-            //picture.Image = new user().obtenerFoto(username.Text);
+            if (username.Text.Length > 0)
+                picture.Image = new usuario().obtenerFoto(username.Text.Trim());
         }
 
         private void password_Leave(object sender, EventArgs e)
@@ -198,16 +200,9 @@ namespace sicem
         private void ingresar_Click(object sender, EventArgs e)
         {
             if (verifica())
-            {
-                //new home().Show();
-                //this.Hide();
                 showPreloader();
-                //new popup("Bienvenido...", popup.AlertType.check);
-            }
             else
-            {
-                //new popup("Usuario o contraseña incorrectos", popup.AlertType.error);
-            }
+                new popup("Usuario o contraseña incorrectos", popup.AlertType.error);
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -216,5 +211,11 @@ namespace sicem
                 Application.Exit();
         }
 
+        private void preloaderTime_Tick(object sender, EventArgs e)
+        {
+            preloaderTime.Stop();
+            home.Show();
+            this.Close();
+        }
     }
 }

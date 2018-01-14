@@ -4,11 +4,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Transitions;
+using sicem.datos;
 
 namespace sicem
 {
@@ -16,6 +18,7 @@ namespace sicem
     {
         string accionformulario;
         bool expand = true;
+        DBHelper db = new DBHelper();
         public empleadoForm()
         {
             InitializeComponent();
@@ -59,6 +62,8 @@ namespace sicem
             collapsiveInfoPersonal.Height = 300;
             collapsiveInfoLaboral.Height = 35;
             collapsiveInfoLaboral.Top = 510;
+
+            new drag().setDragable(toppanel);
         }
 
         private bool showCollapsiveInfoPersonal()
@@ -89,36 +94,35 @@ namespace sicem
 
         private void setDataView(int id)
         {
-            Conexión conexion = new Conexión();
-            DataTable data = new DataTable("Cliente");
-            using(SqlConnection cn = new SqlConnection(Conexión.Cn))
-            {
-                try
-                {
-                    cn.Open();
+            DataTable data = db.DataReader("select * from RH_Empleado where ID = '" + id+"'");
+            
+            if(data != null){
+                DataRow row = data.Rows[0];
 
-                    SqlCommand cmd = new SqlCommand(
-                        "select * from Cliente where ID = '" + id+"'",
-                        cn
-                        );
+                txtID.Text = row["ID"].ToString();
+                txtNombre.Text = row["Nombres"].ToString();
+                txtApellido.Text = row["Apellidos"].ToString();
+                txtDepartamento.Text = row["DepartamentoID"].ToString();
+                txtTituloLaboral.Text = row["TituloLaboral"].ToString();
+                fechaNacimiento.Value = (DateTime)row["FechaDeNacimiento"];
+                fechaContratacion.Value = (DateTime)row["FechaDeContratacion"];
 
-                    SqlDataAdapter SqlDat = new SqlDataAdapter(cmd);
-                    SqlDat.Fill(data);
+                ecSoltero.Checked = (int.Parse(row["Genero"].ToString()) == 0) ? true : false;
+                generoFemenino.Checked = (int.Parse(row["Genero"].ToString()) == 0) ? true : false;
 
-                    DataRow row = data.Rows[0];
-                    txtID.Text = row["ID"].ToString();
-                    txtNombre.Text = row["Nombre"].ToString();
-                    txtEmail.Text = row["Email"].ToString();
-                    txtTel.Text = row["Telefono"].ToString();
-                    txtDireccion.Text = row["Domicilio"].ToString();
-                }
-                catch (Exception ex)
-                {
-                    new popup("Error al mostrar información", popup.AlertType.error);
-                    this.Close();
-                }
+                txtCedula.Text = row["Cedula"].ToString();
+                txtEmail.Text = row["Email"].ToString();
+                txtTel.Text = row["Telefono"].ToString();
+                txtDireccion.Text = row["Domicilio"].ToString();
+                txtObservaciones.Text = row["Observaciones"].ToString();
+                txtReportarA.Text = row["ReportarA"].ToString();
+                    byte[] img = (byte[])row["Foto"];
+                    MemoryStream ms = new MemoryStream(img);
+                foto.Image = Image.FromStream(ms);
+            }else{
+                new popup("Error al mostrar información", popup.AlertType.error);
+                this.Close();
             }
-         
         }
 
         private void cancelar_Click(object sender, EventArgs e)
@@ -130,26 +134,32 @@ namespace sicem
 
         private void guardar_Click(object sender, EventArgs e)
         {
-            Cliente Client = new Cliente();
-            Client.C_Nombre = txtNombre.Text;
-            Client.C_Domicilio = txtDireccion.Text;
-            Client.C_Email = txtEmail.Text;
-            Client.C_Telefono = txtTel.Text;
+            Empleado em = new Empleado();
+            em.Nombres = txtNombre.Text;
+            em.Apellidos = txtApellido.Text;
+            em.DepartamentoID = int.Parse(txtDepartamento.Text);
+            em.TituloLaboral =txtTituloLaboral.Text;
+            em.FechaNacimiento = fechaNacimiento.Value;
+            em.FechaContratacion = fechaContratacion.Value;
+            em.EstadoCivil = (ecSoltero.Checked) ? 0 : 1;
+            em.Genero = (generoFemenino.Checked) ? 0 : 1;
+            em.Domicilio = txtDireccion.Text;
+            em.Ciudad = txtCiudad.selectedValue;
+            em.Telefono = txtTel.Text;
+            em.Cedula = txtCedula.Text;
+            em.Email = txtEmail.Text;
+            em.Observaciones = txtObservaciones.Text;
+            em.ReportarA = int.Parse(txtReportarA.Text);
+            em.Foto = foto.Image;
 
             if (accionformulario == "crear")
             {
-                try { Client.Insertar(); }
-                catch (Exception ex) { new popup("Inserción fallida", popup.AlertType.error); }
+                em.Insertar();
                 this.Close();
             }
             else
             {
-                try
-                {
-                    Client.C_Id = int.Parse(txtID.Text);
-                    Client.Editar();
-                }
-                catch (Exception ex) { new popup("Actualización fallida", popup.AlertType.error); }
+                em.Editar();
             }
 
         }
@@ -176,5 +186,6 @@ namespace sicem
 
             open.Dispose();
         }
+
     }
 }

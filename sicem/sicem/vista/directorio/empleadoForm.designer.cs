@@ -33,7 +33,7 @@
             this.cancelar = new Bunifu.Framework.UI.BunifuThinButton2();
             this.guardar = new Bunifu.Framework.UI.BunifuThinButton2();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.toppanel = new System.Windows.Forms.Panel();
             this.tipoFormulario = new System.Windows.Forms.Label();
             this.txtNombre = new Telerik.WinControls.UI.RadTextBox();
             this.materialTheme1 = new Telerik.WinControls.Themes.MaterialTheme();
@@ -45,6 +45,14 @@
             this.txtDepartamento = new Telerik.WinControls.UI.RadTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.collapsiveInfoLaboral = new Bunifu.Framework.UI.BunifuCards();
+            this.txtReportarA = new Telerik.WinControls.UI.RadTextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtTituloLaboral = new Telerik.WinControls.UI.RadTextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtObservaciones = new Telerik.WinControls.UI.RadTextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.fechaContratacion = new Bunifu.Framework.UI.BunifuDatepicker();
             this.expandInfoLaboral = new Bunifu.Framework.UI.BunifuFlatButton();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -60,34 +68,26 @@
             this.label11 = new System.Windows.Forms.Label();
             this.txtCedula = new Telerik.WinControls.UI.RadTextBox();
             this.collapsiveInfoPersonal = new Bunifu.Framework.UI.BunifuCards();
-            this.expandInfoPersonal = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.label12 = new System.Windows.Forms.Label();
-            this.fechaContratacion = new Bunifu.Framework.UI.BunifuDatepicker();
-            this.txtObservaciones = new Telerik.WinControls.UI.RadTextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtTituloLaboral = new Telerik.WinControls.UI.RadTextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.txtReportarA = new Telerik.WinControls.UI.RadTextBox();
-            this.label15 = new System.Windows.Forms.Label();
             this.ecSoltero = new iTalk.iTalk_RadioButton();
             this.ecCasado = new iTalk.iTalk_RadioButton();
+            this.expandInfoPersonal = new Bunifu.Framework.UI.BunifuFlatButton();
             this.generoMasculino = new iTalk.iTalk_RadioButton();
             this.generoFemenino = new iTalk.iTalk_RadioButton();
-            this.panel1.SuspendLayout();
+            this.toppanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.foto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtApellido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDepartamento)).BeginInit();
             this.collapsiveInfoLaboral.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtReportarA)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTituloLaboral)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtObservaciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDireccion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCedula)).BeginInit();
             this.collapsiveInfoPersonal.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtObservaciones)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTituloLaboral)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtReportarA)).BeginInit();
             this.SuspendLayout();
             // 
             // labelID
@@ -162,14 +162,14 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Nombres ( * )";
             // 
-            // panel1
+            // toppanel
             // 
-            this.panel1.BackColor = System.Drawing.Color.RoyalBlue;
-            this.panel1.Controls.Add(this.tipoFormulario);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(550, 44);
-            this.panel1.TabIndex = 2;
+            this.toppanel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.toppanel.Controls.Add(this.tipoFormulario);
+            this.toppanel.Location = new System.Drawing.Point(0, 0);
+            this.toppanel.Name = "toppanel";
+            this.toppanel.Size = new System.Drawing.Size(550, 44);
+            this.toppanel.TabIndex = 2;
             // 
             // tipoFormulario
             // 
@@ -333,6 +333,123 @@
             this.collapsiveInfoLaboral.ShadowDepth = 30;
             this.collapsiveInfoLaboral.Size = new System.Drawing.Size(500, 215);
             this.collapsiveInfoLaboral.TabIndex = 50;
+            // 
+            // txtReportarA
+            // 
+            this.txtReportarA.AutoSize = false;
+            this.txtReportarA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.txtReportarA.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReportarA.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.txtReportarA.Location = new System.Drawing.Point(10, 122);
+            this.txtReportarA.Name = "txtReportarA";
+            // 
+            // 
+            // 
+            this.txtReportarA.RootElement.ControlDefaultSize = new System.Drawing.Size(235, 28);
+            this.txtReportarA.RootElement.CustomFont = "None";
+            this.txtReportarA.RootElement.FocusBorderColor = System.Drawing.Color.RoyalBlue;
+            this.txtReportarA.Size = new System.Drawing.Size(237, 30);
+            this.txtReportarA.TabIndex = 51;
+            this.txtReportarA.ThemeName = "Material";
+            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtReportarA.GetChildAt(0))).Text = "";
+            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtReportarA.GetChildAt(0))).FocusBorderColor = System.Drawing.Color.RoyalBlue;
+            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtReportarA.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(8, 2, 8, 2);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label15.Location = new System.Drawing.Point(12, 104);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(57, 13);
+            this.label15.TabIndex = 50;
+            this.label15.Text = "Reportar a";
+            // 
+            // txtTituloLaboral
+            // 
+            this.txtTituloLaboral.AutoSize = false;
+            this.txtTituloLaboral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.txtTituloLaboral.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTituloLaboral.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.txtTituloLaboral.Location = new System.Drawing.Point(340, 59);
+            this.txtTituloLaboral.Name = "txtTituloLaboral";
+            // 
+            // 
+            // 
+            this.txtTituloLaboral.RootElement.ControlDefaultSize = new System.Drawing.Size(235, 28);
+            this.txtTituloLaboral.RootElement.CustomFont = "None";
+            this.txtTituloLaboral.RootElement.FocusBorderColor = System.Drawing.Color.RoyalBlue;
+            this.txtTituloLaboral.Size = new System.Drawing.Size(150, 30);
+            this.txtTituloLaboral.TabIndex = 49;
+            this.txtTituloLaboral.ThemeName = "Material";
+            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtTituloLaboral.GetChildAt(0))).Text = "";
+            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtTituloLaboral.GetChildAt(0))).FocusBorderColor = System.Drawing.Color.RoyalBlue;
+            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtTituloLaboral.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(8, 2, 8, 2);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label14.Location = new System.Drawing.Point(342, 41);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(69, 13);
+            this.label14.TabIndex = 48;
+            this.label14.Text = "Título laboral";
+            // 
+            // txtObservaciones
+            // 
+            this.txtObservaciones.AutoSize = false;
+            this.txtObservaciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.txtObservaciones.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtObservaciones.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.txtObservaciones.Location = new System.Drawing.Point(10, 186);
+            this.txtObservaciones.Multiline = true;
+            this.txtObservaciones.Name = "txtObservaciones";
+            // 
+            // 
+            // 
+            this.txtObservaciones.RootElement.ControlDefaultSize = new System.Drawing.Size(235, 28);
+            this.txtObservaciones.RootElement.CustomFont = "None";
+            this.txtObservaciones.RootElement.FocusBorderColor = System.Drawing.Color.RoyalBlue;
+            this.txtObservaciones.Size = new System.Drawing.Size(480, 75);
+            this.txtObservaciones.TabIndex = 47;
+            this.txtObservaciones.ThemeName = "Material";
+            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtObservaciones.GetChildAt(0))).Text = "";
+            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtObservaciones.GetChildAt(0))).FocusBorderColor = System.Drawing.Color.RoyalBlue;
+            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtObservaciones.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(8, 2, 8, 2);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label13.Location = new System.Drawing.Point(12, 168);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(78, 13);
+            this.label13.TabIndex = 46;
+            this.label13.Text = "Observaciones";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label12.Location = new System.Drawing.Point(12, 41);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(99, 13);
+            this.label12.TabIndex = 45;
+            this.label12.Text = "Fecha contratación";
+            // 
+            // fechaContratacion
+            // 
+            this.fechaContratacion.BackColor = System.Drawing.Color.RoyalBlue;
+            this.fechaContratacion.BorderRadius = 7;
+            this.fechaContratacion.ForeColor = System.Drawing.Color.White;
+            this.fechaContratacion.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.fechaContratacion.FormatCustom = "dd/mm/yyyy";
+            this.fechaContratacion.Location = new System.Drawing.Point(10, 59);
+            this.fechaContratacion.Name = "fechaContratacion";
+            this.fechaContratacion.Size = new System.Drawing.Size(150, 30);
+            this.fechaContratacion.TabIndex = 44;
+            this.fechaContratacion.Value = new System.DateTime(2018, 1, 2, 19, 52, 55, 766);
             // 
             // expandInfoLaboral
             // 
@@ -583,6 +700,28 @@
             this.collapsiveInfoPersonal.Size = new System.Drawing.Size(500, 105);
             this.collapsiveInfoPersonal.TabIndex = 49;
             // 
+            // ecSoltero
+            // 
+            this.ecSoltero.BackColor = System.Drawing.Color.Transparent;
+            this.ecSoltero.Checked = true;
+            this.ecSoltero.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ecSoltero.Location = new System.Drawing.Point(363, 59);
+            this.ecSoltero.Name = "ecSoltero";
+            this.ecSoltero.Size = new System.Drawing.Size(58, 16);
+            this.ecSoltero.TabIndex = 49;
+            this.ecSoltero.Text = "Soltero";
+            // 
+            // ecCasado
+            // 
+            this.ecCasado.BackColor = System.Drawing.Color.Transparent;
+            this.ecCasado.Checked = false;
+            this.ecCasado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ecCasado.Location = new System.Drawing.Point(427, 59);
+            this.ecCasado.Name = "ecCasado";
+            this.ecCasado.Size = new System.Drawing.Size(58, 16);
+            this.ecCasado.TabIndex = 48;
+            this.ecCasado.Text = "Casado";
+            // 
             // expandInfoPersonal
             // 
             this.expandInfoPersonal.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -618,145 +757,6 @@
             this.expandInfoPersonal.Textcolor = System.Drawing.Color.RoyalBlue;
             this.expandInfoPersonal.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.expandInfoPersonal.Click += new System.EventHandler(this.expandCollapsive_Click);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label12.Location = new System.Drawing.Point(12, 41);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(99, 13);
-            this.label12.TabIndex = 45;
-            this.label12.Text = "Fecha contratación";
-            // 
-            // fechaContratacion
-            // 
-            this.fechaContratacion.BackColor = System.Drawing.Color.RoyalBlue;
-            this.fechaContratacion.BorderRadius = 7;
-            this.fechaContratacion.ForeColor = System.Drawing.Color.White;
-            this.fechaContratacion.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.fechaContratacion.FormatCustom = "dd/mm/yyyy";
-            this.fechaContratacion.Location = new System.Drawing.Point(10, 59);
-            this.fechaContratacion.Name = "fechaContratacion";
-            this.fechaContratacion.Size = new System.Drawing.Size(150, 30);
-            this.fechaContratacion.TabIndex = 44;
-            this.fechaContratacion.Value = new System.DateTime(2018, 1, 2, 19, 52, 55, 766);
-            // 
-            // txtObservaciones
-            // 
-            this.txtObservaciones.AutoSize = false;
-            this.txtObservaciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.txtObservaciones.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtObservaciones.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.txtObservaciones.Location = new System.Drawing.Point(10, 186);
-            this.txtObservaciones.Multiline = true;
-            this.txtObservaciones.Name = "txtObservaciones";
-            // 
-            // 
-            // 
-            this.txtObservaciones.RootElement.ControlDefaultSize = new System.Drawing.Size(235, 28);
-            this.txtObservaciones.RootElement.CustomFont = "None";
-            this.txtObservaciones.RootElement.FocusBorderColor = System.Drawing.Color.RoyalBlue;
-            this.txtObservaciones.Size = new System.Drawing.Size(480, 75);
-            this.txtObservaciones.TabIndex = 47;
-            this.txtObservaciones.ThemeName = "Material";
-            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtObservaciones.GetChildAt(0))).Text = "";
-            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtObservaciones.GetChildAt(0))).FocusBorderColor = System.Drawing.Color.RoyalBlue;
-            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtObservaciones.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(8, 2, 8, 2);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label13.Location = new System.Drawing.Point(12, 168);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(78, 13);
-            this.label13.TabIndex = 46;
-            this.label13.Text = "Observaciones";
-            // 
-            // txtTituloLaboral
-            // 
-            this.txtTituloLaboral.AutoSize = false;
-            this.txtTituloLaboral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.txtTituloLaboral.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTituloLaboral.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.txtTituloLaboral.Location = new System.Drawing.Point(340, 59);
-            this.txtTituloLaboral.Name = "txtTituloLaboral";
-            // 
-            // 
-            // 
-            this.txtTituloLaboral.RootElement.ControlDefaultSize = new System.Drawing.Size(235, 28);
-            this.txtTituloLaboral.RootElement.CustomFont = "None";
-            this.txtTituloLaboral.RootElement.FocusBorderColor = System.Drawing.Color.RoyalBlue;
-            this.txtTituloLaboral.Size = new System.Drawing.Size(150, 30);
-            this.txtTituloLaboral.TabIndex = 49;
-            this.txtTituloLaboral.ThemeName = "Material";
-            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtTituloLaboral.GetChildAt(0))).Text = "";
-            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtTituloLaboral.GetChildAt(0))).FocusBorderColor = System.Drawing.Color.RoyalBlue;
-            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtTituloLaboral.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(8, 2, 8, 2);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label14.Location = new System.Drawing.Point(342, 41);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(69, 13);
-            this.label14.TabIndex = 48;
-            this.label14.Text = "Título laboral";
-            // 
-            // txtReportarA
-            // 
-            this.txtReportarA.AutoSize = false;
-            this.txtReportarA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.txtReportarA.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReportarA.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.txtReportarA.Location = new System.Drawing.Point(10, 122);
-            this.txtReportarA.Name = "txtReportarA";
-            // 
-            // 
-            // 
-            this.txtReportarA.RootElement.ControlDefaultSize = new System.Drawing.Size(235, 28);
-            this.txtReportarA.RootElement.CustomFont = "None";
-            this.txtReportarA.RootElement.FocusBorderColor = System.Drawing.Color.RoyalBlue;
-            this.txtReportarA.Size = new System.Drawing.Size(237, 30);
-            this.txtReportarA.TabIndex = 51;
-            this.txtReportarA.ThemeName = "Material";
-            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtReportarA.GetChildAt(0))).Text = "";
-            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtReportarA.GetChildAt(0))).FocusBorderColor = System.Drawing.Color.RoyalBlue;
-            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtReportarA.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(8, 2, 8, 2);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label15.Location = new System.Drawing.Point(12, 104);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(57, 13);
-            this.label15.TabIndex = 50;
-            this.label15.Text = "Reportar a";
-            // 
-            // ecSoltero
-            // 
-            this.ecSoltero.BackColor = System.Drawing.Color.Transparent;
-            this.ecSoltero.Checked = true;
-            this.ecSoltero.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ecSoltero.Location = new System.Drawing.Point(363, 59);
-            this.ecSoltero.Name = "ecSoltero";
-            this.ecSoltero.Size = new System.Drawing.Size(58, 16);
-            this.ecSoltero.TabIndex = 49;
-            this.ecSoltero.Text = "Soltero";
-            // 
-            // ecCasado
-            // 
-            this.ecCasado.BackColor = System.Drawing.Color.Transparent;
-            this.ecCasado.Checked = false;
-            this.ecCasado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ecCasado.Location = new System.Drawing.Point(427, 59);
-            this.ecCasado.Name = "ecCasado";
-            this.ecCasado.Size = new System.Drawing.Size(58, 16);
-            this.ecCasado.TabIndex = 48;
-            this.ecCasado.Text = "Casado";
             // 
             // generoMasculino
             // 
@@ -795,7 +795,7 @@
             this.Controls.Add(this.foto);
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.txtNombre);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.toppanel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labelID);
             this.Controls.Add(this.cancelar);
@@ -806,8 +806,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.clienteForm_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.toppanel.ResumeLayout(false);
+            this.toppanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.foto)).EndInit();
@@ -815,15 +815,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtDepartamento)).EndInit();
             this.collapsiveInfoLaboral.ResumeLayout(false);
             this.collapsiveInfoLaboral.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtReportarA)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTituloLaboral)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtObservaciones)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDireccion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCedula)).EndInit();
             this.collapsiveInfoPersonal.ResumeLayout(false);
             this.collapsiveInfoPersonal.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtObservaciones)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTituloLaboral)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtReportarA)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -833,7 +833,7 @@
         private Bunifu.Framework.UI.BunifuThinButton2 cancelar;
         private Bunifu.Framework.UI.BunifuThinButton2 guardar;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel toppanel;
         private System.Windows.Forms.Label tipoFormulario;
         private System.Windows.Forms.Label labelID;
         private Telerik.WinControls.UI.RadTextBox txtNombre;

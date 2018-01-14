@@ -1,4 +1,4 @@
-﻿namespace sicem.vista.Dialogos
+﻿namespace sicem
 {
     partial class logoutDialog
     {

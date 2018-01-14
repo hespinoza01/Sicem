@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using sicem.vista.Dialogos;
 using Transitions;
 using System.Threading;
 
@@ -17,54 +16,19 @@ namespace sicem
 {
     public partial class home : Form
     {
-        Bunifu.Framework.UI.Drag drag = new Bunifu.Framework.UI.Drag();
         string tabActiva = "";
-
-        //login login = new login();
 
         inicio inicio = new inicio();
         directorio directorio = new directorio();
         operaciones operaciones = new operaciones();
         productos productos = new productos();
         administrar administrar = new administrar();
-        //proveedores proveedores = new proveedores();
         inventario inventario = new inventario();
-        //ventas ventas = new ventas();
 
 
         public home()
         {
             InitializeComponent();
-        }
-
-        public void setInfo(string id){
-            //Conexión conexion = new Conexión();
-            //DataTable data = new DataTable("Usuario");
-            //using (SqlConnection cn = new SqlConnection(Conexión.Cn))
-            //{
-            //    try
-            //    {
-            //        cn.Open();
-
-            //        SqlCommand cmd = new SqlCommand("Select ID, Nombre, Apellido from Usuario where ID = '"+id+"'",cn);
-
-            //        SqlDataAdapter SqlDat = new SqlDataAdapter(cmd);
-            //        SqlDat.Fill(data);
-
-            //        DataRow row = data.Rows[0];
-            //        idUsuario.Text = row["ID"].ToString();
-            //        nameUser.Text = row["Nombre"].ToString()+" "+row["Apellido"].ToString();
-            //        userPicture.Image = new user().obtenerFoto(id);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        new popup("Error al mostrar información", popup.AlertType.error);
-            //    }
-            //    finally
-            //    {
-            //        cn.Close();
-            //    }
-            //}
         }
 
         // evt carga del form
@@ -75,20 +39,18 @@ namespace sicem
 
         private void inicia() {
             CirclePicture();
+            inicioTab.Textcolor = Color.White;
 
             topNavbar.Height = 0;
             navbar.Width = 40;
 
-            //CircleUserPicture();
             tabActiva = "inicio";
             this.contenedor.Controls.Add(inicio);
             this.contenedor.Controls.Add(directorio);
             this.contenedor.Controls.Add(operaciones);
             this.contenedor.Controls.Add(productos);
             this.contenedor.Controls.Add(administrar);
-            //this.contenedor.Controls.Add(proveedores);
             this.contenedor.Controls.Add(inventario);
-            //this.contenedor.Controls.Add(ventas);
 
             inicio.BringToFront();
 
@@ -115,13 +77,14 @@ namespace sicem
             configuraperfil.Click += configurarPerfil;
             configuraperfil.MouseHover += hoverstatus;
             configuraperfil.MouseLeave += hoverleavestatus;
+
+            new drag().setDragable(toppanel);
         }
 
         public void CirclePicture()
         {
             userPicture.Region = new region().Circle(userPicture.Width, userPicture.Height);
             userPictureNavbar.Region = new region().Circle(userPictureNavbar.Width, userPictureNavbar.Height);
-            logout.Region = new region().Circle(logout.Width, logout.Height);
         }
 
         private void clearColorTabs()
@@ -143,10 +106,28 @@ namespace sicem
             administrarTab.Textcolor = Color.RoyalBlue;
         }
 
+        public void setInfo(string id){
+            DataTable data = new usuario().Detalle(id);
+
+            if(data != null){
+                DataRow row = data.Rows[0];
+
+                idUsuario.Text = row["ID"].ToString();
+                nameUser.Text = row["Nombre"].ToString()+" "+row["Apellido"].ToString();
+                    byte[] img = (byte[])row["FotoPerfil"];
+                    MemoryStream ms = new MemoryStream(img);
+                userPicture.Image = Image.FromStream(ms);
+                userPictureNavbar.Image = Image.FromStream(ms);
+                ms.Dispose();
+            }
+            else
+                new popup("Error al mostrar información", popup.AlertType.error);
+        }
+
         private void hoverstatus(object sender, EventArgs e)
         {
             Label b = sender as Label;
-            b.BackColor = Color.RoyalBlue;
+            b.BackColor = Color.FromArgb(85, 125, 245);
             b.ForeColor = Color.White;
         }
 
@@ -180,8 +161,8 @@ namespace sicem
 
         private void configurarPerfil(object sender, EventArgs e)
         {
-            //if (new Register(idUsuario.Text).ShowDialog() == DialogResult.OK)
-            //    setInfo(idUsuario.Text);
+            if (new usuarioForm(idUsuario.Text).ShowDialog() == DialogResult.OK)
+                setInfo(idUsuario.Text);
         }
 
         private void logout_Click(object sender, EventArgs e)
@@ -200,30 +181,9 @@ namespace sicem
                 Application.Exit();
         }
 
-
-        // evt min button
-        private void minButton_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-
-        // eventos para el arrastre del form
-        private void toppanel_MouseDown(object sender, MouseEventArgs e){
-            drag.Grab(this);
-        }
-
-        private void toppanel_MouseUp(object sender, MouseEventArgs e){
-            drag.Release();
-        }
-
-        private void toppanel_MouseMove(object sender, MouseEventArgs e)
-        {
-            drag.MoveObject();
-        }
-
         private void inicioTab_Click(object sender, EventArgs e)
         {
+            inicio.cargar();
             if (tabActiva != "inicio")
             {
                 clearColorTabs();
@@ -231,12 +191,12 @@ namespace sicem
                 tabActiva = "inicio";
                 inicio.BringToFront();
                 viewTransition.ShowSync(inicio);
-                //inicio.cargar();
             }
         }
 
         private void directorioTab_Click(object sender, EventArgs e)
         {
+            directorio.Cargar(false);
             if (tabActiva != "directorio")
             {
                 clearColorTabs();
@@ -244,7 +204,6 @@ namespace sicem
                 tabActiva = "directorio";
                 directorio.BringToFront();
                 viewTransition.ShowSync(directorio);
-                //proveedores.Cargar();
             }
         }
 
@@ -257,7 +216,7 @@ namespace sicem
                 tabActiva = "operaciones";
                 operaciones.BringToFront();
                 viewTransition.ShowSync(operaciones);
-                //ventas.cargar();
+                //operaciones.Cargar();
             }
         }
 
@@ -276,6 +235,7 @@ namespace sicem
 
         private void productosTab_Click(object sender, EventArgs e)
         {
+            productos.Cargar(false);
             if (tabActiva != "productos")
             {
                 clearColorTabs();
@@ -283,7 +243,6 @@ namespace sicem
                 tabActiva = "productos";
                 productos.BringToFront();
                 viewTransition.ShowSync(productos);
-                //productos.Cargar();
             }
         }
 
@@ -301,6 +260,7 @@ namespace sicem
 
         private void administrarTab_Click(object sender, EventArgs e)
         {
+            administrar.Cargar(false);
             if (tabActiva != "administrar")
             {
                 clearColorTabs();

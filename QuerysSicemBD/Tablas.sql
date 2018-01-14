@@ -24,7 +24,7 @@ create table Cliente(
 	NombreContacto varchar(50),
 	TituloContacto varchar(35),
 	Domicilio varchar(200),
-	ciudad varchar(35),
+	Ciudad varchar(35),
 	Telefono varchar(25),
 	Email varchar(50),
 	Estado int,
@@ -37,11 +37,11 @@ create table Proveedor(
 	NombreContacto varchar(50),
 	TituloContacto varchar(35),
 	Domicilio varchar(200),
-	ciudad varchar(35),
+	Ciudad varchar(35),
 	Telefono varchar(25),
 	Email varchar(50),
 	Estado int,
-	FehaModificacion date
+	FechaModificacion date
 )
 	go
 create table RH_Empleado(
@@ -55,7 +55,7 @@ create table RH_Empleado(
 	EstadoCivil int,
 	Genero int,
 	Domicilio varchar(200),
-	ciudad varchar(35),
+	Ciudad varchar(35),
 	Telefono varchar(25),
 	Cedula varchar(25),
 	Email varchar(50),
@@ -91,8 +91,7 @@ create table HistorialPrecioProducto(
 	ProductoID int,
 	FechaInicio date,
 	FechaFinal date,
-	Precio decimal(18,2),
-	FechaModificacion date
+	Precio decimal(18,2)
 )
 	go
 create table HistorialCostoProducto(
@@ -102,26 +101,19 @@ create table HistorialCostoProducto(
 	Precio decimal(18,2)
 )
 	go
-create table HistorialEntradaProducto(
-	ProductoID int,
-	Cantidad int,
-	Costo decimal(18,2),
-	FechaEntrada date
-)
-	go
 create table Bodega(
 	ID int identity(1,1) primary key,
 	Nombre varchar(35),
-	Disponibilidad int,
+	Almacenaje int,
 	FechaModificacion date
 )
 	go
 create table Inventario(
+	ID int primary key,
 	ProductoID int,
 	BodegaID int,
 	Estante varchar(50),
 	Cantidad int,
-	FechaModificacion date
 )
 	go
 create table Categoria(
@@ -146,7 +138,7 @@ create table Detalle_Compra(
 	CompraID varchar(15) not null,
 	ProductoID int not null,
 	Cantidad int not null,
-	CantidadDevuelta int,
+	--CantidadDevuelta int,
 	CostoUnitario decimal(18,2) not null,
 	Total decimal(18,2),
 	FechaModificacion date
@@ -155,7 +147,7 @@ create table Detalle_Compra(
 create table Venta(
 	ID varchar(15) primary key not null,
 	ClienteID varchar(25) not null,
-	UsuarioID varchar(15),
+	--UsuarioID varchar(15),
 	FechaVenta date not null,
 	TipoPago int not null,
 	TipoVenta int,
@@ -188,7 +180,6 @@ create table TarjetaCredito(
 create table ClienteTarjetaCredito(
 	ClienteID varchar(25),
 	TarjetaCreditoID int,
-	FechaModificacion date
 )
 	go
 create table OfertaEspecial(
@@ -205,27 +196,5 @@ create table OfertaEspecial(
 	go
 create table OfertaEspecialProducto(
 	OfertaEspecialID int,
-	ProductoID int,
-	FechaModificacion date
+	ProductoID int
 )
-	go
-alter table Producto
-add foreign key (CategoriaID) references Categoria(ID)
-	go
-alter table Compra 
-add foreign key	(ProveedorID) references Proveedor(ID)
-	go
-alter table Detalle_Compra
-add foreign key (CompraID) references Compra(Id)
-	go
-alter table Detalle_Compra
-add foreign key (ProductoID) references Producto(ID)
-	go
-alter table Venta
-add foreign key (ClienteID) references Cliente(ID)
-	go
-alter table Detalle_Venta
-add foreign key (VentaID) references Venta(ID)
-	go 
-alter table Detalle_Venta
-add foreign key (ProductoID) references Producto(ID)

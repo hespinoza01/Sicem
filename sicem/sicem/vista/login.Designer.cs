@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.RadListDataItem radListDataItem1 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.RadListDataItem radListDataItem2 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.RadListDataItem radListDataItem3 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.RadListDataItem radListDataItem4 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.RadListDataItem radListDataItem5 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.RadListDataItem radListDataItem6 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.RadListDataItem radListDataItem7 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem8 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem9 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem10 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem11 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem12 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem13 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem14 = new Telerik.WinControls.UI.RadListDataItem();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(login));
             this.content = new System.Windows.Forms.Panel();
             this.bunifuSeparator2 = new Bunifu.Framework.UI.BunifuSeparator();
@@ -52,6 +52,7 @@
             this.borderForm = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.bglogo = new System.Windows.Forms.Panel();
             this.materialTheme1 = new Telerik.WinControls.Themes.MaterialTheme();
+            this.preloaderTime = new System.Windows.Forms.Timer(this.components);
             this.content.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.password)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.username)).BeginInit();
@@ -183,20 +184,20 @@
             this.listaSugerencias.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listaSugerencias.ForeColor = System.Drawing.Color.RoyalBlue;
             this.listaSugerencias.ItemHeight = 20;
-            radListDataItem1.Text = "ListItem 1";
-            radListDataItem2.Text = "ListItem 2";
-            radListDataItem3.Text = "ListItem 3";
-            radListDataItem4.Text = "ListItem 4";
-            radListDataItem5.Text = "ListItem 5";
-            radListDataItem6.Text = "ListItem 6";
-            radListDataItem7.Text = "ListItem 7";
-            this.listaSugerencias.Items.Add(radListDataItem1);
-            this.listaSugerencias.Items.Add(radListDataItem2);
-            this.listaSugerencias.Items.Add(radListDataItem3);
-            this.listaSugerencias.Items.Add(radListDataItem4);
-            this.listaSugerencias.Items.Add(radListDataItem5);
-            this.listaSugerencias.Items.Add(radListDataItem6);
-            this.listaSugerencias.Items.Add(radListDataItem7);
+            radListDataItem8.Text = "ListItem 1";
+            radListDataItem9.Text = "ListItem 2";
+            radListDataItem10.Text = "ListItem 3";
+            radListDataItem11.Text = "ListItem 4";
+            radListDataItem12.Text = "ListItem 5";
+            radListDataItem13.Text = "ListItem 6";
+            radListDataItem14.Text = "ListItem 7";
+            this.listaSugerencias.Items.Add(radListDataItem8);
+            this.listaSugerencias.Items.Add(radListDataItem9);
+            this.listaSugerencias.Items.Add(radListDataItem10);
+            this.listaSugerencias.Items.Add(radListDataItem11);
+            this.listaSugerencias.Items.Add(radListDataItem12);
+            this.listaSugerencias.Items.Add(radListDataItem13);
+            this.listaSugerencias.Items.Add(radListDataItem14);
             this.listaSugerencias.Location = new System.Drawing.Point(400, 299);
             this.listaSugerencias.Name = "listaSugerencias";
             // 
@@ -247,7 +248,7 @@
             // 
             this.ingresar.ActiveBorderThickness = 1;
             this.ingresar.ActiveCornerRadius = 10;
-            this.ingresar.ActiveFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(155)))), ((int)(((byte)(235)))));
+            this.ingresar.ActiveFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(125)))), ((int)(((byte)(245)))));
             this.ingresar.ActiveForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
             this.ingresar.ActiveLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(155)))), ((int)(((byte)(235)))));
             this.ingresar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
@@ -281,7 +282,7 @@
             this.exitButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.exitButton.TabIndex = 16;
             this.exitButton.TabStop = false;
-            this.exitButton.Zoom = 7;
+            this.exitButton.Zoom = 6;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // picture
@@ -324,6 +325,11 @@
             this.bglogo.Name = "bglogo";
             this.bglogo.Size = new System.Drawing.Size(350, 500);
             this.bglogo.TabIndex = 26;
+            // 
+            // preloaderTime
+            // 
+            this.preloaderTime.Interval = 5000;
+            this.preloaderTime.Tick += new System.EventHandler(this.preloaderTime_Tick);
             // 
             // login
             // 
@@ -369,6 +375,7 @@
         private Telerik.WinControls.UI.RadTextBox username;
         private Telerik.WinControls.Themes.MaterialTheme materialTheme1;
         private Telerik.WinControls.UI.RadTextBox password;
+        private System.Windows.Forms.Timer preloaderTime;
     }
 }
 

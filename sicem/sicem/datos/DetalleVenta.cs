@@ -10,6 +10,10 @@ namespace sicem
 {
     class DetalleVenta
     {
+        DBHelper db = new DBHelper();
+
+        public DetalleVenta(){}
+
         public string VentaID { get; set; }
         public int ProductoID { get; set; }
         public int Cantidad { get; set; }
@@ -21,140 +25,41 @@ namespace sicem
 
         public void Insertar()
         {
-            SqlConnection Con = new SqlConnection();
-            try
-            {
-                Con.ConnectionString = Conexión.Cn;
-                Con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = Con;
-                //cmd.Transaction = trx;
-                cmd.CommandText = "Insertar_Detalle_Venta";
-                cmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter[] Parametros = new SqlParameter[]{
+                db.Param("@VentaID", SqlDbType.VarChar, 15, VentaID),
+                db.Param("@ProductoID", SqlDbType.Int, ProductoID),
+                db.Param("@Cantidad", SqlDbType.Int, Cantidad),
+                db.Param("@PrecioUnitario", SqlDbType.Decimal, PrecioUnitario),
+                db.Param("@Descuento", SqlDbType.Decimal, Descuento),
+                db.Param("@Impuesto", SqlDbType.Decimal, Impuesto),
+                db.Param("@Total", SqlDbType.Decimal, Total)
+            };
 
-                SqlParameter vtaID = new SqlParameter();
-                vtaID.ParameterName = "@VentaID";
-                vtaID.SqlDbType = SqlDbType.VarChar;
-                vtaID.Size = 15;
-                vtaID.Value = VentaID;
-                cmd.Parameters.Add(vtaID);
-
-                SqlParameter PorductoID = new SqlParameter();
-                PorductoID.ParameterName = "@ProductoID";
-                PorductoID.SqlDbType = SqlDbType.Int;
-                PorductoID.Value = ProductoID;
-                cmd.Parameters.Add(PorductoID);
-
-                SqlParameter Cant = new SqlParameter();
-                Cant.ParameterName = "@Cantidad";
-                Cant.SqlDbType = SqlDbType.Int;
-                Cant.Value = Cantidad;
-                cmd.Parameters.Add(Cant);
-
-                SqlParameter UnitPrice = new SqlParameter();
-                UnitPrice.ParameterName = "@PrecioUnitario";
-                UnitPrice.SqlDbType = SqlDbType.Decimal;
-                UnitPrice.Value = PrecioUnitario;
-                cmd.Parameters.Add(UnitPrice);
-
-                SqlParameter Desc = new SqlParameter();
-                Desc.ParameterName = "@Descuento";
-                Desc.SqlDbType = SqlDbType.Decimal;
-                Desc.Value = Descuento;
-                cmd.Parameters.Add(Desc);
-
-                SqlParameter Tax = new SqlParameter();
-                Tax.ParameterName = "@Impuesto";
-                Tax.SqlDbType = SqlDbType.Decimal;
-                Tax.Value = Impuesto;
-                cmd.Parameters.Add(Tax);
-
-                SqlParameter Tot = new SqlParameter();
-                Tot.ParameterName = "@Total";
-                Tot.SqlDbType = SqlDbType.Decimal;
-                Tot.Value = Total;
-                cmd.Parameters.Add(Tot);
-
-                cmd.ExecuteNonQuery();
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("ERROR: Imposible insertar: " + ex.ToString());
-            }
-            finally
-            {
-                if (Con.State == ConnectionState.Open) Con.Close();
-            }
+            db.ExecuteQuery("Insertar_Detalle_Venta", Parametros);
         }
 
         public void Editar()
         {
-            SqlConnection Con = new SqlConnection();
-            try
-            {
-                Con.ConnectionString = Conexión.Cn;
-                Con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = Con;
-                //cmd.Transaction = trx;
-                cmd.CommandText = "Actualizar_Detalle_Venta";
-                cmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter[] Parametros = new SqlParameter[]{
+                db.Param("@VentaID", SqlDbType.VarChar, 15, VentaID),
+                db.Param("@ProductoID", SqlDbType.Int, ProductoID),
+                db.Param("@Cantidad", SqlDbType.Int, Cantidad),
+                db.Param("@PrecioUnitario", SqlDbType.Decimal, PrecioUnitario),
+                db.Param("@Descuento", SqlDbType.Decimal, Descuento),
+                db.Param("@Impuesto", SqlDbType.Decimal, Impuesto),
+                db.Param("@Total", SqlDbType.Decimal, Total)
+            };
 
-                SqlParameter vtaID = new SqlParameter();
-                vtaID.ParameterName = "@VentaID";
-                vtaID.SqlDbType = SqlDbType.VarChar;
-                vtaID.Size = 15;
-                vtaID.Value = VentaID;
-                cmd.Parameters.Add(vtaID);
+            db.ExecuteQuery("Actualizar_Detalle_Venta", Parametros);
+        }
 
-                SqlParameter PorductoID = new SqlParameter();
-                PorductoID.ParameterName = "@ProductoID";
-                PorductoID.SqlDbType = SqlDbType.Int;
-                PorductoID.Value = ProductoID;
-                cmd.Parameters.Add(PorductoID);
+        public DataTable Mostrar(string idvalue)
+        {
+            SqlParameter[] Parametros = new SqlParameter[]{
+                db.Param("@VentaID", SqlDbType.VarChar, 15, idvalue)
+            };
 
-                SqlParameter Cant = new SqlParameter();
-                Cant.ParameterName = "@Cantidad";
-                Cant.SqlDbType = SqlDbType.Int;
-                Cant.Value = Cantidad;
-                cmd.Parameters.Add(Cant);
-
-                SqlParameter UnitPrice = new SqlParameter();
-                UnitPrice.ParameterName = "@PrecioUnitario";
-                UnitPrice.SqlDbType = SqlDbType.Decimal;
-                UnitPrice.Value = PrecioUnitario;
-                cmd.Parameters.Add(UnitPrice);
-
-                SqlParameter Desc = new SqlParameter();
-                Desc.ParameterName = "@Descuento";
-                Desc.SqlDbType = SqlDbType.Decimal;
-                Desc.Value = Descuento;
-                cmd.Parameters.Add(Desc);
-
-                SqlParameter Tax = new SqlParameter();
-                Tax.ParameterName = "@Impuesto";
-                Tax.SqlDbType = SqlDbType.Decimal;
-                Tax.Value = Impuesto;
-                cmd.Parameters.Add(Tax);
-
-                SqlParameter Tot = new SqlParameter();
-                Tot.ParameterName = "@Total";
-                Tot.SqlDbType = SqlDbType.Decimal;
-                Tot.Value = Total;
-                cmd.Parameters.Add(Tot);
-
-                cmd.ExecuteNonQuery();
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("ERROR: Imposible Actualizar: " + ex.ToString());
-            }
-            finally
-            {
-                if (Con.State == ConnectionState.Open) Con.Close();
-            }
+            return db.Reader("Mostrar_Detalle_Venta", Parametros);
         }
 
     }

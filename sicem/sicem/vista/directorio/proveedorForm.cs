@@ -18,6 +18,7 @@ namespace sicem
         {
             InitializeComponent();
             accionformulario = "crear";
+            loadID();
         }
 
         public proveedorForm(int id)
@@ -30,11 +31,12 @@ namespace sicem
         private void clienteForm_Load(object sender, EventArgs e)
         {
             inicia();
-            guardar.ButtonText = (accionformulario == "crear" ? "Guarda" : "Actualizar");
         }
 
         private void inicia()
         {
+            guardar.ButtonText = (accionformulario == "crear" ? "Guarda" : "Actualizar");
+
             txtNombre.Region = new region().RoundBorder(txtNombre.Width, txtNombre.Height +1, 7);
             txtID.Region = new region().RoundBorder(txtID.Width, txtID.Height +1, 7);
             txtNombreContacto.Region = new region().RoundBorder(txtNombreContacto.Width, txtNombreContacto.Height+1, 7);
@@ -42,40 +44,38 @@ namespace sicem
             txtEmail.Region = new region().RoundBorder(txtEmail.Width, txtEmail.Height+1, 7);
             txtTel.Region = new region().RoundBorder(txtTel.Width, txtTel.Height+1, 7);
             txtDireccion.Region = new region().RoundBorder(txtDireccion.Width, txtDireccion.Height+1, 7);
+
+            new drag().setDragable(paneltop);
         }
 
         private void setDataView(int id)
         {
-            Conexión conexion = new Conexión();
-            DataTable data = new DataTable("Cliente");
-            using (SqlConnection cn = new SqlConnection(Conexión.Cn))
+            DataTable data = new Proveedor().Detalle(id);
+
+            if (data != null) { 
+                DataRow row = data.Rows[0];
+
+                txtID.Text = row["ID"].ToString();
+                txtNombre.Text = row["Nombre"].ToString();
+                txtNombreContacto.Text = row["NombreContacto"].ToString();
+                txtTituloContacto.Text = row["TituloContacto"].ToString();
+                txtCiudad.selectedIndex = new listadoItems().indexCiudad(row["Ciudad"].ToString());
+                txtEmail.Text = row["Email"].ToString();
+                txtTel.Text = row["Telefono"].ToString();
+                txtDireccion.Text = row["Domicilio"].ToString();
+                estado.Checked = (int.Parse(row["Estado"].ToString()) == 1) ? true : false;
+            }else
             {
-                try
-                {
-                    //cn.Open();
-
-                    SqlCommand cmd = new SqlCommand(
-                        "select * from Proveedor where ID = '" + id + "'",
-                        cn
-                        );
-
-                    SqlDataAdapter SqlDat = new SqlDataAdapter(cmd);
-                    SqlDat.Fill(data);
-
-                    DataRow row = data.Rows[0];
-                    txtID.Text = row["ID"].ToString();
-                    txtNombre.Text = row["Nombre"].ToString();
-                    txtEmail.Text = row["Email"].ToString();
-                    txtTel.Text = row["Telefono"].ToString();
-                    txtDireccion.Text = row["Domicilio"].ToString();
-                }
-                catch (Exception ex)
-                {
-                    new popup("Error al mostrar información", popup.AlertType.error);
-                    this.Close();
-                }
+                new popup("Error al mostrar información", popup.AlertType.error);
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
             }
+        }
 
+        private void loadID()
+        {
+            int value = (int)new DBHelper().ReaderScalar("select count(*) + 1 from Proveedor");
+            txtID.Text = value.ToString();
         }
 
         private void cancelar_Click(object sender, EventArgs e)
@@ -89,25 +89,23 @@ namespace sicem
         {
             Proveedor p = new Proveedor();
             p.P_Nombre = txtNombre.Text;
+            p.P_NombreContacto = txtNombreContacto.Text;
+            p.P_TituloContacto = txtTituloContacto.Text;
             p.P_Domicilio = txtDireccion.Text;
+            p.P_Ciudad = txtCiudad.selectedValue;
             p.P_Email = txtEmail.Text;
             p.P_Telefono = txtTel.Text;
+            p.P_Estado = (estado.Checked) ? 1 : 0;
 
             if (accionformulario == "crear")
-            {
-                try { p.Insertar(); }
-                catch (Exception ex) { new popup("Inserción fallida", popup.AlertType.error); }
-                this.Close();
-            }
+                p.Insertar();
             else
             {
-                try
-                {
-                    p.P_Id = int.Parse(txtID.Text);
-                    p.Editar();
-                }
-                catch (Exception ex) { new popup("Actualización fallida", popup.AlertType.error); }
+                p.P_Id = int.Parse(txtID.Text);
+                p.Editar();
             }
+
+            this.Close();
 
         }
 

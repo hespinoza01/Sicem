@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="datos\Bodega.cs" />
+    <Compile Include="datos\conexión\DBHelper.cs" />
     <Compile Include="datos\Departamento.cs" />
     <Compile Include="datos\Empleado.cs" />
     <Compile Include="datos\Inventario.cs" />
@@ -79,6 +80,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="utilidades\drag.cs" />
+    <Compile Include="utilidades\listadoItems.cs" />
     <Compile Include="vista\administrar\detalleOferta.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -96,6 +99,12 @@
     </Compile>
     <Compile Include="vista\administrar\ofertaForm.designer.cs">
       <DependentUpon>ofertaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\administrar\productoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\administrar\productoForm.Designer.cs">
+      <DependentUpon>productoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="vista\Dialogos\confirmDialog.cs">
       <SubType>Form</SubType>
@@ -281,12 +290,6 @@
       <DependentUpon>popup.cs</DependentUpon>
     </Compile>
     <Compile Include="vista\popupManager.cs" />
-    <Compile Include="vista\administrar\productoForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="vista\administrar\productoForm.designer.cs">
-      <DependentUpon>productoForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="vista\producto\productos.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -301,6 +304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="vista\administrar\ofertaForm.resx">
       <DependentUpon>ofertaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\administrar\productoForm.resx">
+      <DependentUpon>productoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="vista\Dialogos\confirmDialog.resx">
       <DependentUpon>confirmDialog.cs</DependentUpon>
@@ -391,9 +397,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="vista\popup.resx">
       <DependentUpon>popup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="vista\administrar\productoForm.resx">
-      <DependentUpon>productoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="vista\producto\productos.resx">
       <DependentUpon>productos.cs</DependentUpon>

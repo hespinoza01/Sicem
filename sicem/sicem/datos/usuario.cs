@@ -9,6 +9,7 @@ namespace sicem
     public class usuario
     {
         //Clase de validacion de usuario
+        DBHelper db = new DBHelper();
         public string nombre, apellido, username, password;
         public Image pPic;
 
@@ -89,163 +90,51 @@ namespace sicem
         // Método insertar
         public void Insertar()
         {
-            SqlConnection SqlCon = new SqlConnection();
-            try
+            System.IO.MemoryStream ms = new System.IO.MemoryStream();
+            this.PPic.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+            // Parámetros del Procedimiento Almacenado
+            SqlParameter[] Parametros = new SqlParameter[]
             {
-                //Código
-                SqlCon.ConnectionString = Conexión.Cn;
-                SqlCon.Open();
-                //Establecer el Comando
-                SqlCommand SqlCmd = new SqlCommand();
-                SqlCmd.Connection = SqlCon;
-                SqlCmd.CommandText = "Insertar_Usuario";
-                SqlCmd.CommandType = CommandType.StoredProcedure;
+                db.Param("@ID", SqlDbType.VarChar, 15, UserName),
+                db.Param("@Contraseña", SqlDbType.VarChar, 50, Password),
+                db.Param("@Nombre", SqlDbType.NVarChar, 50, Nombre),
+                db.Param("@Apellido", SqlDbType.VarChar, 50, Apellido),
+                db.Param("@FotoPerfil", SqlDbType.Image, ms.GetBuffer()),
+                db.Param("@Estado", SqlDbType.Int, Estado)
+            };
+            
+            if (db.ExecuteQuery("Insertar_Usuario", Parametros))
+                new popup("Usuario creado correctamente", popup.AlertType.check);
+            else
+                new popup("Usuario no creado", popup.AlertType.error);
 
-                // Parámetros del Procedimiento Almacenado
-
-                SqlParameter ParUsuario = new SqlParameter();
-                ParUsuario.ParameterName = "@ID";
-                ParUsuario.SqlDbType = SqlDbType.VarChar;
-                ParUsuario.Size = 15;
-                ParUsuario.Value = UserName;
-                SqlCmd.Parameters.Add(ParUsuario);
-
-
-                SqlParameter ParContraseña = new SqlParameter();
-                ParContraseña.ParameterName = "@Contraseña";
-                ParContraseña.SqlDbType = SqlDbType.VarChar;
-                ParContraseña.Size = 50;
-                ParContraseña.Value = Password;
-                SqlCmd.Parameters.Add(ParContraseña);
-
-                SqlParameter ParNombre = new SqlParameter();
-                ParNombre.ParameterName = "@Nombre";
-                ParNombre.SqlDbType = SqlDbType.NVarChar;
-                ParNombre.Size = 50;
-                ParNombre.Value = Nombre;
-                SqlCmd.Parameters.Add(ParNombre);
-
-                SqlParameter ParApellido = new SqlParameter();
-                ParApellido.ParameterName = "@Apellido";
-                ParApellido.SqlDbType = SqlDbType.VarChar;
-                ParApellido.Size = 50;
-                ParApellido.Value = Apellido;
-                SqlCmd.Parameters.Add(ParApellido);
-
-
-                SqlParameter ParPerfilPicture = new SqlParameter();
-                System.IO.MemoryStream ms = new System.IO.MemoryStream();
-                this.PPic.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                ParPerfilPicture.ParameterName = "@FotoPerfil";
-                ParPerfilPicture.SqlDbType = SqlDbType.Image;
-                ParPerfilPicture.Value = ms.GetBuffer();
-                SqlCmd.Parameters.Add(ParPerfilPicture);
-
-                //SqlCmd.ExecuteNonQuery();
-
-                //Ejecutamos nuestro comando
-
-                if (SqlCmd.ExecuteNonQuery() == 1)
-                    new popup("Usuario creado correctamente", popup.AlertType.check);
-                else
-                    new popup("Usuario no creado", popup.AlertType.error); 
-
-            }
-            catch (Exception ex)
-            {
-                new popup(ex.Message, popup.AlertType.error);
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                if (SqlCon.State == ConnectionState.Open) SqlCon.Close();
-            }
-
+            ms.Dispose();
         }
 
 
         // Método editar
         public void Editar()
         {
-            SqlConnection SqlCon = new SqlConnection();
+            System.IO.MemoryStream ms = new System.IO.MemoryStream();
+            this.PPic.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
 
+            SqlParameter[] Parametros = new SqlParameter[]{
+                db.Param("@ID", SqlDbType.VarChar, 15, UserName),
+                db.Param("@Contraseña", SqlDbType.VarChar, 50, Password),
+                db.Param("@Nombre", SqlDbType.NVarChar, 50, Nombre),
+                db.Param("@Apellido", SqlDbType.VarChar, 50, Apellido),
+                db.Param("@FotoPerfil", SqlDbType.Image, ms.ToArray()),
+                db.Param("@Estado", SqlDbType.Int, Estado)
+            };
 
-            try
-            {
-                //Código
-                SqlCon.ConnectionString = Conexión.Cn;
-                SqlCon.Open();
-                //Establecer el Comando
-                SqlCommand SqlCmd = new SqlCommand();
-                SqlCmd.Connection = SqlCon;
-                SqlCmd.CommandText = "Actualizar_Usuario";
-                SqlCmd.CommandType = CommandType.StoredProcedure;
+            //Ejecutamos nuestro comando
+            if (db.ExecuteQuery("Actualizar_Usuario", Parametros))
+                new popup("Cambios guardados correctamente", popup.AlertType.check);
+            else
+                new popup("Cambios no guardados", popup.AlertType.error); ;
 
-                // Parámetros del Procedimiento Almacenado
-
-                SqlParameter ParUsuario = new SqlParameter();
-                ParUsuario.ParameterName = "@ID";
-                ParUsuario.SqlDbType = SqlDbType.VarChar;
-                ParUsuario.Size = 15;
-                ParUsuario.Value = UserName;
-                SqlCmd.Parameters.Add(ParUsuario);
-
-
-                SqlParameter ParContraseña = new SqlParameter();
-                ParContraseña.ParameterName = "@Contraseña";
-                ParContraseña.SqlDbType = SqlDbType.VarChar;
-                ParContraseña.Size = 50;
-                ParContraseña.Value = this.Password;
-                SqlCmd.Parameters.Add(ParContraseña);
-
-
-                SqlParameter ParNombre = new SqlParameter();
-                ParNombre.ParameterName = "@Nombre";
-                ParNombre.SqlDbType = SqlDbType.VarChar;
-                ParNombre.Size = 50;
-                ParNombre.Value = this.Nombre;
-                SqlCmd.Parameters.Add(ParNombre);
-
-
-                SqlParameter ParApellido = new SqlParameter();
-                ParApellido.ParameterName = "@Apellido";
-                ParApellido.SqlDbType = SqlDbType.VarChar;
-                ParApellido.Size = 50;
-                ParApellido.Value = this.Apellido;
-                SqlCmd.Parameters.Add(ParApellido);
-
-
-                //ImageConverter c = new ImageConverter();
-                //byte[] aByte = (byte[])c.ConvertTo(PPic, typeof(byte[]));
-
-                SqlParameter ParPerfilPicture = new SqlParameter();
-                System.IO.MemoryStream ms = new System.IO.MemoryStream();
-                this.PPic.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                ParPerfilPicture.ParameterName = "@FotoPerfil";
-                ParPerfilPicture.SqlDbType = SqlDbType.Image;
-                ParPerfilPicture.Value = ms.ToArray();
-                SqlCmd.Parameters.Add(ParPerfilPicture);
-
-
-
-                //Ejecutamos nuestro comando
-
-                if (SqlCmd.ExecuteNonQuery() == 1)
-                    new popup("Cambios guardados correctamente", popup.AlertType.check);
-                else
-                    new popup("Cambios no guardados", popup.AlertType.error); ;
-
-            }
-            catch (Exception ex)
-            {
-                //new popup("error", popup.AlertType.error);
-                Console.WriteLine("El error es: "+ex.Message);
-            }
-            finally
-            {
-                if (SqlCon.State == ConnectionState.Open) SqlCon.Close();
-            }
-
+            ms.Dispose();
         }
 
 
@@ -293,88 +182,57 @@ namespace sicem
             }
         }
 
+        public DataTable Mostrar(){
+            return db.Reader("Mostrar_Usuarios");
+        }
+
+        public DataTable Detalle(string id){
+            SqlParameter[] param = new SqlParameter[]{
+                db.Param("@ID", SqlDbType.VarChar, 15, id)
+            };
+
+            return db.Reader("Detalle_Usuario", param);
+        }
+
         public DataTable Verifica(string User, string Pass)
         {
-            DataTable dt = new DataTable("Acceso");
-            SqlConnection SqlCon = new SqlConnection();
+            SqlParameter[] Parametros = new SqlParameter[]{
+                db.Param("@Usuario", SqlDbType.VarChar, 15, UserName),
+                db.Param("@Contraseña", SqlDbType.VarChar, 50, Password)
+            };
 
-
-            try
-            {
-                //Código
-                SqlCon.ConnectionString = Conexión.Cn;
-                SqlCon.Open();
-                //Establecer el Comando
-                SqlCommand SqlCmd = new SqlCommand();
-                SqlCmd.Connection = SqlCon;
-                SqlCmd.CommandText = "Validar_Usuario";
-                SqlCmd.CommandType = CommandType.StoredProcedure;
-
-                // Parámetros del Procedimiento Almacenado
-
-                SqlParameter ParID = new SqlParameter();
-                ParID.ParameterName = "@Usuario";
-                ParID.SqlDbType = SqlDbType.VarChar;
-                ParID.Size = 15;
-                ParID.Value = User;
-                SqlCmd.Parameters.Add(ParID);
-
-                SqlParameter ParContraseña = new SqlParameter();
-                ParContraseña.ParameterName = "@Contraseña";
-                ParContraseña.SqlDbType = SqlDbType.VarChar;
-                ParContraseña.Size = 50;
-                ParContraseña.Value = Pass;
-                SqlCmd.Parameters.Add(ParContraseña);
-                //Asignar valor retornado del procedimiento almacenado en un datatable
-                SqlDataAdapter SqlDat = new SqlDataAdapter(SqlCmd);
-                SqlDat.Fill(dt);
-                //Ejecutamos nuestro comando
-                //if (SqlCmd.ExecuteNonQuery() == 1)
-                //    new popup("Cuenta eliminada correctamente", popup.AlertType.check);
-                //else
-                //    new popup("Cuenta no eliminada", popup.AlertType.error); ;
-            }
-            catch (Exception ex)
-            {
-                new popup(ex.Message, popup.AlertType.error);
-                dt = null;
-            }
-            finally
-            {
-                if (SqlCon.State == ConnectionState.Open) SqlCon.Close();
-            }
-            return dt;
+            return db.Reader("Validar_Usuario", Parametros);
         }
 
         public Image obtenerFoto(string id)
         {
-            Conexión conex = new Conexión();
-            try
+            DataTable table = db.DataReader("select FotoPerfil from Usuario where ID = '" + id + "'");
+
+            if (table != null)
             {
-                using (SqlConnection cn = new SqlConnection(Conexión.Cn))
-                {
-                    cn.Open();
-                    SqlCommand cmd = new SqlCommand(
-                        "select FotoPerfil from Usuario where ID = '"+ id+"'",
-                        cn
-                        );
+                DataRow data = table.Rows[0];
 
-                    byte[] arrImg = (byte[])cmd.ExecuteScalar();
-                    cn.Close();
+                byte[] img = (byte[])data["FotoPerfil"];
 
-                    MemoryStream ms = new MemoryStream(arrImg);
-                    Image img = Image.FromStream(ms);
+                MemoryStream ms = new MemoryStream(img);
+                Image value = Image.FromStream(ms);
 
-                    ms.Close();
-
-                    return img;
-                }
+                return value;
             }
-            catch (Exception ex)
+            else
             {
                 new popup("Usuario no válido", popup.AlertType.error);
                 return sicem.Properties.Resources.picture_user;
             }
+        }
+
+        public DataTable Buscar(string valor, int clave){
+            SqlParameter[] Parametros = new SqlParameter[]{
+                db.Param("@valor", SqlDbType.VarChar, 100, valor),
+                db.Param("@clave", SqlDbType.Int, clave)
+            };
+
+            return db.Reader("Busqueda_Usuario", Parametros);
         }
 
     }

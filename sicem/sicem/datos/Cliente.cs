@@ -10,16 +10,18 @@ namespace sicem
 {
     class Cliente
     {
-        private int C_id;
+        DBHelper db = new DBHelper();
+        private string C_id;
         private string C_nomb;
         private string C_domi;
         private string C_tel;
         private string C_ema;
 
-        public int C_Id
+
+        public string C_Id
         {
-            get { return C_id; }
-            set { C_id = value; }
+            get { return (C_id != null) ? C_id : "N/A"; }
+            set { C_id = (value != null) ? value : "N/A"; }
         }
 
         public string C_Nombre
@@ -79,7 +81,7 @@ namespace sicem
         {
         }
 
-        public Cliente(int id, string nombre, string domicilio, string telefono, string email, Accion type)
+        public Cliente(string id, string nombre, string domicilio, string telefono, string email, Accion type)
         {
             C_id = id;
             C_nomb = nombre;
@@ -101,182 +103,69 @@ namespace sicem
 
         public void Insertar()
         {
-            SqlConnection Con = new SqlConnection();
-            try
-            {
-                Con.ConnectionString = Conexión.Cn;
-                Con.Open();
+            SqlParameter[] Parametros = new SqlParameter[]{
+                db.Param("@ID", SqlDbType.VarChar, 25, C_Id),
+                db.Param("@NombreCliente", SqlDbType.VarChar, 75, C_Nombre),
+                db.Param("@NombreContacto", SqlDbType.VarChar, 50, C_NombreContacto),
+                db.Param("@TituloContacto", SqlDbType.VarChar, 35, C_TituloContacto),
+                db.Param("@Domicilio", SqlDbType.VarChar, 200, C_Domicilio),
+                db.Param("@Ciudad", SqlDbType.VarChar, 35, C_Ciudad),
+                db.Param("@Telefono", SqlDbType.VarChar, 25, C_Telefono),
+                db.Param("@Email", SqlDbType.VarChar, 50, C_Email),
+                db.Param("@Estado", SqlDbType.Int, Estado)
+            };
 
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = Con;
-                cmd.CommandText = "Insertar_Cliente";
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlParameter Name = new SqlParameter();
-                Name.ParameterName = "@Nombre";
-                Name.SqlDbType = SqlDbType.VarChar;
-                Name.Size = 50;
-                Name.Value = C_Nombre;
-                cmd.Parameters.Add(Name);
-
-                SqlParameter Dom = new SqlParameter();
-                Dom.ParameterName = "@Domicilio";
-                Dom.SqlDbType = SqlDbType.VarChar;
-                Dom.Size = 125;
-                Dom.Value = C_Domicilio;
-                cmd.Parameters.Add(Dom);
-
-                SqlParameter Tel = new SqlParameter();
-                Tel.ParameterName = "@Telefono";
-                Tel.SqlDbType = SqlDbType.VarChar;
-                Tel.Size = 25;
-                Tel.Value = C_Telefono;
-                cmd.Parameters.Add(Tel);
-
-                SqlParameter Correo = new SqlParameter();
-                Correo.ParameterName = "@Email";
-                Correo.SqlDbType = SqlDbType.VarChar;
-                Correo.Size = 50;
-                Correo.Value = C_Email;
-                cmd.Parameters.Add(Correo);
-
-                if (cmd.ExecuteNonQuery() == 1)
-                    new popup("Cliente registrado correctamente", popup.AlertType.check);
-                else
-                    new popup("Cliente no registrado", popup.AlertType.error);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("ERROR: Imposible insertar: " + ex.ToString());
-            }
-            finally
-            {
-                if (Con.State == ConnectionState.Open) Con.Close();
-            }
+            if (db.ExecuteQuery("Insertar_Cliente", Parametros))
+                new popup("Cliente registrado correctamente", popup.AlertType.check);
+            else
+                new popup("Cliente no registrado", popup.AlertType.error);
         }
 
 
         public void Editar()
         {
-            SqlConnection Con = new SqlConnection();
-            try
-            {
-                Con.ConnectionString = Conexión.Cn;
-                Con.Open();
+            SqlParameter[] Parametros = new SqlParameter[]{
+                db.Param("@ID", SqlDbType.VarChar, 25, C_Id),
+                db.Param("@NombreCliente", SqlDbType.VarChar, 75, C_Nombre),
+                db.Param("@NombreContacto", SqlDbType.VarChar, 50, C_NombreContacto),
+                db.Param("@TituloContacto", SqlDbType.VarChar, 35, C_TituloContacto),
+                db.Param("@Domicilio", SqlDbType.VarChar, 200, C_Domicilio),
+                db.Param("@Ciudad", SqlDbType.VarChar, 35, C_Ciudad),
+                db.Param("@Telefono", SqlDbType.VarChar, 25, C_Telefono),
+                db.Param("@Email", SqlDbType.VarChar, 50, C_Email),
+                db.Param("@Estado", SqlDbType.Int, Estado)
+            };
 
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = Con;
-                cmd.CommandText = "Actualizar_Cliente";
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlParameter ID = new SqlParameter();
-                ID.ParameterName = "@ID";
-                ID.SqlDbType = SqlDbType.Int;
-                ID.Value = C_Id;
-                cmd.Parameters.Add(ID);
-
-                SqlParameter Name = new SqlParameter();
-                Name.ParameterName = "@Nombre";
-                Name.SqlDbType = SqlDbType.VarChar;
-                Name.Size = 50;
-                Name.Value = C_Nombre;
-                cmd.Parameters.Add(Name);
-
-                SqlParameter Dom = new SqlParameter();
-                Dom.ParameterName = "@Domicilio";
-                Dom.SqlDbType = SqlDbType.VarChar;
-                Dom.Size = 125;
-                Dom.Value = C_Domicilio;
-                cmd.Parameters.Add(Dom);
-
-                SqlParameter Tel = new SqlParameter();
-                Tel.ParameterName = "@Telefono";
-                Tel.SqlDbType = SqlDbType.VarChar;
-                Tel.Size = 25;
-                Tel.Value = C_Telefono;
-                cmd.Parameters.Add(Tel);
-
-                SqlParameter Correo = new SqlParameter();
-                Correo.ParameterName = "@Email";
-                Correo.SqlDbType = SqlDbType.VarChar;
-                Correo.Size = 50;
-                Correo.Value = C_Email;
-                cmd.Parameters.Add(Correo);
-
-                if (cmd.ExecuteNonQuery() == 1)
-                    new popup("Cliente actualizado correctamente", popup.AlertType.check);
-                else
-                    new popup("Cliente no actualizado", popup.AlertType.error);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("ERROR: Imposible Actualizar: " + ex.ToString());
-            }
-            finally
-            {
-                if (Con.State == ConnectionState.Open) Con.Close();
-            }
+            if (db.ExecuteQuery("Actualizar_Cliente", Parametros))
+                new popup("Cliente actualizado correctamente", popup.AlertType.check);
+            else
+                new popup("Cliente no actualizado", popup.AlertType.error);
         }
 
 
-        public DataTable Buscar(string valor, int clave)
-        {
-            DataTable dt = new DataTable();
-            SqlConnection Con = new SqlConnection();
-            try
-            {
-                Con.ConnectionString = Conexión.Cn;
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = Con;
-                cmd.CommandText = "Busqueda_Cliente";
-                cmd.CommandType = CommandType.StoredProcedure;
+        public DataTable Buscar(string valor, int clave){
+            SqlParameter[] Parametros = new SqlParameter[]{
+                db.Param("@valor", SqlDbType.VarChar, 100, valor),
+                db.Param("@clave", SqlDbType.Int, clave)
+            };
 
-                SqlParameter ID = new SqlParameter();
-                ID.ParameterName = "@valor";
-                ID.SqlDbType = SqlDbType.VarChar;
-                ID.Size = 100;
-                ID.Value = valor;
-                cmd.Parameters.Add(ID);
-
-                SqlParameter Key = new SqlParameter();
-                Key.ParameterName = "@clave";
-                Key.SqlDbType = SqlDbType.Int;
-                Key.Value = clave;
-                cmd.Parameters.Add(Key);
-
-                SqlDataAdapter Data = new SqlDataAdapter(cmd);
-                Data.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Consulta realizada sin exito: " + ex.ToString());
-                dt = null;
-            }
-            return dt;
+            return db.Reader("Busqueda_Cliente", Parametros);
         }
 
 
         public DataTable Mostrar()
         {
-            DataTable dt = new DataTable();
-            SqlConnection Con = new SqlConnection();
-            try
-            {
-                Con.ConnectionString = Conexión.Cn;
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = Con;
-                cmd.CommandText = "Mostrar_Clientes";
-                cmd.CommandType = CommandType.StoredProcedure;
+            return db.Reader("Mostrar_Clientes");
+        }
 
-                SqlDataAdapter Data = new SqlDataAdapter(cmd);
-                Data.Fill(dt);
-            }
-            catch (Exception ex)
+        public DataTable Detalle(string idvalue)
+        {
+            SqlParameter[] Parametros = new SqlParameter[]
             {
-                Console.WriteLine("Consulta realizada sin exito: " + ex.ToString());
-                dt = null;
-            }
-            return dt;
+                db.Param("@ID", SqlDbType.VarChar, 25, idvalue)
+            };
+
+            return db.Reader("Detalle_Cliente", Parametros);
         }
 
     }

@@ -1,16 +1,20 @@
 /*                                *
  *   Procedimientos de búsqueda   *
  *                                */
-use Administrador
+use sicem
 go
 
 -- Usuario
 create procedure [Busqueda_Usuario](
-	@valor varchar(100)
+	@valor varchar(100),
+	@clave int
 )
 as
 begin
-	select * from Usuario where (ID like '%'+@valor+'%' or Nombre like '%'+@valor+'%') or Apellido like '%'+@valor+'%'
+	if @clave = 0
+		select 	* from Usuario 	where ID like '%'+@valor+'%' or Nombre like '%'+@valor+'%'
+	else if @clave = 1
+			select * from Usuario where Apellido like '%'+@valor+'%'
 end
 
 	go
@@ -23,7 +27,7 @@ create procedure [Busqueda_Cliente](
 as
 begin
 	if @clave = 0
-		select * from Cliente where Nombre like '%'+@valor+'%' or ID like '%'+@valor+'%'
+		select * from Cliente where NombreCliente like '%'+@valor+'%' or ID like '%'+@valor+'%'
 	else
 		if @clave = 1
 			select * from Cliente where Email like '%'+@valor+'%'
@@ -55,6 +59,57 @@ begin
 			else
 				if @clave = 3
 					select * from Proveedor where Telefono like '%'+@valor+'%'
+end
+
+	go
+
+create procedure [Busqueda_Empleado](
+	@valor varchar(100),
+	@clave int
+)
+as
+begin
+	if @clave = 0
+		select * from RH_Empleado where (Nombres like '%'+@valor+'%' or ID like '%'+@valor+'%') or Apellidos like '%'+@valor+'%'
+	else
+		if @clave = 1
+			select * from RH_Empleado where Email like '%'+@valor+'%'
+		else
+			if @clave = 2
+				select * from RH_Empleado where Domicilio like '%'+@valor+'%'
+			else
+				if @clave = 3
+					select * from RH_Empleado where Telefono like '%'+@valor+'%'
+end
+
+	go
+
+create procedure [Busqueda_Departamento](
+	@valor varchar(100),
+	@clave int
+)
+as
+begin
+	if @clave = 0
+		select * from RH_Departamentos where Nombre like '%'+@valor+'%' or ID like '%'+@valor+'%'
+	else
+		if @clave = 1
+			select * from RH_Departamentos where NombreGrupo like '%'+@valor+'%'
+end
+
+	go
+
+create procedure [Busqueda_Bodega](
+	@valor varchar(100),
+	@clave int
+)
+as
+begin
+	if @clave = 0
+		select * from Bodega where Nombre like '%'+@valor+'%' or ID like '%'+@valor+'%'
+	else
+		if @clave = 1
+			select * from Bodega where Almacenaje like '%'+@valor+'%'
 end
 
 	go
@@ -125,27 +180,53 @@ end
 
 	go
 
--- Categorías
-create procedure [Busqueda_Categoria](
+create procedure [Busqueda_Productos_Todo](
 	@valor varchar(100),
-	@estado int
+	@clave int
 )
 as
 begin
-	if @estado = 1
-		select * from Categoria where (Nombre like '%'+@valor+'%' or ID like '%'+@valor+'%') and Estado = 1
+	if @clave = 0
+		select * from Producto where (Nombre like '%'+@valor+'%' or ID like '%'+@valor+'%')
 	else
+		if @clave = 1
+			select * from Producto  where (CategoriaID like '%'+@valor+'%')
+		else
+			if @clave = 2
+				select * from Producto where (PrecioVenta like '%'+@valor+'%')
+			else
+				if @clave = 3
+					select * from Producto where (Stock like '%'+@valor+'%')
+end
+
+	go
+
+-- Categorías
+create procedure [Busqueda_Categoria](
+	@valor varchar(100)
+)
+as
+begin
 		select * from Categoria where Nombre like '%'+@valor+'%' or ID like '%'+@valor+'%'
 end
 
 	go
 
--- Productos deshabilitados
-create procedure [Busqueda_Productos_Deshabilitados](
+create procedure [Busqueda_Oferta](
 	@valor varchar(100),
-	@estado int
+	@clave int
 )
 as
 begin
-		select * from Producto where (Nombre like '%'+@valor+'%' or ID like '%'+@valor+'%') and Estado = 0
+	if @clave = 0
+		select * from OfertaEspecial where ID like '%'+@valor+'%' or tipoOferta like '%'+@valor+'%'
+	else
+		if @clave = 1
+			select * from OfertaEspecial  where (PorcentajeDescuento like '%'+@valor+'%')
+		else
+			if @clave = 2
+				select * from OfertaEspecial where (FechaInicio like '%'+@valor+'%')
+			else
+				if @clave = 3
+					select * from OfertaEspecial where (FechaFinal like '%'+@valor+'%')
 end

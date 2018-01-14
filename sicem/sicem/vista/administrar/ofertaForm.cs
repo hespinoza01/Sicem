@@ -17,11 +17,14 @@ namespace sicem
     public partial class ofertaForm : Form
     {
         string accionformulario;
+        List<int> idvalues = new List<int>();
+        int idproducto = -1;
 
         public ofertaForm()
         {
             InitializeComponent();
             accionformulario = "crear";
+            loadID();
         }
 
         public ofertaForm(int id)
@@ -39,8 +42,11 @@ namespace sicem
         private void inicia()
         {
             guardarButton.ButtonText = (accionformulario == "crear") ? "Guardar" : "Actualizar";
-            fechaInicio.Value = DateTime.Now;
-            fechaFin.Value = DateTime.Now;
+            if (accionformulario == "crear")
+            {
+                fechaInicio.Value = DateTime.Now;
+                fechaFin.Value = DateTime.Now;
+            }
 
             txtID.Region = new region().RoundBorder(txtID.Width, txtID.Height+1, 7);
             txtTipoOferta.Region = new region().RoundBorder(txtTipoOferta.Width, txtTipoOferta.Height+1, 7);
@@ -58,6 +64,8 @@ namespace sicem
             txtProducto.TextChanged += txtProducto_TextChanged;
             txtProducto.KeyDown += txtProducto_KeyDown;
             txtProducto.Leave += txtProducto_Leave;
+
+            new drag().setDragable(toppanel);
 
             listaSugerencia();
         }
@@ -77,36 +85,62 @@ namespace sicem
 
         private void setDataView(int id)
         {
-            Conexión conexion = new Conexión();
-            DataTable data = new DataTable("Cliente");
-            using (SqlConnection cn = new SqlConnection(Conexión.Cn))
-            {
-                try
-                {
-                    cn.Open();
+            DataTable data = new OfertaEspecial().Detalle(id);
 
-                    SqlCommand cmd = new SqlCommand(
-                        "select * from Producto where ID = '" + id + "'",
-                        cn
-                        );
+            if(data != null){
+                DataRow row = data.Rows[0];
 
-                    SqlDataAdapter SqlDat = new SqlDataAdapter(cmd);
-                    SqlDat.Fill(data);
-
-                    DataRow row = data.Rows[0];
-                    txtID.Text = row["ID"].ToString();
-                    txtCantidadMax.Text = row["Stock"].ToString();
-                    txtTipoOferta.Text = row["CategoriaID"].ToString();
-                    txtDescripcion.Text = row["Descripcion"].ToString();
-                    
-                }
-                catch (Exception ex)
-                {
-                    new popup("Error al mostrar información", popup.AlertType.error);
-                    this.Close();
-                }
+                txtID.Text = row["ID"].ToString();
+                txtDescripcion.Text = row["Descripcion"].ToString();
+                txtPorcentajeDescuento.Text = row["PorcentajeDescuento"].ToString();
+                txtTipoOferta.Text = row["tipoOferta"].ToString();
+                fechaInicio.Value = (DateTime)row["FechaInicio"];
+                fechaFin.Value = (DateTime)row["FechaFinal"];
+                txtCantidadMin.Text = row["MinCantidad"].ToString();
+                txtCantidadMax.Text = row["MaxCantidad"].ToString();
+                listaProductos();
+            }else{
+                new popup("Error al mostrar información", popup.AlertType.error);
+                this.Close();
             }
 
+        }
+
+        private void listaProductos(){
+            DataTable data = new OfertaEspecial().listadoProductos(int.Parse(txtID.Text));
+
+            listadoProductoOferta.Rows.Clear();
+            foreach(DataRow row in data.Rows){
+                string id, n;
+                id = row[0].ToString();
+                n = row[1].ToString();
+                listadoProductoOferta.Rows.Add(id, n);
+            }
+        }
+
+        private void loadID()
+        {
+            int value = (int)new DBHelper().ReaderScalar("select count(*) + 1 from OfertaEspecial");
+            txtID.Text = value.ToString();
+        }
+
+        private void sugerencias()
+        {
+            DataTable data = new Producto().Buscar(txtProducto.Text, 0);
+            idproducto = -1;
+            if(data != null)
+            {
+                sugerencia.Items.Clear();
+                idvalues.Clear();
+                foreach(DataRow r in data.Rows)
+                {
+                    sugerencia.Items.Add(r["Nombre"].ToString());
+                    idvalues.Add((int)r["ID"]);
+                }
+
+                sugerencia.Height = (sugerencia.Items.Count < 5) ? (sugerencia.ItemHeight * sugerencia.Items.Count) : (sugerencia.ItemHeight * 5);
+                sugerencia.BringToFront();
+            }
         }
 
         private void cancelarButton_Click(object sender, EventArgs e)
@@ -117,27 +151,24 @@ namespace sicem
 
         private void guardarButton_Click(object sender, EventArgs e)
         {
-            Producto p = new Producto();
-            p.CategoriaID = int.Parse( txtTipoOferta.Text);
-            p.Descripcion = txtDescripcion.Text;
-            p.Stock = int.Parse(txtCantidadMax.Text );
+            OfertaEspecial o = new OfertaEspecial();
+            o.Descripcion = txtDescripcion.Text;
+            o.PorcentajeDescuento = float.Parse(txtPorcentajeDescuento.Text);
+            o.TipoOferta = txtTipoOferta.Text;
+            o.FechaInicio = fechaInicio.Value;
+            o.FechaFinal = fechaFin.Value;
+            o.MinCantidad = (int)txtCantidadMin.Value;
+            o.MaxCantidad = (int)txtCantidadMax.Value;
 
-                if (accionformulario == "crear")
-                {
-                    try {
-                        p.Insertar();
-                    }
-                    catch (Exception ex) { new popup("Inserción fallida", popup.AlertType.error); }
-                }
-                else
-                {
-                    try {
-                        p.ID = int.Parse(txtID.Text);
-                        p.Editar();
-                    }
-                    catch (Exception ex) { new popup("Actualización fallida", popup.AlertType.error); }
-                }
+            if (accionformulario == "crear")
+            {
+                o.Insertar();
+            }else{
+                o.ID = int.Parse(txtID.Text);
+                o.Editar();
+            }
 
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
@@ -158,8 +189,8 @@ namespace sicem
                 Point controlLocation = txtTipoOferta.TopLevelControl.PointToClient(txtProducto.Parent.PointToScreen(txtProducto.Location));
                 sugerencia.Left = controlLocation.X + 5;
                 sugerencia.Top = controlLocation.Y + txtProducto.Height;
-                sugerencia.Height = sugerencia.ItemHeight * 5;
-                sugerencia.BringToFront();
+                sugerencias();
+                
             }
             else
                 sugerencia.Height = 0;
@@ -168,7 +199,10 @@ namespace sicem
         private void sugerencia_Click(object sender, EventArgs e)
         {
             if (sugerencia.SelectedIndex >= 0)
+            {
                 txtProducto.Text = sugerencia.SelectedItem.ToString();
+                idproducto = idvalues[sugerencia.SelectedIndex];
+            }
 
             txtProducto.Focus();
             txtProducto.Select(txtProducto.Text.Length, 0);
@@ -222,9 +256,7 @@ namespace sicem
         {
             if (!expandActive)
             {
-                Transition.run(cardFormProducto, "Height", 80, new TransitionType_EaseInEaseOut(500));
-                //expand.Height = 0;
-                //Transition.run(contentEditor, "Height", 45, new TransitionType_EaseInEaseOut(500));
+                Transition.run(cardFormProducto, "Height", 85, new TransitionType_EaseInEaseOut(500));
                 expand.Iconimage = sicem.Properties.Resources.contraer;
                 txtProducto.Visible = true;
                 expandActive = true;
@@ -235,16 +267,49 @@ namespace sicem
                 expand.Iconimage = sicem.Properties.Resources.expandir;
                 txtProducto.Visible = false;
                 Transition.run(cardFormProducto, "Height", 25, new TransitionType_EaseInEaseOut(500));
-                //Transition.run(expand, "Height", 25, new TransitionType_EaseInEaseOut(500));
-                //Transition.run(contentEditor, "Height", 0, new TransitionType_EaseInEaseOut(500));
+                txtProducto.Clear();
             }
 
+        }
+
+        private void agregar_Click(object sender, EventArgs e)
+        {
+            if (idproducto != -1)
+            {
+                if (new OfertaEspecial().InsertarOfertaProducto(int.Parse(txtID.Text), idproducto))
+                {
+                    listadoProductoOferta.Rows.Add(idproducto, txtProducto.Text);
+                    txtProducto.Clear();
+                    idproducto = -1;
+                }
+            }
+            else
+                new popup("Producto no valido", popup.AlertType.warning);
         }
 
         private void txtCantidadMin_ValueChanged(object sender, EventArgs e)
         {
             if (txtCantidadMax.Value < txtCantidadMin.Value)
                 txtCantidadMax.Value = txtCantidadMin.Value;
+        }
+
+        private void fechaInicio_onValueChanged(object sender, EventArgs e)
+        {
+            if (fechaFin.Value.Subtract(fechaInicio.Value).TotalDays < 0)
+                fechaFin.Value = fechaInicio.Value;
+        }
+
+        private void listadoProductoOferta_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            idproducto = (int)listadoProductoOferta.Rows[e.RowIndex].Cells[0].Value;
+            if(new logoutDialog("¿ Remover producto ?").ShowDialog() == DialogResult.OK){
+                if (new OfertaEspecial().RemoverOfertaProducto(int.Parse(txtID.Text), idproducto))
+                {
+                    listadoProductoOferta.Rows.RemoveAt(e.RowIndex);
+                }
+            }
+
+            idproducto = -1;
         }
     }
 }

@@ -14,13 +14,14 @@ namespace sicem
     public partial class clienteForm : Form
     {
         string accionformulario;
+        DBHelper db = new DBHelper();
         public clienteForm()
         {
             InitializeComponent();
             accionformulario = "crear";
         }
 
-        public clienteForm(int id)
+        public clienteForm(string id)
         {
             InitializeComponent();
             accionformulario = "editar";
@@ -42,40 +43,28 @@ namespace sicem
             txtEmail.Region = new region().RoundBorder(txtEmail.Width, txtEmail.Height+1, 7);
             txtTel.Region = new region().RoundBorder(txtTel.Width, txtTel.Height+1, 7);
             txtDireccion.Region = new region().RoundBorder(txtDireccion.Width, txtDireccion.Height+1, 7);
+
+            new drag().setDragable(toppanel);
         }
 
-        private void setDataView(int id)
+        private void setDataView(string id)
         {
-            Conexión conexion = new Conexión();
-            DataTable data = new DataTable("Cliente");
-            using(SqlConnection cn = new SqlConnection(Conexión.Cn))
-            {
-                try
-                {
-                    cn.Open();
+            DataTable data = db.DataReader("select * from Cliente where ID = '" + id+"'");
 
-                    SqlCommand cmd = new SqlCommand(
-                        "select * from Cliente where ID = '" + id+"'",
-                        cn
-                        );
+            if(data != null){
+                DataRow row = data.Rows[0];
 
-                    SqlDataAdapter SqlDat = new SqlDataAdapter(cmd);
-                    SqlDat.Fill(data);
-
-                    DataRow row = data.Rows[0];
-                    txtID.Text = row["ID"].ToString();
-                    txtNombre.Text = row["Nombre"].ToString();
-                    txtEmail.Text = row["Email"].ToString();
-                    txtTel.Text = row["Telefono"].ToString();
-                    txtDireccion.Text = row["Domicilio"].ToString();
-                }
-                catch (Exception ex)
-                {
-                    new popup("Error al mostrar información", popup.AlertType.error);
-                    this.Close();
-                }
+                txtID.Text = row["ID"].ToString();
+                txtNombre.Text = row["NombreCliente"].ToString();
+                txtNombreContacto.Text = row["NombreContacto"].ToString();
+                txtTituloContacto.Text = row["TituloContacto"].ToString();
+                txtEmail.Text = row["Email"].ToString();
+                txtTel.Text = row["Telefono"].ToString();
+                txtDireccion.Text = row["Domicilio"].ToString();
+            }else {
+                new popup("Error al mostrar información", popup.AlertType.error);
+                this.Close();
             }
-         
         }
 
         private void cancelar_Click(object sender, EventArgs e)
@@ -87,15 +76,15 @@ namespace sicem
 
         private void guardar_Click(object sender, EventArgs e)
         {
-            Cliente Client = new Cliente();
-            Client.C_Nombre = txtNombre.Text;
-            Client.C_Domicilio = txtDireccion.Text;
-            Client.C_Email = txtEmail.Text;
-            Client.C_Telefono = txtTel.Text;
+            Cliente c = new Cliente();
+            c.C_Nombre = txtNombre.Text;
+            c.C_Domicilio = txtDireccion.Text;
+            c.C_Email = txtEmail.Text;
+            c.C_Telefono = txtTel.Text;
 
             if (accionformulario == "crear")
             {
-                try { Client.Insertar(); }
+                try { c.Insertar(); }
                 catch (Exception ex) { new popup("Inserción fallida", popup.AlertType.error); }
                 this.Close();
             }
@@ -103,8 +92,8 @@ namespace sicem
             {
                 try
                 {
-                    Client.C_Id = int.Parse(txtID.Text);
-                    Client.Editar();
+                    c.C_Id = txtID.Text;
+                    c.Editar();
                 }
                 catch (Exception ex) { new popup("Actualización fallida", popup.AlertType.error); }
             }

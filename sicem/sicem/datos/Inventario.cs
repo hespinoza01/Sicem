@@ -4,10 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace sicem.datos
+namespace sicem
 {
     class Inventario
     {
+        DBHelper db = new DBHelper();
+
+        public Inventario(){}
+
         public int ProductoID
         {
             get;

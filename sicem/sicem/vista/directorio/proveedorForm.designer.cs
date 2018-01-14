@@ -36,7 +36,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.paneltop = new System.Windows.Forms.Panel();
             this.tipoFormulario = new System.Windows.Forms.Label();
             this.txtNombre = new Telerik.WinControls.UI.RadTextBox();
             this.materialTheme1 = new Telerik.WinControls.Themes.MaterialTheme();
@@ -50,7 +50,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtCiudad = new Bunifu.Framework.UI.BunifuDropdown();
             this.label7 = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
+            this.estado = new Bunifu.Framework.UI.BunifuCheckbox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.paneltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail)).BeginInit();
@@ -162,14 +164,14 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Nombre Proveedor/Entidad( * )";
             // 
-            // panel1
+            // paneltop
             // 
-            this.panel1.BackColor = System.Drawing.Color.RoyalBlue;
-            this.panel1.Controls.Add(this.tipoFormulario);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(400, 44);
-            this.panel1.TabIndex = 2;
+            this.paneltop.BackColor = System.Drawing.Color.RoyalBlue;
+            this.paneltop.Controls.Add(this.tipoFormulario);
+            this.paneltop.Location = new System.Drawing.Point(0, 0);
+            this.paneltop.Name = "paneltop";
+            this.paneltop.Size = new System.Drawing.Size(400, 44);
+            this.paneltop.TabIndex = 2;
             // 
             // tipoFormulario
             // 
@@ -178,9 +180,9 @@
             this.tipoFormulario.ForeColor = System.Drawing.Color.White;
             this.tipoFormulario.Location = new System.Drawing.Point(13, 11);
             this.tipoFormulario.Name = "tipoFormulario";
-            this.tipoFormulario.Size = new System.Drawing.Size(186, 22);
+            this.tipoFormulario.Size = new System.Drawing.Size(224, 22);
             this.tipoFormulario.TabIndex = 0;
-            this.tipoFormulario.Text = "Información cliente";
+            this.tipoFormulario.Text = "Información proveedor";
             // 
             // txtNombre
             // 
@@ -376,12 +378,36 @@
             this.label7.TabIndex = 37;
             this.label7.Text = "Ciudad";
             // 
+            // estado
+            // 
+            this.estado.BackColor = System.Drawing.Color.RoyalBlue;
+            this.estado.ChechedOffColor = System.Drawing.Color.Silver;
+            this.estado.Checked = true;
+            this.estado.CheckedOnColor = System.Drawing.Color.RoyalBlue;
+            this.estado.ForeColor = System.Drawing.Color.White;
+            this.estado.Location = new System.Drawing.Point(25, 457);
+            this.estado.Name = "estado";
+            this.estado.Size = new System.Drawing.Size(20, 20);
+            this.estado.TabIndex = 38;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label8.Location = new System.Drawing.Point(51, 460);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(54, 13);
+            this.label8.TabIndex = 39;
+            this.label8.Text = "Habilitado";
+            // 
             // proveedorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(400, 550);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.estado);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtCiudad);
             this.Controls.Add(this.txtTituloContacto);
@@ -393,7 +419,7 @@
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.txtNombre);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.paneltop);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labelID);
             this.Controls.Add(this.label2);
@@ -406,8 +432,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.clienteForm_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.paneltop.ResumeLayout(false);
+            this.paneltop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail)).EndInit();
@@ -427,7 +453,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel paneltop;
         private System.Windows.Forms.Label tipoFormulario;
         private System.Windows.Forms.Label labelID;
         private Telerik.WinControls.UI.RadTextBox txtNombre;
@@ -442,5 +468,7 @@
         private System.Windows.Forms.Label label6;
         private Bunifu.Framework.UI.BunifuDropdown txtCiudad;
         private System.Windows.Forms.Label label7;
+        private Bunifu.Framework.UI.BunifuCheckbox estado;
+        private System.Windows.Forms.Label label8;
     }
 }

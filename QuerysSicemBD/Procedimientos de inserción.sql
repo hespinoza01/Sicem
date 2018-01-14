@@ -1,52 +1,182 @@
 /*                                *
  *   Procedimientos de inserción  *
  *                                */
-use Administrador
+use sicem
 
 	go
 
 	-- Usuario
-alter procedure [Insertar_Usuario](
+create procedure [Insertar_Usuario](
 	@ID varchar(15),
 	@Contraseña varchar(50),
 	@Nombre varchar(50),
 	@Apellido varchar(50),
-	@FotoPerfil image
+	@FotoPerfil image,
+	@Estado int
 )
 as
 begin
 	insert into Usuario
-	values(@ID, @contraseña, @Nombre, @Apellido, @FotoPerfil)	
+	values(
+		@ID, 
+		@contraseña, 
+		@Nombre, 
+		@Apellido, 
+		@FotoPerfil, 
+		@Estado, 
+		getdate(), 
+		getdate()
+		)	
 end
 
  go
 
  -- Cliente
 create procedure [Insertar_Cliente](
-	@Nombre varchar(50),
-	@Domicilio varchar(125),
+	@ID varchar(25),
+	@NombreCliente varchar(75),
+	@NombreContacto varchar(50),
+	@TituloContacto varchar(35),
+	@Domicilio varchar(200),
+	@Ciudad varchar(35),
 	@Telefono varchar(25),
-	@Email varchar(50)
+	@Email varchar(50),
+	@Estado int
 )
 as
 begin
-	insert into Cliente(Nombre, Domicilio, Telefono, Email)
-	values (@Nombre, @Domicilio, @Telefono, @Email)
+	insert into Cliente
+	values (
+		@ID,
+		@NombreCliente,
+		@NombreContacto,
+		@TituloContacto, 
+		@Domicilio,
+		@Ciudad, 
+		@Telefono, 
+		@Email,
+		@Estado,
+		getdate()
+	)
 end
 
 	go
 
 	-- Proveedor
 create procedure [Insertar_Proveedor](
-	@Nombre varchar(50),
-	@Domicilio varchar(125),
+	@Nombre varchar(75),
+	@NombreContacto varchar(50),
+	@TituloContacto varchar(35),
+	@Domicilio varchar(200),
+	@Ciudad varchar(35),
 	@Telefono varchar(25),
-	@Email varchar(50)
+	@Email varchar(50),
+	@Estado int
 )
 as
 begin
-	insert into Proveedor(Nombre, Domicilio, Telefono, Email)
-	values (@Nombre, @Domicilio, @Telefono, @Email)
+	insert into Proveedor(
+		Nombre,
+		NombreContacto,
+		TituloContacto, 
+		Domicilio,
+		Ciudad, 
+		Telefono, 
+		Email,
+		Estado,
+		FechaModificacion)
+	values (
+		@Nombre,
+		@NombreContacto,
+		@TituloContacto, 
+		@Domicilio,
+		@Ciudad, 
+		@Telefono, 
+		@Email,
+		@Estado,
+		getdate())
+end
+
+	go
+	--Empleado
+create procedure [Insertar_Empleado](
+	@Nombres varchar(80),
+	@Apellidos varchar(80),
+	@DepartamentoID int,
+	@TituloLaboral varchar(35),
+	@FechaDeNacimiento date,
+	@FechaDeContratacion date,
+	@EstadoCivil int,
+	@Genero int,
+	@Domicilio varchar(200),
+	@Ciudad varchar(35),
+	@Telefono varchar(25),
+	@Cedula varchar(25),
+	@Email varchar(50),
+	@Observaciones text,
+	@ReportarA int,
+	@Foto image,
+	@Estado int
+) as
+begin
+	insert into RH_Empleado(
+		Nombres,
+		Apellidos,
+		DepartamentoID,
+		TituloLaboral,
+		FechaDeNacimiento,
+		FechaDeContratacion,
+		EstadoCivil,
+		Genero,
+		Domicilio,
+		Ciudad,
+		Telefono,
+		Cedula,
+		Email,
+		Observaciones,
+		ReportarA,
+		Foto,
+		Estado,
+		FechaModificacion
+	)
+	values(
+		@Nombres,
+		@Apellidos,
+		@DepartamentoID,
+		@TituloLaboral,
+		@FechaDeNacimiento,
+		@FechaDeContratacion,
+		@EstadoCivil,
+		@Genero,
+		@Domicilio,
+		@Ciudad,
+		@Telefono,
+		@Cedula,
+		@Email,
+		@Observaciones,
+		@ReportarA,
+		@Foto,
+		@Estado,
+		getdate()
+	)
+end
+
+	go
+	--Departamento laboral
+create procedure [Insertar_Departamento](
+	@Nombre varchar(35),
+	@NombreGrupo varchar(35)
+)as begin
+	insert into RH_Departamentos(
+		Nombre,
+		NombreGrupo,
+		FechaModificacion
+	)
+	values(
+		@Nombre,
+		@NombreGrupo,
+		getdate()
+	)
 end
 
 	go
@@ -55,6 +185,7 @@ end
 create procedure [Insertar_Producto](
 	@CategoriaID int,
 	@Nombre varchar(50),
+	@CantidadPorUnidad int,
 	@PrecioVenta decimal(18,2),
 	@Stock int,
 	@Descripcion varchar(250),
@@ -62,8 +193,108 @@ create procedure [Insertar_Producto](
 )
 as
 begin
-	insert into Producto(CategoriaID, Nombre, PrecioVenta, Stock, Descripcion, Estado)
-	values(@CategoriaID, @Nombre, @PrecioVenta, @Stock, @Descripcion, @Estado)
+	insert into Producto(
+		CategoriaID, 
+		Nombre,
+		CantidadPorUnidad, 
+		PrecioVenta, 
+		Stock, 
+		Descripcion, 
+		Estado,
+		FechaModificacion)
+	values(
+		@CategoriaID, 
+		@Nombre,
+		@CantidadPorUnidad, 
+		@PrecioVenta, 
+		@Stock, 
+		@Descripcion, 
+		@Estado,
+		getdate())
+end
+
+	go
+
+create procedure [Insertar_Historial_Precio_Producto](
+	@ProductoID int,
+	@Precio decimal(18,2)
+)as begin
+	update HistorialPrecioProducto
+		set FechaFinal = getdate()
+		where FechaFinal = null
+
+	insert into HistorialPrecioProducto(
+		ProductoID,
+		FechaInicio,
+		Precio
+	)
+	values(
+		@ProductoID,
+		getdate(),
+		@Precio
+	)
+end
+
+	go
+
+create procedure [Insertar_Historial_Costo_Producto](
+	@ProductoID int,
+	@Precio decimal(18,2)
+)as begin
+	update HistorialCostoProducto
+		set FechaFinal = getdate()
+		where FechaFinal = null
+
+	insert into HistorialCostoProducto(
+		ProductoID,
+		FechaInicio,
+		Precio
+	)
+	values(
+		@ProductoID,
+		getdate(),
+		@Precio
+	)
+end
+
+	go
+
+create procedure [Insertar_Bodega](
+	@Nombre varchar(35),
+	@Almacenaje int
+)as begin
+	insert into Bodega(
+		Nombre,
+		Almacenaje,
+		FechaModificacion
+	)
+	values(
+		@Nombre,
+		@Almacenaje,
+		getdate()
+	)
+end
+
+	go
+
+create procedure [Insertar_Inventario](
+	@ProductoID int,
+	@BodegaID int,
+	@Estante varchar(50),
+	@Cantidad int
+)as begin
+	insert into Inventario(
+		ProductoID,
+		BodegaID,
+		Estante,
+		Cantidad
+	)
+	values(
+		@ProductoID,
+		@BodegaID,
+		@Estante,
+		@Cantidad
+	)
 end
 
 	go
@@ -76,8 +307,18 @@ create procedure [Insertar_Categoria](
 )
 as
 begin
-	insert into Categoria(Nombre, Descripcion, Estado)
-	values(@Nombre, @Descripcion, @Estado)
+	insert into Categoria(
+		Nombre, 
+		Descripcion, 
+		Estado,
+		FechaCreacion,
+		FechaModificacion)
+	values(
+		@Nombre, 
+		@Descripcion, 
+		@Estado,
+		getdate(),
+		getdate())
 end
 
 	go
@@ -92,8 +333,8 @@ create procedure [Insertar_Compra](
 )
 as
 begin
-	insert into Compra(ID, ProveedorID, FechaCompra, TipoPago, Monto)
-	values(@ID, @ProveedorID, @FechaCompra, @TipoPago, @Monto)
+	insert into Compra(ID, ProveedorID, FechaCompra, TipoPago, Monto, FechaModificacion)
+	values(@ID, @ProveedorID, @FechaCompra, @TipoPago, @Monto, getdate())
 end 
 
 	go
@@ -108,8 +349,8 @@ create procedure [Insertar_Detalle_Compra](
 )
 as 
 begin
-	insert into Detalle_Compra(CompraID, ProductoID, Cantidad, CostoUnitario, Total)
-	values(@CompraID, @ProductoID, @Cantidad, @CostoUnitario, @Total)
+	insert into Detalle_Compra(CompraID, ProductoID, Cantidad, CostoUnitario, Total, FechaModificacion)
+	values(@CompraID, @ProductoID, @Cantidad, @CostoUnitario, @Total, getdate())
 end
 
 	go
@@ -117,7 +358,7 @@ end
 	-- Venta
 create procedure [Insertar_Venta](
 	@ID varchar(15),
-	@ClienteID int,
+	@ClienteID varchar(25),
 	@FechaVenta date,
 	@TipoPago int,
 	@TipoVenta int,
@@ -128,7 +369,7 @@ create procedure [Insertar_Venta](
 as
 begin
 	insert into Venta
-	values(@ID, @ClienteID, @FechaVenta, @TipoPago, @TipoVenta, @SubTotal, @Impuesto, @Total)
+	values(@ID, @ClienteID, @FechaVenta, @TipoPago, @TipoVenta, @SubTotal, @Impuesto, @Total, getdate())
 end
 
 	go
@@ -146,5 +387,102 @@ create procedure [Insertar_Detalle_Venta](
 as
 begin
 	insert into Detalle_Venta
-	values(@VentaID, @ProductoID, @Cantidad, @PrecioUnitario, @Descuento, @Impuesto, @Total)
+	values(@VentaID, @ProductoID, @Cantidad, @PrecioUnitario, @Descuento, @Impuesto, @Total, getdate())
+end
+
+	go
+
+create procedure [Insertar_TarjetaCredito](
+	@TipoTarjeta varchar(25),
+	@NumeroTarjeta varchar(25),
+	@ExpiraMes int,
+	@ExpiraAño int
+)as begin
+	insert into TarjetaCredito(
+		TipoTarjeta,
+		NumeroTarjeta,
+		ExpiraMes,
+		ExpiraAño,
+		FechaModificacion
+	)
+	values(
+		@TipoTarjeta,
+		@NumeroTarjeta,
+		@ExpiraMes,
+		@ExpiraAño,
+		getdate()
+	)
+end
+
+	go
+
+create procedure [Insertar_ClienteTarjetaCredito](
+	@ClienteID varchar(25),
+	@TarjetaCreditoID int
+)as begin
+	insert into ClienteTarjetaCredito
+	values(
+		@ClienteID,
+		@TarjetaCreditoID
+	)
+end
+
+	go
+
+create procedure [Insertar_OfertaEspecial](
+	@Descripcion text,
+	@PorcentajeDescuento float,
+	@tipoOferta varchar(75),
+	@FechaInicio date,
+	@FechaFinal date,
+	@MinCantidad int,
+	@MaxCantidad int
+)as begin
+	insert into OfertaEspecial(
+		Descripcion,
+		PorcentajeDescuento,
+		tipoOferta,
+		FechaInicio,
+		FechaFinal,
+		MinCantidad,
+		MaxCantidad,
+		FechaModificacion
+	)
+	values(
+		@Descripcion,
+		@PorcentajeDescuento,
+		@tipoOferta,
+		@FechaInicio,
+		@FechaFinal,
+		@MinCantidad,
+		@MaxCantidad,
+		getdate()
+	)
+end
+
+	go 
+
+create procedure [Insertar_OfertaEspecialProducto](
+	@OfertaEspecialID int,
+	@ProductoID int
+)as begin
+	insert into OfertaEspecialProducto
+	values(
+		@OfertaEspecialID,
+		@ProductoID
+	)
+end
+
+	go
+
+create procedure [Remover_OfertaEspecialProducto](
+	@OfertaID int,
+	@ProductoID int
+)as begin
+	delete 
+	from OfertaEspecialProducto
+	where
+		OfertaEspecialID = @OfertaID
+			and
+		ProductoID = @ProductoID 
 end

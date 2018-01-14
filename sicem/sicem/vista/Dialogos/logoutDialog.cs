@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace sicem.vista.Dialogos
+namespace sicem
 {
     public partial class logoutDialog : Form
     {

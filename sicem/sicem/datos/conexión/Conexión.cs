@@ -8,7 +8,7 @@ namespace sicem
 {
     class Conexión
     {
-        public static string Cn = "Data Source=DESKTOP-6NVT70E; Initial Catalog=Administrador; Integrated Security=true";
+        public static string Cn = "Data Source=DESKTOP-6NVT70E; Initial Catalog=sicem; Integrated Security=true";
 
     }
 }

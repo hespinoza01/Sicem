@@ -19,6 +19,7 @@ namespace sicem
         detalleProducto detalleProducto = new detalleProducto();
         detalleCategoria detalleCategoria = new detalleCategoria();
         detalleOferta detalleOferta = new detalleOferta();
+        string active = "";
         public administrar()
         {   
             InitializeComponent();
@@ -34,6 +35,9 @@ namespace sicem
             clearForeColor();
             labelusuarios.ForeColor = Color.RoyalBlue;
 
+            new listadoItems().llenar(metodoBusqueda, new listadoItems().usuario());
+            active = "usuario";
+
             contentDetails.Controls.Add(detalleUsuario);
             contentDetails.Controls.Add(detalleProducto);
             contentDetails.Controls.Add(detalleCategoria);
@@ -41,7 +45,7 @@ namespace sicem
 
             detalleUsuario.BringToFront();
 
-            Cargar();
+            Cargar(false);
         }
 
         private void clearForeColor()
@@ -52,67 +56,171 @@ namespace sicem
             labelofertas.ForeColor = Color.Silver;
         }
 
-        public void Cargar()
+        public void Cargar(bool buscar)
         {
-            //try
-            //{
-            //    vistaClientes.DataSource = new Cliente().Mostrar();
-            //}
-            //catch (Exception ex) { }
+            try{
+                DataTable data;
+                string rowname = "";
+
+                switch(active){
+                    case "usuario":
+                        data = (buscar)? new usuario().Buscar(txtBuscar.Text, metodoBusqueda.SelectedIndex) : new usuario().Mostrar();
+                        rowname = "Nombre";
+                        break;
+
+                    case "producto":
+                        data = (buscar)? new Producto().Buscar(txtBuscar.Text, metodoBusqueda.SelectedIndex) : new Producto().Mostrar();
+                        rowname = "Nombre";
+                        break;
+
+                    case "categoria":
+                        data = (buscar)? new Categoria().Buscar(txtBuscar.Text) : new Categoria().Mostrar();
+                        rowname = "Nombre";
+                        break;
+
+                    case "oferta":
+                        data = (buscar)? new OfertaEspecial().Buscar(txtBuscar.Text, metodoBusqueda.SelectedIndex) : new OfertaEspecial().Mostrar();
+                        rowname = "tipoOferta";
+                        break;
+
+                    default:
+                        data = null;
+                        break;
+                }
+
+                vistaListado.Rows.Clear();
+                columnName.HeaderText = (active == "oferta") ? "Tipo Oferta" : "Nombre";
+                foreach (DataRow row in data.Rows){
+                    string id, n, fm;
+                    id = Convert.ToString(row["ID"]);
+                    n = Convert.ToString(row[rowname]);
+                    fm = Convert.ToString(row["FechaModificacion"]);
+                    vistaListado.Rows.Add(id, n, fm);
+                }
+
+            }catch (Exception ex) { }
+        }
+
+        public void activa(){
+            clearForeColor();
+            Cargar(false);
+
+            switch (active)
+            {
+                case "usuario":
+                    labelusuarios.ForeColor = Color.RoyalBlue;
+                    Transition.run(indicadorlabel, "Left", labelusuarios.Left, new TransitionType_EaseInEaseOut(500));
+                    indicadorlabel.Width = labelusuarios.Width;
+                    detalleUsuario.BringToFront();
+                    new listadoItems().llenar(metodoBusqueda, new listadoItems().usuario());
+                    metodoBusqueda.StartIndex = 0;
+                    break;
+
+                case "producto":
+                    labelproductos.ForeColor = Color.RoyalBlue;
+                    Transition.run(indicadorlabel, "Left", labelproductos.Left, new TransitionType_EaseInEaseOut(500));
+                    indicadorlabel.Width = labelproductos.Width;
+                    detalleProducto.BringToFront();
+                    new listadoItems().llenar(metodoBusqueda, new listadoItems().producto());
+                    metodoBusqueda.StartIndex = 0;
+                    break;
+
+                case "categoria":
+                    labelcategorias.ForeColor = Color.RoyalBlue;
+                    Transition.run(indicadorlabel, "Left", labelcategorias.Left, new TransitionType_EaseInEaseOut(500));
+                    indicadorlabel.Width = labelcategorias.Width;
+                    detalleCategoria.BringToFront();
+                    new listadoItems().llenar(metodoBusqueda, new listadoItems().categoria());
+            
+                    break;
+
+                case "oferta":
+                    labelofertas.ForeColor = Color.RoyalBlue;
+                    Transition.run(indicadorlabel, "Left", labelofertas.Left, new TransitionType_EaseInEaseOut(500));
+                    indicadorlabel.Width = labelofertas.Width;
+                    detalleOferta.BringToFront();
+                    new listadoItems().llenar(metodoBusqueda, new listadoItems().oferta());
+                    metodoBusqueda.StartIndex = 0;
+                    break;
+            }
+
         }
 
         private void agregarButton_Click(object sender, EventArgs e)
         {
-            //new clienteForm().ShowDialog();
+            switch (active)
+            {
+                case "usuario":
+                    new usuarioForm().Show();
+                    break;
+
+                case "producto":
+                    new productoForm().Show();
+                    break;
+
+                case "categoria":
+                    new categoriaForm().Show();
+                    break;
+
+                case "oferta":
+                    new ofertaForm().Show();
+                    break;
+            }
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //new clienteForm(int.Parse(vistaClientes.Rows[e.RowIndex].Cells[0].Value.ToString())).ShowDialog();
+            string value = vistaListado.Rows[e.RowIndex].Cells[0].Value.ToString();
+            switch (active)
+            {
+                case "usuario":
+                    detalleUsuario.setInfo(value);
+                    break;
+
+                case "producto":
+                    detalleProducto.setInfo(int.Parse(value));
+                    break;
+
+                case "categoria":
+                    detalleCategoria.setInfo(int.Parse(value));
+                    break;
+
+                case "oferta":
+                    detalleOferta.setInfo(int.Parse(value));
+                    break;
+            }
         }
 
         private void txtBuscar_OnTextChange(object sender, EventArgs e)
         {
-            //if (txtBuscar.text == "")
-            //    Cargar();
-            //else
-            //    vistaClientes.DataSource = new Cliente().Buscar(txtBuscar.text, metodoBusqueda.SelectedIndex);
+            if (txtBuscar.Text.Length > 0)
+                Cargar(true);
+            else
+                Cargar(false);
         }
 
         private void labelusuarios_Click(object sender, EventArgs e)
         {
-            clearForeColor();
-            labelusuarios.ForeColor = Color.RoyalBlue;
-            Transition.run(indicadorlabel, "Left", labelusuarios.Left, new TransitionType_EaseInEaseOut(500));
-            indicadorlabel.Width = labelusuarios.Width;
-            detalleUsuario.BringToFront();
+            active = "usuario";
+            activa();
         }
 
         private void labelproductos_Click(object sender, EventArgs e)
         {
-            clearForeColor();
-            labelproductos.ForeColor = Color.RoyalBlue;
-            Transition.run(indicadorlabel, "Left", labelproductos.Left, new TransitionType_EaseInEaseOut(500));
-            indicadorlabel.Width = labelproductos.Width;
-            detalleProducto.BringToFront();
+            active = "producto";
+            activa();
         }
 
         private void labelcategorias_Click(object sender, EventArgs e)
         {
-            clearForeColor();
-            labelcategorias.ForeColor = Color.RoyalBlue;
-            Transition.run(indicadorlabel, "Left", labelcategorias.Left, new TransitionType_EaseInEaseOut(500));
-            indicadorlabel.Width = labelcategorias.Width;
-            detalleCategoria.BringToFront();
+            active = "categoria";
+            activa();
         }
 
         private void labelofertas_Click(object sender, EventArgs e)
         {
-            clearForeColor();
-            labelofertas.ForeColor = Color.RoyalBlue;
-            Transition.run(indicadorlabel, "Left", labelofertas.Left, new TransitionType_EaseInEaseOut(500));
-            indicadorlabel.Width = labelofertas.Width;
-            detalleOferta.BringToFront();
+            active = "oferta";
+            activa();
         }
     }
 }

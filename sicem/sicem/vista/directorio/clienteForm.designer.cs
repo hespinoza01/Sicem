@@ -36,7 +36,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.toppanel = new System.Windows.Forms.Panel();
             this.tipoFormulario = new System.Windows.Forms.Label();
             this.txtNombre = new Telerik.WinControls.UI.RadTextBox();
             this.materialTheme1 = new Telerik.WinControls.Themes.MaterialTheme();
@@ -50,7 +50,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtCiudad = new Bunifu.Framework.UI.BunifuDropdown();
             this.label7 = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
+            this.toppanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail)).BeginInit();
@@ -162,14 +162,14 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Nombre Cliente/Entidad( * )";
             // 
-            // panel1
+            // toppanel
             // 
-            this.panel1.BackColor = System.Drawing.Color.RoyalBlue;
-            this.panel1.Controls.Add(this.tipoFormulario);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(400, 44);
-            this.panel1.TabIndex = 2;
+            this.toppanel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.toppanel.Controls.Add(this.tipoFormulario);
+            this.toppanel.Location = new System.Drawing.Point(0, 0);
+            this.toppanel.Name = "toppanel";
+            this.toppanel.Size = new System.Drawing.Size(400, 44);
+            this.toppanel.TabIndex = 2;
             // 
             // tipoFormulario
             // 
@@ -393,7 +393,7 @@
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.txtNombre);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.toppanel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labelID);
             this.Controls.Add(this.label2);
@@ -406,8 +406,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.clienteForm_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.toppanel.ResumeLayout(false);
+            this.toppanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail)).EndInit();
@@ -427,7 +427,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel toppanel;
         private System.Windows.Forms.Label tipoFormulario;
         private System.Windows.Forms.Label labelID;
         private Telerik.WinControls.UI.RadTextBox txtNombre;

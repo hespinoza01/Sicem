@@ -17,6 +17,7 @@ namespace sicem
     {
         detalleInventario detalleInventario = new detalleInventario();
         detalleBodega detalleBodega = new detalleBodega();
+        string active = "";
         public inventario()
         {   
             InitializeComponent();
@@ -31,6 +32,9 @@ namespace sicem
         {
             clearForeColor();
             labelproducto.ForeColor = Color.RoyalBlue;
+
+            new listadoItems().llenar(metodoBusqueda, new listadoItems().producto());
+            active = "producto";
 
             contentDetails.Controls.Add(detalleInventario);
             contentDetails.Controls.Add(detalleBodega);
@@ -58,7 +62,16 @@ namespace sicem
 
         private void agregarButton_Click(object sender, EventArgs e)
         {
-            //new clienteForm().ShowDialog();
+            switch (active)
+            {
+                case "producto":
+                    new almacenProductoForm().Show();
+                    break;
+
+                case "bodega":
+                    new bodegaForm().Show();
+                    break;
+            }
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -80,7 +93,8 @@ namespace sicem
             labelbodega.ForeColor = Color.RoyalBlue;
             Transition.run(indicadorlabel, "Left", labelbodega.Left, new TransitionType_EaseInEaseOut(500));
             indicadorlabel.Width = labelbodega.Width;
-            detalleBodega.BringToFront();
+            detalleBodega.BringToFront(); new listadoItems().llenar(metodoBusqueda, new listadoItems().bodega());
+            active = "bodega";
         }
 
         private void labelproducto_Click(object sender, EventArgs e)
@@ -90,6 +104,8 @@ namespace sicem
             Transition.run(indicadorlabel, "Left", labelproducto.Left, new TransitionType_EaseInEaseOut(500));
             indicadorlabel.Width = labelproducto.Width;
             detalleInventario.BringToFront();
+            new listadoItems().llenar(metodoBusqueda, new listadoItems().producto());
+            active = "producto";
         }
     }
 }

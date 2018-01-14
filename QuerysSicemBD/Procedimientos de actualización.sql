@@ -1,17 +1,17 @@
 /*                                     *
  *   Procedimientos de actualización   *
  *                                     */
- select * from Usuario
- use Administrador
+ use sicem
  go
 
 -- Usuario
-alter procedure [Actualizar_Usuario](
+create procedure [Actualizar_Usuario](
 	@ID varchar(15),
 	@Contraseña varchar(50),
 	@Nombre varchar(50),
 	@Apellido varchar(50),
-	@FotoPerfil image
+	@FotoPerfil image,
+	@Estado int
 )
 as
 begin
@@ -20,7 +20,9 @@ begin
 			Contraseña = @contraseña,
 			Nombre = @Nombre,
 			Apellido = @Apellido,
-			FotoPerfil = @FotoPerfil
+			FotoPerfil = @FotoPerfil,
+			Estado = @Estado,
+			FechaModificacion = getdate()
 	where ID = @ID
 end
 
@@ -42,40 +44,116 @@ end
 
 -- Cliente
 create procedure [Actualizar_Cliente](	
-	@ID Int,
-	@Nombre varchar(50),
-	@Domicilio varchar (125),
+	@ID varchar(25),
+	@NombreCliente varchar(75),
+	@NombreContacto varchar(50),
+	@TituloContacto varchar(35),
+	@Domicilio varchar(200),
+	@Ciudad varchar(35),
 	@Telefono varchar(25),
-	@Email varchar (50)
+	@Email varchar(50),
+	@Estado int
 )
 as
 begin
 	Update Cliente 
-		Set Nombre=@Nombre, 
+		Set NombreCliente=@NombreCliente,
+			NombreContacto=@NombreContacto,
+			TituloContacto=@TituloContacto, 
 			Domicilio=@Domicilio,
+			Ciudad=@Ciudad,
 			Telefono=@Telefono,
-			Email=@Email
+			Email=@Email,
+			Estado=@Estado,
+			FechaModificacion=getdate()
 	where ID=@ID
 end
 
 	go
 
 -- Proveedor
-create procedure [Actualizar_Proveedores](	
-	@ID Int,
-	@Nombre varchar(50),
-	@Domicilio varchar (125),
+create procedure [Actualizar_Proveedores](
+	@ID int,	
+	@Nombre varchar(75),
+	@NombreContacto varchar(50),
+	@TituloContacto varchar(35),
+	@Domicilio varchar(200),
+	@Ciudad varchar(35),
 	@Telefono varchar(25),
-	@Email varchar (50)
+	@Email varchar(50),
+	@Estado int
 )
 as
 begin
 	Update Proveedor 
-		Set Nombre=@Nombre, 
+		Set Nombre=@Nombre,
+			NombreContacto=@NombreContacto,
+			TituloContacto=@TituloContacto, 
 			Domicilio=@Domicilio,
+			Ciudad=@Ciudad,
 			Telefono=@Telefono,
-			Email=@Email
+			Email=@Email,
+			Estado=@Estado,
+			FechaModificacion=getdate()
 	where ID=@ID
+end
+
+	go
+
+create procedure [Actualizar_Empleado](
+	@ID int,
+	@Nombres varchar(80),
+	@Apellidos varchar(80),
+	@DepartamentoID int,
+	@TituloLaboral varchar(35),
+	@FechaDeNacimiento date,
+	@FechaDeContratacion date,
+	@EstadoCivil int,
+	@Genero int,
+	@Domicilio varchar(200),
+	@Ciudad varchar(35),
+	@Telefono varchar(25),
+	@Cedula varchar(25),
+	@Email varchar(50),
+	@Observaciones text,
+	@ReportarA int,
+	@Foto image,
+	@Estado int
+)as begin
+	update RH_Empleado
+		set Nombres=@Nombres,
+			Apellidos=@Apellidos,
+			DepartamentoID=@DepartamentoID,
+			TituloLaboral=@TituloLaboral,
+			FechaDeNacimiento=@FechaDeNacimiento,
+			FechaDeContratacion=@FechaDeContratacion,
+			EstadoCivil=@EstadoCivil,
+			Genero=@Genero,
+			Domicilio=@Domicilio,
+			Ciudad=@Ciudad,
+			Telefono=@Telefono,
+			Cedula=@Cedula,
+			Email=@Email,
+			Observaciones=@Observaciones,
+			ReportarA=@ReportarA,
+			Foto=@Foto,
+			Estado=@Estado,
+			FechaModificacion=getdate()
+		where ID = @ID
+end
+
+	go
+
+create procedure [Actualizar_Departamento](
+	@ID int,
+	@Nombre varchar(35),
+	@NombreGrupo varchar(35)
+)as begin
+	update RH_Departamentos
+		set Nombre=@Nombre,
+			NombreGrupo=@NombreGrupo,
+			FechaModificacion=getdate()
+		where ID=@ID
 end
 
 	go
@@ -85,22 +163,38 @@ create procedure [Actualizar_Producto](
 	@ID int,
 	@CategoriaID int,
 	@Nombre varchar(50),
+	@CantidadPorUnidad int,
 	@PrecioVenta decimal(18,2),
 	@Stock int,
 	@Descripcion varchar(250),
 	@Estado int
 )
-as
-begin
+as begin
 	Update Producto
 		set 
 			CategoriaID = @CategoriaID,
 			Nombre = @Nombre,
+			CantidadPorUnidad = @CantidadPorUnidad,
 			PrecioVenta = @PrecioVenta,
 			Stock = @Stock,
 			Descripcion = @Descripcion,
-			Estado = @Estado
+			Estado = @Estado,
+			FechaModificacion = getdate()
 	where ID = @ID
+end
+	
+	go
+
+create procedure [Actualizar_Bodega](
+	@ID int,
+	@Nombre varchar(35),
+	@Almacenaje int
+)as begin
+	update Bodega
+		set Nombre=@Nombre,
+			Almacenaje=@Almacenaje,
+			FechaModificacion=getdate()
+		where ID=@ID
 end
 
 	go
@@ -118,7 +212,8 @@ begin
 		set 
 			Nombre = @Nombre,
 			Descripcion = @Descripcion,
-			Estado = @Estado
+			Estado = @Estado,
+			FechaModificacion = getdate()
 	where ID = @Id
 end
 
@@ -139,7 +234,8 @@ begin
 			ProveedorID = @ProveedorID,
 			FechaCompra = @FechaCompra,
 			TipoPago = @TipoPago,
-			Monto = @Monto
+			Monto = @Monto,
+			FechaModificacion = getdate()
 	where ID = @ID
 end 
 
@@ -159,7 +255,8 @@ begin
 		set 
 			Cantidad = @Cantidad,
 			CostoUnitario = @CostoUnitario,
-			Total = @Total
+			Total = @Total,
+			FechaModificacion = getdate()
 	where CompraID = @CompraID and ProductoID = @ProductoID
 end
 
@@ -168,7 +265,7 @@ end
 -- Venta
 create procedure [Actualizar_Venta](
 	@ID varchar(15),
-	@ClienteID int,
+	@ClienteID varchar(25),
 	@FechaVenta date,
 	@TipoPago int,
 	@TipoVenta int,
@@ -186,7 +283,8 @@ begin
 			TipoVenta = @TipoVenta,
 			SubTotal = @SubTotal,
 			Impuesto = @Impuesto,
-			Total = @Total
+			Total = @Total,
+			FechaModificacion = getdate()
 	where ID = @ID
 end
 
@@ -210,6 +308,48 @@ begin
 			PrecioUnitario = @PrecioUnitario,
 			Descuento = @Descuento,
 			Impuesto = @Impuesto,
-			Total = @Total
+			Total = @Total,
+			FechaModificacion = getdate()
 	where VentaID = @VentaID and ProductoID = @ProductoID
+end
+
+	go
+
+create procedure [Actualizar_TarjetaCredito](
+	@ID int,
+	@TipoTarjeta varchar(25),
+	@NumeroTarjeta varchar(25),
+	@ExpiraMes int,
+	@ExpiraAño int
+)as begin
+	update TarjetaCredito
+		set TipoTarjeta=@TipoTarjeta,
+			NumeroTarjeta=@NumeroTarjeta,
+			ExpiraMes=@ExpiraMes,
+			ExpiraAño=@ExpiraAño,
+			FechaModificacion = getdate()
+end
+
+	go
+
+create procedure [Actualizar_OfertaEspecial](
+	@ID int,
+	@Descripcion text,
+	@PorcentajeDescuento float,
+	@tipoOferta varchar(75),
+	@FechaInicio date,
+	@FechaFinal date,
+	@MinCantidad int,
+	@MaxCantidad int
+)as begin
+	update OfertaEspecial
+		set Descripcion=@Descripcion,
+			PorcentajeDescuento=@PorcentajeDescuento,
+			tipoOferta=@tipoOferta,
+			FechaInicio=@FechaInicio,
+			FechaFinal=@FechaFinal,
+			MinCantidad=@MinCantidad,
+			MaxCantidad=@MaxCantidad,
+			FechaModificacion=getdate()
+		where ID = @ID
 end

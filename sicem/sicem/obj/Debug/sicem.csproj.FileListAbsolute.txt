@@ -47,7 +47,6 @@ C:\Users\Espinoza\Desktop\sicem\sicem\sicem\obj\Debug\sicem.proveedorForm.resour
 C:\Users\Espinoza\Desktop\sicem\sicem\sicem\obj\Debug\sicem.productoForm.resources
 C:\Users\Espinoza\Desktop\sicem\sicem\sicem\obj\Debug\sicem.categoriaForm.resources
 C:\Users\Espinoza\Desktop\sicem\sicem\sicem\obj\Debug\sicem.usuarioForm.resources
-C:\Users\Espinoza\Desktop\sicem\sicem\sicem\obj\Debug\sicem.vista.Dialogos.logoutDialog.resources
 C:\Users\Espinoza\Desktop\sicem\sicem\sicem\obj\Debug\sicem.empleadoForm.resources
 C:\Users\Espinoza\Desktop\sicem\sicem\sicem\obj\Debug\sicem.inventario.resources
 C:\Users\Espinoza\Desktop\sicem\sicem\sicem\obj\Debug\sicem.bodegaForm.resources
@@ -57,4 +56,5 @@ C:\Users\Espinoza\Desktop\sicem\sicem\sicem\obj\Debug\sicem.vista.directorio.det
 C:\Users\Espinoza\Desktop\sicem\sicem\sicem\obj\Debug\sicem.vista.directorio.detalleProducto.resources
 C:\Users\Espinoza\Desktop\sicem\sicem\sicem\obj\Debug\sicem.vista.inventario.detalleBodega.resources
 C:\Users\Espinoza\Desktop\sicem\sicem\sicem\obj\Debug\sicem.vista.inventario.detalleInventario.resources
-C:\Users\Espinoza\Desktop\sicem\sicem\sicem\obj\Debug\sicem.vista.Dialogos.confirmDialog.resources
+C:\Users\Espinoza\Desktop\sicem\sicem\sicem\obj\Debug\sicem.confirmDialog.resources
+C:\Users\Espinoza\Desktop\sicem\sicem\sicem\obj\Debug\sicem.logoutDialog.resources

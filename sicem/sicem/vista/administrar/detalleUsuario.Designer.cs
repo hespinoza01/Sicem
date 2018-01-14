@@ -228,6 +228,7 @@
             this.valueEstado.Size = new System.Drawing.Size(35, 20);
             this.valueEstado.TabIndex = 66;
             this.valueEstado.Value = true;
+            this.valueEstado.OnValueChange += new System.EventHandler(this.valueEstado_OnValueChange);
             // 
             // bunifuCustomLabel3
             // 
@@ -261,6 +262,7 @@
             this.Controls.Add(this.foto);
             this.Name = "detalleUsuario";
             this.Size = new System.Drawing.Size(483, 590);
+            this.Load += new System.EventHandler(this.detalleUsuario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.foto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtApellido)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre)).EndInit();

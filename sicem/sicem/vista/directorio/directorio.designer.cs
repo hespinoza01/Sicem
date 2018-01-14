@@ -40,22 +40,23 @@
             this.labelcliente = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.erraseButton = new Bunifu.Framework.UI.BunifuImageButton();
             this.contentSearch = new System.Windows.Forms.Panel();
-            this.metodoBusqueda = new Bunifu.Framework.UI.BunifuDropdown();
             this.txtBuscar = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.agregarButton = new Bunifu.Framework.UI.BunifuImageButton();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.vistaClientes = new Bunifu.Framework.UI.BunifuCustomDataGrid();
-            this.columnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vistaListado = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.panel3 = new System.Windows.Forms.Panel();
             this.contentDetails = new System.Windows.Forms.Panel();
+            this.metodoBusqueda = new iTalk.iTalk_ComboBox();
+            this.columnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnFechaModificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.erraseButton)).BeginInit();
             this.contentSearch.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.agregarButton)).BeginInit();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.vistaClientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vistaListado)).BeginInit();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -131,29 +132,6 @@
             this.contentSearch.Size = new System.Drawing.Size(350, 37);
             this.contentSearch.TabIndex = 12;
             // 
-            // metodoBusqueda
-            // 
-            this.metodoBusqueda.AutoSize = true;
-            this.metodoBusqueda.BackColor = System.Drawing.Color.Transparent;
-            this.metodoBusqueda.BorderRadius = 0;
-            this.metodoBusqueda.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.metodoBusqueda.DisabledColor = System.Drawing.Color.Gray;
-            this.metodoBusqueda.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.metodoBusqueda.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.metodoBusqueda.Items = new string[] {
-        "Nombre/ID",
-        "Correo",
-        "Dirección",
-        "Teléfono"};
-            this.metodoBusqueda.Location = new System.Drawing.Point(234, 8);
-            this.metodoBusqueda.Margin = new System.Windows.Forms.Padding(0);
-            this.metodoBusqueda.Name = "metodoBusqueda";
-            this.metodoBusqueda.NomalColor = System.Drawing.Color.White;
-            this.metodoBusqueda.onHoverColor = System.Drawing.Color.White;
-            this.metodoBusqueda.selectedIndex = 0;
-            this.metodoBusqueda.Size = new System.Drawing.Size(109, 22);
-            this.metodoBusqueda.TabIndex = 14;
-            // 
             // txtBuscar
             // 
             this.txtBuscar.BackColor = System.Drawing.Color.White;
@@ -179,7 +157,7 @@
             this.panel2.Controls.Add(this.agregarButton);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.erraseButton);
-            this.panel2.Controls.Add(this.vistaClientes);
+            this.panel2.Controls.Add(this.vistaListado);
             this.panel2.Controls.Add(this.contentSearch);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
@@ -214,27 +192,28 @@
             this.panel4.Size = new System.Drawing.Size(467, 50);
             this.panel4.TabIndex = 14;
             // 
-            // vistaClientes
+            // vistaListado
             // 
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.vistaClientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.vistaClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.vistaClientes.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.vistaClientes.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.vistaClientes.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.vistaClientes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.vistaListado.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.vistaListado.BackgroundColor = System.Drawing.Color.White;
+            this.vistaListado.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.vistaListado.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.vistaListado.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.RoyalBlue;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.vistaClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.vistaClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.vistaClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.vistaListado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.vistaListado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.vistaListado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.columnID,
-            this.columnName});
+            this.columnName,
+            this.columnFechaModificacion});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -242,44 +221,22 @@
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.RoyalBlue;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.vistaClientes.DefaultCellStyle = dataGridViewCellStyle5;
-            this.vistaClientes.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.vistaClientes.DoubleBuffered = false;
-            this.vistaClientes.EnableHeadersVisualStyles = false;
-            this.vistaClientes.HeaderBgColor = System.Drawing.Color.White;
-            this.vistaClientes.HeaderForeColor = System.Drawing.Color.RoyalBlue;
-            this.vistaClientes.Location = new System.Drawing.Point(0, 141);
-            this.vistaClientes.MultiSelect = false;
-            this.vistaClientes.Name = "vistaClientes";
-            this.vistaClientes.ReadOnly = true;
-            this.vistaClientes.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.vistaClientes.RowHeadersVisible = false;
-            this.vistaClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.vistaClientes.Size = new System.Drawing.Size(467, 449);
-            this.vistaClientes.TabIndex = 14;
-            this.vistaClientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
-            // 
-            // columnID
-            // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.columnID.DefaultCellStyle = dataGridViewCellStyle3;
-            this.columnID.HeaderText = "ID";
-            this.columnID.Name = "columnID";
-            this.columnID.ReadOnly = true;
-            // 
-            // columnName
-            // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            this.columnName.DefaultCellStyle = dataGridViewCellStyle4;
-            this.columnName.HeaderText = "Nombre";
-            this.columnName.Name = "columnName";
-            this.columnName.ReadOnly = true;
+            this.vistaListado.DefaultCellStyle = dataGridViewCellStyle5;
+            this.vistaListado.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.vistaListado.DoubleBuffered = false;
+            this.vistaListado.EnableHeadersVisualStyles = false;
+            this.vistaListado.HeaderBgColor = System.Drawing.Color.White;
+            this.vistaListado.HeaderForeColor = System.Drawing.Color.RoyalBlue;
+            this.vistaListado.Location = new System.Drawing.Point(0, 141);
+            this.vistaListado.MultiSelect = false;
+            this.vistaListado.Name = "vistaListado";
+            this.vistaListado.ReadOnly = true;
+            this.vistaListado.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.vistaListado.RowHeadersVisible = false;
+            this.vistaListado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.vistaListado.Size = new System.Drawing.Size(467, 449);
+            this.vistaListado.TabIndex = 14;
+            this.vistaListado.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // panel3
             // 
@@ -299,6 +256,70 @@
             this.contentDetails.Size = new System.Drawing.Size(483, 590);
             this.contentDetails.TabIndex = 14;
             // 
+            // metodoBusqueda
+            // 
+            this.metodoBusqueda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(246)))));
+            this.metodoBusqueda.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.metodoBusqueda.DropDownHeight = 100;
+            this.metodoBusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.metodoBusqueda.Font = new System.Drawing.Font("Century Gothic", 8.15F);
+            this.metodoBusqueda.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.metodoBusqueda.FormattingEnabled = true;
+            this.metodoBusqueda.HoverSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.metodoBusqueda.IntegralHeight = false;
+            this.metodoBusqueda.ItemHeight = 20;
+            this.metodoBusqueda.Items.AddRange(new object[] {
+            "Nombre/ID",
+            "Correo",
+            "Dirección",
+            "Teléfono"});
+            this.metodoBusqueda.Location = new System.Drawing.Point(237, 6);
+            this.metodoBusqueda.Name = "metodoBusqueda";
+            this.metodoBusqueda.Size = new System.Drawing.Size(102, 26);
+            this.metodoBusqueda.StartIndex = 0;
+            this.metodoBusqueda.TabIndex = 1;
+            // 
+            // columnID
+            // 
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.columnID.DefaultCellStyle = dataGridViewCellStyle3;
+            this.columnID.FillWeight = 80F;
+            this.columnID.HeaderText = "ID";
+            this.columnID.MinimumWidth = 80;
+            this.columnID.Name = "columnID";
+            this.columnID.ReadOnly = true;
+            this.columnID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.columnID.Width = 80;
+            // 
+            // columnName
+            // 
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            this.columnName.DefaultCellStyle = dataGridViewCellStyle4;
+            this.columnName.FillWeight = 230F;
+            this.columnName.HeaderText = "Nombre";
+            this.columnName.MinimumWidth = 230;
+            this.columnName.Name = "columnName";
+            this.columnName.ReadOnly = true;
+            this.columnName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.columnName.Width = 230;
+            // 
+            // columnFechaModificacion
+            // 
+            this.columnFechaModificacion.FillWeight = 167F;
+            this.columnFechaModificacion.HeaderText = "Fecha Modificación";
+            this.columnFechaModificacion.MinimumWidth = 167;
+            this.columnFechaModificacion.Name = "columnFechaModificacion";
+            this.columnFechaModificacion.ReadOnly = true;
+            this.columnFechaModificacion.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.columnFechaModificacion.Width = 167;
+            // 
             // directorio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -310,12 +331,11 @@
             this.Load += new System.EventHandler(this.clientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.erraseButton)).EndInit();
             this.contentSearch.ResumeLayout(false);
-            this.contentSearch.PerformLayout();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.agregarButton)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.vistaClientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vistaListado)).EndInit();
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -331,12 +351,13 @@
         private Bunifu.Framework.UI.BunifuCustomLabel labelcliente;
         private Bunifu.Framework.UI.BunifuCustomLabel labelproveedor;
         private Bunifu.Framework.UI.BunifuCustomLabel labelempleado;
-        private Bunifu.Framework.UI.BunifuDropdown metodoBusqueda;
         private System.Windows.Forms.Panel panel4;
         private Bunifu.Framework.UI.BunifuImageButton agregarButton;
-        private Bunifu.Framework.UI.BunifuCustomDataGrid vistaClientes;
+        private Bunifu.Framework.UI.BunifuCustomDataGrid vistaListado;
+        private System.Windows.Forms.Panel contentDetails;
+        private iTalk.iTalk_ComboBox metodoBusqueda;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnID;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnName;
-        private System.Windows.Forms.Panel contentDetails;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnFechaModificacion;
     }
 }

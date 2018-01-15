@@ -14,7 +14,6 @@ namespace sicem
     public partial class clienteForm : Form
     {
         string accionformulario;
-        DBHelper db = new DBHelper();
         public clienteForm()
         {
             InitializeComponent();
@@ -31,11 +30,12 @@ namespace sicem
         private void clienteForm_Load(object sender, EventArgs e)
         {
             inicia();
-            guardar.ButtonText = (accionformulario == "crear" ? "Guarda" : "Actualizar");
         }
 
         private void inicia()
         {
+            guardar.ButtonText = (accionformulario == "crear" ? "Guarda" : "Actualizar");
+
             txtNombre.Region = new region().RoundBorder(txtNombre.Width, txtNombre.Height +1, 7);
             txtID.Region = new region().RoundBorder(txtID.Width, txtID.Height +1, 7);
             txtNombreContacto.Region = new region().RoundBorder(txtNombreContacto.Width, txtNombreContacto.Height+1, 7);
@@ -49,7 +49,7 @@ namespace sicem
 
         private void setDataView(string id)
         {
-            DataTable data = db.DataReader("select * from Cliente where ID = '" + id+"'");
+            DataTable data = new Cliente().Detalle(id);
 
             if(data != null){
                 DataRow row = data.Rows[0];
@@ -63,6 +63,7 @@ namespace sicem
                 txtDireccion.Text = row["Domicilio"].ToString();
             }else {
                 new popup("Error al mostrar información", popup.AlertType.error);
+                this.DialogResult = DialogResult.Cancel;
                 this.Close();
             }
         }
@@ -77,26 +78,25 @@ namespace sicem
         private void guardar_Click(object sender, EventArgs e)
         {
             Cliente c = new Cliente();
-            c.C_Nombre = txtNombre.Text;
-            c.C_Domicilio = txtDireccion.Text;
-            c.C_Email = txtEmail.Text;
-            c.C_Telefono = txtTel.Text;
+            c.Nombre = txtNombre.Text;
+            c.NombreContacto = txtNombreContacto.Text;
+            c.TituloContacto = txtTituloContacto.Text;
+            c.Domicilio = txtDireccion.Text;
+            c.Ciudad = txtCiudad.selectedValue;
+            c.Email = txtEmail.Text;
+            c.Telefono = txtTel.Text;
+            c.Estado = (EstadoValue.Checked) ? 1 : 0;
 
             if (accionformulario == "crear")
-            {
-                try { c.Insertar(); }
-                catch (Exception ex) { new popup("Inserción fallida", popup.AlertType.error); }
-                this.Close();
-            }
+                c.Insertar();
             else
             {
-                try
-                {
-                    c.C_Id = txtID.Text;
-                    c.Editar();
-                }
-                catch (Exception ex) { new popup("Actualización fallida", popup.AlertType.error); }
+                c.ID = txtID.Text;
+                c.Editar();
             }
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
 
         }
 

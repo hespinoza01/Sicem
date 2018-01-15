@@ -14,10 +14,19 @@ namespace sicem
 {
     public partial class confirmDialog : Form
     {
+        string value;
         public confirmDialog(string msj)
         {
             InitializeComponent();
             mensaje.Text = msj;
+            value = "Administrador";
+        }
+
+        public confirmDialog(string msj, string username)
+        {
+            InitializeComponent();
+            mensaje.Text = msj;
+            value = username;
         }
 
         private void confirmDialog_Load(object sender, EventArgs e)
@@ -63,9 +72,12 @@ namespace sicem
 
         private void confirmar_Click(object sender, EventArgs e)
         {
-            DataTable data = new usuario().Verifica("Administrador", txtContraseña.Text.Trim());
-            this.DialogResult = (data.Rows.Count != 0) ? DialogResult.OK : DialogResult.No ;
-            this.Close();
+            DataTable data = new usuario().Verifica(value, txtContraseña.Text.Trim());
+            if (data.Rows.Count != 0){
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }else
+                new popup("Verificación de contraseña incorrecta", popup.AlertType.error);
         }
 
         private void txtContraseña_KeyPress(object sender, KeyPressEventArgs e)

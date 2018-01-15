@@ -15,7 +15,6 @@ namespace sicem
     public partial class usuarioForm : Form
     {
         string accionformulario;
-        Image pic;
         public usuarioForm()
         {
             InitializeComponent();
@@ -74,6 +73,7 @@ namespace sicem
                 else
                 {
                     new popup("Error al mostrar información", popup.AlertType.error);
+                    this.DialogResult = DialogResult.Cancel;
                     this.Close();
                 }
 
@@ -81,28 +81,18 @@ namespace sicem
 
         private string UserName()
         {
-            string codigo = "@" + nombreTxt.Text.Substring(0, 3) + apellidoTxt.Text.Substring(0, 3);
-            codigo += "001";
-            //Conexión conexion = new Conexión();
+            string codigo = nombreTxt.Text.Substring(0, 3).ToLower() + apellidoTxt.Text.Substring(0, 3).ToLower();
+            string cmd = "select count(*) + 1 from Usuario s where substring(s.ID, 1, 6) = '" + codigo + "'";
 
-            //using (SqlConnection cn = new SqlConnection(Conexión.Cn))
-            //{
-            //    try
-            //    {
-            //        cn.Open();
+            object value = new DBHelper().ReaderScalar(cmd);
+            if(value != null) {
+                int cont = (int)value; 
 
-            //        SqlCommand cmd = new SqlCommand("select count(*) + 1 from Usuario s where substring(s.ID, 1, 7) = '" + codigo+"'", cn);
+                if (cont <= 9) codigo += "00" + cont;
+                if (cont <= 99) codigo += "0" + cont;
+                if (cont <= 999) codigo += cont;
 
-            //        int cont = (int)cmd.ExecuteScalar();
-            //        if (cont <= 9)
-            //            codigo += "00" + cont;
-            //        if (cont <= 99)
-            //            codigo += "0" + cont;
-            //        if (cont <= 999)
-            //            codigo += cont;
-            //    }
-            //    catch (Exception ex) { codigo += "001"; }
-            //}
+            }else{ codigo += "001"; }
 
             return codigo;
         }
@@ -117,14 +107,6 @@ namespace sicem
             return (nombreTxt.Text.Equals("") || apellidoTxt.Text.Equals("")) ? true : false;
         }
 
-        private void confirmarActualizarPerfil()
-        {
-            //if (new dialogoConfirmarContraseña(nomUser.Text).ShowDialog() == DialogResult.OK)
-            //    editInfo();
-            //else
-            //    new popup("Verificación de contraseña incorrecta", popup.AlertType.error);
-        }
-
         private void bunifuImageButton1_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
@@ -137,7 +119,7 @@ namespace sicem
                 popup p = new popup("Campos vacios...", popup.AlertType.error);
 
             }else{
-                if (pass.Text.Equals(confirPass.Text)){
+                if (pass.Text.Equals(confirPass.Text)) {
                     usuario u = new usuario();
                     u.UserName = nomUser.Text;
                     u.Nombre = nombreTxt.Text;
@@ -145,10 +127,16 @@ namespace sicem
                     u.Password = pass.Text;
                     u.PPic = perfil.Image;
 
-                    if (accionformulario == "editar")
-                        u.Editar();
-                    else
-                        u.Insertar();
+                    switch (accionformulario) {
+                        case "editar":
+                            if (new confirmDialog("¿ Actualizar perfil ?", nomUser.Text).ShowDialog() == DialogResult.OK)
+                                u.Editar();
+                            break;
+
+                        case "crear":
+                            u.Insertar();
+                            break;
+                    }
 
                     this.DialogResult = DialogResult.OK;
                     this.Close();

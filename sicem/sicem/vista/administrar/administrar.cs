@@ -32,20 +32,13 @@ namespace sicem
 
         private void inicio()
         {
-            clearForeColor();
-            labelusuarios.ForeColor = Color.RoyalBlue;
-
-            new listadoItems().llenar(metodoBusqueda, new listadoItems().usuario());
             active = "usuario";
+            activa();
 
             contentDetails.Controls.Add(detalleUsuario);
             contentDetails.Controls.Add(detalleProducto);
             contentDetails.Controls.Add(detalleCategoria);
             contentDetails.Controls.Add(detalleOferta);
-
-            detalleUsuario.BringToFront();
-
-            Cargar(false);
         }
 
         private void clearForeColor()
@@ -58,47 +51,49 @@ namespace sicem
 
         public void Cargar(bool buscar)
         {
-            try{
-                DataTable data;
-                string rowname = "";
+            DataTable data;
+            string rowname;
 
-                switch(active){
-                    case "usuario":
-                        data = (buscar)? new usuario().Buscar(txtBuscar.Text, metodoBusqueda.SelectedIndex) : new usuario().Mostrar();
-                        rowname = "Nombre";
-                        break;
+            switch(active){
+                case "usuario":
+                    data = (buscar)? new usuario().Buscar(txtBuscar.Text, metodoBusqueda.SelectedIndex) : new usuario().Mostrar();
+                    rowname = "Nombre";
+                    break;
 
-                    case "producto":
-                        data = (buscar)? new Producto().Buscar(txtBuscar.Text, metodoBusqueda.SelectedIndex) : new Producto().Mostrar();
-                        rowname = "Nombre";
-                        break;
+                case "producto":
+                    data = (buscar)? new Producto().Buscar(txtBuscar.Text, metodoBusqueda.SelectedIndex) : new Producto().Mostrar();
+                    rowname = "Nombre";
+                    break;
 
-                    case "categoria":
-                        data = (buscar)? new Categoria().Buscar(txtBuscar.Text) : new Categoria().Mostrar();
-                        rowname = "Nombre";
-                        break;
+                case "categoria":
+                    data = (buscar)? new Categoria().Buscar(txtBuscar.Text) : new Categoria().Mostrar();
+                    rowname = "Nombre";
+                    break;
 
-                    case "oferta":
-                        data = (buscar)? new OfertaEspecial().Buscar(txtBuscar.Text, metodoBusqueda.SelectedIndex) : new OfertaEspecial().Mostrar();
-                        rowname = "tipoOferta";
-                        break;
+                case "oferta":
+                    data = (buscar)? new OfertaEspecial().Buscar(txtBuscar.Text, metodoBusqueda.SelectedIndex) : new OfertaEspecial().Mostrar();
+                    rowname = "tipoOferta";
+                    break;
 
-                    default:
-                        data = null;
-                        break;
-                }
+                default:
+                    data = null;
+                    rowname = "";
+                    break;
+            }
 
+            if (data != null)
+            {
                 vistaListado.Rows.Clear();
                 columnName.HeaderText = (active == "oferta") ? "Tipo Oferta" : "Nombre";
-                foreach (DataRow row in data.Rows){
+                foreach (DataRow row in data.Rows)
+                {
                     string id, n, fm;
                     id = Convert.ToString(row["ID"]);
                     n = Convert.ToString(row[rowname]);
                     fm = Convert.ToString(row["FechaModificacion"]);
                     vistaListado.Rows.Add(id, n, fm);
                 }
-
-            }catch (Exception ex) { }
+            }
         }
 
         public void activa(){

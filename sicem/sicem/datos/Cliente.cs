@@ -11,59 +11,53 @@ namespace sicem
     class Cliente
     {
         DBHelper db = new DBHelper();
-        private string C_id;
-        private string C_nomb;
-        private string C_domi;
-        private string C_tel;
-        private string C_ema;
 
-
-        public string C_Id
+        public string ID
         {
-            get { return (C_id != null) ? C_id : "N/A"; }
-            set { C_id = (value != null) ? value : "N/A"; }
+            get { return (ID != null) ? ID : "N/A"; }
+            set { ID = (value != null) ? value : "N/A"; }
         }
 
-        public string C_Nombre
+        public string Nombre
         {
-            get { return (C_nomb != null) ? C_nomb : "N/A"; }
-            set { C_nomb = (value != null) ? value : "N/A"; }
+            get { return (Nombre != null) ? Nombre : "N/A"; }
+            set { Nombre = (value != null) ? value : "N/A"; }
         }
 
-        public string C_NombreContacto
+        public string NombreContacto
         {
-            get { return (C_NombreContacto != null) ? C_NombreContacto : "N/A"; }
-            set { C_NombreContacto = (value != null) ? value : "N/A"; }
+            get { return (NombreContacto != null) ? NombreContacto : "N/A"; }
+            set { NombreContacto = (value != null) ? value : "N/A"; }
         }
 
-        public string C_TituloContacto
+        public string TituloContacto
         {
-            get { return (C_TituloContacto != null) ? C_TituloContacto : "N/A"; }
-            set { C_TituloContacto = (value != null) ? value : "N/A"; }
+            get { return (TituloContacto != null) ? TituloContacto : "N/A"; }
+            set { TituloContacto = (value != null) ? value : "N/A"; }
         }
 
-        public string C_Domicilio
+        public string Domicilio
         {
-            get { return (C_domi != null) ? C_domi : "N/A"; }
-            set { C_domi = (value != null) ? value : "N/A"; }
+            get { return (Domicilio != null) ? Domicilio : "N/A"; }
+            set { Domicilio = (value != null) ? value : "N/A"; }
         }
 
-        public string C_Ciudad
+        public string Ciudad
         {
-            get { return (C_Ciudad != null) ? C_Ciudad : "N/A"; }
-            set { C_Ciudad = (value != null) ? value : "N/A"; }
+            get { return (Ciudad != null) ? Ciudad : "N/A"; }
+            set { Ciudad = (value != null) ? value : "N/A"; }
         }
 
-        public string C_Telefono
+        public string Telefono
         {
-            get { return (C_tel != null) ? C_tel : "N/A"; }
-            set { C_tel = (value != null) ? value : "N/A"; }
+            get { return (Telefono != null) ? Telefono : "N/A"; }
+            set { Telefono = (value != null) ? value : "N/A"; }
         }
 
-        public string C_Email
+        public string Email
         {
-            get { return (C_ema != null) ? C_ema : "N/A"; }
-            set { C_ema = (value != null) ? value : "N/A"; }
+            get { return (Email != null) ? Email : "N/A"; }
+            set { Email = (value != null) ? value : "N/A"; }
         }
 
         public int Estado
@@ -72,46 +66,17 @@ namespace sicem
             set;
         }
 
-        public enum Accion
-        {
-            insertar, editar
-        }
-
-        public Cliente()
-        {
-        }
-
-        public Cliente(string id, string nombre, string domicilio, string telefono, string email, Accion type)
-        {
-            C_id = id;
-            C_nomb = nombre;
-            C_domi = domicilio;
-            C_tel = telefono;
-            C_ema = email;
-
-            switch (type)
-            {
-                case Accion.insertar:
-                    Insertar();
-                    break;
-
-                case Accion.editar:
-                    Editar();
-                    break;
-            }
-        }
-
         public void Insertar()
         {
             SqlParameter[] Parametros = new SqlParameter[]{
-                db.Param("@ID", SqlDbType.VarChar, 25, C_Id),
-                db.Param("@NombreCliente", SqlDbType.VarChar, 75, C_Nombre),
-                db.Param("@NombreContacto", SqlDbType.VarChar, 50, C_NombreContacto),
-                db.Param("@TituloContacto", SqlDbType.VarChar, 35, C_TituloContacto),
-                db.Param("@Domicilio", SqlDbType.VarChar, 200, C_Domicilio),
-                db.Param("@Ciudad", SqlDbType.VarChar, 35, C_Ciudad),
-                db.Param("@Telefono", SqlDbType.VarChar, 25, C_Telefono),
-                db.Param("@Email", SqlDbType.VarChar, 50, C_Email),
+                db.Param("@ID", SqlDbType.VarChar, 25, ID),
+                db.Param("@NombreCliente", SqlDbType.VarChar, 75, Nombre),
+                db.Param("@NombreContacto", SqlDbType.VarChar, 50, NombreContacto),
+                db.Param("@TituloContacto", SqlDbType.VarChar, 35, TituloContacto),
+                db.Param("@Domicilio", SqlDbType.VarChar, 200, Domicilio),
+                db.Param("@Ciudad", SqlDbType.VarChar, 35, Ciudad),
+                db.Param("@Telefono", SqlDbType.VarChar, 25, Telefono),
+                db.Param("@Email", SqlDbType.VarChar, 50, Email),
                 db.Param("@Estado", SqlDbType.Int, Estado)
             };
 
@@ -125,14 +90,14 @@ namespace sicem
         public void Editar()
         {
             SqlParameter[] Parametros = new SqlParameter[]{
-                db.Param("@ID", SqlDbType.VarChar, 25, C_Id),
-                db.Param("@NombreCliente", SqlDbType.VarChar, 75, C_Nombre),
-                db.Param("@NombreContacto", SqlDbType.VarChar, 50, C_NombreContacto),
-                db.Param("@TituloContacto", SqlDbType.VarChar, 35, C_TituloContacto),
-                db.Param("@Domicilio", SqlDbType.VarChar, 200, C_Domicilio),
-                db.Param("@Ciudad", SqlDbType.VarChar, 35, C_Ciudad),
-                db.Param("@Telefono", SqlDbType.VarChar, 25, C_Telefono),
-                db.Param("@Email", SqlDbType.VarChar, 50, C_Email),
+                db.Param("@ID", SqlDbType.VarChar, 25, ID),
+                db.Param("@NombreCliente", SqlDbType.VarChar, 75, Nombre),
+                db.Param("@NombreContacto", SqlDbType.VarChar, 50, NombreContacto),
+                db.Param("@TituloContacto", SqlDbType.VarChar, 35, TituloContacto),
+                db.Param("@Domicilio", SqlDbType.VarChar, 200, Domicilio),
+                db.Param("@Ciudad", SqlDbType.VarChar, 35, Ciudad),
+                db.Param("@Telefono", SqlDbType.VarChar, 25, Telefono),
+                db.Param("@Email", SqlDbType.VarChar, 50, Email),
                 db.Param("@Estado", SqlDbType.Int, Estado)
             };
 

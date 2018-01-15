@@ -18,7 +18,6 @@ namespace sicem
         {
             InitializeComponent();
             accionformulario = "crear";
-            loadID();
         }
 
         public categoriaForm(int id)
@@ -35,6 +34,7 @@ namespace sicem
 
         private void inicia()
         {
+            if(accionformulario == "crear") loadID();
             aceptar.ButtonText = (accionformulario == "crear") ? "Guardar" : "Actualizar";
 
             txtId.Region = new region().RoundBorder(txtId.Width, txtId.Height+1, 7);
@@ -65,8 +65,8 @@ namespace sicem
 
         private void loadID()
         {
-            int value = (int)new DBHelper().ReaderScalar("select count(*) + 1 from Categoria");
-            txtId.Text = value.ToString();
+            object value = new DBHelper().ReaderScalar("select count(*) + 1 from Categoria");
+            txtId.Text = (value != null) ? value.ToString() : "";
         }
 
         private void cancelar_Click(object sender, EventArgs e)

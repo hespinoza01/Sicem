@@ -33,7 +33,6 @@ namespace sicem
                     if (cn.State == ConnectionState.Open) cn.Close();
                 }
             }
-
             return data;
         }
 

@@ -19,7 +19,6 @@ namespace sicem//.vista.administrar
         {
             InitializeComponent();
             accionformulario = "crear";
-            loadID();
         }
 
         public productoForm(int id)
@@ -36,6 +35,7 @@ namespace sicem//.vista.administrar
 
         private void inicia()
         {
+            if(accionformulario == "crear") loadID();
             guardarButton.ButtonText = (accionformulario == "crear") ? "Guardar" : "Actualizar";
 
             txtID.Region = new region().RoundBorder(txtID.Width, txtID.Height + 1, 7);
@@ -125,8 +125,9 @@ namespace sicem//.vista.administrar
 
         private void loadID()
         {
-            int value = (int)new DBHelper().ReaderScalar("select count(*) + 1 from Producto");
-            txtID.Text = value.ToString();
+            object value = new DBHelper().ReaderScalar("select count(ID) + 1 from Producto");
+            if(value != null)
+                txtID.Text = value.ToString();
         }
 
         private void cancelarButton_Click(object sender, EventArgs e)

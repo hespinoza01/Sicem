@@ -24,7 +24,6 @@ namespace sicem
         {
             InitializeComponent();
             accionformulario = "crear";
-            loadID();
         }
 
         public ofertaForm(int id)
@@ -44,6 +43,7 @@ namespace sicem
             guardarButton.ButtonText = (accionformulario == "crear") ? "Guardar" : "Actualizar";
             if (accionformulario == "crear")
             {
+                loadID();
                 fechaInicio.Value = DateTime.Now;
                 fechaFin.Value = DateTime.Now;
             }
@@ -120,8 +120,8 @@ namespace sicem
 
         private void loadID()
         {
-            int value = (int)new DBHelper().ReaderScalar("select count(*) + 1 from OfertaEspecial");
-            txtID.Text = value.ToString();
+            object value = new DBHelper().ReaderScalar("select count(*) + 1 from OfertaEspecial");
+            txtID.Text = (value != null) ? value.ToString() : "";
         }
 
         private void sugerencias()

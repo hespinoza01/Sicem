@@ -17,10 +17,25 @@ namespace sicem.vista.directorio
             InitializeComponent();
         }
 
+        private void detalleProveedor_Load(object sender, EventArgs e)
+        {
+            inicia();
+        }
+
+        private void inicia()
+        {
+            editar.Visible = false;
+            EstadoValue.Text = "";
+            labelFechaModificacion.Text = "";
+            editar.Click += editar_Click;
+        }
+
         public void setInfo(int id){
+            editar.Visible = true;
         	DataTable data = new Proveedor().Detalle(id);
 
         	if(data != null){
+                editar.Visible = true;
         		DataRow row = data.Rows[0];
 
         		txtID.Text = row["ID"].ToString();
@@ -31,6 +46,7 @@ namespace sicem.vista.directorio
         		txtCiudad.Text = row["Ciudad"].ToString();
         		txtTel.Text = row["Telefono"].ToString();
         		txtEmail.Text = row["Email"].ToString();
+                EstadoValue.Text = (int.Parse(row["Estado"].ToString()) == 1) ? "Habilitado" : "Deshabilitado";
         		labelFechaModificacion.Text = row["FechaModificacion"].ToString();	
         	}else
         		new popup("Error al mostrar detalle", popup.AlertType.error);
@@ -40,5 +56,6 @@ namespace sicem.vista.directorio
         	if(new proveedorForm(int.Parse(txtID.Text)).ShowDialog() == DialogResult.OK)
         		setInfo(int.Parse(txtID.Text));
         }
+
     }
 }

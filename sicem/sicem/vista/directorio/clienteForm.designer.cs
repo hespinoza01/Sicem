@@ -201,6 +201,7 @@
             this.txtNombre.Size = new System.Drawing.Size(214, 30);
             this.txtNombre.TabIndex = 27;
             this.txtNombre.ThemeName = "Material";
+            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtNombre.GetChildAt(0))).Text = "";
             ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtNombre.GetChildAt(0))).FocusBorderColor = System.Drawing.Color.RoyalBlue;
             ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtNombre.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(8, 2, 8, 2);
@@ -220,7 +221,7 @@
             this.txtID.RootElement.ControlDefaultSize = new System.Drawing.Size(235, 28);
             this.txtID.RootElement.CustomFont = "None";
             this.txtID.RootElement.FocusBorderColor = System.Drawing.Color.RoyalBlue;
-            this.txtID.Size = new System.Drawing.Size(96, 30);
+            this.txtID.Size = new System.Drawing.Size(115, 30);
             this.txtID.TabIndex = 28;
             this.txtID.ThemeName = "Material";
             ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtID.GetChildAt(0))).Text = "";

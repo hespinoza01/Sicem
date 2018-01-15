@@ -13,95 +13,66 @@ namespace sicem
         DBHelper db = new DBHelper();
 
 
-        public int P_Id{
+        public int ID{
             get;
             set; 
         }
 
-        public string P_Nombre{
-            get { return (P_Nombre != null) ? P_Nombre : "N/A"; }
-            set { P_Nombre = (value != null) ? value : "N/A"; }
+        public string Nombre{
+            get { return (Nombre != null) ? Nombre : "N/A"; }
+            set { Nombre = (value != null) ? value : "N/A"; }
         }
 
-        public string P_NombreContacto
+        public string NombreContacto
         {
-            get { return (P_NombreContacto != null) ? P_NombreContacto : "N/A"; }
-            set { P_NombreContacto = (value != null) ? value : "N/A"; }
+            get { return (NombreContacto != null) ? NombreContacto : "N/A"; }
+            set { NombreContacto = (value != null) ? value : "N/A"; }
         }
 
-        public string P_TituloContacto
+        public string TituloContacto
         {
-            get { return (P_TituloContacto != null) ? P_TituloContacto : "N/A"; }
-            set { P_TituloContacto = (value != null) ? value : "N/A"; }
+            get { return (TituloContacto != null) ? TituloContacto : "N/A"; }
+            set { TituloContacto = (value != null) ? value : "N/A"; }
         }
 
-        public string P_Domicilio{
-            get { return (P_Domicilio != null) ? P_Domicilio : "N/A"; }
-            set { P_Domicilio = (value != null) ? value : "N/A"; }
+        public string Domicilio{
+            get { return (Domicilio != null) ? Domicilio : "N/A"; }
+            set { Domicilio = (value != null) ? value : "N/A"; }
         }
 
-        public string P_Ciudad
+        public string Ciudad
         {
-            get { return (P_Ciudad != null) ? P_Ciudad : "N/A"; }
-            set { P_Ciudad = (value != null) ? value : "N/A"; }
+            get { return (Ciudad != null) ? Ciudad : "N/A"; }
+            set { Ciudad = (value != null) ? value : "N/A"; }
         }
 
-        public string P_Telefono{
-            get { return (P_Telefono != null) ? P_Telefono : "N/A"; }
-            set { P_Telefono = (value != null) ? value : "N/A"; }
+        public string Telefono{
+            get { return (Telefono != null) ? Telefono : "N/A"; }
+            set { Telefono = (value != null) ? value : "N/A"; }
         }
 
-        public string P_Email{
-            get { return (P_Email != null) ? P_Email : "N/A"; }
-            set { P_Email = (value != null) ? value : "N/A"; }
+        public string Email{
+            get { return (Email != null) ? Email : "N/A"; }
+            set { Email = (value != null) ? value : "N/A"; }
         }
 
-        public int P_Estado
+        public int Estado
         {
             get;
             set;
         }
 
-        public enum Accion
-        {
-            insertar, editar
-        }
-
-        public Proveedor()
-        {
-        }
-
-        public Proveedor(int id, string nombre, string domicilio, string telefono, string email, Accion type)
-        {
-            P_Id = id;
-            P_Nombre = nombre;
-            P_Domicilio = domicilio;
-            P_Telefono = telefono;
-            P_Email = email;
-
-            switch (type)
-            {
-                case Accion.insertar:
-                    Insertar();
-                    break;
-
-                case Accion.editar:
-                    Editar();
-                    break;
-            }
-        }
-
         public void Insertar()
         {
             SqlParameter[] Parametros = new SqlParameter[]{
-                db.Param("@Nombre", SqlDbType.VarChar, 75, P_Nombre),
-                db.Param("@NombreContacto", SqlDbType.VarChar, 50, P_NombreContacto),
-                db.Param("@TituloContacto", SqlDbType.VarChar, 35, P_TituloContacto),
-                db.Param("@Domicilio", SqlDbType.VarChar, 200, P_Domicilio),
-                db.Param("@Ciudad", SqlDbType.VarChar, 35, P_Ciudad),
-                db.Param("@Telefono", SqlDbType.VarChar, 25, P_Telefono),
-                db.Param("@Email", SqlDbType.VarChar, 50, P_Email),
-                db.Param("@Estado", SqlDbType.Int, P_Estado)
+                db.Param("@Nombre", SqlDbType.VarChar, 75, Nombre),
+                db.Param("@NombreContacto", SqlDbType.VarChar, 50, NombreContacto),
+                db.Param("@TituloContacto", SqlDbType.VarChar, 35, TituloContacto),
+                db.Param("@Domicilio", SqlDbType.VarChar, 200, Domicilio),
+                db.Param("@Ciudad", SqlDbType.VarChar, 35, Ciudad),
+                db.Param("@Telefono", SqlDbType.VarChar, 25, Telefono),
+                db.Param("@Email", SqlDbType.VarChar, 50, Email),
+                db.Param("@Estado", SqlDbType.Int, Estado)
             };
 
             if (db.ExecuteQuery("Insertar_Proveedor", Parametros))
@@ -114,15 +85,15 @@ namespace sicem
         public void Editar()
         {
             SqlParameter[] Parametros = new SqlParameter[]{
-                db.Param("@ID", SqlDbType.Int, P_Id),
-                db.Param("@Nombre", SqlDbType.VarChar, 75, P_Nombre),
-                db.Param("@NombreContacto", SqlDbType.VarChar, 50, P_NombreContacto),
-                db.Param("@TituloContacto", SqlDbType.VarChar, 35, P_TituloContacto),
-                db.Param("@Domicilio", SqlDbType.VarChar, 200, P_Domicilio),
-                db.Param("@Ciudad", SqlDbType.VarChar, 35, P_Ciudad),
-                db.Param("@Telefono", SqlDbType.VarChar, 25, P_Telefono),
-                db.Param("@Email", SqlDbType.VarChar, 50, P_Email),
-                db.Param("@Estado", SqlDbType.Int, P_Estado)
+                db.Param("@ID", SqlDbType.Int, ID),
+                db.Param("@Nombre", SqlDbType.VarChar, 75, Nombre),
+                db.Param("@NombreContacto", SqlDbType.VarChar, 50, NombreContacto),
+                db.Param("@TituloContacto", SqlDbType.VarChar, 35, TituloContacto),
+                db.Param("@Domicilio", SqlDbType.VarChar, 200, Domicilio),
+                db.Param("@Ciudad", SqlDbType.VarChar, 35, Ciudad),
+                db.Param("@Telefono", SqlDbType.VarChar, 25, Telefono),
+                db.Param("@Email", SqlDbType.VarChar, 50, Email),
+                db.Param("@Estado", SqlDbType.Int, Estado)
             };
 
             if (db.ExecuteQuery("Actualizar_Proveedores", Parametros))

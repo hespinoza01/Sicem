@@ -29,6 +29,7 @@ namespace sicem
         public void inicia()
         {
             new listadoItems().llenar(metodoBusqueda, new listadoItems().producto());
+            metodoBusqueda.StartIndex = 0;
 
             contentDetails.Controls.Add(detalleProducto);
             detalleProducto.ocultaCampos();
@@ -38,11 +39,13 @@ namespace sicem
 
         public void Cargar(bool buscar)
         {
-            try{
-                DataTable data = (buscar) ? new Producto().Buscar(txtBuscar.Text, metodoBusqueda.SelectedIndex) : new Producto().Mostrar();
+            DataTable data = (buscar) ? new Producto().Buscar(txtBuscar.Text, metodoBusqueda.SelectedIndex) : new Producto().Mostrar();
 
+            if (data != null)
+            {
                 vista.Rows.Clear();
-                foreach(DataRow row in vista.Rows){
+                foreach (DataRow row in vista.Rows)
+                {
                     string id, n, fm;
                     id = Convert.ToString(row["ID"]);
                     n = Convert.ToString(row["Nombre"]);
@@ -50,7 +53,6 @@ namespace sicem
                     vista.Rows.Add(id, n, fm);
                 }
             }
-            catch (Exception ex) { }
         }
 
         private void agregarButton_Click(object sender, EventArgs e)
@@ -60,6 +62,8 @@ namespace sicem
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            string value = vista.Rows[e.RowIndex].Cells[0].Value.ToString();
+            detalleProducto.setInfo(int.Parse(value));
         }
 
         private void txtBuscar_OnTextChange(object sender, EventArgs e)

@@ -24,6 +24,7 @@ namespace sicem.vista.directorio
 
         private void inicia()
         {
+            labelFechaModificacion.Text = "";
             editar.Visible = false;
             editar.Click += editar_Click;
         }
@@ -48,9 +49,10 @@ namespace sicem.vista.directorio
 
         private void setProductosAlbergados()
         {
-            string cmd = "select count(*) from Producto where CategoriaID = "+int.Parse(txtId.Text);
-            int value = (int)new DBHelper().ReaderScalar(cmd);
-            txtCantidadProductosAlbergados.Text = value.ToString();
+            string cmd = "select count(*) from Producto where CategoriaID = '"+int.Parse(txtId.Text)+"'";
+            object value = new DBHelper().ReaderScalar(cmd);
+            if(value != null)
+                txtCantidadProductosAlbergados.Text = value.ToString();
         }
 
         private void editar_Click(object sender, EventArgs e){

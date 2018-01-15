@@ -50,6 +50,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtCiudad = new Telerik.WinControls.UI.RadTextBox();
             this.materialTheme1 = new Telerik.WinControls.Themes.MaterialTheme();
+            this.EstadoValue = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.txtTituloContacto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombreContacto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDireccion)).BeginInit();
@@ -362,11 +363,24 @@
             ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtCiudad.GetChildAt(0))).FocusBorderColor = System.Drawing.Color.RoyalBlue;
             ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtCiudad.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(8, 2, 8, 2);
             // 
+            // EstadoValue
+            // 
+            this.EstadoValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.EstadoValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EstadoValue.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.EstadoValue.Location = new System.Drawing.Point(341, 563);
+            this.EstadoValue.Name = "EstadoValue";
+            this.EstadoValue.Size = new System.Drawing.Size(104, 13);
+            this.EstadoValue.TabIndex = 63;
+            this.EstadoValue.Text = "Estado";
+            this.EstadoValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // detalleProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
+            this.Controls.Add(this.EstadoValue);
             this.Controls.Add(this.txtCiudad);
             this.Controls.Add(this.labelFechaModificacion);
             this.Controls.Add(this.label8);
@@ -389,6 +403,7 @@
             this.Controls.Add(this.label5);
             this.Name = "detalleProveedor";
             this.Size = new System.Drawing.Size(483, 590);
+            this.Load += new System.EventHandler(this.detalleProveedor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtTituloContacto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombreContacto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDireccion)).EndInit();
@@ -427,5 +442,6 @@
         private System.Windows.Forms.Label label8;
         private Telerik.WinControls.UI.RadTextBox txtCiudad;
         private Telerik.WinControls.Themes.MaterialTheme materialTheme1;
+        private System.Windows.Forms.Label EstadoValue;
     }
 }

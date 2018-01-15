@@ -33,24 +33,17 @@ namespace sicem
 
         private void inicia()
         {
-            clearForeColor();
-            labelcliente.ForeColor = Color.RoyalBlue;
 
             contentDetails.Controls.Add(detalleCliente);
             contentDetails.Controls.Add(detalleProveedor);
             contentDetails.Controls.Add(detalleEmpleado);
 
-            detalleCliente.BringToFront();
-
-            new listadoItems().llenar(metodoBusqueda, new listadoItems().cliente());
             active = "cliente";
-
-            Cargar(false);
+            activa();
         }
 
         public void Cargar(bool busqueda)
         {
-            try{
                 DataTable data = null;
                 string rowname = "";
 
@@ -71,16 +64,19 @@ namespace sicem
                         break;
                 }
 
+            if (data != null)
+            {
                 vistaListado.Rows.Clear();
-                foreach (DataRow row in data.Rows){
+                foreach (DataRow row in data.Rows)
+                {
                     string id, n, fm;
                     id = Convert.ToString(row["ID"]);
                     n = Convert.ToString(row[rowname]);
                     fm = Convert.ToString(row["FechaModificacion"]);
                     vistaListado.Rows.Add(id, n, fm);
                 }
+            }
 
-            }catch (Exception ex) { }
         }
 
         private void clearForeColor()
@@ -93,6 +89,7 @@ namespace sicem
         private void activa()
         {
             clearForeColor();
+            Cargar(false);
 
             switch (active)
             {
@@ -120,6 +117,8 @@ namespace sicem
                     detalleEmpleado.BringToFront();
                     break;
             }
+
+            metodoBusqueda.StartIndex = 0;
         }
 
         private void agregarButton_Click(object sender, EventArgs e)
@@ -162,9 +161,9 @@ namespace sicem
         private void txtBuscar_OnTextChange(object sender, EventArgs e)
         {
             if (txtBuscar.Text.Length > 0)
-                Cargar(false);
-            else
                 Cargar(true);
+            else
+                Cargar(false);
         }
 
         private void labelcliente_Click(object sender, EventArgs e)

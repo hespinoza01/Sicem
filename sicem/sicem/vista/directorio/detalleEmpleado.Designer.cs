@@ -38,7 +38,7 @@
             this.txtNombre = new Telerik.WinControls.UI.RadTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.labelID = new System.Windows.Forms.Label();
-            this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
+            this.txtGenero = new Telerik.WinControls.UI.RadTextBox();
             this.collapsiveInfoPersonal = new Bunifu.Framework.UI.BunifuCards();
             this.txtEstadoCivil = new Telerik.WinControls.UI.RadTextBox();
             this.txtCiudad = new Telerik.WinControls.UI.RadTextBox();
@@ -70,12 +70,13 @@
             this.labelFechaModificacion = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.materialTheme1 = new Telerik.WinControls.Themes.MaterialTheme();
+            this.EstadoValue = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.foto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.editar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtApellido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGenero)).BeginInit();
             this.collapsiveInfoPersonal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtEstadoCivil)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCiudad)).BeginInit();
@@ -222,27 +223,27 @@
             this.labelID.Text = "ID";
             this.labelID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // radTextBox1
+            // txtGenero
             // 
-            this.radTextBox1.AutoSize = false;
-            this.radTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
-            this.radTextBox1.Enabled = false;
-            this.radTextBox1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radTextBox1.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.radTextBox1.Location = new System.Drawing.Point(351, 105);
-            this.radTextBox1.Name = "radTextBox1";
+            this.txtGenero.AutoSize = false;
+            this.txtGenero.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
+            this.txtGenero.Enabled = false;
+            this.txtGenero.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGenero.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.txtGenero.Location = new System.Drawing.Point(351, 105);
+            this.txtGenero.Name = "txtGenero";
             // 
             // 
             // 
-            this.radTextBox1.RootElement.ControlDefaultSize = new System.Drawing.Size(235, 28);
-            this.radTextBox1.RootElement.CustomFont = "None";
-            this.radTextBox1.RootElement.FocusBorderColor = System.Drawing.Color.RoyalBlue;
-            this.radTextBox1.Size = new System.Drawing.Size(108, 30);
-            this.radTextBox1.TabIndex = 68;
-            this.radTextBox1.ThemeName = "Material";
-            ((Telerik.WinControls.UI.RadTextBoxElement)(this.radTextBox1.GetChildAt(0))).Text = "";
-            ((Telerik.WinControls.UI.RadTextBoxElement)(this.radTextBox1.GetChildAt(0))).FocusBorderColor = System.Drawing.Color.RoyalBlue;
-            ((Telerik.WinControls.UI.RadTextBoxElement)(this.radTextBox1.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(8, 2, 8, 2);
+            this.txtGenero.RootElement.ControlDefaultSize = new System.Drawing.Size(235, 28);
+            this.txtGenero.RootElement.CustomFont = "None";
+            this.txtGenero.RootElement.FocusBorderColor = System.Drawing.Color.RoyalBlue;
+            this.txtGenero.Size = new System.Drawing.Size(108, 30);
+            this.txtGenero.TabIndex = 68;
+            this.txtGenero.ThemeName = "Material";
+            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtGenero.GetChildAt(0))).Text = "";
+            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtGenero.GetChildAt(0))).FocusBorderColor = System.Drawing.Color.RoyalBlue;
+            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtGenero.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(8, 2, 8, 2);
             // 
             // collapsiveInfoPersonal
             // 
@@ -774,16 +775,29 @@
             this.label16.TabIndex = 71;
             this.label16.Text = "Última modificación :";
             // 
+            // EstadoValue
+            // 
+            this.EstadoValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.EstadoValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EstadoValue.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.EstadoValue.Location = new System.Drawing.Point(359, 563);
+            this.EstadoValue.Name = "EstadoValue";
+            this.EstadoValue.Size = new System.Drawing.Size(104, 13);
+            this.EstadoValue.TabIndex = 73;
+            this.EstadoValue.Text = "Estado";
+            this.EstadoValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // detalleEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
+            this.Controls.Add(this.EstadoValue);
             this.Controls.Add(this.collapsiveInfoPersonal);
             this.Controls.Add(this.labelFechaModificacion);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.collapsiveInfoLaboral);
-            this.Controls.Add(this.radTextBox1);
+            this.Controls.Add(this.txtGenero);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtApellido);
             this.Controls.Add(this.label3);
@@ -801,7 +815,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtApellido)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGenero)).EndInit();
             this.collapsiveInfoPersonal.ResumeLayout(false);
             this.collapsiveInfoPersonal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtEstadoCivil)).EndInit();
@@ -834,7 +848,7 @@
         private Telerik.WinControls.UI.RadTextBox txtNombre;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelID;
-        private Telerik.WinControls.UI.RadTextBox radTextBox1;
+        private Telerik.WinControls.UI.RadTextBox txtGenero;
         private Bunifu.Framework.UI.BunifuCards collapsiveInfoPersonal;
         private Telerik.WinControls.UI.RadTextBox txtEstadoCivil;
         private Telerik.WinControls.UI.RadTextBox txtCiudad;
@@ -866,5 +880,6 @@
         private System.Windows.Forms.Label labelFechaModificacion;
         private System.Windows.Forms.Label label16;
         private Telerik.WinControls.Themes.MaterialTheme materialTheme1;
+        private System.Windows.Forms.Label EstadoValue;
     }
 }

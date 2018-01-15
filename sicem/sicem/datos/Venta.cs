@@ -11,35 +11,7 @@ namespace sicem
     class venta
     {
         DBHelper db = new DBHelper();
-        public venta() { }
-
-        public venta(string id, int clienteid, DateTime fechaventa, int tipopago, int tipoventa, decimal subtotal, decimal tax, decimal total, Accion type)
-        {
-            this.Id = id;
-            this.ClientId = clienteid;
-            this.FechaVenta = fechaventa;
-            this.TipoPago = tipopago;
-            this.TipoVenta = tipoventa;
-            this.SubTotal = subtotal;
-            this.Tax = tax;
-            this.MontoTotal = total;
-
-            switch (type)
-            {
-                case Accion.insertar:
-                    Insertar();
-                    break;
-
-                case Accion.editar:
-                    Editar();
-                    break;
-            }
-        }
-
-        public enum Accion
-        {
-            insertar, editar
-        }
+        
 
         public string Id{ get; set; }
         public int ClientId{ get; set; }

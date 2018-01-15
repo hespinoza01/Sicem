@@ -50,6 +50,7 @@
             this.labelFechaModificacion = new System.Windows.Forms.Label();
             this.editar = new Bunifu.Framework.UI.BunifuImageButton();
             this.materialTheme1 = new Telerik.WinControls.Themes.MaterialTheme();
+            this.EstadoValue = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.txtTituloContacto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombreContacto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDireccion)).BeginInit();
@@ -66,7 +67,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label7.Location = new System.Drawing.Point(245, 358);
+            this.label7.Location = new System.Drawing.Point(245, 348);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(40, 13);
             this.label7.TabIndex = 52;
@@ -77,9 +78,9 @@
             this.txtTituloContacto.AutoSize = false;
             this.txtTituloContacto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
             this.txtTituloContacto.Enabled = false;
-            this.txtTituloContacto.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTituloContacto.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTituloContacto.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.txtTituloContacto.Location = new System.Drawing.Point(251, 242);
+            this.txtTituloContacto.Location = new System.Drawing.Point(251, 232);
             this.txtTituloContacto.Name = "txtTituloContacto";
             // 
             // 
@@ -98,7 +99,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label6.Location = new System.Drawing.Point(253, 224);
+            this.label6.Location = new System.Drawing.Point(253, 214);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 13);
             this.label6.TabIndex = 50;
@@ -109,9 +110,9 @@
             this.txtNombreContacto.AutoSize = false;
             this.txtNombreContacto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
             this.txtNombreContacto.Enabled = false;
-            this.txtNombreContacto.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombreContacto.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombreContacto.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.txtNombreContacto.Location = new System.Drawing.Point(66, 242);
+            this.txtNombreContacto.Location = new System.Drawing.Point(66, 232);
             this.txtNombreContacto.Name = "txtNombreContacto";
             // 
             // 
@@ -130,7 +131,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label3.Location = new System.Drawing.Point(68, 224);
+            this.label3.Location = new System.Drawing.Point(68, 214);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(90, 13);
             this.label3.TabIndex = 48;
@@ -141,9 +142,9 @@
             this.txtDireccion.AutoSize = false;
             this.txtDireccion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
             this.txtDireccion.Enabled = false;
-            this.txtDireccion.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDireccion.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDireccion.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.txtDireccion.Location = new System.Drawing.Point(66, 440);
+            this.txtDireccion.Location = new System.Drawing.Point(66, 430);
             this.txtDireccion.Multiline = true;
             this.txtDireccion.Name = "txtDireccion";
             // 
@@ -164,9 +165,9 @@
             this.txtTel.AutoSize = false;
             this.txtTel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
             this.txtTel.Enabled = false;
-            this.txtTel.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTel.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTel.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.txtTel.Location = new System.Drawing.Point(66, 374);
+            this.txtTel.Location = new System.Drawing.Point(66, 364);
             this.txtTel.Name = "txtTel";
             // 
             // 
@@ -186,9 +187,9 @@
             this.txtEmail.AutoSize = false;
             this.txtEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
             this.txtEmail.Enabled = false;
-            this.txtEmail.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.txtEmail.Location = new System.Drawing.Point(66, 308);
+            this.txtEmail.Location = new System.Drawing.Point(66, 298);
             this.txtEmail.Name = "txtEmail";
             // 
             // 
@@ -208,9 +209,9 @@
             this.txtID.AutoSize = false;
             this.txtID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
             this.txtID.Enabled = false;
-            this.txtID.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtID.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtID.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.txtID.Location = new System.Drawing.Point(301, 176);
+            this.txtID.Location = new System.Drawing.Point(301, 166);
             this.txtID.Name = "txtID";
             // 
             // 
@@ -218,7 +219,7 @@
             this.txtID.RootElement.ControlDefaultSize = new System.Drawing.Size(235, 28);
             this.txtID.RootElement.CustomFont = "None";
             this.txtID.RootElement.FocusBorderColor = System.Drawing.Color.RoyalBlue;
-            this.txtID.Size = new System.Drawing.Size(96, 30);
+            this.txtID.Size = new System.Drawing.Size(115, 30);
             this.txtID.TabIndex = 44;
             this.txtID.ThemeName = "Material";
             ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtID.GetChildAt(0))).Text = "";
@@ -230,9 +231,9 @@
             this.txtNombre.AutoSize = false;
             this.txtNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
             this.txtNombre.Enabled = false;
-            this.txtNombre.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombre.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombre.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.txtNombre.Location = new System.Drawing.Point(66, 176);
+            this.txtNombre.Location = new System.Drawing.Point(66, 166);
             this.txtNombre.Name = "txtNombre";
             // 
             // 
@@ -251,7 +252,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label1.Location = new System.Drawing.Point(68, 158);
+            this.label1.Location = new System.Drawing.Point(68, 148);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(120, 13);
             this.label1.TabIndex = 38;
@@ -261,7 +262,7 @@
             // 
             this.labelID.AutoSize = true;
             this.labelID.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.labelID.Location = new System.Drawing.Point(303, 158);
+            this.labelID.Location = new System.Drawing.Point(303, 148);
             this.labelID.Name = "labelID";
             this.labelID.Size = new System.Drawing.Size(18, 13);
             this.labelID.TabIndex = 42;
@@ -271,7 +272,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label2.Location = new System.Drawing.Point(68, 290);
+            this.label2.Location = new System.Drawing.Point(68, 280);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 13);
             this.label2.TabIndex = 39;
@@ -281,7 +282,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label4.Location = new System.Drawing.Point(68, 356);
+            this.label4.Location = new System.Drawing.Point(68, 346);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 13);
             this.label4.TabIndex = 40;
@@ -291,7 +292,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label5.Location = new System.Drawing.Point(68, 422);
+            this.label5.Location = new System.Drawing.Point(68, 412);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 13);
             this.label5.TabIndex = 41;
@@ -302,9 +303,9 @@
             this.txtCiudad.AutoSize = false;
             this.txtCiudad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
             this.txtCiudad.Enabled = false;
-            this.txtCiudad.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCiudad.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCiudad.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.txtCiudad.Location = new System.Drawing.Point(242, 374);
+            this.txtCiudad.Location = new System.Drawing.Point(242, 364);
             this.txtCiudad.Name = "txtCiudad";
             // 
             // 
@@ -322,7 +323,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(191, 30);
+            this.pictureBox1.Location = new System.Drawing.Point(191, 20);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 100);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -362,11 +363,24 @@
             this.editar.TabStop = false;
             this.editar.Zoom = 6;
             // 
+            // EstadoValue
+            // 
+            this.EstadoValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.EstadoValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EstadoValue.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.EstadoValue.Location = new System.Drawing.Point(341, 563);
+            this.EstadoValue.Name = "EstadoValue";
+            this.EstadoValue.Size = new System.Drawing.Size(104, 13);
+            this.EstadoValue.TabIndex = 58;
+            this.EstadoValue.Text = "Estado";
+            this.EstadoValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // detalleCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
+            this.Controls.Add(this.EstadoValue);
             this.Controls.Add(this.editar);
             this.Controls.Add(this.labelFechaModificacion);
             this.Controls.Add(this.label8);
@@ -389,6 +403,7 @@
             this.Controls.Add(this.label5);
             this.Name = "detalleCliente";
             this.Size = new System.Drawing.Size(483, 590);
+            this.Load += new System.EventHandler(this.detalleCliente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtTituloContacto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombreContacto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDireccion)).EndInit();
@@ -427,5 +442,6 @@
         private System.Windows.Forms.Label labelFechaModificacion;
         private Bunifu.Framework.UI.BunifuImageButton editar;
         private Telerik.WinControls.Themes.MaterialTheme materialTheme1;
+        private System.Windows.Forms.Label EstadoValue;
     }
 }

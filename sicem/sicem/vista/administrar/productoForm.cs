@@ -125,7 +125,7 @@ namespace sicem//.vista.administrar
 
         private void loadID()
         {
-            object value = new DBHelper().ReaderScalar("select count(ID) + 1 from Producto");
+            object value = new DBHelper().ReaderScalar("select count(*) + 1 from Producto");
             if(value != null)
                 txtID.Text = value.ToString();
         }

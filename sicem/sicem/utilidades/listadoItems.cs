@@ -163,5 +163,15 @@ namespace sicem
 
             return index;
         }
+
+        public string[] tipoPagoVenta()
+        {
+            string[] data = new string[]
+            {
+                "Efectivo", "Cheque", "Trajeta"
+            };
+
+            return data;
+        }
     }
 }

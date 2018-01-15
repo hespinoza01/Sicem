@@ -12,17 +12,29 @@ namespace sicem.vista.directorio
 {
     public partial class detalleCliente : UserControl
     {
-    	private string idcliente;
         public detalleCliente()
         {
             InitializeComponent();
         }
 
+        private void detalleCliente_Load(object sender, EventArgs e)
+        {
+            inicia();
+        }
+
+        private void inicia()
+        {
+            EstadoValue.Text = "";
+            labelFechaModificacion.Text = "";
+            editar.Visible = false;
+            editar.Click += editar_Click;
+        }
+
         public void setInfo(string id){
-        	idcliente = id;
         	DataTable data = new Cliente().Detalle(id);
 
         	if(data != null){
+                editar.Visible = true;
         		DataRow row = data.Rows[0];
 
         		txtID.Text = row["ID"].ToString();
@@ -33,6 +45,9 @@ namespace sicem.vista.directorio
         		txtCiudad.Text = row["Ciudad"].ToString();
         		txtTel.Text = row["Telefono"].ToString();
         		txtEmail.Text = row["Email"].ToString();
+                EstadoValue.Text = (int.Parse(row["Estado"].ToString()) == 1) ? "Habilitado" : "Deshabilitado";
+                labelFechaModificacion.Text = row["FechaModificacion"].ToString();
+
         	}else{
         		new popup("Error al mostrar detalle", popup.AlertType.error);
         	}
@@ -42,5 +57,6 @@ namespace sicem.vista.directorio
         	if(new clienteForm(txtID.Text).ShowDialog() == DialogResult.OK)
         		setInfo(txtID.Text);
         }
+
     }
 }

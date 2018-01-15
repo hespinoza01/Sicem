@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(detalleVenta));
             this.bunifuCustomLabel4 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.txtCodigoVenta = new Telerik.WinControls.UI.RadTextBox();
@@ -238,20 +238,20 @@
             // 
             // vistaDetalle
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.vistaDetalle.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.vistaDetalle.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.vistaDetalle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.vistaDetalle.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
             this.vistaDetalle.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.vistaDetalle.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.vistaDetalle.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.vistaDetalle.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.vistaDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.vistaDetalle.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.productoID,
@@ -261,14 +261,14 @@
             this.descuentoProducto,
             this.impuestoProducto,
             this.totalProducto});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.vistaDetalle.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.vistaDetalle.DefaultCellStyle = dataGridViewCellStyle7;
             this.vistaDetalle.DoubleBuffered = true;
             this.vistaDetalle.EnableHeadersVisualStyles = false;
             this.vistaDetalle.HeaderBgColor = System.Drawing.Color.RoyalBlue;
@@ -279,11 +279,11 @@
             this.vistaDetalle.ReadOnly = true;
             this.vistaDetalle.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.vistaDetalle.RowHeadersVisible = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.RoyalBlue;
-            this.vistaDetalle.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.RoyalBlue;
+            this.vistaDetalle.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.vistaDetalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.vistaDetalle.Size = new System.Drawing.Size(443, 190);
             this.vistaDetalle.TabIndex = 56;
@@ -353,10 +353,13 @@
             this.txtSubtotal.RootElement.FocusBorderColor = System.Drawing.Color.RoyalBlue;
             this.txtSubtotal.Size = new System.Drawing.Size(80, 28);
             this.txtSubtotal.TabIndex = 59;
+            this.txtSubtotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSubtotal.ThemeName = "Material";
             ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtSubtotal.GetChildAt(0))).Text = "";
             ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtSubtotal.GetChildAt(0))).FocusBorderColor = System.Drawing.Color.RoyalBlue;
             ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtSubtotal.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(8, 2, 8, 2);
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtSubtotal.GetChildAt(0).GetChildAt(2))).BottomWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtSubtotal.GetChildAt(0).GetChildAt(2))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
             // 
             // bunifuCustomLabel1
             // 
@@ -384,12 +387,21 @@
             this.txtImpuesto.RootElement.ControlDefaultSize = new System.Drawing.Size(235, 28);
             this.txtImpuesto.RootElement.CustomFont = "None";
             this.txtImpuesto.RootElement.FocusBorderColor = System.Drawing.Color.RoyalBlue;
+            this.txtImpuesto.RootElement.ShadowDepth = 0;
             this.txtImpuesto.Size = new System.Drawing.Size(80, 28);
             this.txtImpuesto.TabIndex = 61;
+            this.txtImpuesto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtImpuesto.ThemeName = "Material";
             ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtImpuesto.GetChildAt(0))).Text = "";
+            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtImpuesto.GetChildAt(0))).ShadowDepth = 0;
+            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtImpuesto.GetChildAt(0))).EnableFocusBorder = false;
             ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtImpuesto.GetChildAt(0))).FocusBorderColor = System.Drawing.Color.RoyalBlue;
+            ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtImpuesto.GetChildAt(0))).EnableFocusBorderAnimation = false;
             ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtImpuesto.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(8, 2, 8, 2);
+            ((Telerik.WinControls.UI.RadTextBoxItem)(this.txtImpuesto.GetChildAt(0).GetChildAt(0))).ShadowDepth = 0;
+            ((Telerik.WinControls.UI.RadTextBoxItem)(this.txtImpuesto.GetChildAt(0).GetChildAt(0))).Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtImpuesto.GetChildAt(0).GetChildAt(2))).BottomWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtImpuesto.GetChildAt(0).GetChildAt(2))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
             // 
             // bunifuCustomLabel7
             // 
@@ -419,10 +431,13 @@
             this.txtTotal.RootElement.FocusBorderColor = System.Drawing.Color.RoyalBlue;
             this.txtTotal.Size = new System.Drawing.Size(80, 28);
             this.txtTotal.TabIndex = 63;
+            this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTotal.ThemeName = "Material";
             ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtTotal.GetChildAt(0))).Text = "";
             ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtTotal.GetChildAt(0))).FocusBorderColor = System.Drawing.Color.RoyalBlue;
             ((Telerik.WinControls.UI.RadTextBoxElement)(this.txtTotal.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(8, 2, 8, 2);
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtTotal.GetChildAt(0).GetChildAt(2))).BottomWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtTotal.GetChildAt(0).GetChildAt(2))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
             // 
             // bunifuCustomLabel8
             // 
@@ -495,6 +510,7 @@
             this.Controls.Add(this.txtCliente);
             this.Name = "detalleVenta";
             this.Size = new System.Drawing.Size(483, 590);
+            this.Load += new System.EventHandler(this.detalleVenta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtCodigoVenta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCliente)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTipoPago)).EndInit();

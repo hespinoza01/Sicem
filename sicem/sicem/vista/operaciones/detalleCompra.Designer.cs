@@ -44,12 +44,12 @@
             this.txtMonto = new Telerik.WinControls.UI.RadTextBox();
             this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.vistaDetalle = new Bunifu.Framework.UI.BunifuCustomDataGrid();
-            this.bunifuCustomLabel2 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.productoID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productoNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidadProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costoUnitarioProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bunifuCustomLabel2 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.editar = new Bunifu.Framework.UI.BunifuImageButton();
             this.labelFechaModificacion = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -276,16 +276,6 @@
             this.vistaDetalle.Size = new System.Drawing.Size(443, 200);
             this.vistaDetalle.TabIndex = 54;
             // 
-            // bunifuCustomLabel2
-            // 
-            this.bunifuCustomLabel2.AutoSize = true;
-            this.bunifuCustomLabel2.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.bunifuCustomLabel2.Location = new System.Drawing.Point(25, 314);
-            this.bunifuCustomLabel2.Name = "bunifuCustomLabel2";
-            this.bunifuCustomLabel2.Size = new System.Drawing.Size(78, 13);
-            this.bunifuCustomLabel2.TabIndex = 55;
-            this.bunifuCustomLabel2.Text = "Detalle compra";
-            // 
             // productoID
             // 
             this.productoID.FillWeight = 40F;
@@ -320,6 +310,16 @@
             this.totalProducto.HeaderText = "Total";
             this.totalProducto.Name = "totalProducto";
             this.totalProducto.ReadOnly = true;
+            // 
+            // bunifuCustomLabel2
+            // 
+            this.bunifuCustomLabel2.AutoSize = true;
+            this.bunifuCustomLabel2.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.bunifuCustomLabel2.Location = new System.Drawing.Point(25, 314);
+            this.bunifuCustomLabel2.Name = "bunifuCustomLabel2";
+            this.bunifuCustomLabel2.Size = new System.Drawing.Size(78, 13);
+            this.bunifuCustomLabel2.TabIndex = 55;
+            this.bunifuCustomLabel2.Text = "Detalle compra";
             // 
             // editar
             // 
@@ -376,6 +376,7 @@
             this.Controls.Add(this.txtProveedor);
             this.Name = "detalleCompra";
             this.Size = new System.Drawing.Size(483, 590);
+            this.Load += new System.EventHandler(this.detalleCompra_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtProveedor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodigoCompra)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTipoPago)).EndInit();

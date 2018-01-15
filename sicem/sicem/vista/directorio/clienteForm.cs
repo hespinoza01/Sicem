@@ -14,6 +14,7 @@ namespace sicem
     public partial class clienteForm : Form
     {
         string accionformulario;
+        DateTime fa = DateTime.Now;
         public clienteForm()
         {
             InitializeComponent();
@@ -34,6 +35,7 @@ namespace sicem
 
         private void inicia()
         {
+            if (accionformulario == "crear") createID();
             guardar.ButtonText = (accionformulario == "crear" ? "Guarda" : "Actualizar");
 
             txtNombre.Region = new region().RoundBorder(txtNombre.Width, txtNombre.Height +1, 7);
@@ -61,11 +63,25 @@ namespace sicem
                 txtEmail.Text = row["Email"].ToString();
                 txtTel.Text = row["Telefono"].ToString();
                 txtDireccion.Text = row["Domicilio"].ToString();
+                txtCiudad.selectedIndex = new listadoItems().indexCiudad(row["Ciudad"].ToString());
+                EstadoValue.Checked = (int.Parse(row["Estado"].ToString()) == 1) ? true : false;
             }else {
                 new popup("Error al mostrar información", popup.AlertType.error);
                 this.DialogResult = DialogResult.Cancel;
                 this.Close();
             }
+        }
+
+        private void createID()
+        {
+            string text = (txtNombre.Text.Length > 5) ? txtNombre.Text.Substring(0,5).ToLower() : txtNombre.Text.ToLower();
+            text += "-"+fa.Day.ToString() + fa.Hour.ToString() + fa.Minute.ToString();
+            txtID.Text = text;
+        }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+            if (accionformulario == "crear") createID();
         }
 
         private void cancelar_Click(object sender, EventArgs e)
@@ -78,6 +94,7 @@ namespace sicem
         private void guardar_Click(object sender, EventArgs e)
         {
             Cliente c = new Cliente();
+            c.ID = txtID.Text;
             c.Nombre = txtNombre.Text;
             c.NombreContacto = txtNombreContacto.Text;
             c.TituloContacto = txtTituloContacto.Text;
@@ -90,17 +107,12 @@ namespace sicem
             if (accionformulario == "crear")
                 c.Insertar();
             else
-            {
-                c.ID = txtID.Text;
                 c.Editar();
-            }
 
             this.DialogResult = DialogResult.OK;
             this.Close();
 
         }
-
-
 
     }
 }

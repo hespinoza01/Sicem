@@ -18,7 +18,6 @@ namespace sicem
         {
             InitializeComponent();
             accionformulario = "crear";
-            loadID();
         }
 
         public proveedorForm(int id)
@@ -35,6 +34,7 @@ namespace sicem
 
         private void inicia()
         {
+            if (accionformulario == "crear") loadID();
             guardar.ButtonText = (accionformulario == "crear" ? "Guarda" : "Actualizar");
 
             txtNombre.Region = new region().RoundBorder(txtNombre.Width, txtNombre.Height +1, 7);
@@ -88,23 +88,24 @@ namespace sicem
         private void guardar_Click(object sender, EventArgs e)
         {
             Proveedor p = new Proveedor();
-            p.P_Nombre = txtNombre.Text;
-            p.P_NombreContacto = txtNombreContacto.Text;
-            p.P_TituloContacto = txtTituloContacto.Text;
-            p.P_Domicilio = txtDireccion.Text;
-            p.P_Ciudad = txtCiudad.selectedValue;
-            p.P_Email = txtEmail.Text;
-            p.P_Telefono = txtTel.Text;
-            p.P_Estado = (estado.Checked) ? 1 : 0;
+            p.Nombre = txtNombre.Text;
+            p.NombreContacto = txtNombreContacto.Text;
+            p.TituloContacto = txtTituloContacto.Text;
+            p.Domicilio = txtDireccion.Text;
+            p.Ciudad = txtCiudad.selectedValue;
+            p.Email = txtEmail.Text;
+            p.Telefono = txtTel.Text;
+            p.Estado = (estado.Checked) ? 1 : 0;
 
             if (accionformulario == "crear")
                 p.Insertar();
             else
             {
-                p.P_Id = int.Parse(txtID.Text);
+                p.ID = int.Parse(txtID.Text);
                 p.Editar();
             }
 
+            this.DialogResult = DialogResult.OK;
             this.Close();
 
         }

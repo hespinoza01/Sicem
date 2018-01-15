@@ -217,7 +217,7 @@ end
 create procedure [Mostrar_Detalle_Venta](@ID varchar(15))
 as begin
 	select 
-		d.VentaID as ID,
+		d.ProductoID as ID,
 		p.Nombre as Producto,
 		d.Cantidad as Cantidad,
 		d.PrecioUnitario as [Precio unitario],

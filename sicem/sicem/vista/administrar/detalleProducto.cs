@@ -25,6 +25,7 @@ namespace sicem.vista.directorio
 
         private void inicia()
         {
+            labelFechaModificacion.Text = "";
             editar.Visible = false;
             editar.Click += editar_Click;
         }

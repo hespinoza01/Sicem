@@ -11,7 +11,7 @@ namespace sicem
     class OfertaEspecial
     {
         DBHelper db = new DBHelper();
-
+        string descripcion, tipooferta;
         public int ID
         {
             get;
@@ -20,8 +20,8 @@ namespace sicem
 
         public string Descripcion
         {
-            get { return (Descripcion != null) ? Descripcion : "N/A"; }
-            set { Descripcion = (value != null) ? value : "N/A"; }
+            get { return (descripcion != null) ? descripcion : "N/A"; }
+            set { descripcion = (value != null) ? value : "N/A"; }
         }
 
         public float PorcentajeDescuento
@@ -32,8 +32,8 @@ namespace sicem
 
         public string TipoOferta
         {
-            get { return (TipoOferta != null) ? TipoOferta : "N/A"; }
-            set { TipoOferta = (value != null) ? value : "N/A"; }
+            get { return (tipooferta != null) ? tipooferta : "N/A"; }
+            set { tipooferta = (value != null) ? value : "N/A"; }
         }
 
         public DateTime FechaInicio

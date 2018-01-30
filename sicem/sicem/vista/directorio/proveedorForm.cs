@@ -45,6 +45,9 @@ namespace sicem
             txtTel.Region = new region().RoundBorder(txtTel.Width, txtTel.Height+1, 7);
             txtDireccion.Region = new region().RoundBorder(txtDireccion.Width, txtDireccion.Height+1, 7);
 
+            //foreach (string s in new listadoItems().ciudad())
+            //    txtCiudad.AddItem(s);
+
             new drag().setDragable(paneltop);
         }
 
@@ -87,26 +90,28 @@ namespace sicem
 
         private void guardar_Click(object sender, EventArgs e)
         {
-            Proveedor p = new Proveedor();
-            p.Nombre = txtNombre.Text;
-            p.NombreContacto = txtNombreContacto.Text;
-            p.TituloContacto = txtTituloContacto.Text;
-            p.Domicilio = txtDireccion.Text;
-            p.Ciudad = txtCiudad.selectedValue;
-            p.Email = txtEmail.Text;
-            p.Telefono = txtTel.Text;
-            p.Estado = (estado.Checked) ? 1 : 0;
+            try {
+                Proveedor p = new Proveedor();
+                p.Nombre = txtNombre.Text;
+                p.NombreContacto = txtNombreContacto.Text;
+                p.TituloContacto = txtTituloContacto.Text;
+                p.Domicilio = txtDireccion.Text;
+                p.Ciudad = txtCiudad.selectedValue;
+                p.Email = txtEmail.Text;
+                p.Telefono = txtTel.Text;
+                p.Estado = (estado.Checked) ? 1 : 0;
 
-            if (accionformulario == "crear")
-                p.Insertar();
-            else
-            {
-                p.ID = int.Parse(txtID.Text);
-                p.Editar();
-            }
+                if (accionformulario == "crear")
+                    p.Insertar();
+                else
+                {
+                    p.ID = int.Parse(txtID.Text);
+                    p.Editar();
+                }
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }catch(Exception ex) { }
 
         }
 

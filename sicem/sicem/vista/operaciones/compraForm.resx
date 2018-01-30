@@ -145,6 +145,36 @@
         K/0JAygRBizCgEUYsAgDRsQPPL5T864WMa0AAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="showCreate.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAgxJREFUeF7t3bFKw1AARuG2D+akjkI39XW0VRCkropvKYoi1HPjzVJJmyW3P3I+
+        uIM0Wc5POkU6kyRJkiRJkiQdsN1ul5x5/VPHwggLzguneOUs6kdqrcTn9GP0HOUYSnTO7hg9R2mN4I9d
+        +mGbeqmmROh9T0bvjXNSb9FUiOwYKYhcxnguxfdwjBaI7BgpiOwYKYjsGCmIPGaMd85pvUVTIfLYMc7q
+        LZoKkR0jBZEdIwWRHSMFkeccx0hAZMdIQWTHSEFkx0hBZMdIQWTHSEFkx0hBZMdIQWTHSEFkx0hBZMdI
+        QWTHSEHksWOc11s0FSI7RgoiO0YKIjtGCiKPGeOD4xhTI7JjJCH0Q5d82Cfnol6uqRDZJyMJoX0yUhC6
+        vCFy6N8CHKQlYpevrKdSfo9vznW9RVMj9ph3qXxSWiK2T0oaYjtKGmKXUTal/B6O0hKxHSUNsR0lDbEd
+        JRHB77v0w8ooV/VytUDwuy79MEdpjeCOkobgjpKG4I6ShuCOkobgjpKG4Osu/TBHaY3gjpKG4I6ShuCO
+        kobgY0a5rJerBYKvuvTDHKU1gjtKGoI7ShqCO0oagjtKGoIfGuWLs6yXqwWC33bphzlKawR3lDQEd5Q0
+        BHeUNAR3lCTEHvPelz/o0hrRb37b/7Gul6g14u+Osqof6VgYoR/FMVIwhj8sKUmSJEmSJOk/ms1+ACs5
+        +9frKxW/AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="showCreate.ImageActive" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAgxJREFUeF7t3bFKw1AARuG2D+akjkI39XW0VRCkropvKYoi1HPjzVJJmyW3P3I+
+        uIM0Wc5POkU6kyRJkiRJkiQdsN1ul5x5/VPHwggLzguneOUs6kdqrcTn9GP0HOUYSnTO7hg9R2mN4I9d
+        +mGbeqmmROh9T0bvjXNSb9FUiOwYKYhcxnguxfdwjBaI7BgpiOwYKYjsGCmIPGaMd85pvUVTIfLYMc7q
+        LZoKkR0jBZEdIwWRHSMFkeccx0hAZMdIQWTHSEFkx0hBZMdIQWTHSEFkx0hBZMdIQWTHSEFkx0hBZMdI
+        QWTHSEHksWOc11s0FSI7RgoiO0YKIjtGCiKPGeOD4xhTI7JjJCH0Q5d82Cfnol6uqRDZJyMJoX0yUhC6
+        vCFy6N8CHKQlYpevrKdSfo9vznW9RVMj9ph3qXxSWiK2T0oaYjtKGmKXUTal/B6O0hKxHSUNsR0lDbEd
+        JRHB77v0w8ooV/VytUDwuy79MEdpjeCOkobgjpKG4I6ShuCOkobgjpKG4Osu/TBHaY3gjpKG4I6ShuCO
+        kobgY0a5rJerBYKvuvTDHKU1gjtKGoI7ShqCO0oagjtKGoIfGuWLs6yXqwWC33bphzlKawR3lDQEd5Q0
+        BHeUNAR3lCTEHvPelz/o0hrRb37b/7Gul6g14u+Osqof6VgYoR/FMVIwhj8sKUmSJEmSJOk/ms1+ACs5
+        +9frKxW/AAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="agregarProductoDetalle.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGQAAAAjCAYAAABiv6+AAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

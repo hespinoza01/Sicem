@@ -15,6 +15,7 @@ namespace sicem//.vista.administrar
         string accionformulario;
         int idc = 0;
         List<int> idcategoria = new List<int>();
+        bool cargainfo = false;
         public productoForm()
         {
             InitializeComponent();
@@ -99,19 +100,24 @@ namespace sicem//.vista.administrar
 
             if (data != null)
             {
+                cargainfo = true;
                 DataRow row = data.Rows[0];
 
                 txtID.Text = row["ID"].ToString();
                 txtNombreProducto.Text = row["Nombre"].ToString();
                 txtPrecioVenta.Text = row["PrecioVenta"].ToString();
-                txtStock.Text = row["Stock"].ToString();
+                txtStock.Value = decimal.Parse(row["Stock"].ToString());
+                txtCantidadPorUnidad.Value = decimal.Parse(row["CantidadPorUnidad"].ToString());
                 setValorCategoria(int.Parse(row["CategoriaID"].ToString()));
                 txtDescripcion.Text = row["Descripcion"].ToString();
                 estadoValor.Checked = (int.Parse(row["Estado"].ToString()) == 0) ? false : true;
+
+                cargainfo = false;
             }
             else
             {
                 new popup("Error al mostrar información", popup.AlertType.error);
+                this.DialogResult = DialogResult.Cancel;
                 this.Close();
             }
         }
@@ -130,6 +136,16 @@ namespace sicem//.vista.administrar
                 txtID.Text = value.ToString();
         }
 
+        public void historialPrecio() {
+            string cmd = "select Precio from HistorialPrecioProducto where ProductoID = '" + txtID.Text + "' and FechaFinal = null";
+            object value = new DBHelper().ReaderScalar(cmd);
+            if(value != null)
+            {
+                if (decimal.Parse(value.ToString().Replace(".", ",")) != decimal.Parse(txtPrecioVenta.Text.Replace(".", ",")))
+                    new Producto().InsertarHistorialPrecio(int.Parse(txtID.Text), decimal.Parse(txtPrecioVenta.Text.Replace(".", ",")));
+            }
+        }
+
         private void cancelarButton_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
@@ -138,26 +154,30 @@ namespace sicem//.vista.administrar
 
         private void guardarButton_Click(object sender, EventArgs e)
         {
-            Producto p = new Producto();
-            p.CategoriaID = idc;
-            p.Nombre = txtNombreProducto.Text;
-            p.Descripcion = txtDescripcion.Text;
-            p.Stock = int.Parse(txtStock.Text);
-            p.PrecioVenta = decimal.Parse(txtPrecioVenta.Text);
-            p.Estado = (estadoValor.Checked) ? 1 : 0;
+            try {
+                Producto p = new Producto();
+                p.CategoriaID = idc;
+                p.Nombre = txtNombreProducto.Text;
+                p.Descripcion = txtDescripcion.Text;
+                p.CantidadPorUnidad = (int)txtCantidadPorUnidad.Value;
+                p.Stock = int.Parse(txtStock.Text);
+                p.PrecioVenta = decimal.Parse(txtPrecioVenta.Text);
+                p.Estado = (estadoValor.Checked) ? 1 : 0;
 
-            if (accionformulario == "crear")
-            {
-                p.Insertar();
-            }
-            else
-            {
-                p.ID = int.Parse(txtID.Text);
-                p.Editar();
-            }
+                if (accionformulario == "crear")
+                {
+                    p.Insertar();
+                }
+                else
+                {
+                    historialPrecio();
+                    p.ID = int.Parse(txtID.Text);
+                    p.Editar();
+                }
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }catch(Exception ex) { }
         }
 
         private void txtStock_KeyPress(object sender, KeyPressEventArgs e)
@@ -172,23 +192,33 @@ namespace sicem//.vista.administrar
 
         private void txtIDCategoria_TextChanged(object sender, EventArgs e)
         {
-            if (txtIDCategoria.Text.Length > 0)
-                sugerenciaCategoria();
-            else
-                sugerencia.Height = 0;
+            if (!cargainfo)
+            {
+                if (txtIDCategoria.Text.Length > 0)
+                    sugerenciaCategoria();
+                else
+                    sugerencia.Height = 0;
+            }
         }
 
         private void sugerencia_Click(object sender, EventArgs e)
         {
             if (sugerencia.SelectedIndex >= 0)
             {
+                cargainfo = true;
                 txtIDCategoria.Text = sugerencia.SelectedItem.ToString();
                 idc = idcategoria[sugerencia.SelectedIndex];
+                cargainfo = false;
             }
 
             txtIDCategoria.Focus();
             txtIDCategoria.Select(txtIDCategoria.Text.Length, 0);
             sugerencia.Height = 0;
+        }
+
+        private void sugerencia_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        {
+            sugerencia_Click(null, null);
         }
 
         private void txtIDCategoria_KeyDown(object sender, KeyEventArgs e)
@@ -233,5 +263,6 @@ namespace sicem//.vista.administrar
                 sugerencia.Height = 0;
         }
 
+       
     }
 }

@@ -37,7 +37,7 @@ as begin
 	Select 
 		ID 
 	from Usuario  
-	where ID =  @Usuario and Contraseña = @Contraseña
+	where (ID =  @Usuario and Contraseña = @Contraseña) and Estado = 1
 end
 
 	go
@@ -188,13 +188,34 @@ end
 create procedure [Actualizar_Bodega](
 	@ID int,
 	@Nombre varchar(35),
-	@Almacenaje int
+	@Almacenaje int,
+	@Comentarios text,
+	@Estado int
 )as begin
 	update Bodega
 		set Nombre=@Nombre,
 			Almacenaje=@Almacenaje,
+			Comentarios=@Comentarios,
+			Estado=@Estado,
 			FechaModificacion=getdate()
 		where ID=@ID
+end
+
+	go
+
+create procedure [Actualizar_Inventario](
+	@ID int,
+	@ProductoID int,
+	@BodegaID int,
+	@Estante varchar(50),
+	@Cantidad int
+)as begin
+	update Inventario
+	set ProductoID = @ProductoID,
+		BodegaID = @BodegaID,
+		Estante = @Estante,
+		Cantidad = @Cantidad
+	where ID = @ID
 end
 
 	go

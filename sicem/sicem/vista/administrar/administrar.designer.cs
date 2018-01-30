@@ -43,20 +43,24 @@
             this.metodoBusqueda = new iTalk.iTalk_ComboBox();
             this.txtBuscar = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.agregarButton = new Bunifu.Framework.UI.BunifuImageButton();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.radScrollablePanel1 = new Telerik.WinControls.UI.RadScrollablePanel();
+            this.labelDepartamentos = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.labelofertas = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.agregarButton = new Bunifu.Framework.UI.BunifuImageButton();
             this.vistaListado = new Bunifu.Framework.UI.BunifuCustomDataGrid();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.contentDetails = new System.Windows.Forms.Panel();
             this.columnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnFechaModificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.contentDetails = new System.Windows.Forms.Panel();
+            this.visualStudio2012LightTheme1 = new Telerik.WinControls.Themes.VisualStudio2012LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.erraseButton)).BeginInit();
             this.contentSearch.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel1)).BeginInit();
+            this.radScrollablePanel1.PanelContainer.SuspendLayout();
+            this.radScrollablePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.agregarButton)).BeginInit();
-            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vistaListado)).BeginInit();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
@@ -121,6 +125,7 @@
             this.erraseButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.erraseButton.TabIndex = 10;
             this.erraseButton.TabStop = false;
+            this.erraseButton.Visible = false;
             this.erraseButton.Zoom = 6;
             // 
             // contentSearch
@@ -179,8 +184,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.radScrollablePanel1);
             this.panel2.Controls.Add(this.agregarButton);
-            this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.erraseButton);
             this.panel2.Controls.Add(this.vistaListado);
             this.panel2.Controls.Add(this.contentSearch);
@@ -189,6 +194,57 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(467, 590);
             this.panel2.TabIndex = 13;
+            // 
+            // radScrollablePanel1
+            // 
+            this.radScrollablePanel1.BackColor = System.Drawing.Color.White;
+            this.radScrollablePanel1.Location = new System.Drawing.Point(0, 0);
+            this.radScrollablePanel1.Name = "radScrollablePanel1";
+            this.radScrollablePanel1.Padding = new System.Windows.Forms.Padding(0);
+            // 
+            // radScrollablePanel1.PanelContainer
+            // 
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.labelDepartamentos);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.labelofertas);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.labelusuarios);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.labelcategorias);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.indicadorlabel);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.labelproductos);
+            this.radScrollablePanel1.PanelContainer.Location = new System.Drawing.Point(0, 0);
+            this.radScrollablePanel1.PanelContainer.Size = new System.Drawing.Size(467, 48);
+            this.radScrollablePanel1.Size = new System.Drawing.Size(467, 65);
+            this.radScrollablePanel1.TabIndex = 0;
+            this.radScrollablePanel1.Text = "radScrollablePanel1";
+            this.radScrollablePanel1.ThemeName = "VisualStudio2012Light";
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radScrollablePanel1.GetChildAt(0).GetChildAt(1))).Width = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radScrollablePanel1.GetChildAt(0).GetChildAt(1))).LeftWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radScrollablePanel1.GetChildAt(0).GetChildAt(1))).TopWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radScrollablePanel1.GetChildAt(0).GetChildAt(1))).RightWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radScrollablePanel1.GetChildAt(0).GetChildAt(1))).BottomWidth = 0F;
+            // 
+            // labelDepartamentos
+            // 
+            this.labelDepartamentos.AutoSize = true;
+            this.labelDepartamentos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDepartamentos.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.labelDepartamentos.Location = new System.Drawing.Point(425, 15);
+            this.labelDepartamentos.Name = "labelDepartamentos";
+            this.labelDepartamentos.Size = new System.Drawing.Size(135, 21);
+            this.labelDepartamentos.TabIndex = 19;
+            this.labelDepartamentos.Text = "Departamentos";
+            this.labelDepartamentos.Click += new System.EventHandler(this.labelDepartamentos_Click);
+            // 
+            // labelofertas
+            // 
+            this.labelofertas.AutoSize = true;
+            this.labelofertas.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelofertas.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.labelofertas.Location = new System.Drawing.Point(337, 15);
+            this.labelofertas.Name = "labelofertas";
+            this.labelofertas.Size = new System.Drawing.Size(68, 21);
+            this.labelofertas.TabIndex = 18;
+            this.labelofertas.Text = "Ofertas";
+            this.labelofertas.Click += new System.EventHandler(this.labelofertas_Click);
             // 
             // agregarButton
             // 
@@ -203,32 +259,6 @@
             this.agregarButton.TabStop = false;
             this.agregarButton.Zoom = 6;
             this.agregarButton.Click += new System.EventHandler(this.agregarButton_Click);
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.White;
-            this.panel4.Controls.Add(this.labelofertas);
-            this.panel4.Controls.Add(this.labelcategorias);
-            this.panel4.Controls.Add(this.labelusuarios);
-            this.panel4.Controls.Add(this.labelproductos);
-            this.panel4.Controls.Add(this.indicadorlabel);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(467, 50);
-            this.panel4.TabIndex = 14;
-            // 
-            // labelofertas
-            // 
-            this.labelofertas.AutoSize = true;
-            this.labelofertas.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelofertas.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.labelofertas.Location = new System.Drawing.Point(337, 15);
-            this.labelofertas.Name = "labelofertas";
-            this.labelofertas.Size = new System.Drawing.Size(68, 21);
-            this.labelofertas.TabIndex = 18;
-            this.labelofertas.Text = "Ofertas";
-            this.labelofertas.Click += new System.EventHandler(this.labelofertas_Click);
             // 
             // vistaListado
             // 
@@ -276,24 +306,6 @@
             this.vistaListado.TabIndex = 14;
             this.vistaListado.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.contentDetails);
-            this.panel3.Controls.Add(this.panel2);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(950, 590);
-            this.panel3.TabIndex = 14;
-            // 
-            // contentDetails
-            // 
-            this.contentDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.contentDetails.Location = new System.Drawing.Point(467, 0);
-            this.contentDetails.Name = "contentDetails";
-            this.contentDetails.Size = new System.Drawing.Size(483, 590);
-            this.contentDetails.TabIndex = 14;
-            // 
             // columnID
             // 
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
@@ -337,6 +349,24 @@
             this.columnFechaModificacion.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.columnFechaModificacion.Width = 167;
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.contentDetails);
+            this.panel3.Controls.Add(this.panel2);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(950, 590);
+            this.panel3.TabIndex = 14;
+            // 
+            // contentDetails
+            // 
+            this.contentDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.contentDetails.Location = new System.Drawing.Point(467, 0);
+            this.contentDetails.Name = "contentDetails";
+            this.contentDetails.Size = new System.Drawing.Size(483, 590);
+            this.contentDetails.TabIndex = 14;
+            // 
             // administrar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -349,9 +379,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.erraseButton)).EndInit();
             this.contentSearch.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.radScrollablePanel1.PanelContainer.ResumeLayout(false);
+            this.radScrollablePanel1.PanelContainer.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel1)).EndInit();
+            this.radScrollablePanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.agregarButton)).EndInit();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vistaListado)).EndInit();
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -368,7 +400,6 @@
         private Bunifu.Framework.UI.BunifuCustomLabel labelusuarios;
         private Bunifu.Framework.UI.BunifuCustomLabel labelproductos;
         private Bunifu.Framework.UI.BunifuCustomLabel labelcategorias;
-        private System.Windows.Forms.Panel panel4;
         private Bunifu.Framework.UI.BunifuImageButton agregarButton;
         private Bunifu.Framework.UI.BunifuCustomDataGrid vistaListado;
         private System.Windows.Forms.Panel contentDetails;
@@ -377,5 +408,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn columnID;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnName;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnFechaModificacion;
+        private Telerik.WinControls.UI.RadScrollablePanel radScrollablePanel1;
+        private Bunifu.Framework.UI.BunifuCustomLabel labelDepartamentos;
+        private Telerik.WinControls.Themes.VisualStudio2012LightTheme visualStudio2012LightTheme1;
     }
 }

@@ -141,9 +141,8 @@ namespace sicem
         {
             string[] data = new string[]
             {
-                "Managua",
-                "León",
-                "Masaya"
+                "Boaco", "Carazo", "Chinandega", "Chontales", "Estelí", "Granada", "Jinotega", "León", "Madriz", "Managua",
+                "Masaya", "Matagalpa", "Nueva Segovia", "RAAN", "RAAS", "Río San Juan", "Rivas"
             };
 
             return data;

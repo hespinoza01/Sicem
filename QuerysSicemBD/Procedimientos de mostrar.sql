@@ -100,6 +100,21 @@ end
 
 	go
 
+create procedure [Mostrar_Entrada_Producto](
+	@ProductoID int
+)as begin
+	select
+		d.Cantidad,
+		d.CostoUnitario,
+		c.FechaCompra
+	from [Detalle_Compra] d
+		inner join Compra c
+			on c.ID = d.CompraID
+	where d.ProductoID = @ProductoID
+end
+
+	go
+
 create procedure [Mostrar_HistorialPrecioProducto](@ID int)
 as begin
 	select * from HistorialPrecioProducto h where h.ProductoID = @ID 
@@ -124,6 +139,27 @@ end
 create procedure [Detalle_Bodega](@ID int)
 as begin
 	select * from Bodega where ID = @ID
+end
+
+	go
+
+create procedure [Mostrar_Inventario](@ID int)
+as begin
+	select * from Inventario where ProductoID = @ID
+end
+
+	go
+
+create procedure [Detalle_Inventario](@ID int)
+as begin
+	select * from Inventario where ID = @ID
+end
+
+	go
+
+create procedure [Remover_Inventario](@ID int)
+as begin
+	delete from Inventario where ID = @ID
 end
 
 	go
@@ -212,7 +248,7 @@ as begin
 	where v.ID = @ID
 end
 
-	go
+	go 
 
 create procedure [Mostrar_Detalle_Venta](@ID varchar(15))
 as begin
@@ -248,6 +284,36 @@ as begin
 		inner join TarjetaCredito t
 			on t.ID = c.TarjetaCreditoID
 	where c.ClienteID = @ClienteID
+end
+
+	go
+
+create procedure [Listar_ClienteTarjeta](@ClienteID varchar(25))
+as begin
+	select
+		t.ID,
+		t.TipoTarjeta,
+		t.NumeroTarjeta,
+		t.ExpiraMes,
+		t.ExpiraAño,
+		t.FechaModificacion
+	from TarjetaCredito t
+		inner join ClienteTarjetaCredito ct
+			on ct.TarjetaCreditoID = t.ID
+	where ct.ClienteID = @ClienteID
+end
+
+	go
+
+create procedure [Remover_Tarjeta](@ID int)
+as begin
+	begin tran
+	delete from ClienteTarjetaCredito where TarjetaCreditoID = @ID
+	commit
+
+	begin tran
+	delete from TarjetaCredito where ID = @ID
+	commit
 end
 
 	go
@@ -288,4 +354,78 @@ as begin
 		inner join Producto p
 			on p.ID = o.ProductoID
 	where o.OfertaEspecialID = @idoferta
+end
+
+	go
+
+create procedure [Producto_Oferta](@idproducto int)
+as begin
+	select
+		o.MinCantidad,
+		o.MaxCantidad,
+		o.PorcentajeDescuento
+	from OfertaEspecialProducto op
+			inner join OfertaEspecial o
+				on o.ID = op.OfertaEspecialID
+	 where 
+		op.ProductoID = @idproducto
+			and
+		(datediff(dd, o.FechaInicio, getdate()) >= 0 and datediff(dd, o.FechaFinal, getdate()) <= 0)
+end
+
+
+create procedure [Reporte_ventas](@mes int, @año int)
+as begin 
+	select
+		ID as [Código venta],
+		SubTotal as [Sub Total],
+		Impuesto,
+		Total
+	from Venta 
+	where 
+		datepart(mm, FechaVenta) = @mes
+		and
+		datepart(yyyy, FechaVenta) = @año
+end
+
+	go
+
+create procedure [Reporte_Compras](@mes int, @año int)
+as begin 
+	select
+		ID as [Código compra],
+		Monto as [Valor compra]
+	from Compra 
+	where 
+		datepart(mm, FechaCompra) = @mes
+		and
+		datepart(yyyy, FechaCompra) = @año
+end
+
+	go
+
+create procedure [Reporte_estado](@mes int, @año int)
+as begin 
+	declare @sumav decimal(18,2)
+	set @sumav = (select
+						sum(Total)
+					from Venta 
+					where 
+						datepart(mm, FechaVenta) = @mes
+						and
+						datepart(yyyy, FechaVenta) = @año)
+
+	declare @sumac decimal(18,2)
+	set @sumac = (select
+						sum(Monto)
+					from Compra 
+					where 
+						datepart(mm, FechaCompra) = @mes
+						and
+						datepart(yyyy, FechaCompra) = @año)
+
+	select 
+		@sumav as [Total recaudación],
+		@sumac as [Total egresos],
+		(@sumav - @sumac) as [Utilidad]
 end

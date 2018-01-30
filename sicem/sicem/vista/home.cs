@@ -24,7 +24,7 @@ namespace sicem
         productos productos = new productos();
         administrar administrar = new administrar();
         inventario inventario = new inventario();
-
+        Reportes reportes = new Reportes();
 
         public home()
         {
@@ -38,7 +38,9 @@ namespace sicem
         }
 
         private void inicia() {
-            CirclePicture();
+            userPicture.Region = new region().Circle(userPicture.Width, userPicture.Height);
+            userPictureNavbar.Region = new region().Circle(userPictureNavbar.Width, userPictureNavbar.Height);
+
             inicioTab.Textcolor = Color.White;
 
             topNavbar.Height = 0;
@@ -51,6 +53,7 @@ namespace sicem
             this.contenedor.Controls.Add(productos);
             this.contenedor.Controls.Add(administrar);
             this.contenedor.Controls.Add(inventario);
+            this.contenedor.Controls.Add(reportes);
 
             inicio.BringToFront();
 
@@ -81,12 +84,6 @@ namespace sicem
             new drag().setDragable(toppanel);
         }
 
-        public void CirclePicture()
-        {
-            userPicture.Region = new region().Circle(userPicture.Width, userPicture.Height);
-            userPictureNavbar.Region = new region().Circle(userPictureNavbar.Width, userPictureNavbar.Height);
-        }
-
         private void clearColorTabs()
         {
             //inicioTab.BackColor = Color.FromArgb(47, 50, 58);
@@ -96,13 +93,14 @@ namespace sicem
             productos.Visible = false;
             administrar.Visible = false;
             inventario.Visible = false;
+            reportes.Visible = false;
 
             inicioTab.Textcolor = Color.RoyalBlue;
             directorioTab.Textcolor = Color.RoyalBlue;
             OperacionesTab.Textcolor = Color.RoyalBlue;
             productosTab.Textcolor = Color.RoyalBlue;
             inventarioTab.Textcolor = Color.RoyalBlue;
-            proveedorTab.Textcolor = Color.RoyalBlue;
+            reportesTab.Textcolor = Color.RoyalBlue;
             administrarTab.Textcolor = Color.RoyalBlue;
         }
 
@@ -119,6 +117,8 @@ namespace sicem
                 userPicture.Image = Image.FromStream(ms);
                 userPictureNavbar.Image = Image.FromStream(ms);
                 ms.Dispose();
+
+                administrarTab.Visible = (idUsuario.Text == "Administrador") ? true : false;
             }
             else
                 new popup("Error al mostrar información", popup.AlertType.error);
@@ -155,7 +155,7 @@ namespace sicem
 
         private void toogle_MenuMore(object sender, EventArgs e)
         {
-            int a = (contentMenuMore.Height == 0) ? 140 : 0;
+            int a = (contentMenuMore.Height == 0) ? 85 : 0;
             Transition.run(contentMenuMore, "Height", a, new TransitionType_EaseInEaseOut(750));
         }
 
@@ -209,6 +209,7 @@ namespace sicem
 
         private void OperacionesTab_Click(object sender, EventArgs e)
         {
+            operaciones.Cargar(false);
             if(tabActiva != "operaciones")
             {
                 clearColorTabs();
@@ -216,12 +217,12 @@ namespace sicem
                 tabActiva = "operaciones";
                 operaciones.BringToFront();
                 viewTransition.ShowSync(operaciones);
-                //operaciones.Cargar();
             }
         }
 
         private void inventarioTab_Click(object sender, EventArgs e)
         {
+            inventario.Cargar(false);
             if (tabActiva != "inventario")
             {
                 clearColorTabs();
@@ -229,7 +230,6 @@ namespace sicem
                 tabActiva = "inventario";
                 inventario.BringToFront();
                 viewTransition.ShowSync(inventario);
-                //compras.Cargar();
             }
         }
 
@@ -248,13 +248,14 @@ namespace sicem
 
         private void proveedorTab_Click(object sender, EventArgs e)
         {
-            if (tabActiva != "proveedor")
+            reportes.Cargar();
+            if (tabActiva != "reportes")
             {
                 clearColorTabs();
-                proveedorTab.Textcolor = Color.White;
-                tabActiva = "proveedor";
-                //proveedores.BringToFront();
-                //proveedores.Cargar();
+                reportesTab.Textcolor = Color.White;
+                tabActiva = "reportes";
+                reportes.BringToFront();
+                viewTransition.ShowSync(reportes);
             }
         }
 

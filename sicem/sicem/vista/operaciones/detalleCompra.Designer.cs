@@ -53,6 +53,7 @@
             this.editar = new Bunifu.Framework.UI.BunifuImageButton();
             this.labelFechaModificacion = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.materialTheme1 = new Telerik.WinControls.Themes.MaterialTheme();
             ((System.ComponentModel.ISupportInitialize)(this.txtProveedor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodigoCompra)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTipoPago)).BeginInit();
@@ -411,5 +412,6 @@
         private Bunifu.Framework.UI.BunifuImageButton editar;
         private System.Windows.Forms.Label labelFechaModificacion;
         private System.Windows.Forms.Label label8;
+        private Telerik.WinControls.Themes.MaterialTheme materialTheme1;
     }
 }

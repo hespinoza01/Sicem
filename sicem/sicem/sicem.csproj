@@ -51,6 +51,8 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Reporting, Version=11.2.17.1025, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
+    <Reference Include="Telerik.ReportViewer.WinForms, Version=11.2.17.1025, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls, Version=2017.3.1017.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
     <Reference Include="Telerik.WinControls.GridView, Version=2017.3.1017.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.RichTextEditor, Version=2017.3.1017.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
@@ -60,6 +62,7 @@
     <Reference Include="Telerik.WinControls.Themes.Office2013Dark, Version=2017.3.1017.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.Themes.TelerikMetro, Version=2017.3.1017.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Dark, Version=2017.3.1017.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Light, Version=2017.3.1017.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.UI, Version=2017.3.1017.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
     <Reference Include="TelerikCommon, Version=2017.3.1017.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
     <Reference Include="Transitions, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -68,13 +71,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="datos\Bodega.cs" />
+    <Compile Include="datos\DatosReportes.cs">
+      <DependentUpon>DatosReportes.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="datos\DatosReportes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatosReportes.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="datos\objetos\Bodega.cs" />
     <Compile Include="datos\conexión\DBHelper.cs" />
-    <Compile Include="datos\Departamento.cs" />
-    <Compile Include="datos\Empleado.cs" />
-    <Compile Include="datos\Inventario.cs" />
-    <Compile Include="datos\OfertaEspecial.cs" />
-    <Compile Include="datos\TarjetaCredito.cs" />
+    <Compile Include="datos\objetos\Departamento.cs" />
+    <Compile Include="datos\objetos\Empleado.cs" />
+    <Compile Include="datos\objetos\Inventario.cs" />
+    <Compile Include="datos\objetos\OfertaEspecial.cs" />
+    <Compile Include="datos\objetos\TarjetaCredito.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -82,6 +93,18 @@
     </Compile>
     <Compile Include="utilidades\drag.cs" />
     <Compile Include="utilidades\listadoItems.cs" />
+    <Compile Include="vista\administrar\departamentoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\administrar\departamentoForm.Designer.cs">
+      <DependentUpon>departamentoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\administrar\detalleDepartamento.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vista\administrar\detalleDepartamento.Designer.cs">
+      <DependentUpon>detalleDepartamento.cs</DependentUpon>
+    </Compile>
     <Compile Include="vista\administrar\detalleOferta.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -112,6 +135,12 @@
     <Compile Include="vista\Dialogos\confirmDialog.Designer.cs">
       <DependentUpon>confirmDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="vista\directorio\clienteTarjetaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\directorio\clienteTarjetaForm.Designer.cs">
+      <DependentUpon>clienteTarjetaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="vista\directorio\empleadoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,11 +153,11 @@
     <Compile Include="vista\directorio\proveedorForm.designer.cs">
       <DependentUpon>proveedorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="datos\Categoria.cs" />
-    <Compile Include="datos\Cliente.cs" />
-    <Compile Include="datos\DataCategory.cs" />
-    <Compile Include="datos\Producto.cs" />
-    <Compile Include="datos\Proveedor.cs" />
+    <Compile Include="datos\objetos\Categoria.cs" />
+    <Compile Include="datos\objetos\Cliente.cs" />
+    <Compile Include="datos\objetos\DataCategory.cs" />
+    <Compile Include="datos\objetos\Producto.cs" />
+    <Compile Include="datos\objetos\Proveedor.cs" />
     <Compile Include="vista\administrar\categoriaForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +181,12 @@
     </Compile>
     <Compile Include="vista\directorio\clienteForm.designer.cs">
       <DependentUpon>clienteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\directorio\tarjetaCreditoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\directorio\tarjetaCreditoForm.Designer.cs">
+      <DependentUpon>tarjetaCreditoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="vista\inventario\almacenProductoForm.cs">
       <SubType>Form</SubType>
@@ -186,12 +221,12 @@
     <Compile Include="vista\operaciones\compraForm.designer.cs">
       <DependentUpon>compraForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="datos\compra.cs" />
+    <Compile Include="datos\objetos\compra.cs" />
     <Compile Include="datos\conexión\Conexión.cs" />
-    <Compile Include="datos\DetalleCompra.cs" />
-    <Compile Include="datos\DetalleVenta.cs" />
-    <Compile Include="datos\usuario.cs" />
-    <Compile Include="datos\venta.cs" />
+    <Compile Include="datos\objetos\DetalleCompra.cs" />
+    <Compile Include="datos\objetos\DetalleVenta.cs" />
+    <Compile Include="datos\objetos\usuario.cs" />
+    <Compile Include="datos\objetos\venta.cs" />
     <Compile Include="vista\operaciones\compraForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -296,6 +331,18 @@
     <Compile Include="vista\producto\productos.designer.cs">
       <DependentUpon>productos.cs</DependentUpon>
     </Compile>
+    <Compile Include="vista\reportes\Reportes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vista\reportes\Reportes.Designer.cs">
+      <DependentUpon>Reportes.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="vista\administrar\departamentoForm.resx">
+      <DependentUpon>departamentoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\administrar\detalleDepartamento.resx">
+      <DependentUpon>detalleDepartamento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="vista\administrar\detalleOferta.resx">
       <DependentUpon>detalleOferta.cs</DependentUpon>
     </EmbeddedResource>
@@ -310,6 +357,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="vista\Dialogos\confirmDialog.resx">
       <DependentUpon>confirmDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\directorio\clienteTarjetaForm.resx">
+      <DependentUpon>clienteTarjetaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="vista\directorio\empleadoForm.resx">
       <DependentUpon>empleadoForm.cs</DependentUpon>
@@ -328,6 +378,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="vista\directorio\clienteForm.resx">
       <DependentUpon>clienteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\directorio\tarjetaCreditoForm.resx">
+      <DependentUpon>tarjetaCreditoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="vista\inventario\almacenProductoForm.resx">
       <DependentUpon>almacenProductoForm.cs</DependentUpon>
@@ -401,6 +454,20 @@
     <EmbeddedResource Include="vista\producto\productos.resx">
       <DependentUpon>productos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="vista\reportes\Reportes.resx">
+      <DependentUpon>Reportes.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="datos\DatosReportes.xsc">
+      <DependentUpon>DatosReportes.xsd</DependentUpon>
+    </None>
+    <None Include="datos\DatosReportes.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatosReportes.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="datos\DatosReportes.xss">
+      <DependentUpon>DatosReportes.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

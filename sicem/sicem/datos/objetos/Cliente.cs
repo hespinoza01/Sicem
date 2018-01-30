@@ -11,53 +11,54 @@ namespace sicem
     class Cliente
     {
         DBHelper db = new DBHelper();
+        string id, nombre, nombrecontacto, titulocontacto, domicilio, ciudad, telefono, email;
 
         public string ID
         {
-            get { return (ID != null) ? ID : "N/A"; }
-            set { ID = (value != null) ? value : "N/A"; }
+            get { return (id != null) ? id : "N/A"; }
+            set { id = (value != null) ? value : "N/A"; }
         }
 
         public string Nombre
         {
-            get { return (Nombre != null) ? Nombre : "N/A"; }
-            set { Nombre = (value != null) ? value : "N/A"; }
+            get { return (nombre != null) ? nombre : "N/A"; }
+            set { nombre = (value != null) ? value : "N/A"; }
         }
 
         public string NombreContacto
         {
-            get { return (NombreContacto != null) ? NombreContacto : "N/A"; }
-            set { NombreContacto = (value != null) ? value : "N/A"; }
+            get { return (nombrecontacto != null) ? nombrecontacto : "N/A"; }
+            set { nombrecontacto = (value != null) ? value : "N/A"; }
         }
 
         public string TituloContacto
         {
-            get { return (TituloContacto != null) ? TituloContacto : "N/A"; }
-            set { TituloContacto = (value != null) ? value : "N/A"; }
+            get { return (titulocontacto != null) ? titulocontacto : "N/A"; }
+            set { titulocontacto = (value != null) ? value : "N/A"; }
         }
 
         public string Domicilio
         {
-            get { return (Domicilio != null) ? Domicilio : "N/A"; }
-            set { Domicilio = (value != null) ? value : "N/A"; }
+            get { return (domicilio != null) ? domicilio : "N/A"; }
+            set { domicilio = (value != null) ? value : "N/A"; }
         }
 
         public string Ciudad
         {
-            get { return (Ciudad != null) ? Ciudad : "N/A"; }
-            set { Ciudad = (value != null) ? value : "N/A"; }
+            get { return (ciudad != null) ? ciudad : "N/A"; }
+            set { ciudad = (value != null) ? value : "N/A"; }
         }
 
         public string Telefono
         {
-            get { return (Telefono != null) ? Telefono : "N/A"; }
-            set { Telefono = (value != null) ? value : "N/A"; }
+            get { return (telefono != null) ? telefono : "N/A"; }
+            set { telefono = (value != null) ? value : "N/A"; }
         }
 
         public string Email
         {
-            get { return (Email != null) ? Email : "N/A"; }
-            set { Email = (value != null) ? value : "N/A"; }
+            get { return (email != null) ? email : "N/A"; }
+            set { email = (value != null) ? value : "N/A"; }
         }
 
         public int Estado

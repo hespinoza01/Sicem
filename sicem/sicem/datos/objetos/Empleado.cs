@@ -12,7 +12,8 @@ namespace sicem.datos
     class Empleado
     {
         DBHelper db = new DBHelper();
-
+        string nombres, apellidos, titulolaboral, domicilio, ciudad, telefono, cedula, email, observaciones;
+        Image foto;
         public Empleado(){}
 
         public int ID {
@@ -21,13 +22,13 @@ namespace sicem.datos
         }
 
         public string Nombres{
-            get{return (Nombres != null) ? Nombres : "N/A";}
-            set{ Nombres = (value != null) ? value : "N/A";}
+            get{return (nombres != null) ? nombres : "N/A";}
+            set{ nombres = (value != null) ? value : "N/A";}
         }
 
         public string Apellidos{
-            get{return (Apellidos != null) ? Apellidos : "N/A";}
-            set{ Apellidos = (value != null) ? value : "N/A";}
+            get{return (apellidos != null) ? apellidos : "N/A";}
+            set{ apellidos = (value != null) ? value : "N/A";}
         }
 
         public int DepartamentoID{
@@ -36,8 +37,8 @@ namespace sicem.datos
         }
 
         public string TituloLaboral{
-            get{return (TituloLaboral != null) ? TituloLaboral : "N/A";}
-            set{TituloLaboral = (value != null) ? value : "N/A";}
+            get{return (titulolaboral != null) ? titulolaboral : "N/A";}
+            set{titulolaboral = (value != null) ? value : "N/A";}
         }
 
         public DateTime FechaNacimiento{
@@ -63,28 +64,28 @@ namespace sicem.datos
         }
 
         public string Domicilio{
-            get{return (Domicilio != null) ? Domicilio : "N/A";}
-            set{Domicilio = (value != null) ? value : "N/A";}
+            get{return (domicilio != null) ? domicilio : "N/A";}
+            set{domicilio = (value != null) ? value : "N/A";}
         }
 
         public string Ciudad{
-            get{return (Ciudad != null) ? Ciudad : "N/A";}
-            set{Ciudad = (value != null) ? value : "N/A";}
+            get{return (ciudad != null) ? ciudad : "N/A";}
+            set{ciudad = (value != null) ? value : "N/A";}
         }
 
         public string Telefono{
-            get{return (Telefono != null) ? Telefono : "N/A";}
-            set{Telefono = (value != null) ? value : "N/A";}
+            get{return (telefono != null) ? telefono : "N/A";}
+            set{telefono = (value != null) ? value : "N/A";}
         }
 
         public string Cedula{
-            get{return (Cedula != null) ? Cedula : "N/A";}
-            set{ Cedula = (value != null) ? value : "N/A";}
+            get{return (cedula != null) ? cedula : "N/A";}
+            set{ cedula = (value != null) ? value : "N/A";}
         }
 
         public string Email{
-            get{return (Email != null) ? Email : "N/A";}
-            set{Email = (value != null) ? value : "N/A";}
+            get{return (email != null) ? email : "N/A";}
+            set{email = (value != null) ? value : "N/A";}
         }
 
         public int HorasVacaciones
@@ -100,8 +101,8 @@ namespace sicem.datos
         }
 
         public string Observaciones{
-            get{return (Observaciones != null) ? Observaciones : "N/A";}
-            set{Observaciones = (value != null) ? value : "N/A";}
+            get{return (observaciones != null) ? observaciones : "N/A";}
+            set{observaciones = (value != null) ? value : "N/A";}
         }
 
         public int ReportarA
@@ -112,8 +113,8 @@ namespace sicem.datos
 
         public Image Foto
         {
-            get { return (Foto != null) ? Foto : sicem.Properties.Resources.picture_user; }
-            set { Foto = (value != null) ? value : sicem.Properties.Resources.picture_user; }
+            get { return (foto != null) ? foto : sicem.Properties.Resources.picture_user; }
+            set { foto = (value != null) ? value : sicem.Properties.Resources.picture_user; }
         }
 
         public int Estado

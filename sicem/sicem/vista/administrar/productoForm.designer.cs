@@ -480,6 +480,7 @@
             this.sugerencia.Text = "radListControl1";
             this.sugerencia.ThemeName = "Material";
             this.sugerencia.Visible = false;
+            this.sugerencia.Click += new System.EventHandler(this.sugerencia_Click);
             ((Telerik.WinControls.UI.RadListElement)(this.sugerencia.GetChildAt(0))).ItemHeight = 20;
             ((Telerik.WinControls.UI.RadListElement)(this.sugerencia.GetChildAt(0))).DrawBorder = true;
             ((Telerik.WinControls.UI.RadListElement)(this.sugerencia.GetChildAt(0))).HorizontalLineColor = System.Drawing.Color.White;
@@ -491,7 +492,7 @@
             ((Telerik.WinControls.UI.RadScrollBarElement)(this.sugerencia.GetChildAt(0).GetChildAt(2))).MinSize = new System.Drawing.Size(12, 112);
             ((Telerik.WinControls.UI.RadScrollBarElement)(this.sugerencia.GetChildAt(0).GetChildAt(2))).MaxSize = new System.Drawing.Size(12, 112);
             // 
-            // pf
+            // productoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -518,7 +519,7 @@
             this.Controls.Add(this.bunifuCustomLabel2);
             this.Controls.Add(this.toppanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "pf";
+            this.Name = "productoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "productoForm";
             this.Load += new System.EventHandler(this.productoForm_Load);

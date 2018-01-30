@@ -46,6 +46,9 @@ namespace sicem
             txtTel.Region = new region().RoundBorder(txtTel.Width, txtTel.Height+1, 7);
             txtDireccion.Region = new region().RoundBorder(txtDireccion.Width, txtDireccion.Height+1, 7);
 
+            //foreach (string s in new listadoItems().ciudad())
+            //    txtCiudad.AddItem(s);
+
             new drag().setDragable(toppanel);
         }
 
@@ -93,26 +96,38 @@ namespace sicem
 
         private void guardar_Click(object sender, EventArgs e)
         {
-            Cliente c = new Cliente();
-            c.ID = txtID.Text;
-            c.Nombre = txtNombre.Text;
-            c.NombreContacto = txtNombreContacto.Text;
-            c.TituloContacto = txtTituloContacto.Text;
-            c.Domicilio = txtDireccion.Text;
-            c.Ciudad = txtCiudad.selectedValue;
-            c.Email = txtEmail.Text;
-            c.Telefono = txtTel.Text;
-            c.Estado = (EstadoValue.Checked) ? 1 : 0;
+            try
+            {
+                Cliente c = new Cliente();
+                c.ID = txtID.Text;
+                c.Nombre = txtNombre.Text;
+                c.NombreContacto = txtNombreContacto.Text;
+                c.TituloContacto = txtTituloContacto.Text;
+                c.Domicilio = txtDireccion.Text;
+                c.Ciudad = txtCiudad.selectedValue;
+                c.Email = txtEmail.Text;
+                c.Telefono = txtTel.Text;
+                c.Estado = (EstadoValue.Checked) ? 1 : 0;
 
-            if (accionformulario == "crear")
-                c.Insertar();
-            else
-                c.Editar();
+                if (accionformulario == "crear")
+                    c.Insertar();
+                else
+                    c.Editar();
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
-
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            catch (Exception ex) { new popup("Complete los campos", popup.AlertType.warning); }
         }
 
+        private void tarjetaCredito_Click(object sender, EventArgs e)
+        {
+            new clienteTarjetaForm(txtID.Text).ShowDialog();
+        }
+
+        private void txtCiudad_onItemSelected(object sender, EventArgs e)
+        {
+
+        }
     }
 }

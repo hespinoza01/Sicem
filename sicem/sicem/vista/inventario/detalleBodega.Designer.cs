@@ -265,6 +265,7 @@
             this.Controls.Add(this.labelID);
             this.Name = "detalleBodega";
             this.Size = new System.Drawing.Size(483, 590);
+            this.Load += new System.EventHandler(this.detalleBodega_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtComentarios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtId)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre)).EndInit();

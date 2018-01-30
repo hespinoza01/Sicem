@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(almacenProductoForm));
             Telerik.WinControls.UI.RadListDataItem radListDataItem1 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem2 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem3 = new Telerik.WinControls.UI.RadListDataItem();
@@ -43,6 +42,7 @@
             Telerik.WinControls.UI.RadListDataItem radListDataItem12 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem13 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem14 = new Telerik.WinControls.UI.RadListDataItem();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(almacenProductoForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel3 = new Bunifu.Framework.UI.BunifuCustomLabel();
@@ -62,6 +62,7 @@
             this.bunifuCustomLabel5 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.labelSinAlmacenar = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel8 = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.remover = new Bunifu.Framework.UI.BunifuImageButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBodega)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCantidad)).BeginInit();
@@ -69,11 +70,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtProducto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sugerenciaBodega)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEstante)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.remover)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.panel1.Controls.Add(this.remover);
             this.panel1.Controls.Add(this.bunifuCustomLabel1);
             this.panel1.Location = new System.Drawing.Point(-4, -1);
             this.panel1.Name = "panel1";
@@ -222,6 +225,7 @@
             0,
             0,
             0});
+            this.txtCantidad.ValueChanged += new System.EventHandler(this.txtCantidad_ValueChanged);
             ((Telerik.WinControls.UI.RadSpinElement)(this.txtCantidad.GetChildAt(0))).EnableRippleAnimation = true;
             ((Telerik.WinControls.UI.RadSpinElement)(this.txtCantidad.GetChildAt(0))).EnableFocusBorder = true;
             ((Telerik.WinControls.UI.RadSpinElement)(this.txtCantidad.GetChildAt(0))).FocusBorderColor = System.Drawing.Color.RoyalBlue;
@@ -438,6 +442,20 @@
             this.bunifuCustomLabel8.TabIndex = 58;
             this.bunifuCustomLabel8.Text = "Sin almacenar : ";
             // 
+            // remover
+            // 
+            this.remover.BackColor = System.Drawing.Color.Transparent;
+            this.remover.Image = ((System.Drawing.Image)(resources.GetObject("remover.Image")));
+            this.remover.ImageActive = ((System.Drawing.Image)(resources.GetObject("remover.ImageActive")));
+            this.remover.Location = new System.Drawing.Point(372, 5);
+            this.remover.Name = "remover";
+            this.remover.Size = new System.Drawing.Size(30, 30);
+            this.remover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.remover.TabIndex = 60;
+            this.remover.TabStop = false;
+            this.remover.Zoom = 5;
+            this.remover.Click += new System.EventHandler(this.remover_Click);
+            // 
             // almacenProductoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -474,6 +492,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtProducto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sugerenciaBodega)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEstante)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.remover)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -500,5 +519,6 @@
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel5;
         private Bunifu.Framework.UI.BunifuCustomLabel labelSinAlmacenar;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel8;
+        private Bunifu.Framework.UI.BunifuImageButton remover;
     }
 }

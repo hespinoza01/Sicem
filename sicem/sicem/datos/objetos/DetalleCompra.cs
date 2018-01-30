@@ -10,7 +10,7 @@ namespace sicem
 
         public DetalleCompra(){}
 
-        public int CompraID { get; set; }
+        public string CompraID { get; set; }
         public int ProdID { get; set; }
         public int Cant { get; set; }
         public decimal UnitPrice { get; set; }
@@ -44,7 +44,7 @@ namespace sicem
         public DataTable Mostrar(string idvalue)
         {
             SqlParameter[] Parametros = new SqlParameter[]{
-                db.Param("@CompraID", SqlDbType.VarChar, 15, idvalue)
+                db.Param("@ID", SqlDbType.VarChar, 15, idvalue)
             };
 
             return db.Reader("Mostrar_Detalle_Compra", Parametros);

@@ -31,7 +31,6 @@ namespace sicem.vista.directorio
         }
 
         public void setInfo(int id){
-            editar.Visible = true;
         	DataTable data = new Proveedor().Detalle(id);
 
         	if(data != null){

@@ -13,6 +13,7 @@ namespace sicem.vista.directorio
     public partial class detalleProducto : UserControl
     {
         bool admin = true;
+        int idc;
         public detalleProducto()
         {
             InitializeComponent();
@@ -38,7 +39,7 @@ namespace sicem.vista.directorio
                 DataRow row = data.Rows[0];
 
                 txtID.Text = row["ID"].ToString();
-                txtIDCategoria.Text = row["CategoriaID"].ToString();
+                setValorCategoria(int.Parse(row["CategoriaID"].ToString()));
                 txtNombreProducto.Text = row["Nombre"].ToString();
                 txtCantidadPorUnidad.Text = row["CantidadPorUnidad"].ToString();
                 txtPrecioVenta.Text = row["PrecioVenta"].ToString();
@@ -48,6 +49,13 @@ namespace sicem.vista.directorio
                 labelFechaModificacion.Text = row["FechaModificacion"].ToString();
             }else
                 new popup("Error al mostrar detalle", popup.AlertType.error);
+        }
+
+        private void setValorCategoria(int id)
+        {
+            DataRow r = new Categoria().Detalle(id).Rows[0];
+            idc = int.Parse(r["ID"].ToString());
+            txtIDCategoria.Text = r["Nombre"].ToString();
         }
 
         public void ocultaCampos() {

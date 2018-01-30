@@ -359,7 +359,24 @@
             this.txtCiudad.BorderRadius = 7;
             this.txtCiudad.DisabledColor = System.Drawing.Color.Gray;
             this.txtCiudad.ForeColor = System.Drawing.Color.White;
-            this.txtCiudad.Items = new string[0];
+            this.txtCiudad.Items = new string[] {
+        "Boaco",
+        "Carazo",
+        "Chinandega",
+        "Chontales",
+        "Estelí",
+        "Granada",
+        "Jinotega",
+        "León",
+        "Madriz",
+        "Managua",
+        "Masaya",
+        "Matagalpa",
+        "Nueva Segovia",
+        "RAAN",
+        "RAAS",
+        "Río San Juan",
+        "Rivas"};
             this.txtCiudad.Location = new System.Drawing.Point(202, 298);
             this.txtCiudad.Name = "txtCiudad";
             this.txtCiudad.NomalColor = System.Drawing.Color.RoyalBlue;

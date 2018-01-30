@@ -19,6 +19,7 @@ namespace sicem
         detalleProducto detalleProducto = new detalleProducto();
         detalleCategoria detalleCategoria = new detalleCategoria();
         detalleOferta detalleOferta = new detalleOferta();
+        detalleDepartamento detalleDepartamento = new detalleDepartamento();
         string active = "";
         public administrar()
         {   
@@ -33,12 +34,17 @@ namespace sicem
         private void inicio()
         {
             active = "usuario";
-            activa();
+            clearForeColor();
+            labelusuarios.ForeColor = Color.RoyalBlue;
+            detalleUsuario.BringToFront();
+            new listadoItems().llenar(metodoBusqueda, new listadoItems().usuario());
+            metodoBusqueda.StartIndex = 0;
 
             contentDetails.Controls.Add(detalleUsuario);
             contentDetails.Controls.Add(detalleProducto);
             contentDetails.Controls.Add(detalleCategoria);
             contentDetails.Controls.Add(detalleOferta);
+            contentDetails.Controls.Add(detalleDepartamento);
         }
 
         private void clearForeColor()
@@ -47,12 +53,13 @@ namespace sicem
             labelproductos.ForeColor = Color.Silver;
             labelcategorias.ForeColor = Color.Silver;
             labelofertas.ForeColor = Color.Silver;
+            labelDepartamentos.ForeColor = Color.Silver;
         }
 
         public void Cargar(bool buscar)
         {
-            DataTable data;
-            string rowname;
+            DataTable data = null;
+            string rowname = "";
 
             switch(active){
                 case "usuario":
@@ -61,7 +68,7 @@ namespace sicem
                     break;
 
                 case "producto":
-                    data = (buscar)? new Producto().Buscar(txtBuscar.Text, metodoBusqueda.SelectedIndex) : new Producto().Mostrar();
+                    data = (buscar)? new Producto().BuscarTodo(txtBuscar.Text, metodoBusqueda.SelectedIndex) : new Producto().Mostrar();
                     rowname = "Nombre";
                     break;
 
@@ -75,9 +82,9 @@ namespace sicem
                     rowname = "tipoOferta";
                     break;
 
-                default:
-                    data = null;
-                    rowname = "";
+                case "departamento":
+                    data = (buscar) ? new Departamento().Buscar(txtBuscar.Text, metodoBusqueda.SelectedIndex) : new Departamento().Mostrar();
+                    rowname = "Nombre";
                     break;
             }
 
@@ -137,6 +144,15 @@ namespace sicem
                     new listadoItems().llenar(metodoBusqueda, new listadoItems().oferta());
                     metodoBusqueda.StartIndex = 0;
                     break;
+
+                case "departamento":
+                    labelDepartamentos.ForeColor = Color.RoyalBlue;
+                    Transition.run(indicadorlabel, "Left", labelDepartamentos.Left, new TransitionType_EaseInEaseOut(500));
+                    indicadorlabel.Width = labelDepartamentos.Width;
+                    detalleDepartamento.BringToFront();
+                    new listadoItems().llenar(metodoBusqueda, new listadoItems().departamento());
+                    metodoBusqueda.StartIndex = 0;
+                    break;
             }
 
         }
@@ -160,30 +176,42 @@ namespace sicem
                 case "oferta":
                     new ofertaForm().Show();
                     break;
+
+                case "departamento":
+                    new departamentoForm().Show();
+                    break;
             }
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string value = vistaListado.Rows[e.RowIndex].Cells[0].Value.ToString();
-            switch (active)
+            try
             {
-                case "usuario":
-                    detalleUsuario.setInfo(value);
-                    break;
+                string value = vistaListado.Rows[e.RowIndex].Cells[0].Value.ToString();
+                switch (active)
+                {
+                    case "usuario":
+                        detalleUsuario.setInfo(value);
+                        break;
 
-                case "producto":
-                    detalleProducto.setInfo(int.Parse(value));
-                    break;
+                    case "producto":
+                        detalleProducto.setInfo(int.Parse(value));
+                        break;
 
-                case "categoria":
-                    detalleCategoria.setInfo(int.Parse(value));
-                    break;
+                    case "categoria":
+                        detalleCategoria.setInfo(int.Parse(value));
+                        break;
 
-                case "oferta":
-                    detalleOferta.setInfo(int.Parse(value));
-                    break;
+                    case "oferta":
+                        detalleOferta.setInfo(int.Parse(value));
+                        break;
+
+                    case "departamento":
+                        detalleDepartamento.setInfo(int.Parse(value));
+                        break;
+                }
             }
+            catch (Exception es) { }
         }
 
         private void txtBuscar_OnTextChange(object sender, EventArgs e)
@@ -215,6 +243,12 @@ namespace sicem
         private void labelofertas_Click(object sender, EventArgs e)
         {
             active = "oferta";
+            activa();
+        }
+
+        private void labelDepartamentos_Click(object sender, EventArgs e)
+        {
+            active = "departamento";
             activa();
         }
     }

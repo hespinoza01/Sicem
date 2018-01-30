@@ -28,19 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle49 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle50 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle51 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle52 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle53 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle54 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle55 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle56 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(detalleInventario));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle57 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle58 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle59 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle60 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtID = new Telerik.WinControls.UI.RadTextBox();
             this.txtNombreProducto = new Telerik.WinControls.UI.RadTextBox();
             this.labelId = new Bunifu.Framework.UI.BunifuCustomLabel();
@@ -48,12 +48,12 @@
             this.txtEstado = new Telerik.WinControls.UI.RadTextBox();
             this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.vistaAlmacenaje = new Bunifu.Framework.UI.BunifuCustomDataGrid();
-            this.bunifuCustomLabel3 = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.vistaHistorialEntrada = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.bodegaID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bodegaNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bodegaEstante = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bodegaCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bunifuCustomLabel3 = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.vistaHistorialEntrada = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.cantidadEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costoEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -171,34 +171,34 @@
             // 
             // vistaAlmacenaje
             // 
-            dataGridViewCellStyle49.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.vistaAlmacenaje.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle49;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.vistaAlmacenaje.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.vistaAlmacenaje.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.vistaAlmacenaje.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
-            this.vistaAlmacenaje.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.vistaAlmacenaje.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.vistaAlmacenaje.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle50.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle50.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle50.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle50.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle50.SelectionBackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle50.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle50.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.vistaAlmacenaje.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle50;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.vistaAlmacenaje.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.vistaAlmacenaje.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.vistaAlmacenaje.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.bodegaID,
             this.bodegaNombre,
             this.bodegaEstante,
             this.bodegaCantidad});
-            dataGridViewCellStyle51.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle51.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
-            dataGridViewCellStyle51.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle51.ForeColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle51.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            dataGridViewCellStyle51.SelectionForeColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle51.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.vistaAlmacenaje.DefaultCellStyle = dataGridViewCellStyle51;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.vistaAlmacenaje.DefaultCellStyle = dataGridViewCellStyle3;
             this.vistaAlmacenaje.DoubleBuffered = true;
             this.vistaAlmacenaje.EnableHeadersVisualStyles = false;
             this.vistaAlmacenaje.HeaderBgColor = System.Drawing.Color.RoyalBlue;
@@ -210,14 +210,47 @@
             this.vistaAlmacenaje.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.vistaAlmacenaje.RowHeadersVisible = false;
             this.vistaAlmacenaje.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle52.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
-            dataGridViewCellStyle52.ForeColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle52.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            dataGridViewCellStyle52.SelectionForeColor = System.Drawing.Color.RoyalBlue;
-            this.vistaAlmacenaje.RowsDefaultCellStyle = dataGridViewCellStyle52;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.RoyalBlue;
+            this.vistaAlmacenaje.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.vistaAlmacenaje.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.vistaAlmacenaje.Size = new System.Drawing.Size(413, 130);
             this.vistaAlmacenaje.TabIndex = 53;
+            this.vistaAlmacenaje.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.vistaAlmacenaje_CellDoubleClick);
+            // 
+            // bodegaID
+            // 
+            this.bodegaID.FillWeight = 65.16669F;
+            this.bodegaID.HeaderText = "ID";
+            this.bodegaID.Name = "bodegaID";
+            this.bodegaID.ReadOnly = true;
+            this.bodegaID.ToolTipText = "Doble click para editar";
+            // 
+            // bodegaNombre
+            // 
+            this.bodegaNombre.FillWeight = 207.1066F;
+            this.bodegaNombre.HeaderText = "Nombre";
+            this.bodegaNombre.Name = "bodegaNombre";
+            this.bodegaNombre.ReadOnly = true;
+            this.bodegaNombre.ToolTipText = "Doble click para editar";
+            // 
+            // bodegaEstante
+            // 
+            this.bodegaEstante.FillWeight = 63.86336F;
+            this.bodegaEstante.HeaderText = "Estante";
+            this.bodegaEstante.Name = "bodegaEstante";
+            this.bodegaEstante.ReadOnly = true;
+            this.bodegaEstante.ToolTipText = "Doble click para editar";
+            // 
+            // bodegaCantidad
+            // 
+            this.bodegaCantidad.FillWeight = 63.86336F;
+            this.bodegaCantidad.HeaderText = "Cantidad";
+            this.bodegaCantidad.Name = "bodegaCantidad";
+            this.bodegaCantidad.ReadOnly = true;
+            this.bodegaCantidad.ToolTipText = "Doble click para editar";
             // 
             // bunifuCustomLabel3
             // 
@@ -231,33 +264,33 @@
             // 
             // vistaHistorialEntrada
             // 
-            dataGridViewCellStyle53.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.vistaHistorialEntrada.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle53;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.vistaHistorialEntrada.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.vistaHistorialEntrada.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.vistaHistorialEntrada.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
             this.vistaHistorialEntrada.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.vistaHistorialEntrada.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle54.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle54.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle54.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle54.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle54.SelectionBackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle54.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle54.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.vistaHistorialEntrada.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle54;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.vistaHistorialEntrada.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.vistaHistorialEntrada.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.vistaHistorialEntrada.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cantidadEntrada,
             this.costoEntrada,
             this.fechaEntrada});
-            dataGridViewCellStyle55.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle55.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
-            dataGridViewCellStyle55.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle55.ForeColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle55.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            dataGridViewCellStyle55.SelectionForeColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle55.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.vistaHistorialEntrada.DefaultCellStyle = dataGridViewCellStyle55;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.vistaHistorialEntrada.DefaultCellStyle = dataGridViewCellStyle7;
             this.vistaHistorialEntrada.DoubleBuffered = true;
             this.vistaHistorialEntrada.EnableHeadersVisualStyles = false;
             this.vistaHistorialEntrada.HeaderBgColor = System.Drawing.Color.RoyalBlue;
@@ -269,42 +302,14 @@
             this.vistaHistorialEntrada.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.vistaHistorialEntrada.RowHeadersVisible = false;
             this.vistaHistorialEntrada.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle56.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
-            dataGridViewCellStyle56.ForeColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle56.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            dataGridViewCellStyle56.SelectionForeColor = System.Drawing.Color.RoyalBlue;
-            this.vistaHistorialEntrada.RowsDefaultCellStyle = dataGridViewCellStyle56;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.RoyalBlue;
+            this.vistaHistorialEntrada.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.vistaHistorialEntrada.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.vistaHistorialEntrada.Size = new System.Drawing.Size(413, 130);
             this.vistaHistorialEntrada.TabIndex = 55;
-            // 
-            // bodegaID
-            // 
-            this.bodegaID.FillWeight = 65.16669F;
-            this.bodegaID.HeaderText = "ID";
-            this.bodegaID.Name = "bodegaID";
-            this.bodegaID.ReadOnly = true;
-            // 
-            // bodegaNombre
-            // 
-            this.bodegaNombre.FillWeight = 207.1066F;
-            this.bodegaNombre.HeaderText = "Nombre";
-            this.bodegaNombre.Name = "bodegaNombre";
-            this.bodegaNombre.ReadOnly = true;
-            // 
-            // bodegaEstante
-            // 
-            this.bodegaEstante.FillWeight = 63.86336F;
-            this.bodegaEstante.HeaderText = "Estante";
-            this.bodegaEstante.Name = "bodegaEstante";
-            this.bodegaEstante.ReadOnly = true;
-            // 
-            // bodegaCantidad
-            // 
-            this.bodegaCantidad.FillWeight = 63.86336F;
-            this.bodegaCantidad.HeaderText = "Cantidad";
-            this.bodegaCantidad.Name = "bodegaCantidad";
-            this.bodegaCantidad.ReadOnly = true;
             // 
             // cantidadEntrada
             // 
@@ -340,7 +345,7 @@
             // tabEntrada
             // 
             this.tabEntrada.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(75)))), ((int)(((byte)(195)))));
-            this.tabEntrada.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(85)))), ((int)(((byte)(205)))));
+            this.tabEntrada.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(75)))), ((int)(((byte)(195)))));
             this.tabEntrada.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.tabEntrada.BorderRadius = 0;
             this.tabEntrada.ButtonText = "Entrada";
@@ -444,33 +449,33 @@
             // 
             // historialCostoPrecio
             // 
-            dataGridViewCellStyle57.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.historialCostoPrecio.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle57;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.historialCostoPrecio.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.historialCostoPrecio.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.historialCostoPrecio.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
             this.historialCostoPrecio.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.historialCostoPrecio.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle58.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle58.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle58.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle58.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle58.SelectionBackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle58.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle58.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.historialCostoPrecio.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle58;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.historialCostoPrecio.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.historialCostoPrecio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.historialCostoPrecio.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.txtFechaInicio,
             this.txtFechaFinal,
             this.valueTipo});
-            dataGridViewCellStyle59.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle59.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
-            dataGridViewCellStyle59.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle59.ForeColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle59.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            dataGridViewCellStyle59.SelectionForeColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle59.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.historialCostoPrecio.DefaultCellStyle = dataGridViewCellStyle59;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.historialCostoPrecio.DefaultCellStyle = dataGridViewCellStyle11;
             this.historialCostoPrecio.DoubleBuffered = true;
             this.historialCostoPrecio.EnableHeadersVisualStyles = false;
             this.historialCostoPrecio.HeaderBgColor = System.Drawing.Color.RoyalBlue;
@@ -482,11 +487,11 @@
             this.historialCostoPrecio.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.historialCostoPrecio.RowHeadersVisible = false;
             this.historialCostoPrecio.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle60.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
-            dataGridViewCellStyle60.ForeColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle60.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            dataGridViewCellStyle60.SelectionForeColor = System.Drawing.Color.RoyalBlue;
-            this.historialCostoPrecio.RowsDefaultCellStyle = dataGridViewCellStyle60;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.RoyalBlue;
+            this.historialCostoPrecio.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.historialCostoPrecio.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.historialCostoPrecio.Size = new System.Drawing.Size(413, 130);
             this.historialCostoPrecio.TabIndex = 60;
@@ -533,6 +538,7 @@
             this.Controls.Add(this.historialCostoPrecio);
             this.Name = "detalleInventario";
             this.Size = new System.Drawing.Size(483, 590);
+            this.Load += new System.EventHandler(this.detalleInventario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombreProducto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEstado)).EndInit();
@@ -553,10 +559,6 @@
         private Telerik.WinControls.UI.RadTextBox txtEstado;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel1;
         private Bunifu.Framework.UI.BunifuCustomDataGrid vistaAlmacenaje;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bodegaID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bodegaNombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bodegaEstante;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bodegaCantidad;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel3;
         private Bunifu.Framework.UI.BunifuCustomDataGrid vistaHistorialEntrada;
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidadEntrada;
@@ -570,5 +572,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn txtFechaInicio;
         private System.Windows.Forms.DataGridViewTextBoxColumn txtFechaFinal;
         private System.Windows.Forms.DataGridViewTextBoxColumn valueTipo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bodegaID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bodegaNombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bodegaEstante;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bodegaCantidad;
     }
 }

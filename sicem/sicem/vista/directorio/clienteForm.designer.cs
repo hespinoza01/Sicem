@@ -30,8 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(clienteForm));
             this.labelID = new System.Windows.Forms.Label();
-            this.cancelar = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.guardar = new Bunifu.Framework.UI.BunifuThinButton2();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -52,6 +50,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.EstadoValue = new Bunifu.Framework.UI.BunifuCheckbox();
             this.label8 = new System.Windows.Forms.Label();
+            this.tarjetaCredito = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.cancelar = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.guardar = new Bunifu.Framework.UI.BunifuThinButton2();
             this.toppanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtID)).BeginInit();
@@ -71,58 +72,6 @@
             this.labelID.Size = new System.Drawing.Size(18, 13);
             this.labelID.TabIndex = 14;
             this.labelID.Text = "ID";
-            // 
-            // cancelar
-            // 
-            this.cancelar.ActiveBorderThickness = 2;
-            this.cancelar.ActiveCornerRadius = 10;
-            this.cancelar.ActiveFillColor = System.Drawing.Color.White;
-            this.cancelar.ActiveForecolor = System.Drawing.Color.RoyalBlue;
-            this.cancelar.ActiveLineColor = System.Drawing.Color.RoyalBlue;
-            this.cancelar.BackColor = System.Drawing.Color.White;
-            this.cancelar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cancelar.BackgroundImage")));
-            this.cancelar.ButtonText = "Cancelar";
-            this.cancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cancelar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelar.ForeColor = System.Drawing.Color.SeaGreen;
-            this.cancelar.IdleBorderThickness = 1;
-            this.cancelar.IdleCornerRadius = 10;
-            this.cancelar.IdleFillColor = System.Drawing.Color.White;
-            this.cancelar.IdleForecolor = System.Drawing.Color.RoyalBlue;
-            this.cancelar.IdleLineColor = System.Drawing.Color.RoyalBlue;
-            this.cancelar.Location = new System.Drawing.Point(113, 496);
-            this.cancelar.Margin = new System.Windows.Forms.Padding(5);
-            this.cancelar.Name = "cancelar";
-            this.cancelar.Size = new System.Drawing.Size(120, 40);
-            this.cancelar.TabIndex = 12;
-            this.cancelar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
-            // 
-            // guardar
-            // 
-            this.guardar.ActiveBorderThickness = 1;
-            this.guardar.ActiveCornerRadius = 10;
-            this.guardar.ActiveFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(125)))), ((int)(((byte)(245)))));
-            this.guardar.ActiveForecolor = System.Drawing.Color.White;
-            this.guardar.ActiveLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(125)))), ((int)(((byte)(245)))));
-            this.guardar.BackColor = System.Drawing.Color.White;
-            this.guardar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("guardar.BackgroundImage")));
-            this.guardar.ButtonText = "Guardar";
-            this.guardar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.guardar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guardar.ForeColor = System.Drawing.Color.SeaGreen;
-            this.guardar.IdleBorderThickness = 1;
-            this.guardar.IdleCornerRadius = 10;
-            this.guardar.IdleFillColor = System.Drawing.Color.RoyalBlue;
-            this.guardar.IdleForecolor = System.Drawing.Color.White;
-            this.guardar.IdleLineColor = System.Drawing.Color.RoyalBlue;
-            this.guardar.Location = new System.Drawing.Point(266, 496);
-            this.guardar.Margin = new System.Windows.Forms.Padding(5);
-            this.guardar.Name = "guardar";
-            this.guardar.Size = new System.Drawing.Size(120, 40);
-            this.guardar.TabIndex = 11;
-            this.guardar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.guardar.Click += new System.EventHandler(this.guardar_Click);
             // 
             // label5
             // 
@@ -360,7 +309,24 @@
             this.txtCiudad.BorderRadius = 7;
             this.txtCiudad.DisabledColor = System.Drawing.Color.Gray;
             this.txtCiudad.ForeColor = System.Drawing.Color.White;
-            this.txtCiudad.Items = new string[0];
+            this.txtCiudad.Items = new string[] {
+        "Boaco",
+        "Carazo",
+        "Chinandega",
+        "Chontales",
+        "Estelí",
+        "Granada",
+        "Jinotega",
+        "León",
+        "Madriz",
+        "Managua",
+        "Masaya",
+        "Matagalpa",
+        "Nueva Segovia",
+        "RAAN",
+        "RAAS",
+        "Río San Juan",
+        "Rivas"};
             this.txtCiudad.Location = new System.Drawing.Point(202, 298);
             this.txtCiudad.Name = "txtCiudad";
             this.txtCiudad.NomalColor = System.Drawing.Color.RoyalBlue;
@@ -368,6 +334,7 @@
             this.txtCiudad.selectedIndex = -1;
             this.txtCiudad.Size = new System.Drawing.Size(173, 30);
             this.txtCiudad.TabIndex = 36;
+            this.txtCiudad.onItemSelected += new System.EventHandler(this.txtCiudad_onItemSelected);
             // 
             // label7
             // 
@@ -386,7 +353,7 @@
             this.EstadoValue.Checked = true;
             this.EstadoValue.CheckedOnColor = System.Drawing.Color.RoyalBlue;
             this.EstadoValue.ForeColor = System.Drawing.Color.White;
-            this.EstadoValue.Location = new System.Drawing.Point(25, 455);
+            this.EstadoValue.Location = new System.Drawing.Point(25, 445);
             this.EstadoValue.Name = "EstadoValue";
             this.EstadoValue.Size = new System.Drawing.Size(20, 20);
             this.EstadoValue.TabIndex = 38;
@@ -395,11 +362,99 @@
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label8.Location = new System.Drawing.Point(51, 459);
+            this.label8.Location = new System.Drawing.Point(51, 449);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(54, 13);
             this.label8.TabIndex = 39;
             this.label8.Text = "Habilitado";
+            // 
+            // tarjetaCredito
+            // 
+            this.tarjetaCredito.Activecolor = System.Drawing.Color.RoyalBlue;
+            this.tarjetaCredito.BackColor = System.Drawing.Color.RoyalBlue;
+            this.tarjetaCredito.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tarjetaCredito.BorderRadius = 7;
+            this.tarjetaCredito.ButtonText = "Trajetas de crédito";
+            this.tarjetaCredito.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.tarjetaCredito.DisabledColor = System.Drawing.Color.Gray;
+            this.tarjetaCredito.Iconcolor = System.Drawing.Color.Transparent;
+            this.tarjetaCredito.Iconimage = ((System.Drawing.Image)(resources.GetObject("tarjetaCredito.Iconimage")));
+            this.tarjetaCredito.Iconimage_right = null;
+            this.tarjetaCredito.Iconimage_right_Selected = null;
+            this.tarjetaCredito.Iconimage_Selected = null;
+            this.tarjetaCredito.IconMarginLeft = 0;
+            this.tarjetaCredito.IconMarginRight = 0;
+            this.tarjetaCredito.IconRightVisible = true;
+            this.tarjetaCredito.IconRightZoom = 0D;
+            this.tarjetaCredito.IconVisible = true;
+            this.tarjetaCredito.IconZoom = 90D;
+            this.tarjetaCredito.IsTab = false;
+            this.tarjetaCredito.Location = new System.Drawing.Point(215, 445);
+            this.tarjetaCredito.Name = "tarjetaCredito";
+            this.tarjetaCredito.Normalcolor = System.Drawing.Color.RoyalBlue;
+            this.tarjetaCredito.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(125)))), ((int)(((byte)(245)))));
+            this.tarjetaCredito.OnHoverTextColor = System.Drawing.Color.White;
+            this.tarjetaCredito.selected = false;
+            this.tarjetaCredito.Size = new System.Drawing.Size(160, 20);
+            this.tarjetaCredito.TabIndex = 60;
+            this.tarjetaCredito.Text = "Trajetas de crédito";
+            this.tarjetaCredito.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tarjetaCredito.Textcolor = System.Drawing.Color.White;
+            this.tarjetaCredito.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tarjetaCredito.Visible = false;
+            this.tarjetaCredito.Click += new System.EventHandler(this.tarjetaCredito_Click);
+            // 
+            // cancelar
+            // 
+            this.cancelar.ActiveBorderThickness = 2;
+            this.cancelar.ActiveCornerRadius = 10;
+            this.cancelar.ActiveFillColor = System.Drawing.Color.White;
+            this.cancelar.ActiveForecolor = System.Drawing.Color.RoyalBlue;
+            this.cancelar.ActiveLineColor = System.Drawing.Color.RoyalBlue;
+            this.cancelar.BackColor = System.Drawing.Color.White;
+            this.cancelar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cancelar.BackgroundImage")));
+            this.cancelar.ButtonText = "Cancelar";
+            this.cancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cancelar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelar.ForeColor = System.Drawing.Color.SeaGreen;
+            this.cancelar.IdleBorderThickness = 1;
+            this.cancelar.IdleCornerRadius = 10;
+            this.cancelar.IdleFillColor = System.Drawing.Color.White;
+            this.cancelar.IdleForecolor = System.Drawing.Color.RoyalBlue;
+            this.cancelar.IdleLineColor = System.Drawing.Color.RoyalBlue;
+            this.cancelar.Location = new System.Drawing.Point(113, 506);
+            this.cancelar.Margin = new System.Windows.Forms.Padding(5);
+            this.cancelar.Name = "cancelar";
+            this.cancelar.Size = new System.Drawing.Size(120, 40);
+            this.cancelar.TabIndex = 12;
+            this.cancelar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
+            // 
+            // guardar
+            // 
+            this.guardar.ActiveBorderThickness = 1;
+            this.guardar.ActiveCornerRadius = 10;
+            this.guardar.ActiveFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(125)))), ((int)(((byte)(245)))));
+            this.guardar.ActiveForecolor = System.Drawing.Color.White;
+            this.guardar.ActiveLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(125)))), ((int)(((byte)(245)))));
+            this.guardar.BackColor = System.Drawing.Color.White;
+            this.guardar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("guardar.BackgroundImage")));
+            this.guardar.ButtonText = "Guardar";
+            this.guardar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.guardar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guardar.ForeColor = System.Drawing.Color.SeaGreen;
+            this.guardar.IdleBorderThickness = 1;
+            this.guardar.IdleCornerRadius = 10;
+            this.guardar.IdleFillColor = System.Drawing.Color.RoyalBlue;
+            this.guardar.IdleForecolor = System.Drawing.Color.White;
+            this.guardar.IdleLineColor = System.Drawing.Color.RoyalBlue;
+            this.guardar.Location = new System.Drawing.Point(266, 506);
+            this.guardar.Margin = new System.Windows.Forms.Padding(5);
+            this.guardar.Name = "guardar";
+            this.guardar.Size = new System.Drawing.Size(120, 40);
+            this.guardar.TabIndex = 11;
+            this.guardar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.guardar.Click += new System.EventHandler(this.guardar_Click);
             // 
             // clienteForm
             // 
@@ -407,6 +462,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(400, 550);
+            this.Controls.Add(this.tarjetaCredito);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.EstadoValue);
             this.Controls.Add(this.label7);
@@ -431,7 +487,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "clienteForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Cliente";
             this.Load += new System.EventHandler(this.clienteForm_Load);
             this.toppanel.ResumeLayout(false);
             this.toppanel.PerformLayout();
@@ -471,5 +527,6 @@
         private System.Windows.Forms.Label label7;
         private Bunifu.Framework.UI.BunifuCheckbox EstadoValue;
         private System.Windows.Forms.Label label8;
+        private Bunifu.Framework.UI.BunifuFlatButton tarjetaCredito;
     }
 }

@@ -11,7 +11,7 @@ namespace sicem
     class Producto
     {
         DBHelper db = new DBHelper();
-
+        string nombre, descripcion;
         public int ID {
             get;
             set;
@@ -23,8 +23,8 @@ namespace sicem
         }
 
         public string Nombre {
-            get { return (Nombre != null) ? Nombre : "N/A"; }
-            set { Nombre = (value != null) ? value : "N/A"; }
+            get { return (nombre != null) ? nombre : "N/A"; }
+            set { nombre = (value != null) ? value : "N/A"; }
         }
 
         public int CantidadPorUnidad
@@ -44,44 +44,14 @@ namespace sicem
         }
 
         public string Descripcion {
-            get { return (Descripcion != null) ? Descripcion : "N/A"; }
-            set { Descripcion = (value != null) ? value : "N/A"; }
+            get { return (descripcion != null) ? descripcion : "N/A"; }
+            set { descripcion = (value != null) ? value : "N/A"; }
         }
 
         public int Estado {
             get;
             set;
         }
-
-        public enum Accion
-        {
-            insertar, editar
-        }
-
-        public Producto() { }
-
-        public Producto(int id, int categoriaid, string nombre, decimal precioventa, int stock, string descripcion, int estado, Accion type)
-        {
-            this.ID = id;
-            this.CategoriaID = categoriaid;
-            this.Nombre = nombre;
-            this.PrecioVenta = precioventa;
-            this.Stock = stock;
-            this.Descripcion = descripcion;
-            this.Estado = estado;
-
-            switch (type)
-            {
-                case Accion.insertar:
-                    Insertar();
-                    break;
-
-                case Accion.editar:
-                    Editar();
-                    break;
-            }
-        }
-
 
         public void Insertar()
         {
@@ -147,10 +117,24 @@ namespace sicem
             return db.Reader("Mostrar_Productos");
         }
 
+
         public DataTable Mostrar()
         {
             return db.Reader("Mostrar_Todo_Productos");
         }
+
+
+        public void InsertarHistorialPrecio(int id, decimal precio)
+        {
+            SqlParameter[] Parametros = new SqlParameter[]
+            {
+                db.Param("@ProductoID", SqlDbType.Int, id),
+                db.Param("@Precio", SqlDbType.Decimal, precio)
+            };
+
+            db.ExecuteQuery("Insertar_Historial_Precio_Producto", Parametros);
+        }
+
 
         public DataTable HistorialPrecio(int idvalue)
         {
@@ -159,8 +143,9 @@ namespace sicem
                 db.Param("@ID", SqlDbType.Int, idvalue)
             };
 
-            return db.Reader("Mostrar_HistorialPrecioProducto");
+            return db.Reader("Mostrar_HistorialPrecioProducto", Parametros);
         }
+
 
         public DataTable HistorialCosto(int idvalue)
         {
@@ -169,8 +154,32 @@ namespace sicem
                 db.Param("@ID", SqlDbType.Int, idvalue)
             };
 
-            return db.Reader("Mostrar_HistorialCostoProducto");
+            return db.Reader("Mostrar_HistorialCostoProducto", Parametros);
         }
+
+
+        public void InsertarHistorialCosto(int id, decimal precio)
+        {
+            SqlParameter[] Parametros = new SqlParameter[]
+            {
+                db.Param("@ProductoID", SqlDbType.Int, id),
+                db.Param("@Precio", SqlDbType.Decimal, precio)
+            };
+
+            db.ExecuteQuery("Insertar_Historial_Costo_Producto", Parametros);
+        }
+
+
+        public DataTable detalleProductoOferta(int idvalue)
+        {
+            SqlParameter[] Parametros = new SqlParameter[]
+            {
+                db.Param("@idproducto", SqlDbType.Int, idvalue)
+            };
+
+            return db.Reader("Producto_Oferta", Parametros);
+        }
+
 
         public DataTable Detalle(int idvalue)
         {

@@ -31,7 +31,11 @@ namespace sicem
         public void inicia()
         {
             active = "venta";
-            activa();
+            clearForeColor();
+            labelventas.ForeColor = Color.RoyalBlue;
+            detalleVenta.BringToFront();
+            new listadoItems().llenar(metodoBusqueda, new listadoItems().venta());
+            columnFecha.HeaderText = "Fecha venta";
 
             contentDetails.Controls.Add(detalleVenta);
             contentDetails.Controls.Add(detalleCompra);
@@ -121,18 +125,22 @@ namespace sicem
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string value = vista.Rows[e.RowIndex].Cells[0].Value.ToString();
-
-            switch (active)
+            try
             {
-                case "venta":
-                    
-                    break;
+                string value = vista.Rows[e.RowIndex].Cells[0].Value.ToString();
 
-                case "compra":
-                    new compraForm().Show();
-                    break;
+                switch (active)
+                {
+                    case "venta":
+                        detalleVenta.setInfo(value);
+                        break;
+
+                    case "compra":
+                        detalleCompra.setInfo(value);
+                        break;
+                }
             }
+            catch (Exception ex) { }
         }
 
         private void txtBuscar_OnTextChange(object sender, EventArgs e)

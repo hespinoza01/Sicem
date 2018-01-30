@@ -4,7 +4,7 @@ create database sicem
 	go
 use sicem
 	go
-
+	
 /* Creación de las tablas */
 
 create table Usuario(
@@ -85,7 +85,7 @@ create table Producto(
 	Descripcion varchar(250),
 	Estado int,
 	FechaModificacion date
-)
+) 
 	go
 create table HistorialPrecioProducto(
 	ProductoID int,
@@ -105,9 +105,11 @@ create table Bodega(
 	ID int identity(1,1) primary key,
 	Nombre varchar(35),
 	Almacenaje int,
+	Comentarios text,
+	Estado int,
 	FechaModificacion date
 )
-	go
+	go 
 create table Inventario(
 	ID int primary key,
 	ProductoID int,
@@ -144,7 +146,7 @@ create table Detalle_Compra(
 	FechaModificacion date
 )
 	go
-create table Venta(
+create table Venta( 
 	ID varchar(15) primary key not null,
 	ClienteID varchar(25) not null,
 	--UsuarioID varchar(15),

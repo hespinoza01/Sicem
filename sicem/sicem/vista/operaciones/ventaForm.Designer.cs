@@ -104,6 +104,8 @@
             this.guardarButton = new Bunifu.Framework.UI.BunifuThinButton2();
             this.listaClientes = new Telerik.WinControls.UI.RadListControl();
             this.listaProductos = new Telerik.WinControls.UI.RadListControl();
+            this.labelNumeroTarjeta = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.numeroTarjeta = new Bunifu.Framework.UI.BunifuDropdown();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodigoVenta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCliente)).BeginInit();
@@ -230,7 +232,7 @@
         "Efectivo",
         "Cheque",
         "Trajeta"};
-            this.tipoPago.Location = new System.Drawing.Point(18, 120);
+            this.tipoPago.Location = new System.Drawing.Point(242, 120);
             this.tipoPago.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tipoPago.Name = "tipoPago";
             this.tipoPago.NomalColor = System.Drawing.Color.RoyalBlue;
@@ -238,12 +240,13 @@
             this.tipoPago.selectedIndex = 0;
             this.tipoPago.Size = new System.Drawing.Size(135, 28);
             this.tipoPago.TabIndex = 27;
+            this.tipoPago.onItemSelected += new System.EventHandler(this.tipoPago_onItemSelected);
             // 
             // bunifuCustomLabel5
             // 
             this.bunifuCustomLabel5.AutoSize = true;
             this.bunifuCustomLabel5.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.bunifuCustomLabel5.Location = new System.Drawing.Point(25, 103);
+            this.bunifuCustomLabel5.Location = new System.Drawing.Point(249, 103);
             this.bunifuCustomLabel5.Name = "bunifuCustomLabel5";
             this.bunifuCustomLabel5.Size = new System.Drawing.Size(70, 13);
             this.bunifuCustomLabel5.TabIndex = 28;
@@ -256,7 +259,7 @@
             this.fechaVenta.ForeColor = System.Drawing.Color.White;
             this.fechaVenta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.fechaVenta.FormatCustom = null;
-            this.fechaVenta.Location = new System.Drawing.Point(200, 120);
+            this.fechaVenta.Location = new System.Drawing.Point(18, 120);
             this.fechaVenta.Name = "fechaVenta";
             this.fechaVenta.Size = new System.Drawing.Size(180, 28);
             this.fechaVenta.TabIndex = 29;
@@ -266,7 +269,7 @@
             // 
             this.bunifuCustomLabel6.AutoSize = true;
             this.bunifuCustomLabel6.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.bunifuCustomLabel6.Location = new System.Drawing.Point(207, 103);
+            this.bunifuCustomLabel6.Location = new System.Drawing.Point(25, 103);
             this.bunifuCustomLabel6.Name = "bunifuCustomLabel6";
             this.bunifuCustomLabel6.Size = new System.Drawing.Size(67, 13);
             this.bunifuCustomLabel6.TabIndex = 30;
@@ -278,6 +281,8 @@
             this.bunifuCards1.BorderRadius = 10;
             this.bunifuCards1.BottomSahddow = true;
             this.bunifuCards1.color = System.Drawing.Color.White;
+            this.bunifuCards1.Controls.Add(this.labelNumeroTarjeta);
+            this.bunifuCards1.Controls.Add(this.numeroTarjeta);
             this.bunifuCards1.Controls.Add(this.bunifuCustomLabel13);
             this.bunifuCards1.Controls.Add(this.ventaCredito);
             this.bunifuCards1.Controls.Add(this.bunifuCustomLabel6);
@@ -290,7 +295,7 @@
             this.bunifuCards1.Controls.Add(this.txtCliente);
             this.bunifuCards1.Controls.Add(this.txtCodigoVenta);
             this.bunifuCards1.LeftSahddow = true;
-            this.bunifuCards1.Location = new System.Drawing.Point(20, 60);
+            this.bunifuCards1.Location = new System.Drawing.Point(20, 50);
             this.bunifuCards1.Name = "bunifuCards1";
             this.bunifuCards1.RightSahddow = true;
             this.bunifuCards1.ShadowDepth = 35;
@@ -301,7 +306,7 @@
             // 
             this.bunifuCustomLabel13.AutoSize = true;
             this.bunifuCustomLabel13.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.bunifuCustomLabel13.Location = new System.Drawing.Point(441, 128);
+            this.bunifuCustomLabel13.Location = new System.Drawing.Point(543, 63);
             this.bunifuCustomLabel13.Name = "bunifuCustomLabel13";
             this.bunifuCustomLabel13.Size = new System.Drawing.Size(40, 13);
             this.bunifuCustomLabel13.TabIndex = 32;
@@ -314,7 +319,7 @@
             this.ventaCredito.Checked = false;
             this.ventaCredito.CheckedOnColor = System.Drawing.Color.RoyalBlue;
             this.ventaCredito.ForeColor = System.Drawing.Color.White;
-            this.ventaCredito.Location = new System.Drawing.Point(412, 125);
+            this.ventaCredito.Location = new System.Drawing.Point(514, 60);
             this.ventaCredito.Name = "ventaCredito";
             this.ventaCredito.Size = new System.Drawing.Size(20, 20);
             this.ventaCredito.TabIndex = 31;
@@ -328,11 +333,11 @@
             this.bunifuCards2.Controls.Add(this.detalleVenta);
             this.bunifuCards2.Controls.Add(this.panel2);
             this.bunifuCards2.LeftSahddow = true;
-            this.bunifuCards2.Location = new System.Drawing.Point(20, 249);
+            this.bunifuCards2.Location = new System.Drawing.Point(20, 239);
             this.bunifuCards2.Name = "bunifuCards2";
             this.bunifuCards2.RightSahddow = true;
             this.bunifuCards2.ShadowDepth = 35;
-            this.bunifuCards2.Size = new System.Drawing.Size(640, 313);
+            this.bunifuCards2.Size = new System.Drawing.Size(640, 330);
             this.bunifuCards2.TabIndex = 34;
             // 
             // detalleVenta
@@ -370,7 +375,7 @@
             this.detalleVenta.DefaultCellStyle = dataGridViewCellStyle10;
             this.detalleVenta.Dock = System.Windows.Forms.DockStyle.Fill;
             this.detalleVenta.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(191)))), ((int)(((byte)(243)))));
-            this.detalleVenta.Location = new System.Drawing.Point(0, 120);
+            this.detalleVenta.Location = new System.Drawing.Point(0, 125);
             this.detalleVenta.MultiSelect = false;
             this.detalleVenta.Name = "detalleVenta";
             this.detalleVenta.ReadOnly = true;
@@ -384,7 +389,7 @@
             this.detalleVenta.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.detalleVenta.RowHeadersVisible = false;
             this.detalleVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.detalleVenta.Size = new System.Drawing.Size(640, 193);
+            this.detalleVenta.Size = new System.Drawing.Size(640, 205);
             this.detalleVenta.TabIndex = 11;
             this.detalleVenta.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.detalleVenta_CellClick);
             this.detalleVenta.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.detalleVenta_CellDoubleClick);
@@ -478,7 +483,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(640, 120);
+            this.panel2.Size = new System.Drawing.Size(640, 125);
             this.panel2.TabIndex = 12;
             // 
             // bunifuCustomLabel14
@@ -521,7 +526,7 @@
             this.agregarProductoDetalle.IdleFillColor = System.Drawing.Color.RoyalBlue;
             this.agregarProductoDetalle.IdleForecolor = System.Drawing.Color.White;
             this.agregarProductoDetalle.IdleLineColor = System.Drawing.Color.RoyalBlue;
-            this.agregarProductoDetalle.Location = new System.Drawing.Point(18, 80);
+            this.agregarProductoDetalle.Location = new System.Drawing.Point(18, 83);
             this.agregarProductoDetalle.Margin = new System.Windows.Forms.Padding(5);
             this.agregarProductoDetalle.Name = "agregarProductoDetalle";
             this.agregarProductoDetalle.Size = new System.Drawing.Size(100, 35);
@@ -543,6 +548,7 @@
             // 
             this.descuentoProducto.AutoSize = false;
             this.descuentoProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.descuentoProducto.Enabled = false;
             this.descuentoProducto.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.descuentoProducto.ForeColor = System.Drawing.Color.RoyalBlue;
             this.descuentoProducto.Location = new System.Drawing.Point(533, 51);
@@ -643,6 +649,7 @@
             this.cantidadVentaProducto.TabIndex = 31;
             this.cantidadVentaProducto.TabStop = false;
             this.cantidadVentaProducto.ThemeName = "Material";
+            this.cantidadVentaProducto.ValueChanged += new System.EventHandler(this.cantidadVentaProducto_ValueChanged);
             ((Telerik.WinControls.UI.RadSpinElement)(this.cantidadVentaProducto.GetChildAt(0))).EnableRippleAnimation = true;
             ((Telerik.WinControls.UI.RadSpinElement)(this.cantidadVentaProducto.GetChildAt(0))).EnableFocusBorder = true;
             ((Telerik.WinControls.UI.RadSpinElement)(this.cantidadVentaProducto.GetChildAt(0))).FocusBorderColor = System.Drawing.Color.RoyalBlue;
@@ -886,7 +893,7 @@
             this.listaClientes.Items.Add(radListDataItem5);
             this.listaClientes.Items.Add(radListDataItem6);
             this.listaClientes.Items.Add(radListDataItem7);
-            this.listaClientes.Location = new System.Drawing.Point(286, 228);
+            this.listaClientes.Location = new System.Drawing.Point(286, 218);
             this.listaClientes.Name = "listaClientes";
             // 
             // 
@@ -930,7 +937,7 @@
             this.listaProductos.Items.Add(radListDataItem12);
             this.listaProductos.Items.Add(radListDataItem13);
             this.listaProductos.Items.Add(radListDataItem14);
-            this.listaProductos.Location = new System.Drawing.Point(438, 228);
+            this.listaProductos.Location = new System.Drawing.Point(438, 218);
             this.listaProductos.Name = "listaProductos";
             // 
             // 
@@ -953,6 +960,35 @@
             ((Telerik.WinControls.UI.RadListElement)(this.listaProductos.GetChildAt(0))).EnableElementShadow = true;
             ((Telerik.WinControls.UI.RadScrollBarElement)(this.listaProductos.GetChildAt(0).GetChildAt(2))).MinSize = new System.Drawing.Size(12, 112);
             ((Telerik.WinControls.UI.RadScrollBarElement)(this.listaProductos.GetChildAt(0).GetChildAt(2))).MaxSize = new System.Drawing.Size(12, 112);
+            // 
+            // labelNumeroTarjeta
+            // 
+            this.labelNumeroTarjeta.AutoSize = true;
+            this.labelNumeroTarjeta.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.labelNumeroTarjeta.Location = new System.Drawing.Point(425, 103);
+            this.labelNumeroTarjeta.Name = "labelNumeroTarjeta";
+            this.labelNumeroTarjeta.Size = new System.Drawing.Size(76, 13);
+            this.labelNumeroTarjeta.TabIndex = 34;
+            this.labelNumeroTarjeta.Text = "Número tarjeta";
+            this.labelNumeroTarjeta.Visible = false;
+            // 
+            // numeroTarjeta
+            // 
+            this.numeroTarjeta.BackColor = System.Drawing.Color.Transparent;
+            this.numeroTarjeta.BorderRadius = 7;
+            this.numeroTarjeta.DisabledColor = System.Drawing.Color.Gray;
+            this.numeroTarjeta.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numeroTarjeta.ForeColor = System.Drawing.Color.White;
+            this.numeroTarjeta.Items = new string[0];
+            this.numeroTarjeta.Location = new System.Drawing.Point(418, 120);
+            this.numeroTarjeta.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.numeroTarjeta.Name = "numeroTarjeta";
+            this.numeroTarjeta.NomalColor = System.Drawing.Color.RoyalBlue;
+            this.numeroTarjeta.onHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(125)))), ((int)(((byte)(245)))));
+            this.numeroTarjeta.selectedIndex = -1;
+            this.numeroTarjeta.Size = new System.Drawing.Size(181, 28);
+            this.numeroTarjeta.TabIndex = 33;
+            this.numeroTarjeta.Visible = false;
             // 
             // ventaForm
             // 
@@ -1054,5 +1090,7 @@
         private WindowsFormsControlLibrary1.BunifuCustomTextbox labelTotal;
         private Telerik.WinControls.UI.RadListControl listaClientes;
         private Telerik.WinControls.UI.RadListControl listaProductos;
+        private Bunifu.Framework.UI.BunifuCustomLabel labelNumeroTarjeta;
+        private Bunifu.Framework.UI.BunifuDropdown numeroTarjeta;
     }
 }

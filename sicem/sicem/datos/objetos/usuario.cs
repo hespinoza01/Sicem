@@ -197,8 +197,8 @@ namespace sicem
         public DataTable Verifica(string User, string Pass)
         {
             SqlParameter[] Parametros = new SqlParameter[]{
-                db.Param("@Usuario", SqlDbType.VarChar, 15, UserName),
-                db.Param("@Contraseña", SqlDbType.VarChar, 50, Password)
+                db.Param("@Usuario", SqlDbType.VarChar, 15, User),
+                db.Param("@Contraseña", SqlDbType.VarChar, 50, Pass)
             };
 
             return db.Reader("Validar_Usuario", Parametros);

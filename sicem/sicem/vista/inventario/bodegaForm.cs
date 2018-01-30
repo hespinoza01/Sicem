@@ -34,12 +34,42 @@ namespace sicem
 
         private void inicia()
         {
+            if (accionformulario == "crear") loadID();
             aceptar.ButtonText = (accionformulario == "crear") ? "Guardar" : "Actualizar";
 
             txtId.Region = new region().RoundBorder(txtId.Width, txtId.Height+1, 7);
             txtNombre.Region = new region().RoundBorder(txtNombre.Width, txtNombre.Height+1, 7);
             txtComentarios.Region = new region().RoundBorder(txtComentarios.Width, txtComentarios.Height+1, 7);
             txtCapacidad.Region = new region().RoundBorder(txtCapacidad.Width, txtCapacidad.Height+1, 7);
+        }
+
+        private void setDataView(int id)
+        {
+            DataTable data = new Bodega().Detalle(id);
+
+            if(data != null)
+            {
+                DataRow r = data.Rows[0];
+
+                txtId.Text = r["ID"].ToString();
+                txtNombre.Text = r["Nombre"].ToString();
+                txtCapacidad.Value = decimal.Parse(r["Almacenaje"].ToString());
+                txtComentarios.Text = r["Comentarios"].ToString();
+                estadoValor.Checked = (int.Parse(r["Estado"].ToString()) == 1) ? true : false;
+            }
+            else
+            {
+                new popup("Error al mostrar la información", popup.AlertType.error);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+        }
+
+        private void loadID()
+        {
+            object value = new DBHelper().ReaderScalar("select count(*) + 1 from Bodega");
+            if (value != null)
+                txtId.Text = value.ToString();
         }
 
         private void cancelar_Click(object sender, EventArgs e)
@@ -50,66 +80,24 @@ namespace sicem
 
         private void aceptar_Click(object sender, EventArgs e)
         {
-                Categoria c = new Categoria();
-                c.Nombre = txtNombre.Text;
-                c.Descripcion = txtComentarios.Text;
-                c.Estado = (estadoValor.Checked) ? 1 : 0;
-            
+            try {
+                Bodega b = new Bodega();
+                b.Nombre = txtNombre.Text;
+                b.Almacenaje = (int)txtCapacidad.Value;
+                b.Comentarios = txtComentarios.Text;
+                b.Estado = (estadoValor.Checked) ? 1 : 0;
+
                 if (accionformulario == "crear")
-                {
-                    try {
-                        new DataCategory().AddCategory(c);
-                    }
-                    catch (Exception ex) { new popup("Inserción fallida", popup.AlertType.error); }
-                    this.Close();
-                }
+                    b.Insertar();
                 else
                 {
-                    try {
-                        c.ID = int.Parse(txtId.Text);
-                        new DataCategory().UpdateCategory(c);
-                    }
-                    catch (Exception ex) { new popup("Actualización fallida", popup.AlertType.error); }
+                    b.ID = int.Parse(txtId.Text);
+                    b.Editar();
                 }
 
+                this.DialogResult = DialogResult.OK;
                 this.Close();
-        }
-
-
-        private void setDataView(int id)
-        {
-            Conexión conexion = new Conexión();
-            DataTable data = new DataTable("Categoria");
-            using (SqlConnection cn = new SqlConnection(Conexión.Cn))
-            {
-                try
-                {
-                    cn.Open();
-
-                    SqlCommand cmd = new SqlCommand(
-                        "select * from Categoria where ID = " + id,
-                        cn
-                        );
-
-                    SqlDataAdapter SqlDat = new SqlDataAdapter(cmd);
-                    SqlDat.Fill(data);
-
-                    DataRow row = data.Rows[0];
-                    txtId.Text = row["ID"].ToString();
-                    txtNombre.Text = row["Nombre"].ToString();
-                    txtComentarios.Text = row["Descripcion"].ToString();
-                    if (int.Parse(row["Estado"].ToString()) == 0)
-                        estadoValor.Checked = false;
-                    else
-                        estadoValor.Checked = true;
-                }
-                catch (Exception ex)
-                {
-                    new popup("Error al mostrar información", popup.AlertType.error);
-                    this.Close();
-                }
-            }
-
+            }catch(Exception ex) { }
         }
 
     }

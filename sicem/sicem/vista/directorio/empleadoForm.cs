@@ -21,6 +21,7 @@ namespace sicem
         int idd = -1, idr = -1;
         List<int> iddepartamento = new List<int>();
         List<int> idreportara = new List<int>();
+        bool cargainfo = false;
         public empleadoForm()
         {
             InitializeComponent();
@@ -68,6 +69,9 @@ namespace sicem
             collapsiveInfoLaboral.Height = 35;
             collapsiveInfoLaboral.Top = 510;
 
+            //foreach (string s in new listadoItems().ciudad())
+            //    txtCiudad.AddItem(s);
+
             new drag().setDragable(toppanel);
         }
 
@@ -86,7 +90,7 @@ namespace sicem
             sugerencia.Top = controlLocation.Y + txtDepartamento.Height;
             sugerencia.Width = txtDepartamento.Width - 10;
             sugerencia.Height = 0;
-            sugerencia.Click += sugerencia_Click;
+            //sugerencia.Click += sugerencia_Click;
             sugerencia.Leave += sugerencia_Leave;
             sugerencia.Visible = true;
 
@@ -96,7 +100,7 @@ namespace sicem
             sugerenciaRA.Top = controlLocation.Y + txtReportarA.Height;
             sugerenciaRA.Width = txtReportarA.Width - 10;
             sugerenciaRA.Height = 0;
-            sugerenciaRA.Click += sugerenciaRA_Click;
+            //sugerenciaRA.Click += sugerenciaRA_Click;
             sugerenciaRA.Leave += sugerenciaRA_Leave;
             sugerenciaRA.Visible = true;
 
@@ -147,6 +151,7 @@ namespace sicem
             DataTable data = new Empleado().Detalle(id);
             
             if(data != null){
+                cargainfo = true;
                 DataRow row = data.Rows[0];
 
                 txtID.Text = row["ID"].ToString();
@@ -171,6 +176,8 @@ namespace sicem
                     MemoryStream ms = new MemoryStream(img);
                 foto.Image = Image.FromStream(ms);
                 estadoValue.Checked = (int.Parse(row["Estado"].ToString()) == 1) ? true : false;
+
+                cargainfo = false;
             }else{
                 new popup("Error al mostrar información", popup.AlertType.error);
                 this.Close();
@@ -206,6 +213,9 @@ namespace sicem
                     sugerencia.Items.Add(row["Nombre"].ToString());
                 }
 
+                Point controlLocation = txtDepartamento.TopLevelControl.PointToClient(txtDepartamento.Parent.PointToScreen(txtDepartamento.Location));
+                sugerencia.Left = controlLocation.X + 5;
+                sugerencia.Top = controlLocation.Y + txtDepartamento.Height;
                 sugerencia.Height = (sugerencia.Items.Count < 5) ? (sugerencia.ItemHeight * sugerencia.Items.Count) : (sugerencia.ItemHeight * 5);
                 sugerencia.BringToFront();
             }
@@ -226,6 +236,9 @@ namespace sicem
                     sugerenciaRA.Items.Add(row["Nombres"].ToString());
                 }
 
+                Point controlLocation = txtReportarA.TopLevelControl.PointToClient(txtReportarA.Parent.PointToScreen(txtReportarA.Location));
+                sugerenciaRA.Left = controlLocation.X + 5;
+                sugerenciaRA.Top = controlLocation.Y + txtReportarA.Height;
                 sugerenciaRA.Height = (sugerenciaRA.Items.Count < 5) ? (sugerenciaRA.ItemHeight * sugerenciaRA.Items.Count) : (sugerenciaRA.ItemHeight * 5);
                 sugerenciaRA.BringToFront();
             }
@@ -233,18 +246,23 @@ namespace sicem
 
         private void txtDepartamento_TextChanged(object sender, EventArgs e)
         {
-            if (txtDepartamento.Text.Length > 0)
-                sugerenciaDepartamento();
-            else
-                sugerencia.Height = 0;
+            if (!cargainfo)
+            {
+                if (txtDepartamento.Text.Length > 0)
+                    sugerenciaDepartamento();
+                else
+                    sugerencia.Height = 0;
+            }
         }
 
         private void sugerencia_Click(object sender, EventArgs e)
         {
             if (sugerencia.SelectedIndex >= 0)
             {
+                cargainfo = true;
                 txtDepartamento.Text = sugerencia.SelectedItem.ToString();
                 idd = iddepartamento[sugerencia.SelectedIndex];
+                cargainfo = false;
             }
 
             txtDepartamento.Focus();
@@ -296,18 +314,23 @@ namespace sicem
 
         private void txtReportarA_TextChanged(object sender, EventArgs e)
         {
-            if (txtReportarA.Text.Length > 0)
-                sugerenciaReportarA();
-            else
-                sugerenciaRA.Height = 0;
+            if (!cargainfo)
+            {
+                if (txtReportarA.Text.Length > 0)
+                    sugerenciaReportarA();
+                else
+                    sugerenciaRA.Height = 0;
+            }
         }
 
         private void sugerenciaRA_Click(object sender, EventArgs e)
         {
             if (sugerenciaRA.SelectedIndex >= 0)
             {
+                cargainfo = true;
                 txtReportarA.Text = sugerenciaRA.SelectedItem.ToString();
                 idr = idreportara[sugerenciaRA.SelectedIndex];
+                cargainfo = false;
             }
 
             txtReportarA.Focus();
@@ -366,34 +389,36 @@ namespace sicem
 
         private void guardar_Click(object sender, EventArgs e)
         {
-            if (idd != -1 && idr != -1)
-            {
-                Empleado em = new Empleado();
-                em.Nombres = txtNombre.Text;
-                em.Apellidos = txtApellido.Text;
-                em.DepartamentoID = idd;
-                em.TituloLaboral = txtTituloLaboral.Text;
-                em.FechaNacimiento = fechaNacimiento.Value;
-                em.FechaContratacion = fechaContratacion.Value;
-                em.EstadoCivil = (ecSoltero.Checked) ? 0 : 1;
-                em.Genero = (generoFemenino.Checked) ? 0 : 1;
-                em.Domicilio = txtDireccion.Text;
-                em.Ciudad = txtCiudad.selectedValue;
-                em.Telefono = txtTel.Text;
-                em.Cedula = txtCedula.Text;
-                em.Email = txtEmail.Text;
-                em.Observaciones = txtObservaciones.Text;
-                em.ReportarA = int.Parse(txtReportarA.Text);
-                em.Foto = foto.Image;
-                em.Estado = (estadoValue.Checked) ? 1 : 0;
+            try {
+                if (idd != -1 && idr != -1)
+                {
+                    Empleado em = new Empleado();
+                    em.Nombres = txtNombre.Text;
+                    em.Apellidos = txtApellido.Text;
+                    em.DepartamentoID = idd;
+                    em.TituloLaboral = txtTituloLaboral.Text;
+                    em.FechaNacimiento = fechaNacimiento.Value;
+                    em.FechaContratacion = fechaContratacion.Value;
+                    em.EstadoCivil = (ecSoltero.Checked) ? 0 : 1;
+                    em.Genero = (generoFemenino.Checked) ? 0 : 1;
+                    em.Domicilio = txtDireccion.Text;
+                    em.Ciudad = txtCiudad.selectedValue;
+                    em.Telefono = txtTel.Text;
+                    em.Cedula = txtCedula.Text;
+                    em.Email = txtEmail.Text;
+                    em.Observaciones = txtObservaciones.Text;
+                    em.ReportarA = int.Parse(txtReportarA.Text);
+                    em.Foto = foto.Image;
+                    em.Estado = (estadoValue.Checked) ? 1 : 0;
 
-                if (accionformulario == "crear")
-                    em.Insertar();
+                    if (accionformulario == "crear")
+                        em.Insertar();
+                    else
+                        em.Editar();
+                }
                 else
-                    em.Editar();
-            }
-            else
-                new popup("Se encontraron campos no validos", popup.AlertType.error);
+                    new popup("Se encontraron campos no validos", popup.AlertType.error);
+            }catch(Exception ex) { }
 
         }
 

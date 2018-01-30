@@ -89,8 +89,8 @@ namespace sicem
                 int cont = (int)value; 
 
                 if (cont <= 9) codigo += "00" + cont;
-                if (cont <= 99) codigo += "0" + cont;
-                if (cont <= 999) codigo += cont;
+                else if (cont <= 99) codigo += "0" + cont;
+                else if (cont <= 999) codigo += cont;
 
             }else{ codigo += "001"; }
 
@@ -134,6 +134,7 @@ namespace sicem
                             break;
 
                         case "crear":
+                            u.Estado = 1;
                             u.Insertar();
                             break;
                     }

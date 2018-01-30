@@ -261,16 +261,22 @@ end
 
 create procedure [Insertar_Bodega](
 	@Nombre varchar(35),
-	@Almacenaje int
+	@Almacenaje int,
+	@Comentarios text,
+	@Estado int
 )as begin
 	insert into Bodega(
 		Nombre,
 		Almacenaje,
+		Comentarios,
+		Estado,
 		FechaModificacion
 	)
 	values(
 		@Nombre,
 		@Almacenaje,
+		@Comentarios,
+		@Estado,
 		getdate()
 	)
 end
@@ -283,13 +289,12 @@ create procedure [Insertar_Inventario](
 	@Estante varchar(50),
 	@Cantidad int
 )as begin
-	insert into Inventario(
-		ProductoID,
-		BodegaID,
-		Estante,
-		Cantidad
-	)
+	declare @id int
+	set @id = (select count(*)+1 from Inventario)
+
+	insert into Inventario
 	values(
+		@id,
 		@ProductoID,
 		@BodegaID,
 		@Estante,
@@ -398,6 +403,7 @@ create procedure [Insertar_TarjetaCredito](
 	@ExpiraMes int,
 	@ExpiraAño int
 )as begin
+	begin tran
 	insert into TarjetaCredito(
 		TipoTarjeta,
 		NumeroTarjeta,
@@ -412,6 +418,7 @@ create procedure [Insertar_TarjetaCredito](
 		@ExpiraAño,
 		getdate()
 	)
+	commit
 end
 
 	go
@@ -420,11 +427,13 @@ create procedure [Insertar_ClienteTarjetaCredito](
 	@ClienteID varchar(25),
 	@TarjetaCreditoID int
 )as begin
+	begin tran
 	insert into ClienteTarjetaCredito
 	values(
 		@ClienteID,
 		@TarjetaCreditoID
 	)
+	commit
 end
 
 	go

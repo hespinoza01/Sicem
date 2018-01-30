@@ -16,7 +16,7 @@ namespace sicem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            new empleadoForm().Show();
+            new login().Show();
             Application.Run();
         }
     }

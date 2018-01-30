@@ -26,6 +26,7 @@ namespace sicem.vista.directorio
         private void inicia()
         {
             valueEstado.Enabled = false;
+            foto.Region = new region().Circle(foto.Width, foto.Height);
         }
 
         public void setInfo(string id){
@@ -45,6 +46,8 @@ namespace sicem.vista.directorio
 	        		MemoryStream ms = new MemoryStream(img);
         		foto.Image = Image.FromStream(ms);
 
+                valueEstado.Visible = (txtID.Text == "Administrador") ? false : true;
+                estadolabel.Visible = valueEstado.Visible;
         		ms.Dispose();
     		}else
     			new popup("Error al mostrar detalle", popup.AlertType.error);
@@ -52,11 +55,11 @@ namespace sicem.vista.directorio
 
         private void valueEstado_OnValueChange(object sender, EventArgs e)
         {
-            string msj = (valueEstado.Value) ? "¿ Deshabilitar usuario ?" : "¿ Habilitar usuario ?";
+            string msj = (!valueEstado.Value) ? "¿ Deshabilitar usuario ?" : "¿ Habilitar usuario ?";
             bool estadoaccion = false;
             confirmDialog cd = new confirmDialog(msj);
             cd.ShowDialog();
-            if (valueEstado.Value)
+            if (!valueEstado.Value)
             {
                 if (cd.DialogResult == DialogResult.OK)
                     estadoaccion = new DBHelper().ExecuteQuery("update Usuario set Estado = 0 where ID = '" + txtID.Text + "'");

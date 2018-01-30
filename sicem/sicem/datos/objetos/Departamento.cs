@@ -11,7 +11,7 @@ namespace sicem
     class Departamento
     {
         DBHelper db = new DBHelper();
-
+        string nombre, nombregrupo;
         public Departamento(){}
 
         public int ID
@@ -22,14 +22,14 @@ namespace sicem
 
         public string Nombre
         {
-            get { return (Nombre != null) ? Nombre : "N/A"; }
-            set { Nombre = (value != null) ? value : "N/A"; }
+            get { return (nombre != null) ? nombre : "N/A"; }
+            set { nombre = (value != null) ? value : "N/A"; }
         }
 
         public string NombreGrupo
         {
-            get { return (NombreGrupo != null) ? NombreGrupo : "N/A"; }
-            set { NombreGrupo = (value != null) ? value : "N/A"; }
+            get { return (nombregrupo != null) ? nombregrupo : "N/A"; }
+            set { nombregrupo = (value != null) ? value : "N/A"; }
         }
 
         public void Insertar()

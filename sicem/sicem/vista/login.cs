@@ -52,7 +52,7 @@ namespace sicem
                 foreach(DataRow r in data.Rows)
                     listaSugerencias.Items.Add(r["ID"].ToString());
 
-                listaSugerencias.Height = (listaSugerencias.Items.Count > 5) ? (listaSugerencias.ItemHeight * 5) : (listaSugerencias.ItemHeight * listaSugerencias.ItemHeight);
+                listaSugerencias.Height = (listaSugerencias.Items.Count > 5) ? (listaSugerencias.ItemHeight * 5) : (listaSugerencias.Items.Count * listaSugerencias.ItemHeight);
                 listaSugerencias.Visible = true;
                 listaSugerencias.BringToFront();
             }
@@ -65,6 +65,7 @@ namespace sicem
             Transition.run(bglogo, "Left", 20, new TransitionType_EaseInEaseOut(1000));
             Transition.run(content, "BackColor", Color.RoyalBlue, new TransitionType_EaseInEaseOut(1100));
             preloaderTime.Start();
+            home.setInfo(username.Text);
             new popup("Bienvenido...", popup.AlertType.check);
         }
 

@@ -39,7 +39,11 @@ namespace sicem
             contentDetails.Controls.Add(detalleEmpleado);
 
             active = "cliente";
-            activa();
+            clearForeColor();
+            labelcliente.ForeColor = Color.RoyalBlue;
+            new listadoItems().llenar(metodoBusqueda, new listadoItems().cliente());
+            metodoBusqueda.StartIndex = 0;
+            detalleCliente.BringToFront();
         }
 
         public void Cargar(bool busqueda)
@@ -141,21 +145,26 @@ namespace sicem
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string value = vistaListado.Rows[e.RowIndex].Cells[0].Value.ToString();
+            try
+            {
+                string value = vistaListado.Rows[e.RowIndex].Cells[0].Value.ToString();
 
-            switch(active){
-                case "cliente":
-                    detalleCliente.setInfo(value);
-                    break;
+                switch (active)
+                {
+                    case "cliente":
+                        detalleCliente.setInfo(value);
+                        break;
 
-                case "proveedor":
-                    detalleProveedor.setInfo(int.Parse(value));
-                    break;
+                    case "proveedor":
+                        detalleProveedor.setInfo(int.Parse(value));
+                        break;
 
-                case "empleado":
-                    detalleEmpleado.setInfo(int.Parse(value));
-                    break;
+                    case "empleado":
+                        detalleEmpleado.setInfo(int.Parse(value));
+                        break;
+                }
             }
+            catch (Exception ex) { }
         }
 
         private void txtBuscar_OnTextChange(object sender, EventArgs e)

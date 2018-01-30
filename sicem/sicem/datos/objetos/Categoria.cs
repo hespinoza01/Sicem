@@ -11,8 +11,7 @@ namespace sicem
     class Categoria
     {
         DBHelper db = new DBHelper();
-
-        public Categoria(){}
+        string nombre, descripcion;
 
         public int ID {
             get;
@@ -20,13 +19,13 @@ namespace sicem
         }
 
         public string Nombre {
-            get { return (Nombre != null) ? Nombre : "N/A"; }
-            set { Nombre = (value != null) ? value : "N/A"; }
+            get { return (nombre != null) ? nombre : "N/A"; }
+            set { nombre = (value != null) ? value : "N/A"; }
         }
 
         public string Descripcion {
-            get { return (Descripcion != null) ? Descripcion : "N/A"; }
-            set { Descripcion = (value != null) ? value : "N/A"; }
+            get { return (descripcion != null) ? descripcion : "N/A"; }
+            set { descripcion = (value != null) ? value : "N/A"; }
         }
 
         public int Estado {

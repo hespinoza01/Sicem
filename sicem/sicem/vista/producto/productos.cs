@@ -33,18 +33,16 @@ namespace sicem
 
             contentDetails.Controls.Add(detalleProducto);
             detalleProducto.ocultaCampos();
-
-            Cargar(false);
         }
 
         public void Cargar(bool buscar)
         {
-            DataTable data = (buscar) ? new Producto().Buscar(txtBuscar.Text, metodoBusqueda.SelectedIndex) : new Producto().Mostrar();
+            DataTable data = (buscar) ? new Producto().Buscar(txtBuscar.Text, metodoBusqueda.SelectedIndex) : new Producto().MostrarHabilitados();
 
             if (data != null)
             {
                 vista.Rows.Clear();
-                foreach (DataRow row in vista.Rows)
+                foreach (DataRow row in data.Rows)
                 {
                     string id, n, fm;
                     id = Convert.ToString(row["ID"]);
@@ -62,8 +60,12 @@ namespace sicem
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string value = vista.Rows[e.RowIndex].Cells[0].Value.ToString();
-            detalleProducto.setInfo(int.Parse(value));
+            try
+            {
+                string value = vista.Rows[e.RowIndex].Cells[0].Value.ToString();
+                detalleProducto.setInfo(int.Parse(value));
+            }
+            catch (Exception ex) { }
         }
 
         private void txtBuscar_OnTextChange(object sender, EventArgs e)

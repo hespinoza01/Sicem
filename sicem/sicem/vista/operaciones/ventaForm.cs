@@ -13,8 +13,12 @@ namespace sicem
 {
     public partial class ventaForm : Form
     {
-        int count, index, idcliente, idproducto;
-        string accionformulario;
+        int count = -1, index, idproducto = -1, min=0, max=0;
+        float desc = 0;
+        string accionformulario, idcliente = "";
+        List<string> valuesidcliente = new List<string>();
+        List<int> valuesidproducto = new List<int>();
+        bool cargainfo = false;
 
         public ventaForm()
         {
@@ -32,11 +36,13 @@ namespace sicem
         private void formulario_Load(object sender, EventArgs e)
         {
             inicia();
-            addListasSugerencias();
         }
 
         private void inicia()
         {
+            agregarProductoDetalle.Visible = false;
+            guardarButton.ButtonText = (accionformulario == "crear") ? "Guardar" : "Actualizar";
+
             txtCliente.Region = new region().RoundBorder(235, 28, 7);
             txtCodigoVenta.Region = new region().RoundBorder(170, 28, 7);
             txtProducto.Region = new region().RoundBorder(235, 28, 7);
@@ -45,18 +51,15 @@ namespace sicem
             txtPrecioVenta.Region = new region().RoundBorder(75, 28, 7);
             descuentoProducto.Region = new region().RoundBorder(84, 28, 7);
 
+            addListasSugerencias();
+
             if (accionformulario == "crear")
             {
                 txtCodigoVenta.Text = generaCodFactura();
-                guardarButton.ButtonText = "Guardar";
                 fechaVenta.Value = DateTime.Now;
                 labelSubtotal.Text = "00,00";
                 labelImpuesto.Text = "00,00";
                 labelTotal.Text = "00,00";
-            }
-            else
-            {
-                guardarButton.ButtonText = "Actualizar";
             }
         }
 
@@ -67,14 +70,154 @@ namespace sicem
             listaClientes.Left = controlLocation.X + 3;
             listaClientes.Top = controlLocation.Y + txtCliente.Height;
             listaClientes.Width = txtCliente.Width;
-            listaClientes.Height = listaClientes.ItemHeight * 6;
+            listaClientes.Height = 0;
+            listaClientes.Visible = true;
 
             txtProducto.TopLevelControl.Controls.Add(listaProductos);
             controlLocation = txtProducto.TopLevelControl.PointToClient(txtProducto.Parent.PointToScreen(txtProducto.Location));
             listaProductos.Left = controlLocation.X + 3;
             listaProductos.Top = controlLocation.Y + txtProducto.Height;
             listaProductos.Width = txtProducto.Width;
-            listaProductos.Height = listaProductos.ItemHeight * 6;
+            listaProductos.Height = 0;
+            listaProductos.Visible = true;
+        }
+
+        private void setDataView(string id)
+        {
+            DataTable data = new venta().Detalle(id);
+
+            if (data != null)
+            {
+                cargainfo = true;
+                DataRow row = data.Rows[0];
+
+                txtCodigoVenta.Text = row["ID"].ToString();
+                obtenerCliente(row["ClienteID"].ToString());
+                tipoPago.selectedIndex = int.Parse(row["TipoPago"].ToString());
+                fechaVenta.Value = DateTime.Parse(row["FechaVenta"].ToString());
+                ventaCredito.Checked = (int.Parse(row["TipoVenta"].ToString()) == 0) ? false : true;
+                getDetalleVenta(txtCodigoVenta.Text);
+
+                cargainfo = false;
+            }
+            else
+            {
+                new popup("Error al cargar la información", popup.AlertType.error);
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
+
+        }
+
+        private void getDetalleVenta(string id)
+        {
+            DataTable data = new DetalleVenta().Mostrar(id);
+            if(data != null) { 
+                detalleVenta.Rows.Clear();
+
+                foreach (DataRow row in data.Rows)
+                {
+                    string pid, n, c, pu, d, i, t;
+                    pid = row[0].ToString();
+                    n = row[1].ToString();
+                    c = row[2].ToString();
+                    pu = row[3].ToString();
+                    d = row[4].ToString();
+                    i = row[5].ToString();
+                    t = row[6].ToString();
+                    detalleVenta.Rows.Add(pid, n, c, pu, d, i, t);
+                }
+            }
+        }
+
+        private void sugerencias(int tabla)
+        {
+            int h, cont;
+            DataTable data = (tabla == 1) ? new Cliente().Buscar(txtCliente.Text, 0) : new Producto().Buscar(txtProducto.Text, 0);
+
+            if (data != null)
+            {
+                //valuesidproducto.Clear();
+                //valuesidcliente.Clear();
+                listaProductos.Items.Clear();
+                listaClientes.Items.Clear();
+
+                foreach (DataRow r in data.Rows)
+                {
+                    if (tabla == 1)
+                    {
+                        listaClientes.Items.Add(r["NombreCliente"].ToString()+", "+ r["ID"].ToString());
+                    }
+                    else
+                    {
+                        listaProductos.Items.Add(r["Nombre"].ToString()+", "+ r["ID"].ToString());
+                    }
+                }
+
+                if (tabla == 1)
+                {
+                    cont = listaClientes.Items.Count;
+                    h = listaClientes.ItemHeight;
+                    listaClientes.Height = (cont > 5) ? (h * 5) : (h * cont);
+                    listaClientes.BringToFront();
+                }
+                else
+                {
+                    cont = listaProductos.Items.Count;
+                    h = listaProductos.ItemHeight;
+                    listaProductos.Height = (cont > 5) ? (h * 5) : (h * cont);
+                    listaProductos.BringToFront();
+                }
+            }
+        }
+
+        private void setPrecioStock(int id)
+        {
+            DataTable data = new Producto().Detalle(id);
+            if (data != null)
+            {
+                DataRow r = data.Rows[0];
+                txtStock.Text = r["Stock"].ToString().Replace(".", ",");
+                txtPrecioVenta.Text = r["PrecioVenta"].ToString();
+                descuentoProducto.Text = "0";
+
+                //DataTable dt = new Producto().detalleProductoOferta(id);
+                //if (dt != null)
+                //{
+                //    DataRow rw = dt.Rows[0];
+                //    min = int.Parse(rw[0].ToString());
+                //    max = int.Parse(rw[1].ToString());
+                //    desc = float.Parse(rw[2].ToString());
+                //}
+                //else
+                //    desc = 0;
+            }
+            else
+            {
+                txtStock.Text = "0";
+                txtPrecioVenta.Text = "00,00";
+                descuentoProducto.Text = "00,00";
+            }
+        }
+
+        private void obtenerCliente(string id)
+        {
+            DataTable data = new Cliente().Detalle(id);
+
+            if (data != null){
+                DataRow row = data.Rows[0];
+                idcliente = row["ID"].ToString();
+                txtCliente.Text = row["NombreCliente"].ToString();
+            }
+        }
+
+        private void obtenerTarjetas()
+        {
+            //DataTable data = new TarjetaCredito().Listar(idcliente);
+            //if(data != null)
+            //{
+            //    Data
+            //}
         }
 
         private string generaCodFactura()
@@ -82,8 +225,8 @@ namespace sicem
             string codigo;
             DateTime fa = DateTime.Now;
 
-            codigo = "V" + fa.Day + fa.Month + fa.Year.ToString().Substring(2, 2);
-            codigo += "-" + fa.ToShortTimeString().Replace(":", "-");
+            codigo = "v" + fa.Day.ToString() + fa.Month.ToString() + fa.Year.ToString().Substring(2, 2);
+            codigo += "-" + fa.ToShortTimeString().Replace(":", "");
 
             return codigo;
         }
@@ -91,234 +234,41 @@ namespace sicem
         private void clearTextboxDetalle()
         {
             txtProducto.Text = "";
-            cantidadVentaProducto.Text = "";
+            cantidadVentaProducto.Value = 0;
             txtStock.Text = "";
             txtPrecioVenta.Text = "";
             descuentoProducto.Text = "";
             impuestoValue.Checked = true;
+            agregarProductoDetalle.Visible = false;
         }
 
         private void calculoTotales()
         {
             decimal subtotal = 0, impuesto = 0;
-            for (int i = 0; i < detalleVenta.Rows.Count; i++)
-            {
-                subtotal += (int.Parse(detalleVenta.Rows[i].Cells[2].Value.ToString()) * Convert.ToDecimal(detalleVenta.Rows[i].Cells[3].Value.ToString()) - Convert.ToDecimal(detalleVenta.Rows[i].Cells[4].Value.ToString()));
-                impuesto += Convert.ToDecimal(detalleVenta.Rows[i].Cells[5].Value.ToString());
-            }
+            try {
+                foreach (DataGridViewRow r in detalleVenta.Rows) {
+                    subtotal += (Convert.ToDecimal(r.Cells[2].Value.ToString()) * Convert.ToDecimal(r.Cells[3].Value.ToString()) - Convert.ToDecimal(r.Cells[4].Value.ToString()));
+                    impuesto += Convert.ToDecimal(r.Cells[5].Value.ToString());
+                }
+            }catch(Exception ex) { }
 
             labelSubtotal.Text = subtotal.ToString();
             labelImpuesto.Text = impuesto.ToString();
             labelTotal.Text = Convert.ToString(subtotal + impuesto);
         }
 
-        private DataTable getSugerencias(string value, string tabla)
-        {
-            Conexión conexion = new Conexión();
-            DataTable data = new DataTable("Usuario");
-            using (SqlConnection cn = new SqlConnection(Conexión.Cn))
-            {
-                try
-                {
-                    cn.Open();
-
-                    SqlCommand cmd = new SqlCommand(
-                        "select ID, Nombre from " + tabla + " where ID like '%" + value + "%' or Nombre like '%" + value + "%'",
-                        cn
-                        );
-
-                    SqlDataAdapter SqlDat = new SqlDataAdapter(cmd);
-                    SqlDat.Fill(data);
-                }
-                catch (Exception ex)
-                {
-                    //new popup("Error al mostrar información", popup.AlertType.error);
-                    data = null;
-                }
-
-                return data;
-            }
-        }
-
-        private void setPrecioStock(int id)
-        {
-            DataTable data = new DataTable("Data");
-            using (SqlConnection cn = new SqlConnection(Conexión.Cn))
-            {
-                try
-                {
-                    cn.Open();
-
-                    SqlCommand cmd = new SqlCommand(
-                        "select PrecioVenta, Stock from Producto where ID = '" + id + "'",
-                        cn
-                        );
-
-                    SqlDataAdapter SqlDat = new SqlDataAdapter(cmd);
-                    SqlDat.Fill(data);
-
-                    DataRow row = data.Rows[0];
-                    txtPrecioVenta.Text = row["PrecioVenta"].ToString();
-                    txtStock.Text = row["Stock"].ToString();
-
-                }
-                catch (Exception ex)
-                {
-                }
-                finally { cn.Close(); }
-            }
-        }
-
-        private string setStock(int id)
-        {
-            Conexión conexion = new Conexión();
-            int contador;
-
-            using (SqlConnection cn = new SqlConnection(Conexión.Cn))
-            {
-                try
-                {
-                    cn.Open();
-
-                    SqlCommand cmd = new SqlCommand("select Stock from Producto where ID = '" + id + "'", cn);
-
-                    contador = (int)cmd.ExecuteScalar();
-                }
-                catch (Exception ex) { contador = 0; }
-                finally { cn.Close(); }
-            }
-
-            return contador.ToString();
-        }
-
-        private void setDataView(string id)
-        {
-            Conexión conexion = new Conexión();
-            DataTable data = new DataTable("Cliente");
-            using (SqlConnection cn = new SqlConnection(Conexión.Cn))
-            {
-                try
-                {
-                    cn.Open();
-
-                    SqlCommand cmd = new SqlCommand(
-                        "select * from Venta where ID = '" + id + "'",
-                        cn
-                        );
-
-                    SqlDataAdapter SqlDat = new SqlDataAdapter(cmd);
-                    SqlDat.Fill(data);
-
-                    DataRow row = data.Rows[0];
-                    txtCodigoVenta.Text = row["ID"].ToString();
-                    txtCliente.Text = obtenerCliente(row["ClienteID"].ToString());
-                    tipoPago.selectedIndex = int.Parse(row["TipoPago"].ToString());
-                    fechaVenta.Value = DateTime.Parse(row["FechaVenta"].ToString());
-                    if (int.Parse(row["TipoVenta"].ToString()) == 0)
-                        ventaCredito.Checked = false;
-                    else
-                        ventaCredito.Checked = true;
-
-                    getDetalleVenta(txtCodigoVenta.Text);
-                }
-                catch (Exception ex)
-                {
-                    //new popup("Error al mostrar información", popup.AlertType.error);
-                    this.Close();
-                }
-            }
-
-        }
-
-        private string obtenerCliente(string id)
-        {
-            DataTable data = new DataTable("Cliente");
-            string value;
-            using (SqlConnection cn = new SqlConnection(Conexión.Cn))
-            {
-                try
-                {
-                    cn.Open();
-
-                    SqlCommand cmd = new SqlCommand(
-                        "select ID, Nombre from Cliente where ID = '" + id + "'",
-                        cn
-                        );
-
-                    SqlDataAdapter SqlDat = new SqlDataAdapter(cmd);
-                    SqlDat.Fill(data);
-
-                    DataRow row = data.Rows[0];
-                    idcliente = int.Parse(row["ID"].ToString());
-                    value = row["Nombre"].ToString();
-                }
-                catch (Exception ex)
-                {
-                    value = "";
-                }
-
-                return value;
-            }
-        }
-
-        private void getDetalleVenta(string id)
-        {
-            DataTable data = new DataTable("Cliente");
-            using (SqlConnection cn = new SqlConnection(Conexión.Cn))
-            {
-                try
-                {
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.Connection = cn;
-                    cmd.CommandText = "Mostrar_Detalle_Venta";
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    SqlParameter ID = new SqlParameter();
-                    ID.ParameterName = "@id";
-                    ID.SqlDbType = SqlDbType.VarChar;
-                    ID.Size = 15;
-                    ID.Value = id;
-                    cmd.Parameters.Add(ID);
-
-                    SqlDataAdapter SqlDat = new SqlDataAdapter(cmd);
-                    SqlDat.Fill(data);
-
-                    detalleVenta.Rows.Clear();
-
-                    foreach (DataRow row in data.Rows)
-                    {
-                        string pid, n, c, pu, d, i, t;
-                        pid = Convert.ToString(row[0]);
-                        n = Convert.ToString(row[1]);
-                        c = Convert.ToString(row[2]);
-                        pu = Convert.ToString(row[3]);
-                        d = Convert.ToString(row[4]);
-                        i = Convert.ToString(row[5]);
-                        t = Convert.ToString(row[6]);
-                        detalleVenta.Rows.Add(pid, n, c, pu, d, i, t);
-                    }
-
-                }
-                catch (Exception ex)
-                {
-                    data = null;
-                }
-            }
-
-        }
-
         private void saveDetalle(int tipo)
         {
             DetalleVenta d = new DetalleVenta();
-            for (int i = 0; i < detalleVenta.Rows.Count; i++)
+            foreach (DataGridViewRow r in detalleVenta.Rows)
             {
-                d.ProductoID = int.Parse(detalleVenta.Rows[i].Cells[0].Value.ToString());
+                d.ProductoID = int.Parse(r.Cells[0].Value.ToString());
                 d.VentaID = txtCodigoVenta.Text;
-                d.Cantidad = int.Parse(detalleVenta.Rows[i].Cells[2].Value.ToString());
-                d.PrecioUnitario = decimal.Parse(detalleVenta.Rows[i].Cells[3].Value.ToString());
-                d.Descuento = decimal.Parse(detalleVenta.Rows[i].Cells[4].Value.ToString());
-                d.Impuesto = decimal.Parse(detalleVenta.Rows[i].Cells[5].Value.ToString());
-                d.Total = decimal.Parse(detalleVenta.Rows[i].Cells[6].Value.ToString());
+                d.Cantidad = int.Parse(r.Cells[2].Value.ToString());
+                d.PrecioUnitario = decimal.Parse(r.Cells[3].Value.ToString());
+                d.Descuento = decimal.Parse(r.Cells[4].Value.ToString());
+                d.Impuesto = decimal.Parse(r.Cells[5].Value.ToString());
+                d.Total = decimal.Parse(r.Cells[6].Value.ToString());
 
                 if (tipo == 1)
                     d.Insertar();
@@ -329,16 +279,14 @@ namespace sicem
 
         private void txtCliente_TextChanged(object sender, EventArgs e)
         {
-            if (txtCliente.Text.Length > 0)
-            {
-                //listaClientes.DataSource = getSugerencias(txtCliente.Text, "Cliente");
-                listaClientes.Visible = true;
-                listaClientes.BringToFront();
-            }
-            else
-                listaClientes.Visible = false;
+            if(!cargainfo){
+                if (txtCliente.Text.Length > 0)
+                    sugerencias(1);
+                else
+                    listaClientes.Height = 0;
 
-            idcliente = -1;
+                idcliente = "";
+            }
         }
 
         private void txtCliente_KeyDown(object sender, KeyEventArgs e)
@@ -385,26 +333,36 @@ namespace sicem
 
         private void listaClientes_Click(object sender, EventArgs e)
         {
-            if(listaClientes.SelectedIndex >= 0)
-                txtCliente.Text = listaClientes.SelectedItem.ToString();
+            if (listaClientes.SelectedIndex >= 0)
+            {
+                string[] value = listaClientes.SelectedItem.ToString().Split(',');
+                cargainfo = true;
+                txtCliente.Text = value[0].Trim();
+                idcliente = value[1].Trim();
+                cargainfo = false;
+            }
 
             txtCliente.Focus();
             txtCliente.Select(txtCliente.Text.Length, 0);
-            listaClientes.Visible = false;
+            listaClientes.Height = 0;
         }
 
         private void txtProducto_TextChanged(object sender, EventArgs e)
         {
-            if (txtProducto.Text.Length > 0)
-            {
-                //listaProductos.DataSource = getSugerencias(txtProducto.Text, "Producto");
-                listaProductos.Visible = true;
-                listaProductos.BringToFront();
-            }
-            else
-                listaProductos.Visible = false;
+            if(!cargainfo){
+                if (txtProducto.Text.Length > 0)
+                {
+                    sugerencias(2);
+                    agregarProductoDetalle.Visible = true;
+                }
+                else
+                {
+                    listaProductos.Height = 0;
+                    agregarProductoDetalle.Visible = false;
+                }
 
-            idproducto = -1;
+                idproducto = -1;
+            }
         }
 
         private void txtProducto_KeyDown(object sender, KeyEventArgs e)
@@ -450,13 +408,20 @@ namespace sicem
         }
 
         private void listaProductos_Click(object sender, EventArgs e)
-        {
-            if(listaProductos.SelectedIndex >= 0)
-                txtProducto.Text = listaProductos.SelectedItem.ToString();
+        { 
+            if (listaProductos.SelectedIndex >= 0)
+            {
+                string[] value = listaProductos.SelectedItem.ToString().Split(',');
+                cargainfo = true;
+                txtProducto.Text = value[0].Trim();
+                idproducto = int.Parse(value[1].Trim());
+                setPrecioStock(idproducto);
+                cargainfo = false;
+            }
 
             txtProducto.Focus();
             txtProducto.Select(txtProducto.Text.Length, 0);
-            listaProductos.Visible = false;
+            listaProductos.Height = 0;
         }
 
         private void descuentoProducto_KeyPress(object sender, KeyPressEventArgs e)
@@ -497,16 +462,22 @@ namespace sicem
                 decimal totalvalue = Convert.ToDecimal(int.Parse(cantidadVentaProducto.Text) * decimal.Parse(txtPrecioVenta.Text));
                 decimal descuentovalue = Convert.ToDecimal(descuentoProducto.Text);
 
-                detalleVenta.Rows[count].Cells[0].Value = idproducto;
-                detalleVenta.Rows[count].Cells[1].Value = txtProducto.Text;
-                detalleVenta.Rows[count].Cells[2].Value = cantidadVentaProducto.Text;
-                detalleVenta.Rows[count].Cells[3].Value = txtPrecioVenta.Text;
-                detalleVenta.Rows[count].Cells[4].Value = descuentovalue;
-                if (impuestoValue.Checked)
-                    detalleVenta.Rows[count].Cells[5].Value = (totalvalue - descuentovalue) * decimal.Parse("0,15");
-                else
-                    detalleVenta.Rows[count].Cells[5].Value = 0;
-                detalleVenta.Rows[count].Cells[6].Value = totalvalue - descuentovalue + decimal.Parse(detalleVenta.Rows[count].Cells[5].Value.ToString());
+                string i, n, c, p, d, im, t;
+                i = idproducto.ToString();
+                n = txtProducto.Text;
+                c = cantidadVentaProducto.Value.ToString();
+                p = txtPrecioVenta.Text;
+                d = descuentovalue.ToString();
+                im = (impuestoValue.Checked) ? (((totalvalue - descuentovalue) * decimal.Parse("0,15"))).ToString() : "0";
+                t = ( totalvalue - descuentovalue + decimal.Parse(im) ).ToString();
+
+                detalleVenta.Rows[count].Cells[0].Value = i;
+                detalleVenta.Rows[count].Cells[1].Value = n;
+                detalleVenta.Rows[count].Cells[2].Value = c;
+                detalleVenta.Rows[count].Cells[3].Value = p;
+                detalleVenta.Rows[count].Cells[4].Value = d;
+                detalleVenta.Rows[count].Cells[5].Value = im;
+                detalleVenta.Rows[count].Cells[6].Value = t;
 
                 count = -1;
                 idproducto = -1;
@@ -520,6 +491,8 @@ namespace sicem
 
         private void detalleVenta_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            try
+            {
                 count = e.RowIndex;
 
                 idproducto = int.Parse(detalleVenta.Rows[count].Cells[0].Value.ToString());
@@ -527,62 +500,61 @@ namespace sicem
                 cantidadVentaProducto.Text = detalleVenta.Rows[count].Cells[2].Value.ToString();
                 txtPrecioVenta.Text = detalleVenta.Rows[count].Cells[3].Value.ToString();
                 descuentoProducto.Text = detalleVenta.Rows[count].Cells[4].Value.ToString();
-                txtStock.Text = setStock(int.Parse(detalleVenta.Rows[count].Cells[0].Value.ToString()));
-                if (Convert.ToDecimal(detalleVenta.Rows[count].Cells[5].Value.ToString()) != 0)
-                    impuestoValue.Checked = true;
-                else
-                    impuestoValue.Checked = false;
+                setPrecioStock(int.Parse(detalleVenta.Rows[count].Cells[0].Value.ToString()));
+                impuestoValue.Checked = (Convert.ToDecimal(detalleVenta.Rows[count].Cells[5].Value.ToString()) != 0) ? true : false;
+            }
+            catch (Exception ex) { }
         }
 
         private void cancelarButton_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void cantidadVentaProducto_ValueChanged(object sender, EventArgs e)
+        {
+            if(desc != 0 && (cantidadVentaProducto.Value >= min && cantidadVentaProducto.Value <= max))
+            {
+                decimal value = (cantidadVentaProducto.Value * decimal.Parse(txtPrecioVenta.Text)) * Convert.ToDecimal(desc);
+                descuentoProducto.Text = value.ToString();
+            }
+        }
+
+        private void tipoPago_onItemSelected(object sender, EventArgs e)
+        {
+
         }
 
         private void guardarButton_Click(object sender, EventArgs e)
         {
-            if (accionformulario == "crear" || accionformulario == "editar")
-            {
-                if (idcliente != -1)
+            try {
+                if (idcliente != "")
                 {
-                    //string[] valueid = txtCliente.Text.Split('-');
                     venta v = new venta();
                     v.Id = txtCodigoVenta.Text;
                     v.ClientId = idcliente;
                     v.TipoPago = tipoPago.selectedIndex;
                     v.FechaVenta = fechaVenta.Value;
-                    if (ventaCredito.Checked)
-                        v.TipoVenta = 1;
-                    else
-                        v.TipoVenta = 0;
+                    v.TipoVenta = (ventaCredito.Checked) ? 1 : 0;
                     v.SubTotal = decimal.Parse(labelSubtotal.Text);
                     v.Tax = decimal.Parse(labelImpuesto.Text);
                     v.MontoTotal = decimal.Parse(labelTotal.Text);
 
-                    if (accionformulario == "crear")
-                    {
-                        try{
+                    if (accionformulario == "crear") {
+                        v.Insertar();
+                        saveDetalle(1);
+                    } else {
+                        v.Editar();
+                        saveDetalle(0);
+                    }
 
-                            v.Insertar();
-                            saveDetalle(1);
-                        }catch (Exception ex) { MessageBox.Show("ERROR: Inserción fallida: " + ex.ToString()); }
-                        this.Close();
-                    }
-                    else
-                    {
-                        try{
-                            v.Editar();
-                            saveDetalle(0);
-                        }catch (Exception ex) { MessageBox.Show("ERROR: Actualización fallida: " + ex.ToString()); }
-                        this.DialogResult = DialogResult.OK;
-                    }
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
                 else
-                    new popup("No se puede guardar la venta", popup.AlertType.error);
-
-            }
-            else
-                this.Close();
+                    new popup("No se pudo realizar la acción", popup.AlertType.error);
+            }catch(Exception ex) { }
         }
 
         private void borrarDetalle_Click(object sender, EventArgs e)

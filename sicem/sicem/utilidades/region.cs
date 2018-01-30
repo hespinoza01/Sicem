@@ -25,8 +25,11 @@ namespace sicem
         {
             System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
             gp.AddEllipse(0, 0, width - 3, height - 3);
-
-            return new Region(gp);
+            //using (var gp = new GraphicsPath())
+            //{
+            //    gp.AddEllipse(new Rectangle(0, 0, width - 1, height - 1));
+                return new Region(gp);
+            //}
         }
 
         public Region RoundBorder(int width, int height, int border)
@@ -34,20 +37,20 @@ namespace sicem
             return System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, width, height, border, border));
         }
 
-        public GraphicsPath RoundRect(int X, int Y, int Width, int Height, int Curve)
-        {
-            Width -= 1;
-            Height -= 1;
-            Rectangle Rectangle = new Rectangle(X, Y, Width, Height);
-            GraphicsPath GP = new GraphicsPath();
-            int EndArcWidth = Curve * 2;
-            GP.AddArc(new Rectangle(Rectangle.X, Rectangle.Y, EndArcWidth, EndArcWidth), -180, 90);
-            GP.AddArc(new Rectangle(Rectangle.Width - EndArcWidth + Rectangle.X, Rectangle.Y, EndArcWidth, EndArcWidth), -90, 90);
-            GP.AddArc(new Rectangle(Rectangle.Width - EndArcWidth + Rectangle.X, Rectangle.Height - EndArcWidth + Rectangle.Y, EndArcWidth, EndArcWidth), 0, 90);
-            GP.AddArc(new Rectangle(Rectangle.X, Rectangle.Height - EndArcWidth + Rectangle.Y, EndArcWidth, EndArcWidth), 90, 90);
-            GP.AddLine(new Point(Rectangle.X, Rectangle.Height - EndArcWidth + Rectangle.Y), new Point(Rectangle.X, Curve + Rectangle.Y));
-            return GP;
-        }
+        //public GraphicsPath RoundRect(int X, int Y, int Width, int Height, int Curve)
+        //{
+        //    Width -= 1;
+        //    Height -= 1;
+        //    Rectangle Rectangle = new Rectangle(X, Y, Width, Height);
+        //    GraphicsPath GP = new GraphicsPath();
+        //    int EndArcWidth = Curve * 2;
+        //    GP.AddArc(new Rectangle(Rectangle.X, Rectangle.Y, EndArcWidth, EndArcWidth), -180, 90);
+        //    GP.AddArc(new Rectangle(Rectangle.Width - EndArcWidth + Rectangle.X, Rectangle.Y, EndArcWidth, EndArcWidth), -90, 90);
+        //    GP.AddArc(new Rectangle(Rectangle.Width - EndArcWidth + Rectangle.X, Rectangle.Height - EndArcWidth + Rectangle.Y, EndArcWidth, EndArcWidth), 0, 90);
+        //    GP.AddArc(new Rectangle(Rectangle.X, Rectangle.Height - EndArcWidth + Rectangle.Y, EndArcWidth, EndArcWidth), 90, 90);
+        //    GP.AddLine(new Point(Rectangle.X, Rectangle.Height - EndArcWidth + Rectangle.Y), new Point(Rectangle.X, Curve + Rectangle.Y));
+        //    return GP;
+        //}
 
         //protected override void OnPaint(PaintEventArgs e)
         //{

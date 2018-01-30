@@ -41,7 +41,8 @@
             this.labelFechaModificacion = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.valueEstado = new Bunifu.Framework.UI.BunifuiOSSwitch();
-            this.bunifuCustomLabel3 = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.estadolabel = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.materialTheme1 = new Telerik.WinControls.Themes.MaterialTheme();
             ((System.ComponentModel.ISupportInitialize)(this.foto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtApellido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre)).BeginInit();
@@ -228,26 +229,26 @@
             this.valueEstado.Size = new System.Drawing.Size(35, 20);
             this.valueEstado.TabIndex = 66;
             this.valueEstado.Value = true;
-            this.valueEstado.OnValueChange += new System.EventHandler(this.valueEstado_OnValueChange);
+            this.valueEstado.Click += new System.EventHandler(this.valueEstado_OnValueChange);
             // 
-            // bunifuCustomLabel3
+            // estadolabel
             // 
-            this.bunifuCustomLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuCustomLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuCustomLabel3.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.bunifuCustomLabel3.Location = new System.Drawing.Point(180, 473);
-            this.bunifuCustomLabel3.Name = "bunifuCustomLabel3";
-            this.bunifuCustomLabel3.Size = new System.Drawing.Size(81, 20);
-            this.bunifuCustomLabel3.TabIndex = 67;
-            this.bunifuCustomLabel3.Text = "Habilitado";
-            this.bunifuCustomLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.estadolabel.BackColor = System.Drawing.Color.Transparent;
+            this.estadolabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.estadolabel.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.estadolabel.Location = new System.Drawing.Point(180, 473);
+            this.estadolabel.Name = "estadolabel";
+            this.estadolabel.Size = new System.Drawing.Size(81, 20);
+            this.estadolabel.TabIndex = 67;
+            this.estadolabel.Text = "Habilitado";
+            this.estadolabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // detalleUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(239)))));
-            this.Controls.Add(this.bunifuCustomLabel3);
+            this.Controls.Add(this.estadolabel);
             this.Controls.Add(this.valueEstado);
             this.Controls.Add(this.labelFechaModificacion);
             this.Controls.Add(this.label8);
@@ -287,6 +288,7 @@
         private System.Windows.Forms.Label labelFechaModificacion;
         private System.Windows.Forms.Label label8;
         private Bunifu.Framework.UI.BunifuiOSSwitch valueEstado;
-        private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel3;
+        private Bunifu.Framework.UI.BunifuCustomLabel estadolabel;
+        private Telerik.WinControls.Themes.MaterialTheme materialTheme1;
     }
 }

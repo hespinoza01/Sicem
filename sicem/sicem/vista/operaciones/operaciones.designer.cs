@@ -39,17 +39,17 @@
             this.labelventas = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.erraseButton = new Bunifu.Framework.UI.BunifuImageButton();
             this.contentSearch = new System.Windows.Forms.Panel();
+            this.metodoBusqueda = new iTalk.iTalk_ComboBox();
             this.txtBuscar = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.agregarButton = new Bunifu.Framework.UI.BunifuImageButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.vista = new Bunifu.Framework.UI.BunifuCustomDataGrid();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.contentDetails = new System.Windows.Forms.Panel();
-            this.metodoBusqueda = new iTalk.iTalk_ComboBox();
             this.columnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnFechaModificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.contentDetails = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.erraseButton)).BeginInit();
             this.contentSearch.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -106,6 +106,7 @@
             this.erraseButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.erraseButton.TabIndex = 10;
             this.erraseButton.TabStop = false;
+            this.erraseButton.Visible = false;
             this.erraseButton.Zoom = 6;
             // 
             // contentSearch
@@ -118,6 +119,31 @@
             this.contentSearch.Name = "contentSearch";
             this.contentSearch.Size = new System.Drawing.Size(350, 37);
             this.contentSearch.TabIndex = 12;
+            // 
+            // metodoBusqueda
+            // 
+            this.metodoBusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.metodoBusqueda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(246)))));
+            this.metodoBusqueda.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.metodoBusqueda.DropDownHeight = 100;
+            this.metodoBusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.metodoBusqueda.Font = new System.Drawing.Font("Century Gothic", 8.15F);
+            this.metodoBusqueda.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.metodoBusqueda.FormattingEnabled = true;
+            this.metodoBusqueda.HoverSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.metodoBusqueda.IntegralHeight = false;
+            this.metodoBusqueda.ItemHeight = 20;
+            this.metodoBusqueda.Items.AddRange(new object[] {
+            "Nombre/ID",
+            "Correo",
+            "Dirección",
+            "Teléfono"});
+            this.metodoBusqueda.Location = new System.Drawing.Point(237, 6);
+            this.metodoBusqueda.Name = "metodoBusqueda";
+            this.metodoBusqueda.Size = new System.Drawing.Size(102, 26);
+            this.metodoBusqueda.StartIndex = 0;
+            this.metodoBusqueda.TabIndex = 1;
             // 
             // txtBuscar
             // 
@@ -224,49 +250,6 @@
             this.vista.TabIndex = 14;
             this.vista.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.contentDetails);
-            this.panel3.Controls.Add(this.panel2);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(950, 590);
-            this.panel3.TabIndex = 14;
-            // 
-            // contentDetails
-            // 
-            this.contentDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.contentDetails.Location = new System.Drawing.Point(467, 0);
-            this.contentDetails.Name = "contentDetails";
-            this.contentDetails.Size = new System.Drawing.Size(483, 590);
-            this.contentDetails.TabIndex = 14;
-            // 
-            // metodoBusqueda
-            // 
-            this.metodoBusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.metodoBusqueda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(246)))));
-            this.metodoBusqueda.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.metodoBusqueda.DropDownHeight = 100;
-            this.metodoBusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.metodoBusqueda.Font = new System.Drawing.Font("Century Gothic", 8.15F);
-            this.metodoBusqueda.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.metodoBusqueda.FormattingEnabled = true;
-            this.metodoBusqueda.HoverSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.metodoBusqueda.IntegralHeight = false;
-            this.metodoBusqueda.ItemHeight = 20;
-            this.metodoBusqueda.Items.AddRange(new object[] {
-            "Nombre/ID",
-            "Correo",
-            "Dirección",
-            "Teléfono"});
-            this.metodoBusqueda.Location = new System.Drawing.Point(237, 6);
-            this.metodoBusqueda.Name = "metodoBusqueda";
-            this.metodoBusqueda.Size = new System.Drawing.Size(102, 26);
-            this.metodoBusqueda.StartIndex = 0;
-            this.metodoBusqueda.TabIndex = 1;
-            // 
             // columnID
             // 
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
@@ -307,6 +290,24 @@
             this.columnFechaModificacion.ReadOnly = true;
             this.columnFechaModificacion.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.columnFechaModificacion.Width = 167;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.contentDetails);
+            this.panel3.Controls.Add(this.panel2);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(950, 590);
+            this.panel3.TabIndex = 14;
+            // 
+            // contentDetails
+            // 
+            this.contentDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.contentDetails.Location = new System.Drawing.Point(467, 0);
+            this.contentDetails.Name = "contentDetails";
+            this.contentDetails.Size = new System.Drawing.Size(483, 590);
+            this.contentDetails.TabIndex = 14;
             // 
             // operaciones
             // 

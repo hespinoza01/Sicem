@@ -14,6 +14,10 @@ namespace sicem
     public partial class almacenProductoForm : Form
     {
         string accionformulario;
+        int idinventario, idproducto = -1, idbodega = -1;
+        List<int> valuesidproducto = new List<int>();
+        List<int> valuesidbodega = new List<int>();
+        bool cargainfo = false;
         public almacenProductoForm()
         {
             InitializeComponent();
@@ -34,6 +38,12 @@ namespace sicem
 
         private void inicia()
         {
+            if (accionformulario == "crear")
+            {
+                labelDisponible.Text = "";
+                labelSinAlmacenar.Text = "";
+                remover.Visible = false;
+            }
             aceptar.ButtonText = (accionformulario == "crear") ? "Guardar" : "Actualizar";
 
             txtProducto.Region = new region().RoundBorder(txtProducto.Width, txtProducto.Height+1, 7);
@@ -70,56 +80,140 @@ namespace sicem
 
         private void aceptar_Click(object sender, EventArgs e)
         {
-                
-                this.Close();
+            try {
+                if (idproducto != -1 && idbodega != -1)
+                {
+                    Inventario i = new Inventario();
+                    i.ProductoID = idproducto;
+                    i.BodegaID = idbodega;
+                    i.Estante = txtEstante.Text;
+                    i.Cantidad = (int)txtCantidad.Value;
+
+                    if (accionformulario == "crear")
+                        i.Insertar();
+                    else
+                    {
+                        i.ID = idinventario;
+                        i.Editar();
+                    }
+
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                    new popup("No se pudo realizar la acción", popup.AlertType.error);
+            }catch(Exception ex) { }
         }
 
 
         private void setDataView(int id)
         {
-            Conexión conexion = new Conexión();
-            DataTable data = new DataTable("Categoria");
-            using (SqlConnection cn = new SqlConnection(Conexión.Cn))
+            DataTable data = new Inventario().Detalle(id);
+
+            if (data != null) {
+                cargainfo = true;
+                DataRow r = data.Rows[0];
+
+                idinventario = int.Parse(r["ID"].ToString());
+                obtenerProducto(int.Parse(r["ProductoID"].ToString()));
+                obtenerBodega(int.Parse(r["BodegaID"].ToString()));
+                txtEstante.Text = r["Estante"].ToString();
+                txtCantidad.Value = decimal.Parse(r["Cantidad"].ToString());
+
+                cargainfo = false;
+            } else {
+                new popup("Error al mostrar información", popup.AlertType.error);
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
+        }
+
+        private void obtenerProducto(int id)
+        {
+            DataTable data = new Producto().Detalle(id);
+            if(data != null){
+                DataRow r = data.Rows[0];
+                txtProducto.Text = r["Nombre"].ToString();
+                idproducto = int.Parse(r["ID"].ToString());
+                productoSinAlmacenar();
+            }
+        }
+
+        private void obtenerBodega(int id)
+        {
+            DataTable data = new Bodega().Detalle(id);
+            if (data != null)
             {
-                try
-                {
-                    cn.Open();
+                DataRow r = data.Rows[0];
+                txtBodega.Text = r["Nombre"].ToString();
+                idbodega = int.Parse(r["ID"].ToString());
+                almacenajeDisponible();
+            }
+        }
 
-                    SqlCommand cmd = new SqlCommand(
-                        "select * from Categoria where ID = " + id,
-                        cn
-                        );
+        private void productoSinAlmacenar()
+        {
+            object value = new DBHelper().ReaderScalar("select Stock from Producto where ID = '"+idproducto+"'");
+            DataTable data = new Inventario().Mostrar(idinventario);
+            int suma = 0;
 
-                    SqlDataAdapter SqlDat = new SqlDataAdapter(cmd);
-                    SqlDat.Fill(data);
+            if(data != null)
+            {
+                foreach(DataRow r in data.Rows)
+                    suma += int.Parse(r["Cantidad"].ToString());
+            }
+            labelSinAlmacenar.Text = (value != null) ? (int.Parse(value.ToString()) - suma).ToString() : "";
+        }
 
-                    //DataRow row = data.Rows[0];
-                    //txtId.Text = row["ID"].ToString();
-                    //txtBodega.Text = row["Nombre"].ToString();
-                    //txtComentarios.Text = row["Descripcion"].ToString();
-                    //if (int.Parse(row["Estado"].ToString()) == 0)
-                    //    estadoValor.Checked = false;
-                    //else
-                    //    estadoValor.Checked = true;
-                }
-                catch (Exception ex)
-                {
-                    new popup("Error al mostrar información", popup.AlertType.error);
-                    this.Close();
+        private void almacenajeDisponible()
+        {
+            object value = new DBHelper().ReaderScalar("select Almacenaje from Bodega where ID = '" + idbodega + "'");
+            DataTable data = new DBHelper().Reader("select * from Inventario where BodegaID = '" + idbodega + "'");
+            int suma = 0;
+
+            if (data != null)
+            {
+                foreach (DataRow r in data.Rows)
+                    suma += int.Parse(r["Cantidad"].ToString());
+            }
+            labelDisponible.Text = (value != null) ? (int.Parse(value.ToString()) - suma).ToString() : "";
+        }
+
+        private void sugerencias(int tipo)
+        {
+            DataTable data = (tipo == 1) ? new Producto().Buscar(txtProducto.Text, 0) : new Bodega().Buscar(txtBodega.Text, 0);
+
+            if(data != null){
+                valuesidproducto.Clear();
+                valuesidbodega.Clear();
+                sugerenciaProducto.Items.Clear();
+                sugerenciaBodega.Items.Clear();
+                foreach(DataRow r in data.Rows){
+                    if(tipo == 1){
+                        valuesidproducto.Add(int.Parse(r["ID"].ToString()));
+                        sugerenciaProducto.Items.Add(r["Nombre"].ToString());
+                    }else{
+                        valuesidbodega.Add(int.Parse(r["ID"].ToString()));
+                        sugerenciaBodega.Items.Add(r["Nombre"].ToString());
+                    }
                 }
             }
-
         }
 
         private void txtProducto_TextChanged(object sender, EventArgs e)
         {
-            if (txtProducto.Text.Length > 0)
-            {
-                sugerenciaProducto.Visible = true;
-                sugerenciaProducto.BringToFront();
+            if(!cargainfo){
+                if (txtProducto.Text.Length > 0)
+                {
+                    sugerencias(1);
+                    sugerenciaProducto.Visible = true;
+                    sugerenciaProducto.BringToFront();
+                }
+                else
+                    sugerenciaProducto.Visible = false;
+
+                idproducto = -1;
             }
-            else
-                sugerenciaProducto.Visible = false;
         }
 
         private void txtProducto_KeyDown(object sender, KeyEventArgs e)
@@ -155,7 +249,12 @@ namespace sicem
         private void sugerenciaProducto_Click(object sender, EventArgs e)
         {
             if (sugerenciaProducto.SelectedIndex >= 0)
+            {
+                cargainfo = true;
                 txtProducto.Text = sugerenciaProducto.SelectedItem.ToString();
+                idproducto = valuesidproducto[sugerenciaProducto.SelectedIndex];
+                cargainfo = false;
+            }
 
             txtProducto.Focus();
             txtProducto.Select(txtProducto.Text.Length, 0);
@@ -176,13 +275,18 @@ namespace sicem
 
         private void txtBodega_TextChanged(object sender, EventArgs e)
         {
-            if (txtBodega.Text.Length > 0)
-            {
-                sugerenciaBodega.Visible = true;
-                sugerenciaBodega.BringToFront();
+            if(!cargainfo){
+                if (txtBodega.Text.Length > 0)
+                {
+                    sugerencias(2);
+                    sugerenciaBodega.Visible = true;
+                    sugerenciaBodega.BringToFront();
+                }
+                else
+                    sugerenciaBodega.Visible = false;
+
+                idbodega = -1;
             }
-            else
-                sugerenciaBodega.Visible = false;
         }
 
         private void txtBodega_KeyDown(object sender, KeyEventArgs e)
@@ -218,7 +322,12 @@ namespace sicem
         private void sugerenciaBodega_Click(object sender, EventArgs e)
         {
             if (sugerenciaBodega.SelectedIndex >= 0)
+            {
+                cargainfo = true;
                 txtBodega.Text = sugerenciaBodega.SelectedItem.ToString();
+                idbodega = valuesidbodega[sugerenciaBodega.SelectedIndex];
+                cargainfo = false;
+            }
 
             txtBodega.Focus();
             txtBodega.Select(txtBodega.Text.Length, 0);
@@ -237,6 +346,26 @@ namespace sicem
                 sugerenciaBodega.Visible = false;
         }
 
-        
+        private void txtCantidad_ValueChanged(object sender, EventArgs e)
+        {
+            int valor = int.Parse(txtCantidad.Value.ToString());
+            if(!(valor <= int.Parse(labelSinAlmacenar.Text)) && !(valor >= int.Parse(labelDisponible.Text)))
+            {
+                txtCantidad.Value = 0;
+                new popup("Cantidad no valida", popup.AlertType.warning);
+            }
+        }
+
+        private void remover_Click(object sender, EventArgs e)
+        {
+            if (new logoutDialog("¿ Remover del registro ? \nEsta acción no puede deshacerse.").ShowDialog() == DialogResult.OK)
+            {
+                new Inventario().Remover(idinventario);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+        }
+
+
     }
 }

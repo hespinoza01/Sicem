@@ -28,6 +28,16 @@ namespace sicem.vista.directorio
             labelFechaModificacion.Text = "";
             editar.Visible = false;
             editar.Click += editar_Click;
+
+            listaTarjetas.Font = new Font("Century Gothic", 10, FontStyle.Regular);
+            listaTarjetas.ForeColor = Color.RoyalBlue;
+            listaTarjetas.ItemHeight = 15;
+
+            tarjetaCredito.TopLevelControl.Controls.Add(listaTarjetas);
+            Point controlLocation = tarjetaCredito.TopLevelControl.PointToClient(tarjetaCredito.Parent.PointToScreen(tarjetaCredito.Location));
+            listaTarjetas.Left = controlLocation.X + 15;
+            listaTarjetas.Top = controlLocation.Y;
+            listaTarjetas.Height = 6;
         }
 
         public void setInfo(string id){
@@ -47,15 +57,36 @@ namespace sicem.vista.directorio
         		txtEmail.Text = row["Email"].ToString();
                 EstadoValue.Text = (int.Parse(row["Estado"].ToString()) == 1) ? "Habilitado" : "Deshabilitado";
                 labelFechaModificacion.Text = row["FechaModificacion"].ToString();
+                cargaTarjetas();
 
         	}else{
         		new popup("Error al mostrar detalle", popup.AlertType.error);
         	}
         }
 
+        private void cargaTarjetas()
+        {
+            DataTable data = new TarjetaCredito().Mostrar(txtID.Text);
+            listaTarjetas.Items.Clear();
+
+            if(data != null)
+            {
+                foreach(DataRow r in data.Rows)
+                    listaTarjetas.Items.Add(r[1].ToString());
+
+                int c = listaTarjetas.Items.Count;
+                listaTarjetas.Height = (c > 10) ? (10 * 15) : (c * 15);
+            }
+        }
+
         private void editar_Click(object sender, EventArgs e){
         	if(new clienteForm(txtID.Text).ShowDialog() == DialogResult.OK)
         		setInfo(txtID.Text);
+        }
+
+        private void tarjetaCredito_Click(object sender, EventArgs e)
+        {
+            listaTarjetas.Visible = (listaTarjetas.Visible) ? false : true;
         }
 
     }

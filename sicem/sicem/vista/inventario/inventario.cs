@@ -30,33 +30,72 @@ namespace sicem
 
         public void inicia()
         {
+            active = "producto";
             clearForeColor();
             labelproducto.ForeColor = Color.RoyalBlue;
-
+            detalleInventario.BringToFront();
             new listadoItems().llenar(metodoBusqueda, new listadoItems().producto());
-            active = "producto";
+            metodoBusqueda.StartIndex = 0;
 
             contentDetails.Controls.Add(detalleInventario);
             contentDetails.Controls.Add(detalleBodega);
 
-            detalleInventario.BringToFront();
-
-            Cargar();
+            Cargar(false);
         }
 
-        public void Cargar()
+        public void Cargar(bool buscar)
         {
-            //try
-            //{
-            //    vistaClientes.DataSource = new Cliente().Mostrar();
-            //}
-            //catch (Exception ex) { }
+            DataTable data = null;
+
+            if (buscar)
+                data = (active == "producto") ? new Producto().Buscar(txtBuscar.Text, 0) : new Bodega().Buscar(txtBuscar.Text, 0);
+            else
+                data = (active == "producto") ? new Producto().MostrarHabilitados() : new Bodega().Mostrar(); 
+
+            if (data != null)
+            {
+                vista.Rows.Clear();
+                foreach(DataRow r in data.Rows)
+                {
+                    string i, n, f;
+                    i = r["ID"].ToString();
+                    n = r["Nombre"].ToString();
+                    f = r["FechaModificacion"].ToString();
+                    vista.Rows.Add(i, n, f);
+                }
+            }
         }
 
         private void clearForeColor()
         {
             labelproducto.ForeColor = Color.Silver;
             labelbodega.ForeColor = Color.Silver;
+        }
+
+        private void activa()
+        {
+            clearForeColor();
+            Cargar(false);
+            switch (active)
+            {
+                case "producto":
+                    labelproducto.ForeColor = Color.RoyalBlue;
+                    Transition.run(indicadorlabel, "Left", labelproducto.Left, new TransitionType_EaseInEaseOut(500));
+                    indicadorlabel.Width = labelproducto.Width;
+                    detalleInventario.BringToFront();
+                    new listadoItems().llenar(metodoBusqueda, new listadoItems().producto());
+                    break;
+
+                case "bodega":
+                    labelbodega.ForeColor = Color.RoyalBlue;
+                    Transition.run(indicadorlabel, "Left", labelbodega.Left, new TransitionType_EaseInEaseOut(500));
+                    indicadorlabel.Width = labelbodega.Width;
+                    detalleBodega.BringToFront();
+                    new listadoItems().llenar(metodoBusqueda, new listadoItems().bodega());
+                    break;
+            }
+
+            metodoBusqueda.StartIndex = 0;
         }
 
 
@@ -76,36 +115,42 @@ namespace sicem
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //new clienteForm(int.Parse(vistaClientes.Rows[e.RowIndex].Cells[0].Value.ToString())).ShowDialog();
+            try
+            {
+                string value = vista.Rows[e.RowIndex].Cells[0].Value.ToString();
+                switch (active)
+                {
+                    case "producto":
+                        detalleInventario.setInfo(int.Parse(value));
+                        break;
+
+                    case "bodega":
+                        detalleBodega.setInfo(int.Parse(value));
+                        break;
+                }
+            }
+            catch (Exception ex) { }
         }
 
         private void txtBuscar_OnTextChange(object sender, EventArgs e)
         {
-            //if (txtBuscar.text == "")
-            //    Cargar();
-            //else
-            //    vistaClientes.DataSource = new Cliente().Buscar(txtBuscar.text, metodoBusqueda.SelectedIndex);
+            if (txtBuscar.Text.Length > 0)
+                Cargar(true);
+            else
+                Cargar(false);
         }
 
         private void labelbodega_Click(object sender, EventArgs e)
         {
-            clearForeColor();
-            labelbodega.ForeColor = Color.RoyalBlue;
-            Transition.run(indicadorlabel, "Left", labelbodega.Left, new TransitionType_EaseInEaseOut(500));
-            indicadorlabel.Width = labelbodega.Width;
-            detalleBodega.BringToFront(); new listadoItems().llenar(metodoBusqueda, new listadoItems().bodega());
             active = "bodega";
+            activa();
         }
 
         private void labelproducto_Click(object sender, EventArgs e)
         {
-            clearForeColor();
-            labelproducto.ForeColor = Color.RoyalBlue;
-            Transition.run(indicadorlabel, "Left", labelproducto.Left, new TransitionType_EaseInEaseOut(500));
-            indicadorlabel.Width = labelproducto.Width;
-            detalleInventario.BringToFront();
-            new listadoItems().llenar(metodoBusqueda, new listadoItems().producto());
             active = "producto";
+            activa();
         }
+
     }
 }

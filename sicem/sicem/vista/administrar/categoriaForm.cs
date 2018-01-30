@@ -77,23 +77,25 @@ namespace sicem
 
         private void aceptar_Click(object sender, EventArgs e)
         {
-            Categoria c = new Categoria();
-            c.Nombre = txtNombre.Text;
-            c.Descripcion = txtDescripcion.Text;
-            c.Estado = (estadoValor.Checked) ? 1 : 0;
-        
-            if (accionformulario == "crear")
-            {
-                c.Insertar();
-            }
-            else
-            {
-                c.ID = int.Parse(txtId.Text);
-                c.Editar();
-            }
+            try {
+                Categoria c = new Categoria();
+                c.Nombre = txtNombre.Text;
+                c.Descripcion = txtDescripcion.Text;
+                c.Estado = (estadoValor.Checked) ? 1 : 0;
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+                if (accionformulario == "crear")
+                {
+                    c.Insertar();
+                }
+                else
+                {
+                    c.ID = int.Parse(txtId.Text);
+                    c.Editar();
+                }
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }catch(Exception ex) { }
         }
 
     }

@@ -53,13 +53,17 @@ namespace sicem.vista.directorio
         private void listaProductos(){
         	DataTable data = new OfertaEspecial().listadoProductos(int.Parse(txtID.Text));
 
-        	listadoProductoOferta.Rows.Clear();
-        	foreach(DataRow row in data.Rows){
-        		string id, n;
-        		id = row[0].ToString();
-        		n = row[1].ToString();
-        		listadoProductoOferta.Rows.Add(id, n);
-        	}
+            if (data != null)
+            {
+                listadoProductoOferta.Rows.Clear();
+                foreach (DataRow row in data.Rows)
+                {
+                    string id, n;
+                    id = row[0].ToString();
+                    n = row[1].ToString();
+                    listadoProductoOferta.Rows.Add(id, n);
+                }
+            }
         }
 
         private void editar_Click(object sender, EventArgs e){

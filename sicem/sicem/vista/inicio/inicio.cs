@@ -51,8 +51,7 @@ namespace sicem
         {
             contentBadget.Region = new region().Circle(contentBadget.Width, contentBadget.Height);
             hideBadget.Region = new region().Circle(hideBadget.Width, hideBadget.Height);
-
-            inicia();
+            cargar();
         }
 
         private void seeBadget_Click(object sender, EventArgs e)

@@ -69,22 +69,53 @@ as
 		inner join updated u
 			on p.ID = u.ProductoID
 
+-- actualiza los id de inventario despues de haber eliminado uno
+create trigger [Actualiza_ID_Inventario]
+on Inventario
+for delete
+as
+begin tran
+	declare @id int
+	set @id = (select ID from deleted)
+	
+	update Inventario
+	set ID = ID-1
+	where ID > @id
+commit
 
-/*inventario con id, y uso de foreing key usando la categiria. uso de trigger para actualizar los idInventario a la hora de borrar uno*/
 
-/* provando el trigger de aumento_stock_dc*/
---insert into Categoria(Nombre, Descripcion, Estado)
---values ('Zapatos', 'Zapatos de distintos estilos, colores y marcas, para damas, niños y caballeros', 1)
---go
---insert into Producto(CategoriaID, Nombre, PrecioVenta, Stock, Descripcion, Estado)
---values (1, 'Deportivo NIKE', 575, 10, 'descripcion', 1)
---go
---insert into Proveedor(Nombre, Domicilio, Telefono, Email)
---values ('NIKE', 'Alguna direción', '0000-0000', 'nikecompany@gmail.com')
---go
---insert into Compra
---values ('compra', 1, getdate(), 1, 1290)
+-- Actulizar el almacen con respecto a las salidas del producto
+create trigger [Disminuir_Almacen]
+on [Detalle_Venta]
+for insert
+as
+	declare 
+		@salida int,
+		@idProductoSalida int,
+		@idAlmacen int,
+		@stockAlmacen int
 
---select * from Producto
---insert Detalle_Compra
---values ('compra', 1, 3, 120, 120)
+	set @salida = (select Cantidad from inserted)
+	set @idProductoSalida = (select ProductoID from inserted)
+
+	while @salida > 0
+	begin
+		set @idAlmacen = (select top 1 ID from Inventario where ProductoID = @idProductoSalida order by id)
+		set @stockAlmacen = (select Cantidad from Inventario where ID = @idAlmacen)
+
+		if @salida > @stockAlmacen
+			begin
+				delete from Inventario where ID = @idAlmacen
+				set @salida = @salida - @stockAlmacen
+			end
+			else if (@salida - @stockAlmacen) = 0
+				begin
+					delete from Inventario where ID = @idAlmacen
+					set @salida = 0
+				end
+				else
+					begin
+						update Inventario set Cantidad = Cantidad - @salida where ID = @idAlmacen
+						set @salida = 0
+					end
+	end

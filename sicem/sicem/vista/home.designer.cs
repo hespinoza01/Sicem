@@ -36,7 +36,7 @@
             this.inicioTab = new Bunifu.Framework.UI.BunifuFlatButton();
             this.inventarioTab = new Bunifu.Framework.UI.BunifuFlatButton();
             this.productosTab = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.proveedorTab = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.reportesTab = new Bunifu.Framework.UI.BunifuFlatButton();
             this.administrarTab = new Bunifu.Framework.UI.BunifuFlatButton();
             this.directorioTab = new Bunifu.Framework.UI.BunifuFlatButton();
             this.OperacionesTab = new Bunifu.Framework.UI.BunifuFlatButton();
@@ -90,7 +90,7 @@
             this.panel3.Controls.Add(this.inicioTab);
             this.panel3.Controls.Add(this.inventarioTab);
             this.panel3.Controls.Add(this.productosTab);
-            this.panel3.Controls.Add(this.proveedorTab);
+            this.panel3.Controls.Add(this.reportesTab);
             this.panel3.Controls.Add(this.administrarTab);
             this.panel3.Controls.Add(this.directorioTab);
             this.panel3.Controls.Add(this.OperacionesTab);
@@ -218,44 +218,44 @@
             this.productosTab.TextFont = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productosTab.Click += new System.EventHandler(this.productosTab_Click);
             // 
-            // proveedorTab
+            // reportesTab
             // 
-            this.proveedorTab.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(125)))), ((int)(((byte)(245)))));
-            this.proveedorTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.proveedorTab.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.proveedorTab.BorderRadius = 0;
-            this.proveedorTab.ButtonText = "  Proveedores";
-            this.proveedorTab.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.viewTransition.SetDecoration(this.proveedorTab, BunifuAnimatorNS.DecorationType.None);
-            this.proveedorTab.DisabledColor = System.Drawing.Color.Gray;
-            this.proveedorTab.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.proveedorTab.Iconcolor = System.Drawing.Color.Transparent;
-            this.proveedorTab.Iconimage = ((System.Drawing.Image)(resources.GetObject("proveedorTab.Iconimage")));
-            this.proveedorTab.Iconimage_right = null;
-            this.proveedorTab.Iconimage_right_Selected = null;
-            this.proveedorTab.Iconimage_Selected = null;
-            this.proveedorTab.IconMarginLeft = 0;
-            this.proveedorTab.IconMarginRight = 0;
-            this.proveedorTab.IconRightVisible = true;
-            this.proveedorTab.IconRightZoom = 0D;
-            this.proveedorTab.IconVisible = true;
-            this.proveedorTab.IconZoom = 57D;
-            this.proveedorTab.IsTab = true;
-            this.proveedorTab.Location = new System.Drawing.Point(0, 217);
-            this.proveedorTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.proveedorTab.Name = "proveedorTab";
-            this.proveedorTab.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.proveedorTab.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
-            this.proveedorTab.OnHoverTextColor = System.Drawing.Color.RoyalBlue;
-            this.proveedorTab.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.proveedorTab.selected = false;
-            this.proveedorTab.Size = new System.Drawing.Size(230, 40);
-            this.proveedorTab.TabIndex = 7;
-            this.proveedorTab.Text = "  Proveedores";
-            this.proveedorTab.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.proveedorTab.Textcolor = System.Drawing.Color.RoyalBlue;
-            this.proveedorTab.TextFont = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.proveedorTab.Click += new System.EventHandler(this.proveedorTab_Click);
+            this.reportesTab.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(125)))), ((int)(((byte)(245)))));
+            this.reportesTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.reportesTab.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.reportesTab.BorderRadius = 0;
+            this.reportesTab.ButtonText = "  Reportes";
+            this.reportesTab.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.viewTransition.SetDecoration(this.reportesTab, BunifuAnimatorNS.DecorationType.None);
+            this.reportesTab.DisabledColor = System.Drawing.Color.Gray;
+            this.reportesTab.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportesTab.Iconcolor = System.Drawing.Color.Transparent;
+            this.reportesTab.Iconimage = ((System.Drawing.Image)(resources.GetObject("reportesTab.Iconimage")));
+            this.reportesTab.Iconimage_right = null;
+            this.reportesTab.Iconimage_right_Selected = null;
+            this.reportesTab.Iconimage_Selected = ((System.Drawing.Image)(resources.GetObject("reportesTab.Iconimage_Selected")));
+            this.reportesTab.IconMarginLeft = 0;
+            this.reportesTab.IconMarginRight = 0;
+            this.reportesTab.IconRightVisible = true;
+            this.reportesTab.IconRightZoom = 0D;
+            this.reportesTab.IconVisible = true;
+            this.reportesTab.IconZoom = 57D;
+            this.reportesTab.IsTab = true;
+            this.reportesTab.Location = new System.Drawing.Point(0, 217);
+            this.reportesTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.reportesTab.Name = "reportesTab";
+            this.reportesTab.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.reportesTab.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.reportesTab.OnHoverTextColor = System.Drawing.Color.RoyalBlue;
+            this.reportesTab.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.reportesTab.selected = false;
+            this.reportesTab.Size = new System.Drawing.Size(230, 40);
+            this.reportesTab.TabIndex = 7;
+            this.reportesTab.Text = "  Reportes";
+            this.reportesTab.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.reportesTab.Textcolor = System.Drawing.Color.RoyalBlue;
+            this.reportesTab.TextFont = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportesTab.Click += new System.EventHandler(this.proveedorTab_Click);
             // 
             // administrarTab
             // 
@@ -488,7 +488,7 @@
             this.viewTransition.SetDecoration(this.contentMenuMore, BunifuAnimatorNS.DecorationType.None);
             this.contentMenuMore.Location = new System.Drawing.Point(732, 37);
             this.contentMenuMore.Name = "contentMenuMore";
-            this.contentMenuMore.Size = new System.Drawing.Size(130, 100);
+            this.contentMenuMore.Size = new System.Drawing.Size(130, 85);
             this.contentMenuMore.TabIndex = 0;
             // 
             // salir
@@ -670,7 +670,7 @@
         private Bunifu.Framework.UI.BunifuFlatButton administrarTab;
         private System.Windows.Forms.Label idUsuario;
         private Bunifu.Framework.UI.BunifuImageButton menu;
-        private Bunifu.Framework.UI.BunifuFlatButton proveedorTab;
+        private Bunifu.Framework.UI.BunifuFlatButton reportesTab;
         private Bunifu.Framework.UI.BunifuFlatButton inicioTab;
         private System.Windows.Forms.Panel contenedor;
         private Bunifu.Framework.UI.BunifuImageButton logout;

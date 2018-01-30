@@ -387,6 +387,7 @@
             this.sugerenciaRA.Text = "radListControl1";
             this.sugerenciaRA.ThemeName = "Material";
             this.sugerenciaRA.Visible = false;
+            this.sugerenciaRA.Click += new System.EventHandler(this.sugerenciaRA_Click);
             ((Telerik.WinControls.UI.RadListElement)(this.sugerenciaRA.GetChildAt(0))).ItemHeight = 20;
             ((Telerik.WinControls.UI.RadListElement)(this.sugerenciaRA.GetChildAt(0))).DrawBorder = true;
             ((Telerik.WinControls.UI.RadListElement)(this.sugerenciaRA.GetChildAt(0))).HorizontalLineColor = System.Drawing.Color.White;
@@ -429,6 +430,7 @@
             this.sugerencia.Text = "radListControl1";
             this.sugerencia.ThemeName = "Material";
             this.sugerencia.Visible = false;
+            this.sugerencia.Click += new System.EventHandler(this.sugerencia_Click);
             ((Telerik.WinControls.UI.RadListElement)(this.sugerencia.GetChildAt(0))).ItemHeight = 20;
             ((Telerik.WinControls.UI.RadListElement)(this.sugerencia.GetChildAt(0))).DrawBorder = true;
             ((Telerik.WinControls.UI.RadListElement)(this.sugerencia.GetChildAt(0))).HorizontalLineColor = System.Drawing.Color.White;
@@ -619,7 +621,24 @@
             this.txtCiudad.BorderRadius = 7;
             this.txtCiudad.DisabledColor = System.Drawing.Color.Gray;
             this.txtCiudad.ForeColor = System.Drawing.Color.White;
-            this.txtCiudad.Items = new string[0];
+            this.txtCiudad.Items = new string[] {
+        "Boaco",
+        "Carazo",
+        "Chinandega",
+        "Chontales",
+        "Estelí",
+        "Granada",
+        "Jinotega",
+        "León",
+        "Madriz",
+        "Managua",
+        "Masaya",
+        "Matagalpa",
+        "Nueva Segovia",
+        "RAAN",
+        "RAAS",
+        "Río San Juan",
+        "Rivas"};
             this.txtCiudad.Location = new System.Drawing.Point(176, 53);
             this.txtCiudad.Name = "txtCiudad";
             this.txtCiudad.NomalColor = System.Drawing.Color.RoyalBlue;

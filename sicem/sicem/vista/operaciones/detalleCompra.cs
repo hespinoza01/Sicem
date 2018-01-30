@@ -65,11 +65,11 @@ namespace sicem.vista.directorio
                 foreach (DataRow row in data.Rows)
                 {
                     string pid, n, c, cu, t;
-                    pid = Convert.ToString(row[0]);
-                    n = Convert.ToString(row[1]);
-                    c = Convert.ToString(row[2]);
-                    cu = Convert.ToString(row[3]);
-                    t = Convert.ToString(row[4]);
+                    pid = row[0].ToString();
+                    n = row[1].ToString();
+                    c = row[2].ToString();
+                    cu = row[3].ToString();
+                    t = row[4].ToString();
                     vistaDetalle.Rows.Add(pid, n, c, cu, t);
                 }
             }

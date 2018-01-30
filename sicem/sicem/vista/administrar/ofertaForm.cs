@@ -19,7 +19,7 @@ namespace sicem
         string accionformulario;
         List<int> idvalues = new List<int>();
         int idproducto = -1;
-
+        bool cargainfo = false;
         public ofertaForm()
         {
             InitializeComponent();
@@ -88,17 +88,20 @@ namespace sicem
             DataTable data = new OfertaEspecial().Detalle(id);
 
             if(data != null){
+                cargainfo = true;
                 DataRow row = data.Rows[0];
 
                 txtID.Text = row["ID"].ToString();
                 txtDescripcion.Text = row["Descripcion"].ToString();
-                txtPorcentajeDescuento.Text = row["PorcentajeDescuento"].ToString();
+                txtPorcentajeDescuento.Value = Convert.ToDecimal(float.Parse(row["PorcentajeDescuento"].ToString()) * 100);
                 txtTipoOferta.Text = row["tipoOferta"].ToString();
                 fechaInicio.Value = (DateTime)row["FechaInicio"];
                 fechaFin.Value = (DateTime)row["FechaFinal"];
                 txtCantidadMin.Text = row["MinCantidad"].ToString();
                 txtCantidadMax.Text = row["MaxCantidad"].ToString();
                 listaProductos();
+
+                cargainfo = false;
             }else{
                 new popup("Error al mostrar información", popup.AlertType.error);
                 this.Close();
@@ -109,12 +112,16 @@ namespace sicem
         private void listaProductos(){
             DataTable data = new OfertaEspecial().listadoProductos(int.Parse(txtID.Text));
 
-            listadoProductoOferta.Rows.Clear();
-            foreach(DataRow row in data.Rows){
-                string id, n;
-                id = row[0].ToString();
-                n = row[1].ToString();
-                listadoProductoOferta.Rows.Add(id, n);
+            if (data != null)
+            {
+                listadoProductoOferta.Rows.Clear();
+                foreach (DataRow row in data.Rows)
+                {
+                    string id, n;
+                    id = row[0].ToString();
+                    n = row[1].ToString();
+                    listadoProductoOferta.Rows.Add(id, n);
+                }
             }
         }
 
@@ -151,25 +158,27 @@ namespace sicem
 
         private void guardarButton_Click(object sender, EventArgs e)
         {
-            OfertaEspecial o = new OfertaEspecial();
-            o.Descripcion = txtDescripcion.Text;
-            o.PorcentajeDescuento = float.Parse(txtPorcentajeDescuento.Text);
-            o.TipoOferta = txtTipoOferta.Text;
-            o.FechaInicio = fechaInicio.Value;
-            o.FechaFinal = fechaFin.Value;
-            o.MinCantidad = (int)txtCantidadMin.Value;
-            o.MaxCantidad = (int)txtCantidadMax.Value;
+            try {
+                OfertaEspecial o = new OfertaEspecial();
+                o.Descripcion = txtDescripcion.Text;
+                o.PorcentajeDescuento = int.Parse(txtPorcentajeDescuento.Text) / 100;
+                o.TipoOferta = txtTipoOferta.Text;
+                o.FechaInicio = fechaInicio.Value;
+                o.FechaFinal = fechaFin.Value;
+                o.MinCantidad = (int)txtCantidadMin.Value;
+                o.MaxCantidad = (int)txtCantidadMax.Value;
 
-            if (accionformulario == "crear")
-            {
-                o.Insertar();
-            }else{
-                o.ID = int.Parse(txtID.Text);
-                o.Editar();
-            }
+                if (accionformulario == "crear")
+                {
+                    o.Insertar();
+                } else {
+                    o.ID = int.Parse(txtID.Text);
+                    o.Editar();
+                }
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }catch(Exception ex) { }
         }
 
         private void txtStock_KeyPress(object sender, KeyPressEventArgs e)
@@ -184,24 +193,29 @@ namespace sicem
 
         private void txtProducto_TextChanged(object sender, EventArgs e)
         {
-            if (txtProducto.Text.Length > 0)
+            if (!cargainfo)
             {
-                Point controlLocation = txtTipoOferta.TopLevelControl.PointToClient(txtProducto.Parent.PointToScreen(txtProducto.Location));
-                sugerencia.Left = controlLocation.X + 5;
-                sugerencia.Top = controlLocation.Y + txtProducto.Height;
-                sugerencias();
-                
+                if (txtProducto.Text.Length > 0)
+                {
+                    Point controlLocation = txtTipoOferta.TopLevelControl.PointToClient(txtProducto.Parent.PointToScreen(txtProducto.Location));
+                    sugerencia.Left = controlLocation.X + 5;
+                    sugerencia.Top = controlLocation.Y + txtProducto.Height;
+                    sugerencias();
+
+                }
+                else
+                    sugerencia.Height = 0;
             }
-            else
-                sugerencia.Height = 0;
         }
 
         private void sugerencia_Click(object sender, EventArgs e)
         {
             if (sugerencia.SelectedIndex >= 0)
             {
+                cargainfo = true;
                 txtProducto.Text = sugerencia.SelectedItem.ToString();
                 idproducto = idvalues[sugerencia.SelectedIndex];
+                cargainfo = false;
             }
 
             txtProducto.Focus();
@@ -301,15 +315,20 @@ namespace sicem
 
         private void listadoProductoOferta_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            idproducto = (int)listadoProductoOferta.Rows[e.RowIndex].Cells[0].Value;
-            if(new logoutDialog("¿ Remover producto ?").ShowDialog() == DialogResult.OK){
-                if (new OfertaEspecial().RemoverOfertaProducto(int.Parse(txtID.Text), idproducto))
+            try
+            {
+                idproducto = (int)listadoProductoOferta.Rows[e.RowIndex].Cells[0].Value;
+                if (new logoutDialog("¿ Remover producto ?").ShowDialog() == DialogResult.OK)
                 {
-                    listadoProductoOferta.Rows.RemoveAt(e.RowIndex);
+                    if (new OfertaEspecial().RemoverOfertaProducto(int.Parse(txtID.Text), idproducto))
+                    {
+                        listadoProductoOferta.Rows.RemoveAt(e.RowIndex);
+                    }
                 }
-            }
 
-            idproducto = -1;
+                idproducto = -1;
+            }
+            catch (Exception ex) { }
         }
     }
 }

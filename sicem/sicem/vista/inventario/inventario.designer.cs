@@ -45,11 +45,11 @@
             this.agregarButton = new Bunifu.Framework.UI.BunifuImageButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.vista = new Bunifu.Framework.UI.BunifuCustomDataGrid();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.contentDetails = new System.Windows.Forms.Panel();
             this.columnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columFechaModificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.contentDetails = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.erraseButton)).BeginInit();
             this.contentSearch.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -106,6 +106,7 @@
             this.erraseButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.erraseButton.TabIndex = 10;
             this.erraseButton.TabStop = false;
+            this.erraseButton.Visible = false;
             this.erraseButton.Zoom = 6;
             // 
             // contentSearch
@@ -249,24 +250,6 @@
             this.vista.TabIndex = 14;
             this.vista.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.contentDetails);
-            this.panel3.Controls.Add(this.panel2);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(950, 590);
-            this.panel3.TabIndex = 14;
-            // 
-            // contentDetails
-            // 
-            this.contentDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.contentDetails.Location = new System.Drawing.Point(467, 0);
-            this.contentDetails.Name = "contentDetails";
-            this.contentDetails.Size = new System.Drawing.Size(483, 590);
-            this.contentDetails.TabIndex = 14;
-            // 
             // columnID
             // 
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
@@ -307,6 +290,24 @@
             this.columFechaModificacion.ReadOnly = true;
             this.columFechaModificacion.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.columFechaModificacion.Width = 167;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.contentDetails);
+            this.panel3.Controls.Add(this.panel2);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(950, 590);
+            this.panel3.TabIndex = 14;
+            // 
+            // contentDetails
+            // 
+            this.contentDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.contentDetails.Location = new System.Drawing.Point(467, 0);
+            this.contentDetails.Name = "contentDetails";
+            this.contentDetails.Size = new System.Drawing.Size(483, 590);
+            this.contentDetails.TabIndex = 14;
             // 
             // inventario
             // 
